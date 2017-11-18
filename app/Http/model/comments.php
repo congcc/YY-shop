@@ -4,9 +4,10 @@ namespace App\Http\model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class userinfo extends Model
+class comments extends Model
 {
     //
-    public $table = "userinfo";
+    
+    public $table = "comments";
 
 }

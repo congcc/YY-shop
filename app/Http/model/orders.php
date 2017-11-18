@@ -4,9 +4,9 @@ namespace App\Http\model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class userinfo extends Model
+class orders extends Model
 {
     //
-    public $table = "userinfo";
+    public $table = "orders";
 
 }
