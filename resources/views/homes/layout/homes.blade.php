@@ -25,6 +25,7 @@
 		<link rel="stylesheet" href="/homes/AmazeUI-2.4.2/assets/css/amazeui.css" />
 		<link href="/homes/css/dlstyle.css" rel="stylesheet" type="text/css">
 		<script src="/homes/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
+		<script src="/homes/js/validate.js"></script>
 		<script src="/homes/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
 
 	</head>

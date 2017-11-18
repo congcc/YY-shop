@@ -17,15 +17,28 @@
 
 //前台
 Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
+
+	//前台登录
 	Route::get('login', function () {
 		return view('homes.login');
 	});
+
+	//用户注册
 	Route::resource('register', 'RegController');
+
+	//前台首页
 	Route::get('index', function () {
 		return view('homes.index');
 	});
-	Route::get('co', 'CodesController@co');
-	Route::get('cos', 'CodesController@cos');
+
+	//发送验证码
+	Route::get('co', 'VerificationController@co');
+
+	//验证验证码
+	Route::get('cos', 'VerificationController@cos');
+
+	//验证手机号
+	Route::get('ph','VerificationController@ph');
 });
 
 

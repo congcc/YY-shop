@@ -6,7 +6,7 @@
 
 		<div class="login-boxtitle">
   <a href="home/demo.html">
-    <img alt="" src="/homes/images/logobig.png" /></a>
+    <img alt="" style="width: 130px;height: 60px;" src="/homes/images/logobig.png" /></a>
 </div>
 <div class="res-banner">
   <div class="res-main">
@@ -26,6 +26,7 @@
                 <i class="am-icon-mobile-phone am-icon-md"></i>
               </label>
               <input type="tel" name="phone" id="phone" placeholder="请输入手机号"></div>
+              <div id="e1" style="width: 200px;height: 20px;border: 1px black solid;color: red;font-size: 13px;font-weight: bold"></div>
             <div class="verification">
               <label for="code">
                 <i class="am-icon-code-fork"></i>
@@ -39,15 +40,19 @@
                 <i class="am-icon-lock"></i>
               </label>
               <input type="password" name="password" id="password" placeholder="设置密码"></div>
+              <div id="e2" style="width: 200px;height: 20px;border: 1px black solid;color: red;font-size: 13px;font-weight: bold"></div>
             <div class="user-pass">
               <label for="passwordRepeat">
                 <i class="am-icon-lock"></i>
               </label>
               <input type="password" name="passwordRepeat" id="passwordRepeat" placeholder="确认密码"></div>
-              <div class="login-links">
-            <label for="reader-me">
-              <!-- <input id="reader-me" type="checkbox">点击表示您同意商城《服务协议》</label></div> -->
+              <div id="e3" style="width: 200px;height: 20px;border: 1px black solid;color: red;font-size: 13px;font-weight: bold"></div>
+              <div class="login-links" style="clear: both">
+           
+
               {{ csrf_field()}}
+
+              </div>
           <div class="am-cf">
             <input type="submit" name="" id="regi" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl"></div>
           <hr></div>
@@ -84,17 +89,17 @@
 	$('#dyMobileButton').click(function(){
 		var ph = $('#phone').val();
 		$.get("co",{ph:ph},function(data){
-			//document.write(data);
 			if(data=="0"){
-				//alert('验证码发送失败啦，请重试');
-				/*console.log(123);*/
 			}
 		})
 	})
 	$('#code').blur(function(){
 		var cos = $('#code').val();
+    if(cos==""){
+      $('#code').css('border','solid 2px red');
+      return;
+    }
 		$.get("cos",{cos:cos},function(data){
-			//document.write(data);
 			if(data==1){
 				$('#code').css('border','solid 2px green');
 			}else{
@@ -103,37 +108,50 @@
 		})
 	})
 	$('#phone').blur(function(){
-		var ph  = $(this).val();
+    /*var phs = document.getElementById('phone');
+    var e = document.getElementById('e');
+		
 		var req = /^1[345678]\d{9}$/;
-		var res = req.exec(ph);
-		if(res){
+		var res = req.exec(ph);*/
+    var ph  = $(this).val();
+    
+    checkTel($('#phone'),$('#e'));
+    $.get("ph",{ph:ph},function(data){
+      if(data==1){
+        $('#phone').css('border','solid 2px red');
+        return;
+      }
+    })
+		/*if(res){
 			$(this).css('border','solid 2px green');
 		}else{
 			$(this).css('border','solid 2px red');
-		}
+		}*/
 	})
 
 
 	$('input[name="password"]').blur(function(){
-		var pass  = $(this).val();
+		/*var pass  = $(this).val();
 		var req = /^\S{6,16}$/;
 		var res = req.exec(pass);
 		if(res){
 			$(this).css('border','solid 2px green');
 		}else{
 			$(this).css('border','solid 2px red');
-		}
+		}*/
+    checkPassword($('#password'),$('#e2'),6);
 	})
 
 	$('input[name="passwordRepeat"]').blur(function(){
-		var Repeat  = $(this).val();
-		var	pass = $('input[name="password"]').val();
+		/*var Repeat  = $(this).val();
+		var	pass = $('input[name="password"]').val();*/
 		
-		if(Repeat==pass){
+		/*if(Repeat==pass){
 			$(this).css('border','solid 2px green');
 		}else{
 			$(this).css('border','solid 2px red');
-		}
+		}*/
+    checkRelPassword($('#password'),$('#passwordRepeat'),$('#e3'),6);
 
 	})
 </script>

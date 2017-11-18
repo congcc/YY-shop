@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\model\user;
+use App\Http\model\userinfo;
 use Hash;
+use DB;
 
 class RegController extends Controller
 {
@@ -19,7 +21,7 @@ class RegController extends Controller
     public function index()
     {
         //
-        return view('homes.register');
+        return view('homes.register');      //加载用户注册页面
     }
 
     /**
@@ -41,13 +43,35 @@ class RegController extends Controller
     public function store(Request $request)
     {
         //
-        //echo "123";
+        //获取表单传过来数据信息 
         $req = $request->only(['phone', 'password']);
-        //var_dump($req);
+
+        //对密码进行哈希加密
         $req['password'] = Hash::make($request->input('password'));
+
+        //将手机号放入数组中(用户名用手机号)
         $req['username'] = $request->input('phone');
-        //$user = new user();
-        user::insert($req);
+
+        //定义一个数组用来存放加入userinfo表中的数据
+        $reqs = array();
+        $reqs['createtime_user'] = time();          //注册时间
+
+        DB::beginTransaction();         //开启事务
+
+        //将数据添加到user表中
+        $regres = DB::insert("insert into user(username,password,phone) values ('".$req['username']."','".$req['password']."','".$req['phone']."')");
+        
+        //将数据添加到userinfo表中
+        $regress = DB::insert("insert into userinfo(createtime_user) values ('".$reqs['createtime_user']."')");
+
+        //判断是否都添加成功
+        if($regres && $regress){
+            DB::commit();           //成功执行
+            return redirect('home/index');      //返回商城主页
+        } else { 
+            DB::rollback();         //失败回滚
+            return back();
+        }
     }
 
     /**
