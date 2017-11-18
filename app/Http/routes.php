@@ -18,6 +18,11 @@
 //前台
 Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 
+	//首页
+	Route::get('index', function () {
+		return view('homes.index');
+	});
+
 	//前台登录
 	Route::get('login', function () {
 		return view('homes.login');
@@ -39,6 +44,56 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 
 	//验证手机号
 	Route::get('ph','VerificationController@ph');
+
+	//注册
+	Route::resource('register', 'RegController');
+	Route::get('co', 'CodesController@co');
+	Route::get('cos', 'CodesController@cos');
+
+	//商品搜索页
+	Route::resource('search', 'SearchController');
+
+
+	//商品详情页
+	Route::resource('details', 'DetailsController');
+	
+	
+
+
+
+
+	// 用户是否登录'meddleware'=>'login'
+	Route::group(['prefix'=>'user','namespace'=>'User'], function () {
+
+		//用户个人中心首页
+		Route::resource('user', 'UserController');
+		//用户个人信息
+		Route::resource('userinfo', 'UserinfoController');
+		//用户账户安全
+		Route::resource('usersafe', 'UsersafeController');
+		//用户地址
+		Route::resource('useraddr', 'UseraddrController');
+		//用户订单
+		Route::resource('userorder', 'UserorderController');
+		//用户退款售后
+		Route::resource('usersale', 'UsersaleController');
+		//用户优惠券
+		Route::resource('userfav', 'UserfavController');
+		//用户红包
+		Route::resource('uwallet', 'UserwalletController');
+		//用户账单明细
+		Route::resource('userbill', 'UserbillController');
+		//用户收藏
+		Route::resource('usercollect', 'UsercollectController');
+		//用户足迹
+		Route::resource('userfoot', 'UserfootController');
+		//用户评价
+		Route::resource('ureview', 'UserreviewController');
+		//用户消息
+		Route::resource('usernews', 'UsernewsController');
+
+	});
+
 });
 
 
