@@ -94,6 +94,47 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 
 	});
 
+
+
+	//商家 笑
+	Route::group(['prefix'=>'seller','namespace'=>'seller'],function(){
+		
+		//商家主页
+		Route::resource('index','IndexController');
+		
+		//安全中心
+		Route::resource('safety','SafetyController');
+		
+		//商家个人中心
+		Route::resource('info','InfoController');
+		
+		//订单管理
+		Route::resource('orderedit','OrdereditController');
+		
+		//退货管理
+		Route::resource('orderback','OrderbackController');
+		
+		//我的钱包
+		Route::resource('wallet','WalletController');
+		
+		//评论中心
+		Route::resource('comments','CommentsController');
+
+		//商铺信息
+		Route::resource('shop','ShopController');
+
+		//商品列表
+		Route::resource('goodslist','GoodslistController');
+
+		//商品上传
+		Route::resource('goodsup','GoodsupController');
+
+
+		
+		
+	});
+
+
 });
 
 
