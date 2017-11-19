@@ -51,7 +51,7 @@
 										<div class="fore2"><small>为保证您购物安全，建议您定期更改密码以保护账户安全。</small></div>
 									</div>
 									<div class="fore3">
-										<a href="password.html">
+										<a href="{{url('home/user/pass')}}">
 											<div class="am-btn am-btn-secondary">修改</div>
 										</a>
 									</div>
@@ -63,7 +63,7 @@
 										<div class="fore2"><small>启用支付密码功能，为您资产账户安全加把锁。</small></div>
 									</div>
 									<div class="fore3">
-										<a href="setpay.html">
+										<a href="{{url('home/user/paypass')}}">
 											<div class="am-btn am-btn-secondary">立即启用</div>
 										</a>
 									</div>

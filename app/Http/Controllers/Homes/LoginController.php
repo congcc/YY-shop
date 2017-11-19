@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Homes\User;
+namespace App\Http\Controllers\Homes;
 
 use Illuminate\Http\Request;
 
@@ -8,8 +8,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\model\user;
 use App\Http\model\userinfo;
+use Hash;
 
-class UserinfoController extends Controller
+class LoginController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,14 +19,8 @@ class UserinfoController extends Controller
      */
     public function index()
     {
-        
-        $uid = session('userid');
-        $res = user::find($uid);
-        $result = $res->userinfo;
-
-        return view('homes.user.information',compact('result','res'));
-        
-    }   
+        return view('homes.login');
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -45,7 +40,16 @@ class UserinfoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+        $req = $request->except('_token');
+
+        $res = user::where('phone',$req['uname'])->get();
+       
+        if (Hash::check($req['password'], $res[0]->password)) {
+           echo "1"; 
+        }
+         
     }
 
     /**

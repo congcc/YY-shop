@@ -22,55 +22,41 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 	Route::get('index', function () {
 		return view('homes.index');
 	});
-
-	//前台登录
-	Route::get('login', function () {
-		return view('homes.login');
-	});
-
-	//用户注册
-	Route::resource('register', 'RegController');
-
-	//前台首页
-	Route::get('index', function () {
+	Route::get('/', function () {
 		return view('homes.index');
 	});
 
-	//发送验证码
-	Route::get('co', 'VerificationController@co');
-
-	//验证验证码
-	Route::get('cos', 'VerificationController@cos');
-
-	//验证手机号
-	Route::get('ph','VerificationController@ph');
+	//前台登录
+	Route::resource('login', 'LoginController');
+	Route::post('slogin', 'LoginsController@store');
 
 	//注册
 	Route::resource('register', 'RegController');
-	Route::get('co', 'CodesController@co');
-	Route::get('cos', 'CodesController@cos');
+	Route::post('co', 'VerificationController@co');//发送验证码
+	Route::get('cos', 'VerificationController@cos');//验证验证码
+	Route::get('ph','VerificationController@ph');//验证手机号
+
+	
 
 	//商品搜索页
 	Route::resource('search', 'SearchController');
 
-
 	//商品详情页
 	Route::resource('details', 'DetailsController');
-	
-	
 
 
-
-
-	// 用户是否登录'meddleware'=>'login'
-	Route::group(['prefix'=>'user','namespace'=>'User'], function () {
+	// 用户是否登录
+	Route::group(['prefix'=>'user','namespace'=>'User','middleware'=>'hlogin'], function () {
 
 		//用户个人中心首页
 		Route::resource('user', 'UserController');
+		Route::resource('/', 'UserController');
 		//用户个人信息
 		Route::resource('userinfo', 'UserinfoController');
 		//用户账户安全
 		Route::resource('usersafe', 'UsersafeController');
+		Route::resource('pass', 'PassController');
+		Route::resource('paypass', 'PaypassController');
 		//用户地址
 		Route::resource('useraddr', 'UseraddrController');
 		//用户订单
@@ -91,6 +77,9 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		Route::resource('ureview', 'UserreviewController');
 		//用户消息
 		Route::resource('usernews', 'UsernewsController');
+		//用户购物车
+		Route::resource('shopcart', 'shopcartController');
+		
 
 	});
 
@@ -100,10 +89,10 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 //后台控制组
 Route::group(['prefix'=>'admin','namespace'=>'Admins',], function () {
 	
-		//后台登录
-		Route::resource('login','LoginController');
+	//后台登录
+	Route::resource('login','LoginController');
 			
-		// 'meddleware'=>'login'
+	// 'meddleware'=>'login'
 	Route::group([], function () {
 		
 		//后台首页

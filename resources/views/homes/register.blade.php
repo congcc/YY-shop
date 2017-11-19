@@ -46,7 +46,8 @@
                 <i class="am-icon-lock"></i>
               </label>
               <input type="password" name="passwordRepeat" id="passwordRepeat" placeholder="确认密码"></div>
-              <div id="e3" style="width: 200px;height: 20px;border: 1px black solid;color: red;font-size: 13px;font-weight: bold"></div>
+              <div id="e3" style="width: 200px;height: 20px;display: none;color: red;font-size: 13px;font-weight: bold"></div>
+
               <div class="login-links" style="clear: both">
            
 

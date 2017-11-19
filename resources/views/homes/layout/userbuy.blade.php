@@ -11,6 +11,11 @@
 		<link href="/homes/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
 		<link href="/homes/css/personal.css" rel="stylesheet" type="text/css">
 		<link href="/homes/css/systyle.css" rel="stylesheet" type="text/css">
+		<script src="/homes/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
+		
+		<script src="/homes/js/validate.js"></script>
+		<script src="/homes/layer/layer.js"></script>
+
 		@section('head')
 
 		@show
@@ -25,8 +30,8 @@
 						<ul class="message-l">
 							<div class="topMessage">
 								<div class="menu-hd">
-									<a href="#" target="_top" class="h">亲,请登录</a>
-									<a href="#" target="_top">免费注册</a>
+									<a href="{{url('home/user/')}}" target="_top" class="h">亲爱的xxx</a>
+									<a href="{{url('home/user/usernews')}}" target="_top">消息</a>
 								</div>
 							</div>
 						</ul>
@@ -35,15 +40,15 @@
 								<div class="menu-hd"><a href="{{url('home/index')}}" target="_top" class="h">商城首页</a></div>
 							</div>
 							<div class="topMessage my-shangcheng">
-								<div class="menu-hd MyShangcheng"><a href="{{url('home/user')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+								<div class="menu-hd MyShangcheng"><a href="{{url('home/user/user')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 							</div>
 
 							<div class="topMessage mini-cart">
-								<div class="menu-hd"><a id="mc-menu-hd" href="{{url('home/shopcat')}}" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
+								<div class="menu-hd"><a id="mc-menu-hd" href="{{url('home/user/shopcart')}}" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
 							</div>
 							
 							<div class="topMessage favorite">
-								<div class="menu-hd"><a href="{{url('home/collect')}}" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
+								<div class="menu-hd"><a href="{{url('home/user/usercollect')}}" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
 							</div>
 							<div class="topMessage my-shangcheng">
 								<div class="menu-hd MyShangcheng"><a href="{{url('home/seller/index')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>商户中心</a></div>

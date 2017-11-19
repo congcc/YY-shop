@@ -13,6 +13,7 @@
 		<script src="/homes/js/validate.js"></script>
 		<script src="/homes/layer/layer.js"></script>
 
+		
 		@section('head')
 
 		@show
@@ -20,7 +21,6 @@
 
 	<body>
 		<!--头 -->
-		<header>
 			<article>
 				<div class="mt-logo">
 					<!--顶部导航条 -->
@@ -28,8 +28,8 @@
 						<ul class="message-l">
 							<div class="topMessage">
 								<div class="menu-hd">
-									<a href="{{url('home/login')}}" target="_top" class="h">亲,请登录</a>
-									<a href="{{url('home/register')}}" target="_top">免费注册</a>
+									<a href="{{url('home/user/')}}" target="_top" class="h">亲爱的xxxx</a>
+									<a href="{{url('home/user/usernews')}}" target="_top">消息</a>
 								</div>
 							</div>
 						</ul>
@@ -42,7 +42,7 @@
 							</div>
 
 							<div class="topMessage mini-cart">
-								<div class="menu-hd"><a id="mc-menu-hd" href="{{url('home/user/shopcat')}}" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
+								<div class="menu-hd"><a id="mc-menu-hd" href="{{url('home/user/shopcart')}}" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
 							</div>
 							
 							<div class="topMessage favorite">
@@ -70,11 +70,10 @@
 							</div>
 						</div>
 
-						<div class="clear" ></div>
+						<div class="clear"></div>
 					</div>
 				</div>
 			</article>
-		</header>
             <div class="nav-table">
 					   <div class="long-title"><span class="all-goods">全部分类</span></div>
 					   <div class="nav-cont">
@@ -93,14 +92,13 @@
 			</div>
 			<b class="line" style="margin-top:-10px"></b>
 		<div class="center">
-			<div class="col-main">
+					
 				@section('content')
 
             
                 
 
         		@show
-        		<div class="clear"></div>
 				<!--底部-->
 				<div class="footer">
 					<div class="footer-hd">
@@ -128,7 +126,6 @@
 			</div>
 
 
-			</aside>
 		</div>
 		<!--引导 -->
 		<div class="navCir">

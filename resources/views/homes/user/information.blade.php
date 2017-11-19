@@ -30,7 +30,7 @@
 							<p class="am-form-help">头像</p>
 
 							<div class="info-m">
-								<div><b>用户名：<i>小叮当</i></b></div>
+								<div><b>用户名：<i>@if($result->nickname)  {{$result->nickname}}  @else  {{$res->phone}}  @endif</i></b></div>
 								<div class="u-level">
 									<span class="rank r2">
 							             <s class="vip1"></s><a class="classes" href="#">铜牌会员</a>
@@ -48,35 +48,42 @@
 						<!--个人信息 -->
 						<div class="info-main">
 							<form class="am-form am-form-horizontal">
-
+							
 								<div class="am-form-group">
-									<label for="user-name2" class="am-form-label">昵称</label>
+									<label for="user-name2" class="am-form-label">用户名</label>
 									<div class="am-form-content">
-										<input type="text" id="user-name2" placeholder="nickname">
+										<input type="text" id="user-name2" placeholder="添加用户名" value="{{ $result->nickname }}"	readonly name="">
 
 									</div>
 								</div>
 
 								<div class="am-form-group">
-									<label for="user-name" class="am-form-label">姓名</label>
+									<label for="user-name" class="am-form-label">姓 名</label>
 									<div class="am-form-content">
-										<input type="text" id="user-name2" placeholder="name">
+										<input type="text" id="user-name2" placeholder="name" value="{{ $result->truename }}"
+											readonly name=""
+										>
 
 									</div>
 								</div>
-
 								<div class="am-form-group">
 									<label class="am-form-label">性别</label>
 									<div class="am-form-content sex">
 										<label class="am-radio-inline">
-											<input type="radio" name="radio10" value="male" data-am-ucheck="" class="am-ucheck-radio"><span class="am-ucheck-icons"><i class="am-icon-unchecked"></i><i class="am-icon-checked"></i></span> 男
+											<input type="radio" name="radioo" value="2" data-am-ucheck="" class="am-ucheck-radio" 
+											@if($result->sex==2)  checked  @else  @endif >
+											<span class="am-ucheck-icons">
+											<i class="am-icon-unchecked"></i>
+											<i class="am-icon-checked"></i></span> 男
 										</label>
 										<label class="am-radio-inline">
-											<input type="radio" name="radio10" value="female" data-am-ucheck="" class="am-ucheck-radio"><span class="am-ucheck-icons"><i class="am-icon-unchecked"></i><i class="am-icon-checked"></i></span> 女
+											<input type="radio" name="radioo" value="1" data-am-ucheck="" class="am-ucheck-radio" 
+											 @if($result->sex==1) checked @else  @endif >
+											<span class="am-ucheck-icons">
+											<i class="am-icon-unchecked"></i>
+											<i class="am-icon-checked"></i></span> 女
 										</label>
-										<label class="am-radio-inline">
-											<input type="radio" name="radio10" value="secret" data-am-ucheck="" class="am-ucheck-radio"><span class="am-ucheck-icons"><i class="am-icon-unchecked"></i><i class="am-icon-checked"></i></span> 保密
-										</label>
+										
 									</div>
 								</div>
 
@@ -85,22 +92,25 @@
 									<div class="am-form-content birth">
 										<div class="birth-select">
 											<select data-am-selected="" style="display: none;">
-												<option value="a">2015</option>
-												<option value="b">1987</option>
-											</select><div class="am-selected am-dropdown " id="am-selected-q1gnw" data-am-dropdown="">  <button type="button" class="am-selected-btn am-btn am-dropdown-toggle am-btn-default">    <span class="am-selected-status am-fl">2015</span>    <i class="am-selected-icon am-icon-caret-down"></i>  </button>  <div class="am-selected-content am-dropdown-content">    <h2 class="am-selected-header"><span class="am-icon-chevron-left">返回</span></h2>       <ul class="am-selected-list">                     <li class="am-checked" data-index="0" data-group="0" data-value="a">         <span class="am-selected-text">2015</span>         <i class="am-icon-check"></i></li>                                 <li class="" data-index="1" data-group="0" data-value="b">         <span class="am-selected-text">1987</span>         <i class="am-icon-check"></i></li>            </ul>    <div class="am-selected-hint"></div>  </div></div>
+												@for($i=1980;$i<=2020;$i++)
+												<option value="a">{{ $i }}</option>
+												@endfor
+											</select>
 											<em>年</em>
 										</div>
 										<div class="birth-select2">
 											<select data-am-selected="" style="display: none;">
-												<option value="a">12</option>
-												<option value="b">8</option>
-											</select><div class="am-selected am-dropdown " id="am-selected-5o0zh" data-am-dropdown="">  <button type="button" class="am-selected-btn am-btn am-dropdown-toggle am-btn-default">    <span class="am-selected-status am-fl">12</span>    <i class="am-selected-icon am-icon-caret-down"></i>  </button>  <div class="am-selected-content am-dropdown-content">    <h2 class="am-selected-header"><span class="am-icon-chevron-left">返回</span></h2>       <ul class="am-selected-list">                     <li class="am-checked" data-index="0" data-group="0" data-value="a">         <span class="am-selected-text">12</span>         <i class="am-icon-check"></i></li>                                 <li class="" data-index="1" data-group="0" data-value="b">         <span class="am-selected-text">8</span>         <i class="am-icon-check"></i></li>            </ul>    <div class="am-selected-hint"></div>  </div></div>
+												@for($j=1;$j<=12;$j++)
+												<option value="a">{{$j}}</option>
+												@endfor
+											</select>
 											<em>月</em></div>
 										<div class="birth-select2">
 											<select data-am-selected="" style="display: none;">
-												<option value="a">21</option>
-												<option value="b">23</option>
-											</select><div class="am-selected am-dropdown " id="am-selected-abb2j" data-am-dropdown="">  <button type="button" class="am-selected-btn am-btn am-dropdown-toggle am-btn-default">    <span class="am-selected-status am-fl">21</span>    <i class="am-selected-icon am-icon-caret-down"></i>  </button>  <div class="am-selected-content am-dropdown-content">    <h2 class="am-selected-header"><span class="am-icon-chevron-left">返回</span></h2>       <ul class="am-selected-list">                     <li class="am-checked" data-index="0" data-group="0" data-value="a">         <span class="am-selected-text">21</span>         <i class="am-icon-check"></i></li>                                 <li class="" data-index="1" data-group="0" data-value="b">         <span class="am-selected-text">23</span>         <i class="am-icon-check"></i></li>            </ul>    <div class="am-selected-hint"></div>  </div></div>
+												@for($z=1;$z<=31;$z++)
+												<option value="a">{{$z}}</option>
+												@endfor
+											</select>
 											<em>日</em></div>
 									</div>
 							
@@ -108,14 +118,14 @@
 								<div class="am-form-group">
 									<label for="user-phone" class="am-form-label">电话</label>
 									<div class="am-form-content">
-										<input id="user-phone" placeholder="telephonenumber" type="tel">
+										<input id="user-phone" placeholder="telephonenumber" type="tel"  value="{{ $res->phone }}">
 
 									</div>
 								</div>
 								<div class="am-form-group">
 									<label for="user-email" class="am-form-label">电子邮件</label>
 									<div class="am-form-content">
-										<input id="user-email" placeholder="Email" type="email">
+										<input id="user-email" placeholder="Email" type="email" value="{{ $result->email }}" >
 
 									</div>
 								</div>

@@ -6,10 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\model\user;
-use App\Http\model\userinfo;
 
-class UserinfoController extends Controller
+class ShopcartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,14 +16,8 @@ class UserinfoController extends Controller
      */
     public function index()
     {
-        
-        $uid = session('userid');
-        $res = user::find($uid);
-        $result = $res->userinfo;
-
-        return view('homes.user.information',compact('result','res'));
-        
-    }   
+        return view('homes.user.shopcart');
+    }
 
     /**
      * Show the form for creating a new resource.
