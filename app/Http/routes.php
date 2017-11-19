@@ -22,19 +22,17 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 	Route::get('index', function () {
 		return view('homes.index');
 	});
+	Route::get('/', function () {
+		return view('homes.index');
+	});
 
 	//前台登录
 	Route::get('login', function () {
 		return view('homes.login');
 	});
 
-	//用户注册
+	//注册
 	Route::resource('register', 'RegController');
-
-	//前台首页
-	Route::get('index', function () {
-		return view('homes.index');
-	});
 
 	//发送验证码
 	Route::get('co', 'VerificationController@co');
@@ -45,10 +43,6 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 	//验证手机号
 	Route::get('ph','VerificationController@ph');
 
-	//注册
-	Route::resource('register', 'RegController');
-	Route::get('co', 'CodesController@co');
-	Route::get('cos', 'CodesController@cos');
 
 	//商品搜索页
 	Route::resource('search', 'SearchController');
@@ -67,6 +61,7 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 
 		//用户个人中心首页
 		Route::resource('user', 'UserController');
+		Route::resource('/', 'UserController');
 		//用户个人信息
 		Route::resource('userinfo', 'UserinfoController');
 		//用户账户安全

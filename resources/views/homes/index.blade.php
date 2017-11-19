@@ -4,7 +4,7 @@
 
 @endsection
 
-@section('title','月半零食铺')
+@section('title','月半猫零食铺')
 
 @section('content')
 			<div class="banner">

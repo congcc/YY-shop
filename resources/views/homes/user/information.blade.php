@@ -87,9 +87,29 @@
 											<select data-am-selected="" style="display: none;">
 												<option value="a">2015</option>
 												<option value="b">1987</option>
-											</select><div class="am-selected am-dropdown " id="am-selected-q1gnw" data-am-dropdown="">  <button type="button" class="am-selected-btn am-btn am-dropdown-toggle am-btn-default">    <span class="am-selected-status am-fl">2015</span>    <i class="am-selected-icon am-icon-caret-down"></i>  </button>  <div class="am-selected-content am-dropdown-content">    <h2 class="am-selected-header"><span class="am-icon-chevron-left">返回</span></h2>       <ul class="am-selected-list">                     <li class="am-checked" data-index="0" data-group="0" data-value="a">         <span class="am-selected-text">2015</span>         <i class="am-icon-check"></i></li>                                 <li class="" data-index="1" data-group="0" data-value="b">         <span class="am-selected-text">1987</span>         <i class="am-icon-check"></i></li>            </ul>    <div class="am-selected-hint"></div>  </div></div>
-											<em>年</em>
-										</div>
+											</select>
+											<div class="am-selected am-dropdown " id="am-selected-q1gnw" data-am-dropdown="">
+											  <button type="button" class="am-selected-btn am-btn am-dropdown-toggle am-btn-default">
+											    <span class="am-selected-status am-fl">2015</span>
+											    <i class="am-selected-icon am-icon-caret-down"></i>
+											  </button>
+											  <div class="am-selected-content am-dropdown-content">
+											    <h2 class="am-selected-header">
+											      <span class="am-icon-chevron-left">返回</span></h2>
+											    <ul class="am-selected-list">
+											      <li class="am-checked" data-index="0" data-group="0" data-value="a">
+											        <span class="am-selected-text">2015</span>
+											        <i class="am-icon-check"></i>
+											      </li>
+											      <li class="" data-index="1" data-group="0" data-value="b">
+											        <span class="am-selected-text">1987</span>
+											        <i class="am-icon-check"></i>
+											      </li>
+											    </ul>
+											    <div class="am-selected-hint"></div>
+											  </div>
+											</div>
+											<em>年</em></div>
 										<div class="birth-select2">
 											<select data-am-selected="" style="display: none;">
 												<option value="a">12</option>
