@@ -92,6 +92,7 @@
 									<div class="am-form-content birth">
 										<div class="birth-select">
 											<select data-am-selected="" style="display: none;">
+
 												@for($i=1980;$i<=2020;$i++)
 												<option value="a">{{ $i }}</option>
 												@endfor

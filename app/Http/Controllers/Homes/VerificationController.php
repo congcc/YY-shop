@@ -56,10 +56,6 @@ class VerificationController extends Controller
     {
         $ph = $request->input('ph');         //获取form表单填写的手机
         $res = user::where('phone',$ph)->get();            //在数据表中查询填写的手机号
-        if($res){              //判断是否查询到了(该手机号是否已注册)
-            echo 1;
-        }else{
-            echo 0;
-        }
+        echo $res;              //返回查询结果
     }
 }

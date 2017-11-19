@@ -1,4 +1,5 @@
-@extends('homes.layout.homes')
+@extends('homes.layout.lr')
+
 
 @section('title','欢迎登陆月半零食铺')
 @section('head')
@@ -9,7 +10,7 @@
 
 @section('content')
 	<div class="login-boxtitle">
-		<a href="/homes/home.html"><img alt="logo" style="height: 60px;width: 140px;" src="/homes/images/logobig.png" /></a>
+		<a href="/homes/home.html"><img alt="logo" style="height: 60px;width: 150px;" src="/homes/images/logobig.png" /></a>
 	</div>
 
 	<div class="login-banner">

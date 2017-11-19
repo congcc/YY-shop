@@ -27,6 +27,7 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 	});
 
 	//前台登录
+
 	Route::resource('login', 'LoginController');
 	Route::post('slogin', 'LoginsController@store');
 
@@ -36,7 +37,6 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 	Route::get('cos', 'VerificationController@cos');//验证验证码
 	Route::get('ph','VerificationController@ph');//验证手机号
 
-	
 
 	//商品搜索页
 	Route::resource('search', 'SearchController');
