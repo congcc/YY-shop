@@ -1,3 +1,4 @@
+
 <?php
 
 /*
@@ -130,13 +131,9 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 //后台控制组
 Route::group(['prefix'=>'admin','namespace'=>'Admins',], function () {
 	
-<<<<<<< HEAD
-		//后台登录
-	//	Route::resource('login','LoginController');
-=======
+
 	//后台登录
 	Route::resource('login','LoginController');
->>>>>>> d4394ddfbf2f8974432480f6212e164129197d0e
 			
 	// 'meddleware'=>'login'
 	Route::group([], function () {

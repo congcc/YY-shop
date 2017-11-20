@@ -17,7 +17,7 @@ class TypethreeController extends Controller
     public function index()
     {
         
-        
+        return view('admins/typethree');
     }
 
     /**

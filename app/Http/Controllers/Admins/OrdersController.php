@@ -17,7 +17,7 @@ class OrdersController extends Controller
     public function index()
     {
         //
-        return view('admins/ding');
+       // return view('admins/ding');
     }
 
     /**
