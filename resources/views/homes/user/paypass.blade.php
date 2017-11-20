@@ -36,6 +36,7 @@
                                 <i class="u-stage-icon-inner">2<em class="bg"></em></i>
                                 <p class="stage-name">完成</p>
                             </span>
+
                             <span class="u-progress-placeholder"></span>
                         </div>
                         <div class="u-progress-bar total-steps-2">
@@ -197,5 +198,6 @@
         
     })
     
+
 </script>
 @endsection

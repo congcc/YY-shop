@@ -35,7 +35,8 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 	Route::resource('register', 'RegController');
 	Route::post('co', 'VerificationController@co');//发送验证码
 	Route::post('cos', 'VerificationController@cos');//验证验证码
-	Route::get('ph','VerificationController@ph');//验证手机号
+	Route::post('ph','VerificationController@ph');//验证手机号
+
 
 
 	//商品搜索页
