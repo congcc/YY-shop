@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\model\check;
 
 class CheckController extends Controller
 {
@@ -17,6 +18,9 @@ class CheckController extends Controller
     public function index()
     {
         //
+        $res = check::all();
+        var_dump($res);
+        return view('admins.check.index',['res'=>$res]);
     }
 
     /**

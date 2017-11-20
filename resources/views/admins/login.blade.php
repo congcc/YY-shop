@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Amaze UI Admin index Examples</title>
+    <title>后台登陆页面</title>
     <meta name="description" content="这是一个 index 页面">
     <meta name="keywords" content="index">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,7 +21,8 @@
 </head>
 
 <body data-type="login">
-    <script src="/admins/assets/js/theme.js"></script>
+    <script src="/admins/assets/js/theme.js">
+    </script>
     <div class="am-g tpl-g">
         <!-- 风格切换 -->
         <div class="tpl-skiner">
@@ -32,7 +33,7 @@
                     选择主题
                 </div>
                 <div class="tpl-skiner-content-bar">
-                    <span class="skiner-color skiner-white" data-color="theme-white"></span>
+                    <span class="skiner-color skiner-white" data-color="theme-white"> </span>
                     <span class="skiner-color skiner-black" data-color="theme-black"></span>
                 </div>
             </div>
@@ -40,47 +41,43 @@
         <div class="tpl-login">
             <div class="tpl-login-content">
                 <div class="tpl-login-logo">
-
                 </div>
 
-
-
-                <form class="am-form tpl-form-line-form">
-                    <div class="am-form-group">
-                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入账号">
-
+                @if (count($errors) > 0)
+                    <div class="mws-form-message error">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li style='font-size:17px;list-style:none'>{{ $error }}</li>
+                            @endforeach
+                        </ul>
                     </div>
+                @endif
+                @if(session('msg'))
+                        <div class="mws-form-message info">                 
 
-                    <div class="am-form-group">
-                        <input type="password" class="tpl-form-input" id="user-name" placeholder="请输入密码">
+                            {{session('msg')}}
 
+                        </div>
+                    @endif
+                <form class="am-form tpl-form-line-form" action="{{url('/admin/admin')}}" method="post">
+                    <div class="mws-form-row">
+                        <div class="mws-form-item">
+                            <input type="text" name='name' placeholder="请输入名称">
+                        </div>
                     </div>
-                    <div class="am-form-group tpl-login-remember-me">
-                        <input id="remember-me" type="checkbox">
-                        <label for="remember-me">
-       
-                        记住密码
-                         </label>
-
+                    <div class="mws-form-row">
+                        <div class="mws-form-item">
+                            <input type="password" name='key' placeholder="请输入密码">
+                        </div>
                     </div>
-
-
-
-
-
-
-                    <div class="am-form-group">
-
-                        <button type="button" class="am-btn am-btn-primary  am-btn-block tpl-btn-bg-color-success  tpl-login-btn">提交</button>
-
-                    </div>
+                    {{ csrf_field()}}
+                    <input type="submit" class="am-btn am-btn-primary  am-btn-block tpl-btn-bg-color-success  tpl-login-btn" value="登录">
                 </form>
             </div>
         </div>
     </div>
     <script src="/admins/assets/js/amazeui.min.js"></script>
     <script src="/admins/assets/js/app.js"></script>
-
 </body>
 
 </html>

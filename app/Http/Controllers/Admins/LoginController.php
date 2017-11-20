@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Session;
+use DB;
+use Hash;
 
 class LoginController extends Controller
 {
@@ -27,6 +30,7 @@ class LoginController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -38,6 +42,19 @@ class LoginController extends Controller
     public function store(Request $request)
     {
         //
+        $res = $request->except('_token');
+
+        $name = DB::table('admins')->where('name',$res['name'])->first();
+        var_dump($res);
+        var_dump($name);
+        if(!$name){
+            return redirect('/admin/login')->with('msg','您输入的用户名或密码错误');
+        }
+
+        if(!Hash::check($res['key'],$name->key)){
+            return redirect('/admin/login')->with('msg','您输入的用户名或密码错误');
+        }
+        return redirect('admins/admin');
     }
 
     /**

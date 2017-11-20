@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\model\shop;
+use DB;
 
 class SellerController extends Controller
 {
@@ -14,9 +16,15 @@ class SellerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        // $res = shop::all();
+        $res = DB::table('shop')->
+            where('uid','like','%'.$request->input('sname').'%')->
+            orderBy('id','asc')->
+            paginate($request->input('num',10));
+        return view('admins.seller.index',['res'=>$res]);
     }
 
     /**
