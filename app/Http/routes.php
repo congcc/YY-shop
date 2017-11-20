@@ -130,6 +130,7 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 //后台控制组
 Route::group(['prefix'=>'admin','namespace'=>'Admins',], function () {
 	
+
 	//后台登录
 	Route::resource('login','LoginController');
 			
@@ -159,6 +160,12 @@ Route::group(['prefix'=>'admin','namespace'=>'Admins',], function () {
 
 		//商品分类管理
 		Route::resource('type','TypeController');
+
+		//商品二级子版块管理
+		Route::resource('typeson','TypesonController');
+
+		//三级子版块管理
+		Route::resource('typethree','TypethreeController');
 
 		//订单状态管理
 		Route::resource('orders','OrdersController');

@@ -33,8 +33,6 @@
 <link rel="stylesheet" type="text/css" href="/admins/css/mws-theme.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admins/css/themer.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admins/css/style.css" media="screen">
-<link rel="stylesheet" type="text/css" href="/admins/css/indexs.css" media="screen">
-
 
 <title>@yield('title')</title>
 
@@ -233,32 +231,34 @@
             <!-- Main Navigation -->
             <div id="mws-navigation">
                 <ul>
+                    
                     <li>
                         <a href="#"><i class="icon-github-3"></i>管理人员</a>
                         <ul class="closed">
-                            <li><a href="{{url('admin/user/create')}}">添加管理员</a></li>
-                            <li><a href="{{url('admin/user')}}">后台人员</a></li>
+                            <li><a href="/admin/user">后台人员</a></li>
+                            <li><a href="/admin/user/create">管理添加</a></li>
+                            <li><a href="/admin/userauth">权限修改</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#"><i class="icon-t-shirt"></i> 买家管理</a>
                         <ul class="closed">
-                            <li><a href="{{url('admin/buys')}}">买家列表</a></li>
+                            <li><a href="/admin/user">买家列表</a></li>
                             <li><a href="/admins/userauth">买家禁用</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#"><i class="icon-official"></i> 卖家管理</a>
                         <ul class="closed">
-                            <li><a href="{{url('admin/seller')}}">用户列表</a></li>
+                            <li><a href="/admin/user">用户列表</a></li>
                             <li><a href="/admin/userauth">卖家禁用</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#"><i class="icon-business-card"></i> 商家入驻</a>
                         <ul class="closed">
-                            <li><a href="{{url('admin/check')}}">待审核申请</a></li>
-                            <li><a href="{{url('admin/check/create')}}">成功申请</a></li>
+                            <li><a href="/admin/user">待审核申请</a></li>
+                            <li><a href="/admin/user/create">成功申请</a></li>
                             <li><a href="/admins/form_wizard.html">失败申请</a></li>
                         </ul>
                     </li>
@@ -273,16 +273,16 @@
                     <li>
                         <a href="#"><i class="icon-user"></i>商品分类</a>
                         <ul class="closed">
-                            <li><a href="/admin/user">分类列表</a></li>
-                            <li><a href="/admin/user/create">分类添加</a></li>
-                            <li><a href="/admins/form_wizard.html">分类删除</a></li>
+                            <li><a href="/admin/type">分类列表</a></li>
+                            <li><a href="/admin/type/create">分类添加</a></li>
+                        
                         </ul>
                     </li>
                     <li>
                         <a href="#"><i class="icon-user"></i> 订单管理</a>
                         <ul class="closed">
-                            <li><a href="/admin/user">订单列表</a></li>
-                            <li><a href="/admin/user/create">进行中订单</a></li>
+                            <li><a href="/admin/orders">订单列表</a></li>
+                            <li><a href="/admin/type/create">进行中订单</a></li>
                             <li><a href="/admins/form_wizard.html">已完成订单</a></li>
                         </ul>
                     </li>
@@ -318,7 +318,6 @@
             <!-- Inner Container Start -->
             <div class="container">
             @section('content')
-            
             @show
             </div>
             <!-- Inner Container End -->
