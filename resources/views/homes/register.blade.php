@@ -1,14 +1,13 @@
-@extends('homes.layout.homes')
+@extends('homes.layout.lr')
 
 @section('title','用户注册')
 
 @section('content')
 
 		<div class="login-boxtitle">
-  <a href="home/demo.html">
-    <img alt="" src="/homes/images/logobig.png" /></a>
-</div>
-<div class="res-banner">
+      <a href="home/demo.html"><img alt="" style="width: 150px;height: 60px;" src="/homes/images/logobig.png" /></a>
+    </div>
+<div class="res-banner" >
   <div class="res-main">
     <div class="login-banner-bg">
       <span></span>
@@ -23,36 +22,45 @@
           <form method="post" action="/home/register">
             <div class="user-phone">
               <label for="phone">
-                <i class="am-icon-mobile-phone am-icon-md"></i>
+                <i class="am-icon-mobile-phone am-icon-md" style="margin-top: 5px;"></i>
               </label>
               <input type="tel" name="phone" id="phone" placeholder="请输入手机号"></div>
+              <div id="e1" style="width: 200px;height: 20px;display: none;color: red;font-size: 13px;font-weight: bold"></div>
+              <div id="ee" style="width: 200px;height: 20px;""></div>
             <div class="verification">
               <label for="code">
-                <i class="am-icon-code-fork"></i>
+                <i class="am-icon-code-fork" style="margin-top: 12px;"></i>
               </label>
               <input type="tel" name="" id="code" placeholder="请输入验证码">
+              
               <a class="btn" href="javascript:void(0);" onClick="sendMobileCode();" id="sendMobileCode">
+
                 <span id="dyMobileButton">获取</span></a>
+
             </div>
+            <div id="e4" style="width: 200px;height: 20px;color: red;font-size: 13px;font-weight: bold"></div>
             <div class="user-pass">
               <label for="password">
-                <i class="am-icon-lock"></i>
+                <i class="am-icon-lock" style="margin-top: 12px;"></i>
               </label>
               <input type="password" name="password" id="password" placeholder="设置密码"></div>
+              <div id="e2" style="width: 200px;height: 20px;color: red;font-size: 13px;font-weight: bold"></div>
             <div class="user-pass">
               <label for="passwordRepeat">
-                <i class="am-icon-lock"></i>
+                <i class="am-icon-lock" style="margin-top: 12px;"></i>
               </label>
               <input type="password" name="passwordRepeat" id="passwordRepeat" placeholder="确认密码"></div>
-              <div class="login-links">
-            <label for="reader-me">
-              <!-- <input id="reader-me" type="checkbox">点击表示您同意商城《服务协议》</label></div> -->
+              <div id="e3" style="width: 200px;height: 20px;display: none;color: red;font-size: 13px;font-weight: bold"></div>
+              <div class="login-links" style="clear: both">
+           
+
               {{ csrf_field()}}
+
+              </div>
           <div class="am-cf">
-            <input type="submit" name="" id="regi" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl"></div>
+            <input type="submit" name="" id="regi" value="注册" disabled="true" class="am-btn am-btn-primary am-btn-sm am-fl"></div>
           <hr></div>
           </form>
-          
         <script>$(function() {
             $('#doc-my-tabs').tabs();
           })</script>
@@ -81,60 +89,131 @@
   </div>
 </div>
 <script type="text/javascript">
+  var ch1;
+  var ch2;
+  var ch3;
+  var ch4;
 	$('#dyMobileButton').click(function(){
 		var ph = $('#phone').val();
 		$.get("co",{ph:ph},function(data){
-			//document.write(data);
 			if(data=="0"){
-				//alert('验证码发送失败啦，请重试');
-				/*console.log(123);*/
 			}
 		})
 	})
 	$('#code').blur(function(){
 		var cos = $('#code').val();
+    ch1 = checkVerifyCode($('#code'),$('#e4'),6);
+    if(ch1!=100){
+      $('#e4').css('display','block');
+      $('#code').css('border','solid 2px red');
+      return;
+    }else{
+      $('#e4').css('display','none');
+      ch1 = 100;
+    }
 		$.get("cos",{cos:cos},function(data){
-			//document.write(data);
 			if(data==1){
-				$('#code').css('border','solid 2px green');
+				$('#code').css('border','solid 1px green');
+        ch1 = 100;
 			}else{
+        $('#e4').css('display','block');
+        $('#e4').html('您输入的验证码不正确呢');
 				$('#code').css('border','solid 2px red');
+        ch1 = 0;
+        return;
 			}
 		})
+    
 	})
 	$('#phone').blur(function(){
-		var ph  = $(this).val();
+    /*var phs = document.getElementById('phone');
+    var e = document.getElementById('e');
+		
 		var req = /^1[345678]\d{9}$/;
-		var res = req.exec(ph);
-		if(res){
+		var res = req.exec(ph);*/
+    var ph  = $(this).val();
+    
+    ch2 = checkTel($('#phone'),$('#e1'));
+    if(ch2!=100){
+      $('#phone').css('border','solid 2px red');
+      $('#e1').css('display','block');
+      return;
+    }else{
+      $('#e1').css('display','none');
+      ch2 = 100;
+    }
+    $.get("ph",{ph:ph},function(data){
+      if(data.length>0){
+        $('#phone').css('border','solid 2px red');
+        $("#e1").html("该手机号已经被注册了呢");
+        $('#e1').css('display','block');
+        ch2 = 0;
+        return;
+      }else{
+        $('#phone').css('border','solid 1px green');
+        $('#e1').css('display','none');
+        ch2 = 100;
+      }
+    },'json')
+		/*if(res){
 			$(this).css('border','solid 2px green');
 		}else{
 			$(this).css('border','solid 2px red');
-		}
+		}*/
 	})
 
 
 	$('input[name="password"]').blur(function(){
-		var pass  = $(this).val();
+		/*var pass  = $(this).val();
 		var req = /^\S{6,16}$/;
 		var res = req.exec(pass);
 		if(res){
 			$(this).css('border','solid 2px green');
 		}else{
 			$(this).css('border','solid 2px red');
-		}
+		}*/
+    ch3 = checkPassword($('#password'),$('#e2'),6);
+    if(ch3!=100){
+      $('#password').css('border','solid 2px red');
+      $('#e2').css('display','block');
+    }else{
+      $('#password').css('border','solid 1px green');
+      $('#e2').css('display','none');
+      ch3 = 100;
+    }
 	})
 
-	$('input[name="passwordRepeat"]').blur(function(){
-		var Repeat  = $(this).val();
-		var	pass = $('input[name="password"]').val();
+	$('input[name="passwordRepeat"]').keyup(function(){
+		/*var Repeat  = $(this).val();
+		var	pass = $('input[name="password"]').val();*/
 		
-		if(Repeat==pass){
+		/*if(Repeat==pass){
 			$(this).css('border','solid 2px green');
 		}else{
 			$(this).css('border','solid 2px red');
-		}
-
+		}*/
+    ch4 = checkRelPassword($('#password'),$('#passwordRepeat'),$('#e3'),6);
+    if(ch4!=100){
+      $('#passwordRepeat').css('border','solid 2px red');
+      $('#e3').css('display','block');
+    }else{
+      $('#passwordRepeat').css('border','solid 1px green');
+      $('#e3').css('display','none');
+      ch4 = 100;
+    }
 	})
+  $(".res-banner").keyup(function(){
+    if(ch1!=100||ch2!=100||ch3!=100||ch4!=100){
+      $('#regi').attr("disabled", true); 
+    }else{
+      $('#regi').attr("disabled", false); 
+    }
+  })
+  
+  $('#regi').click(function(){
+    layer.msg('注册成功');
+  })
+  
+
 </script>
 @endsection

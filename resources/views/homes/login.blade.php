@@ -1,10 +1,16 @@
-@extends('homes.layout.homes')
+@extends('homes.layout.lr')
+
 
 @section('title','欢迎登陆月半零食铺')
+@section('head')
+	<meta name="_token" content="{{ csrf_token() }}"/>
+	<script src="/homes/layer/layer.js"></script>
+
+@endsection
 
 @section('content')
 	<div class="login-boxtitle">
-		<a href="/homes/home.html"><img alt="logo" style="height: 60px;width: 140px;" src="/homes/images/logobig.png" /></a>
+		<a href="/homes/home.html"><img alt="logo" style="height: 60px;width: 150px;" src="/homes/images/logobig.png" /></a>
 	</div>
 
 	<div class="login-banner">
@@ -17,15 +23,19 @@
 						<div class="clear"></div>
 					
 					<div class="login-form">
-					  <form>
+					  
+			<form action='/home/login' method='post'>
 						   <div class="user-name">
 							    <label for="user"><i class="am-icon-user"></i></label>
-							    <input type="text" name="" id="user" placeholder="邮箱/手机/用户名">
+							    <input type="text" name="uname" id="iuser" placeholder="邮箱/手机/用户名">
              </div>
              <div class="user-pass">
 							    <label for="password"><i class="am-icon-lock"></i></label>
-							    <input type="password" name="" id="password" placeholder="请输入密码">
+							    <input type="password" name="password" id="password" placeholder="请输入密码">
              </div>
+             					
+             {{ csrf_field()}}
+
           </form>
        </div>
         
@@ -33,11 +43,11 @@
             <label for="remember-me"><input id="remember-me" type="checkbox">记住密码</label>
 							<a href="/homes/#" class="am-fr">忘记密码</a>
 							<a href="/home/register" class="zcnext am-fr am-btn-default">注册</a>
+							<div class="am-cf"><input type="submit" name="" id="ulog" value="登 录" class="am-btn am-btn-primary am-btn-sm">
+							</div>
 							<br />
         </div>
-							<div class="am-cf">
-								<input type="submit" name="" value="登 录" class="am-btn am-btn-primary am-btn-sm">
-							</div>
+							
 					<div class="partner">		
 							<h3>合作账号</h3>
 						<div class="am-btn-group">
@@ -74,4 +84,25 @@
 						</p>
 					</div>
 				</div>
+
+	<script>
+	$('#ulog').click(function(){
+		var uname = $('#iuser').val();
+	 	var password = $('#password').val();
+	 	$.post('/home/slogin',{'_token':'{{ csrf_token() }}',uname:uname,password:password},function(data){
+	 		// console.log(data);
+			
+			if (data) {
+				alert('登录成功！');
+				// layer.load();
+				window.location.href = "/home/index";  
+
+			}else {
+				alert ('账户或密码错误');
+			}
+	 	});
+	 	return false;
+	 });
+	</script>
+
 @endsection
