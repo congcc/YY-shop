@@ -54,15 +54,18 @@
 							<div class="am-form-content" id="gaocong">
 								<input type="tel" id="user-code" name="ph-code" placeholder="短信验证码">
 							</div>
+							<div id="e3" style="margin-left: 85px;width: 200px;height: 20px;display: none;color: red;font-size: 13px;font-weight: bold"></div>
 							<a class="btn"  id="sendMobileCode">
 								<div class="am-btn am-btn-danger" >验证码</div>
 							</a>
 						</div>
+						
 						<div class="am-form-group">
 							<label for="user-password" class="am-form-label">支付密码</label>
 							<div class="am-form-content">
 								<input type="password" id="user-password" name="password" placeholder="6位数字">
 							</div>
+							<div id="e1" style="margin-left: 85px;width: 200px;height: 20px;display: none;color: red;font-size: 13px;font-weight: bold"></div>
 							
 						</div>
 						<div class="am-form-group">
@@ -70,6 +73,7 @@
 							<div class="am-form-content">
 								<input type="password" id="user-confirm-password"  name="passwordRepeat"  placeholder="请再次输入上面的密码">
 							</div>
+							<div id="e2" style="margin-left: 85px;width: 200px;height: 20px;display: none;color: red;font-size: 13px;font-weight: bold"></div>
 							
 						</div>
 						<div class="info-btn">
@@ -84,6 +88,9 @@
 
 @section('js')
 <script>
+	var ch1;
+	var ch2;
+	var ch3;
 	$('#sendMobileCode').click(function(){
 		var ph = $('#user-phone').html();
 		console.log(ph);
@@ -99,8 +106,13 @@
 		var cos = $('#user-code').val();
 	    if(cos==""){
 	      $('#user-code').css('border','solid 2px red');
-	      
-		}
+	      $('#e3').css('display','block');
+	      $('#e3').html('验证码不能为空');
+		}else{
+	      $('input[name="password"]').css('border','solid 1px green');
+	      $('#e3').css('display','none');
+	      ch3 = 100;
+	    }
 	})
 	//验证验证码是否正确
 	// $.get("cos",{cos:cos},function(data){
@@ -114,15 +126,34 @@
 	//验证密码格式
 	$('input[name="password"]').blur(function(){
 
-		checkPassword($('input[name="password"]'),$('#e2'),6);
+		ch1 = checkPassword($('input[name="password"]'),$('#e1'),6);
+		if(ch1!=100){
+	      $('input[name="password"]').css('border','solid 2px red');
+	      $('#e1').css('display','block');
+	    }else{
+	      $('input[name="password"]').css('border','solid 1px green');
+	      $('#e1').css('display','none');
+	      ch1 = 100;
+	    }
 	})
 
 	//验证两次密码是否一致
 	$('input[name="passwordRepeat"]').blur(function(){
-		 checkRelPassword($('#input[name="password"]'),$('input[name="passwordRepeat"]'),$('#e3'),6);
+		 ch2 = checkRelPassword($('input[name="password"]'),$('input[name="passwordRepeat"]'),$('#e2'),6);
+		 if(ch2!=100){
+	      $('input[name="passwordRepeat"]').css('border','solid 2px red');
+	      $('#e2').css('display','block');
+	    }else{
+	      $('input[name="passwordRepeat"]').css('border','solid 1px green');
+	      $('#e2').css('display','none');
+	      ch2 = 100;
+	    }
 	})
 
 	$('#suremodifi').click(function(){
+		if(ch1==100&&ch2==100&&ch3==100){
+			layer.msg('密码修改成功');
+		}
 		
 	})
 	
