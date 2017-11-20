@@ -3,8 +3,6 @@
 
 @section('title','欢迎登陆月半零食铺')
 @section('head')
-	<meta name="_token" content="{{ csrf_token() }}"/>
-	<script src="/homes/layer/layer.js"></script>
 
 @endsection
 
