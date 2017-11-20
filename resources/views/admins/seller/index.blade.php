@@ -132,13 +132,12 @@
                         </td>
                         <td class=" ">
                             <span class="btn-group">
-                                <a href="/admin/user/shou" class="btn btn-small"><i class="icol32-application-form-magnify"></i></a>
-                                <a href="/admin/user//edit" class="btn btn-small"><i class="icol32-application-form-edit"></i></a>
-                                
-                                <form action="/admin/user/" method='post' style='display:inline'>
+                                <a href="/admin/seller/{{$v->id}}" class="btn btn-small"><i class="icol32-application-form-magnify"></i></a>
+                                <a href="/admin/seller//edit" class="btn btn-small"><i class="icol32-application-form-edit"></i></a>
+                               <form action="/admin/seller/{{$v->id}}" method='post' style='display:inline' method="post">
                                     {{csrf_field()}}
                                     {{method_field('DELETE')}}
-                                    <a href="/admin/user/" class="btn btn-small"><i class="icol32-cross"></i></a>
+                                    <button class="btn btn-small"><i class="icol32-cross"></i></button>
                                </form>
                             </span>
                         </td>

@@ -1,6 +1,6 @@
 @extends('admins.layout.admins')
 
-@section('title','添加新闻页面')
+@section('title','管理员列表')
 
 @section('content')
 <div class="mws-panel grid_8">
@@ -8,7 +8,7 @@
         <span>
             <i class="icon-table">
             </i>
-            用户列表页面
+            管理员列表
         </span>
     </div>
     <div class="mws-panel-body no-padding">
@@ -109,18 +109,18 @@
                                 {{$v->auth ? '开启' : '关闭'}}
                             </button>
                         </td>
-                            <td class=" ">
-                                <span class="btn-group">
-                                    <a href="/admin/user/{{$v->id}}" class="btn btn-small"><i class="icol32-application-form-magnify"></i></a>
-                                    <a href="/admin/user/{{$v->id}}/edit" class="btn btn-small"><i class="icol32-application-form-edit"></i></a>
-                                    
-                                    <form action="" method='post' style='display:inline' method="post">
-                                        {{csrf_field()}}
-                                        {{method_field('DELETE')}}
-                                        <a href="/admin/user/{{$v->id}}" class="btn btn-small"><i class="icol32-cross"></i></a>
-                                   </form>
-                                </span>
-                            </td>
+                        <td class=" ">
+                            <span class="btn-group">
+                                <a href="/admin/user/{{$v->id}}" class="btn btn-small"><i class="icol32-application-form-magnify"></i></a>
+                                <a href="/admin/user/{{$v->id}}/edit" class="btn btn-small"><i class="icol32-application-form-edit"></i></a>
+                                
+                                <form action="/admin/user/{{$v->id}}" method='post' style='display:inline' method="post">
+                                    {{csrf_field()}}
+                                    {{method_field('DELETE')}}
+                                    <button class="btn btn-small"><i class="icol32-cross"></i></button>
+                               </form>
+                            </span>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

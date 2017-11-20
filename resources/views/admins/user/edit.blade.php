@@ -4,7 +4,7 @@
 
 @section('content')
 <h3>发布新闻</h3>
-<form action="/admin/user" method='post'>
+<form action="/admin/user/{{$res->id}}" method='post'>
 	<table border='0' width='400'> 
 		<tr>
 			<td align='right'>ID:</td>
@@ -32,6 +32,12 @@
 		</tr>
 	</table>
     {{ csrf_field()}}
+    
+    {{method_field('PUT')}}
 		<button>修改</button>
+
+
+
+
 </form>
 @endsection

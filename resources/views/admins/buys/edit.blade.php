@@ -4,7 +4,7 @@
 
 @section('content')
 <h3>修改买家</h3>
-<form action="/admin/buys" method='post'>
+<form action="/admin/buys/{{$res->id}}" method='post'>
 	<table border='0' width='400'> 
 		<tr>
 			<td align='right'>ID:</td>
@@ -21,14 +21,16 @@
 		<tr>
 			<td align='right'>状态:</td>
 			<!-- <td><input type="text" name='status' value="{{$res->status}}"></td> -->
-			<td><input type="text" name='status' value="{{$res->status ? '开启' : '关闭'}}"></td>
+			<td><input type="text" name='status' value="{{$res->status}}"></td>
 		</tr>
 		<tr>
 			<td align='right'>用户\商户:</td>
-			<td><input type="text" name='last_time' value="{{$res->utype ? '用户' : '商户'}}"></td>
+			<td><input type="text" name='utype' value="{{$res->utype}}"></td>
 		</tr>+
 	</table>
     {{ csrf_field()}}
+
+    {{method_field('PUT')}}
 		<tr><button>修改</button></tr>
 </form>
 

@@ -1,10 +1,10 @@
 
 @extends('admins.layout.admins')
 
-@section('title','修改管理员')
+@section('title','管理员详情')
 
 @section('content')
-<h3>修改管理员</h3>
+<h3>管理员详情</h3>
 <form action="" method='post'>
     <table border='0' width='400'> 
         <tr>

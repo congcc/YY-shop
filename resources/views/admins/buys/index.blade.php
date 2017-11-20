@@ -111,11 +111,10 @@
                             <span class="btn-group">
                                 <a href="/admin/buys/{{$v->id}}" class="btn btn-small"><i class="icol32-application-form-magnify"></i></a>
                                 <a href="/admin/buys/{{$v->id}}/edit" class="btn btn-small"><i class="icol32-application-form-edit"></i></a>
-                                
-                                <form action="" method='post' style='display:inline' method="post">
+                               <form action="/admin/buys/{{$v->id}}" method='post' style='display:inline' method="post">
                                     {{csrf_field()}}
                                     {{method_field('DELETE')}}
-                                    <a href="/admin/buys/{{$v->id}}" class="btn btn-small"><i class="icol32-cross"></i></a>
+                                    <button class="btn btn-small"><i class="icol32-cross"></i></button>
                                </form>
                             </span>
                         </td>

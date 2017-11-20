@@ -127,20 +127,19 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        $res = $request->except('_token');
-        var_dump($res);die();
+       // echo 1;
+
+        $res = $request->except('_token','_method');
 
         $data = DB::table('admins')->where('id',$id)->update($res);
-        var_dump($data);
-        die();
-        // if($data){
 
-        //     return redirect('/admin/user')->with('msg','修改成功');
-        // } else {
+        if($data){
 
-        //     return back();
-        // }
+            return redirect('/admin/user')->with('msg','修改成功');
+        } else {
+
+            return back();
+        }
     }
 
     /**
@@ -151,28 +150,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        // //
-        // $res = DB::table('admins')->where('id',$id)->first();
+        $res = DB::table('admins')->where('id', $id)->delete();
 
-        // var_dump($res);// 返回boolean
-        // $data = unlink('.'.$res->profile);
-
-        // if($data){
-
-        //     $info = DB::table('admins')->where('id',$id)->delete();
-
-        //     if($info){
-
-        //         return redirect('/admin/user')->with('meg','删除成功');
-        //     } else {
-
-        //         return back();
-        //     }
-        // }
-       $res=DB::table('user')->where('id',$id)->delete();
-       if($res==1){
-           return redirect('/admin/user')->with('meg','删除成功');
-       }
-
+        if($res){
+            return redirect('/admin/user')->with('meg','删除成功');
+        } else {
+            return back();
+        }
     }
 }

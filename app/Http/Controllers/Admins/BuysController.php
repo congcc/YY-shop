@@ -11,6 +11,7 @@ use App\Http\model\userinfo;
 use DB;
 
 
+
 class BuysController extends Controller
 {
     /**
@@ -55,24 +56,9 @@ class BuysController extends Controller
      */
     public function show($id)
     {
-
-        // $res = DB::table('user')->where('id',$id)->first();
-         // $res = DB::table('userinfo')->where('id',$id)->first();
-
-        // var_dump($res);
-        // $res = user::where('id',1)
-        //             ->join('cinema','cinema.id','=','money.mid')
-        //             ->select('cinema.cinema','cinema.legal','cinema.phone','money.money')
-        //             ->get();
-        $res = user::where('id',1)
-                    ->join('userinfo','userinfo.id','=','user.id')
-                    ->select('userinfo,userinfo','userinfo.birth','userinfo.nickname','userinfo.truename','userinfo.sex','userinfo.idcard','userinfo.area','userinfo.createtime_user','userinfo.last_user','userinfo.apply','userinfo.wallet','userinfo.email','user.user')
-                    ->get();
-
-
-        var_dump($res);
-                                                                                                                       
-         return view('admins.buys.show',['res'=>$res]);
+        $res = DB::table('user')->where('id',$id)->first();
+        $result = userinfo::find($id);
+         return view('admins.buys.show',compact('res','result'));
     }
 
     /**
@@ -83,7 +69,6 @@ class BuysController extends Controller
      */
     public function edit($id)
     {
-
 
         $res = DB::table('user')->where('id',$id)->first();
 
@@ -100,6 +85,18 @@ class BuysController extends Controller
     public function update(Request $request, $id)
     {
         //
+        // echo 1;
+        $res = $request->except('_token','_method');
+
+        $data = DB::table('user')->where('id',$id)->update($res);
+
+        if($data){
+
+            return redirect('/admin/buys')->with('msg','修改成功');
+        } else {
+
+            return back();
+        }
     }
 
     /**
@@ -111,5 +108,12 @@ class BuysController extends Controller
     public function destroy($id)
     {
         //
+        $res = DB::table('user')->where('id', $id)->delete();
+        
+        if($res){
+            return redirect('/admin/buys')->with('meg','删除成功');
+        } else {
+            return back();
+        }
     }
 }
