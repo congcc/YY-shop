@@ -130,14 +130,14 @@
 			<aside class="menu">
 				<ul>
 					<li class="person active">
-						<a href="/homes/index.html">个人中心</a>
+						<a href="{{url('home/seller/info')}}">个人中心</a>
 					</li>
 					<li class="person">
 						<a href="#">商户信息</a>
 						<ul>
 							<li> <a href="{{url('home/seller/info')}}">个人信息</a></li>
-							<li> <a href="{{url('home/seller/shop')}}">店铺信息</a></li>
-							<li> <a href="{{url('home/seller/safety')}}">安全设置</a></li>
+							<li> <a href="{{url('home/seller/di')}}">店铺信息</a></li>
+							
 							
 						</ul>
 					</li>

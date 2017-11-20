@@ -8,7 +8,7 @@ class userinfo extends Model
 {
     //
     protected $table = "userinfo";
-
+    public $timestamps = false;
     
 
 }

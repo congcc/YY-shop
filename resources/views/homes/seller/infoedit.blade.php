@@ -23,7 +23,7 @@
 						<div class="user-infoPic">
 
 							<div class="filePic">
-								<!-- <input type="file" accept="image/*" allowexts="gif,jpeg,jpg,png,bmp" class="inputPic" > -->
+								<input type="file" accept="image/*" allowexts="gif,jpeg,jpg,png,bmp" class="inputPic" >
 								<img alt="" src="{{$user['user_pic']}}" class="am-circle am-img-thumbnail">
 							</div>
 
@@ -49,12 +49,12 @@
 
 						<!--个人信息 -->
 						<div class="info-main">
-							<form class="am-form am-form-horizontal">
+							<form class="am-form am-form-horizontal" action="/home/seller/info/{{$user['id']}}" method="post">
 
 								<div class="am-form-group">
 									<label class="am-form-label" for="user-name2">昵称：</label>
 									<div class="am-form-content">
-										<input type="text" placeholder="name" id="user-name2"name="username" value="{{$user['nickname']}}" readonly>
+										<input type="text" placeholder="name" id="user-name2"name="nickname" value="{{$user['nickname']}}">
 
 									</div>
 
@@ -63,7 +63,7 @@
 								<div class="am-form-group">
 									<label class="am-form-label" for="user-name">姓名：</label>
 									<div class="am-form-content">
-										<input type="text" placeholder="name" id="user-name2"name="username" value="{{$user['truename']}}" readonly>
+										<input type="text" placeholder="name" id="user-name2"name="truename" value="{{$user['truename']}}">
 
 									</div>
 
@@ -72,7 +72,7 @@
 								<div class="am-form-group">
 									<label class="am-form-label">性别：</label>
 									<div class="am-form-content">
-										<input type="text" placeholder="name" id="user-name2"name="username" value="{{$user['sex']?'男':'女'}}" readonly>
+										<input type="text" placeholder="name" id="user-name2"name="sex" value="{{$user->sex?'男':'女'}}">
 
 									</div>
 
@@ -81,7 +81,7 @@
 								<div class="am-form-group">
 									<label class="am-form-label" for="user-birth">生日：</label>
 									<div class="am-form-content">
-										<input type="text" placeholder="name" id="user-name2"name="username" value="{{$user['birth']}}" readonly>
+										<input type="text" placeholder="name" id="user-name2"name="birth" value="{{$user['birth']}}">
 
 									</div>
 
@@ -90,7 +90,7 @@
 								<div class="am-form-group">
 									<label class="am-form-label" for="user-email">住址：</label>
 									<div class="am-form-content">
-										<input type="text" placeholder="name" id="user-name2"name="username" value="{{$user['area']}}" readonly>
+										<input type="text" placeholder="name" id="user-name2"name="area" value="{{$user['area']}}">
 
 									</div>			
 
@@ -99,14 +99,18 @@
 								<div class="am-form-group">
 									<label class="am-form-label" for="user-email">电子邮件：</label>
 									<div class="am-form-content">
-										<input type="text" placeholder="name" id="user-name2"name="username" value="{{$user['email']}}" readonly>
+										<input type="text" placeholder="name" id="user-name2"name="email" value="{{$user['email']}}">
 
 									</div>					
 
 								</div>
 							
 								<div class="info-btn">
-									<div class="am-btn am-btn-danger"><a href="/home/seller/info/{{$user['id']}}/edit">修改</a></div>
+										{{ csrf_field()}}
+
+    									{{method_field('PUT')}}
+
+									<button><div class="am-btn am-btn-danger">保存修改</div></button>
 								</div>
 
 							</form>
