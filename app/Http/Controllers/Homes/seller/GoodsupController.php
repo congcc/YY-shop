@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Http\model\test;
+use App\Http\model\cate_name;
 
 class GoodsupController extends Controller
 {

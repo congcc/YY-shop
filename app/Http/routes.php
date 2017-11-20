@@ -97,9 +97,6 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		//商家主页
 		Route::resource('index','IndexController');
 		
-		//安全中心
-		Route::resource('safety','SafetyController');
-		
 		//商家个人中心
 		Route::resource('info','InfoController');
 		
@@ -115,14 +112,18 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		//评论中心
 		Route::resource('comments','CommentsController');
 
-		//商铺信息
-		Route::resource('shop','ShopController');
-
+		
 		//商品列表
 		Route::resource('goodslist','GoodslistController');
 
 		//商品上传
 		Route::resource('goodsup','GoodsupController');
+
+		//店铺
+
+		Route::resource('di','DiController');
+
+
 
 
 		

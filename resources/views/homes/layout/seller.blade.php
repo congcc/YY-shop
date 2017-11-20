@@ -50,7 +50,7 @@
 								<div class="menu-hd"><a href="{{url('home/user/usercollect')}}" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
 							</div>
 							<div class="topMessage my-shangcheng">
-								<div class="menu-hd MyShangcheng"><a href="{{url('home/seller/info')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>商户中心</a></div>
+								<div class="menu-hd MyShangcheng"><a href="{{url('home/seller/index')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>商户中心</a></div>
 							</div>
 						</ul>
 					</div>
@@ -133,14 +133,14 @@
 			<aside class="menu">
 				<ul>
 					<li class="person active">
-						<a href="/homes/index.html">个人中心</a>
+						<a href="{{url('home/seller/info')}}">个人中心</a>
 					</li>
 					<li class="person">
 						<a href="#">商户信息</a>
 						<ul>
 							<li> <a href="{{url('home/seller/info')}}">个人信息</a></li>
-							<li> <a href="{{url('home/seller/shop')}}">店铺信息</a></li>
-							<li> <a href="{{url('home/seller/safety')}}">安全设置</a></li>
+							<li> <a href="{{url('home/seller/di')}}">店铺信息</a></li>
+							
 							
 						</ul>
 					</li>
