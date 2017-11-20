@@ -231,9 +231,7 @@
             <!-- Main Navigation -->
             <div id="mws-navigation">
                 <ul>
-                     <li>
-                        <a href="#"><i class="icon-home"></i>后台中心</a>
-                    </li>
+                    
                     <li>
                         <a href="#"><i class="icon-github-3"></i>管理人员</a>
                         <ul class="closed">
@@ -275,16 +273,16 @@
                     <li>
                         <a href="#"><i class="icon-user"></i>商品分类</a>
                         <ul class="closed">
-                            <li><a href="/admin/user">分类列表</a></li>
-                            <li><a href="/admin/user/create">分类添加</a></li>
-                            <li><a href="/admins/form_wizard.html">分类删除</a></li>
+                            <li><a href="/admin/type">分类列表</a></li>
+                            <li><a href="/admin/type/create">分类添加</a></li>
+                        
                         </ul>
                     </li>
                     <li>
                         <a href="#"><i class="icon-user"></i> 订单管理</a>
                         <ul class="closed">
-                            <li><a href="/admin/user">订单列表</a></li>
-                            <li><a href="/admin/user/create">进行中订单</a></li>
+                            <li><a href="/admin/orders">订单列表</a></li>
+                            <li><a href="/admin/type/create">进行中订单</a></li>
                             <li><a href="/admins/form_wizard.html">已完成订单</a></li>
                         </ul>
                     </li>

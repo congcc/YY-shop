@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admins;
 
 use Illuminate\Http\Request;
-
+use App\classify;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class OrdersController extends Controller
+class TypesonController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,13 @@ class OrdersController extends Controller
     public function index()
     {
         //
-        return view('admins/ding');
+       /* $res = classify::where('id','1')->first();
+        var_dump($res->name);
+        if($res){
+
+            return view('admins/typesonadd');
+        }*/
+         return view('admins/typesonadd');
     }
 
     /**
@@ -39,6 +45,8 @@ class OrdersController extends Controller
     public function store(Request $request)
     {
         //
+            $data = $request->except('_token');
+            var_dump($data);
     }
 
     /**

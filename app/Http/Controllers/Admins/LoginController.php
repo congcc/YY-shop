@@ -16,7 +16,7 @@ class LoginController extends Controller
      */
     public function index()
     {
-        return view('admins.login');
+       // return view('admins.login');
     }
 
     /**
@@ -38,6 +38,7 @@ class LoginController extends Controller
     public function store(Request $request)
     {
         //
+            
     }
 
     /**

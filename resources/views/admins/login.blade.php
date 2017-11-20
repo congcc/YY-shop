@@ -45,7 +45,7 @@
 
 
 
-                <form class="am-form tpl-form-line-form">
+                <form class="am-form tpl-form-line-form" action='admin/login' method='post'>
                     <div class="am-form-group">
                         <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入账号">
 
@@ -71,7 +71,7 @@
 
                     <div class="am-form-group">
 
-                        <button type="button" class="am-btn am-btn-primary  am-btn-block tpl-btn-bg-color-success  tpl-login-btn">提交</button>
+                        <button type="button" class="am-btn am-btn-primary  am-btn-block tpl-btn-bg-color-success  tpl-login-btn"><a href='admin/login'>提交</a></button>
 
                     </div>
                 </form>
