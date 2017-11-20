@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class ShopController extends Controller
+class DiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,9 @@ class ShopController extends Controller
      */
     public function index()
     {
-        //
-        return view('homes.seller.shop');
+        //s
+        return view('homes.seller.di');
+
     }
 
     /**
