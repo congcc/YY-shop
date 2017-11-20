@@ -8,4 +8,6 @@ class test extends Model
 {
     //
      public $table = "test";
+     public $timestamps = false;
+
 }

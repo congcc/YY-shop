@@ -36,18 +36,18 @@
 								<div class="menu-hd"><a href="{{url('home/index')}}" target="_top" class="h">商城首页</a></div>
 							</div>
 							<div class="topMessage my-shangcheng">
-								<div class="menu-hd MyShangcheng"><a href="{{url('home/seller/info')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+								<div class="menu-hd MyShangcheng"><a href="{{url('home/user/user')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 							</div>
 
 							<div class="topMessage mini-cart">
-								<div class="menu-hd"><a id="mc-menu-hd" href="{{url('home/seller/orderedit')}}" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
+								<div class="menu-hd"><a id="mc-menu-hd" href="{{url('home/user/shopcart')}}" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
 							</div>
 							
 							<div class="topMessage favorite">
-								<div class="menu-hd"><a href="{{url('home/seller/info')}}" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
+								<div class="menu-hd"><a href="{{url('home/user/usercollect')}}" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
 							</div>
 							<div class="topMessage my-shangcheng">
-								<div class="menu-hd MyShangcheng"><a href="{{url('home/seller/info')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>商户中心</a></div>
+								<div class="menu-hd MyShangcheng"><a href="{{url('home/seller/index')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>商户中心</a></div>
 							</div>
 						</ul>
 					</div>

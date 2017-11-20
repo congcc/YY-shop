@@ -74,6 +74,12 @@ class GoodslistController extends Controller
     public function edit($id)
     {
         //
+
+        //修改
+        $fres=test::find($id);
+
+        // dd($fres);
+        return view('homes.seller.goodslistedit',['mo'=>$fres]);
     }
 
     /**
@@ -86,6 +92,25 @@ class GoodslistController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        // dd($id);
+        // dd($request);
+
+        $update=$request->except('_token','_method');
+         // $res = $request->except('_token','_method');
+        // dd($update);
+
+        $upres=test::where('id',$id)->update($update);
+
+        if($upres){
+
+            return redirect('/home/seller/goodslist')->with('修改成功');
+        } else {
+
+            return back();
+        }
+
+        
     }
 
     /**
@@ -97,5 +122,18 @@ class GoodslistController extends Controller
     public function destroy($id)
     {
         //
+        $res=test::where('id',$id)->first();
+
+        // dd($res);
+
+        if($res){
+            $info=test::where('id',$id)->delete();
+            if($info){
+                return redirect('/home/seller/goodslist');
+            }else{
+                return back();
+            }
+        }
+
     }
 }
