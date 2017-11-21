@@ -78,6 +78,16 @@
 
 								</div>
 
+
+								<div class="am-form-group">
+									<label class="am-form-label" for="user-birth">身份证：</label>
+									<div class="am-form-content">
+										<input type="text" placeholder="name" id="user-name2"name="idcard" value="{{$user['idcard']}}">
+
+									</div>
+								</div>
+
+
 								<div class="am-form-group">
 									<label class="am-form-label" for="user-birth">生日：</label>
 									<div class="am-form-content">

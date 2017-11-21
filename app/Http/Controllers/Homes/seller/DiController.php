@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\model\shop;
+
 
 class DiController extends Controller
 {
@@ -16,8 +18,12 @@ class DiController extends Controller
      */
     public function index()
     {
-        //s
-        return view('homes.seller.di');
+        //dd(session('userid'));
+
+        $shop=shop::find(session('userid'));
+        dd($shop);
+
+        return view('homes.seller.di',["shop"=>$shop]);
 
     }
 
