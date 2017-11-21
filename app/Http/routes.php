@@ -86,7 +86,7 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 
 
 	//商家 笑
-	Route::group(['prefix'=>'seller','namespace'=>'seller'],function(){
+	Route::group(['prefix'=>'seller','namespace'=>'seller','middleware'=>'slogin'],function(){
 		
 		//商家主页
 		Route::resource('index','IndexController');
