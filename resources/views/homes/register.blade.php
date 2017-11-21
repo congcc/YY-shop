@@ -1,6 +1,7 @@
 @extends('homes.layout.lr')
 
 @section('title','用户注册')
+<meta name="_token" content="{{ csrf_token() }}"/>
 
 @section('content')
 
@@ -26,14 +27,14 @@
               </label>
               <input type="tel" name="phone" id="phone" placeholder="请输入手机号"></div>
               <div id="e1" style="width: 200px;height: 20px;display: none;color: red;font-size: 13px;font-weight: bold"></div>
-              <div id="ee" style="width: 200px;height: 20px;""></div>
+              <div id="ee" style="width: 200px;height: 20px;"></div>
             <div class="verification">
               <label for="code">
                 <i class="am-icon-code-fork" style="margin-top: 12px;"></i>
               </label>
               <input type="tel" name="" id="code" placeholder="请输入验证码">
               
-              <a class="btn" href="javascript:void(0);" onClick="sendMobileCode();" id="sendMobileCode">
+              <a class="btn" href="javascript:void(0);"  id="sendMobileCode">
 
                 <span id="dyMobileButton">获取</span></a>
 
@@ -95,7 +96,7 @@
   var ch4;
 	$('#dyMobileButton').click(function(){
 		var ph = $('#phone').val();
-		$.get("co",{ph:ph},function(data){
+		$.post("co",{'_token':'{{ csrf_token() }}',ph:ph},function(data){
 			if(data=="0"){
 			}
 		})
@@ -111,7 +112,7 @@
       $('#e4').css('display','none');
       ch1 = 100;
     }
-		$.get("cos",{cos:cos},function(data){
+		$.post("cos",{'_token':'{{ csrf_token() }}',cos:cos},function(data){
 			if(data==1){
 				$('#code').css('border','solid 1px green');
         ch1 = 100;
@@ -123,8 +124,8 @@
         return;
 			}
 		})
-    
-	})
+  })
+
 	$('#phone').blur(function(){
     /*var phs = document.getElementById('phone');
     var e = document.getElementById('e');
@@ -142,7 +143,7 @@
       $('#e1').css('display','none');
       ch2 = 100;
     }
-    $.get("ph",{ph:ph},function(data){
+    $.post("ph",{'_token':'{{ csrf_token() }}',ph:ph},function(data){
       if(data.length>0){
         $('#phone').css('border','solid 2px red');
         $("#e1").html("该手机号已经被注册了呢");

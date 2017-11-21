@@ -6,12 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\Model\shopcar;
-use App\Http\Model\shop;
-use App\Http\Model\goods;
-use App\Http\Model\goodscate;
+use App\Http\model\pay;
+use Hash;
 
-class ShopcartController extends Controller
+class AjaxpaypassController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,18 +18,7 @@ class ShopcartController extends Controller
      */
     public function index()
     {
-        $uid = session('userid');
-        $result = shopcar::where('uid',$uid)->get();
-
-        $array = array();
-
-        for ($i=0; $i <shopcar::count() ; $i++) { 
-            $res = shopcar::where('sid',$result[$i]->sid)->get();
-            $array[$i] = $res;
-        }
-        $array = array_unique($array);
-        $res = 0;
-        return view('homes.user.shopcart',compact('array','res'));
+        //
     }
 
     /**
@@ -52,7 +39,17 @@ class ShopcartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            $req = $request->only('password','id');
+            
+            //对密码进行哈希加密
+            $req['password'] = Hash::make($request->input('password'));
+
+            $res = pay::where('uid', $req['id'])->update(['password'=>$req['password']]);
+
+            if ($res) {
+                echo 1;
+            }
+     
     }
 
     /**
@@ -86,7 +83,7 @@ class ShopcartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         
     }
 
     /**
