@@ -40,6 +40,8 @@ class CarController extends Controller
     public function store(Request $request)
     {
          $req =  $request->only('gum','id');
+         //修改时间(他和另外一个移除数组重复冲突)
+         $time = data('Y-m-d H:i:s',time());
          $res = shopcar::where('id',$req['id'])->update(['gum'=>$req['gum']]);
 
          $total = shopcar::where('id',$req['id'])->first();
@@ -94,8 +96,12 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete(Request $request)
     {
-        //
+        $req = $request->only('id');
+        $res = shopcar::delete($req);
+        if($res){
+            echo 1;
+        }
     }
 }

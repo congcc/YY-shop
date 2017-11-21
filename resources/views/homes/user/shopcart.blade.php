@@ -6,7 +6,8 @@
 		<link href="/homes/basic/css/demo.css" rel="stylesheet" type="text/css" />
 		<link href="/homes/css/cartstyle.css" rel="stylesheet" type="text/css" />
 		<link href="/homes/css/optstyle.css" rel="stylesheet" type="text/css" />
-
+		<script src="/homes/layer/layer.js"></script>
+		
 		<script type="text/javascript" src="/homes/js/jquery.js"></script>
 		
 @endsection
@@ -122,7 +123,8 @@
 									<li class="td td-op">
 										<div class="td-inner">
 											
-											<a href="javascript:;" data-point-url="#" class="delete"> 删除</a>
+											<a data-point-url="#" class="delete" 
+											onclick = "deleteonc({{$p->id}},{{$i}})"> 删除</a>
 										</div>
 									</li>
 								</ul>
@@ -171,19 +173,8 @@
 			
 			</div>
 <script>
-// $('input[name="goods_gum"]').click(function(data){
-// 	var id  = $('input[name="gums"]').attr('placeholder');
-// 	var gum = $('input[name="gums"]').val();
-// 	var gum = parseInt(gum)+1;
-// 	// $.get("{{url('home/user/car')}}",{gum:gum},function(data){
-// 	// 		console.log(data);
-// 	// 	})
-// 	console.log(id);
-// })
-// $('input[name="gums"]').blur(function(data){
-// 	var gum = 	$('input[name="gums"]').val();
-// 		console.log(gum);
-// })
+
+// 增加数量
 function onc (id,i) {
 	var gu = $('input[name="gums"]').eq(i).val();
 	var gum = parseInt(gu)+1;
@@ -191,13 +182,37 @@ function onc (id,i) {
 		$('.J_ItemSum').eq(i).html(data);
 	})
 }
-
+//减少数量
 function tnc (id,i) {
 	var gu = $('input[name="gums"]').eq(i).val();
 	var gum = parseInt(gu)-1;
 	$.get("{{url('home/user/car')}}",{gum:gum,id,id},function(data){
 		$('.J_ItemSum').eq(i).html(data);
 	})
+	
+}
+//获取填写的数量
+
+
+//删除(确认框)
+function deleteonc (id,i) {
+	// 询问框
+	layer.confirm('您确定要删除吗?', {
+		  btn: ['确定','取消'] //按钮
+		}, function(){
+			//发送ajax进行删除
+			$.get("{{url('home/user/cardelete')}}",{id,id},function(data){
+				if(data){
+					layer.msg('删除成功', {icon: 1});
+				}{
+					layer.msg('删除失败', {icon: 2});
+				}
+			},'json')
+		}, function(){
+
+		});
+	
+	
 	
 }
 </script>					
