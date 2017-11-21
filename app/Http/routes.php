@@ -84,6 +84,7 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		Route::resource('usernews', 'UsernewsController');
 		//用户购物车
 		Route::resource('shopcart', 'shopcartController');
+		Route::resource('car', 'CarController@store');
 		Route::get('cardelete','CarController@delete');
 		
 

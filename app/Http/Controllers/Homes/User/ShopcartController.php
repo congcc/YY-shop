@@ -21,17 +21,17 @@ class ShopcartController extends Controller
     public function index()
     {
         $uid = session('userid');
+        $uid = 6 ;//假装我有uid
         $result = shopcar::where('uid',$uid)->get();
 
         $array = array();
-
         for ($i=0; $i <shopcar::count() ; $i++) { 
             $res = shopcar::where('sid',$result[$i]->sid)->get();
             $array[$i] = $res;
         }
         $array = array_unique($array);
-        $res = 0;
-        return view('homes.user.shopcart',compact('array','res'));
+        return view('homes.user.shopcart',compact('array'));
+        // return view('homes.user.shopcart');
     }
 
     /**

@@ -40,15 +40,16 @@ class CarController extends Controller
     public function store(Request $request)
     {
          $req =  $request->only('gum','id');
-         //修改时间(他和另外一个移除数组重复冲突)
-         $time = data('Y-m-d H:i:s',time());
+        //修改时间(他和另外一个移除数组重复冲突)
+         // $time = data('Y-m-d H:i:s',time());
+        //修改数量
          $res = shopcar::where('id',$req['id'])->update(['gum'=>$req['gum']]);
-
+        //获取本id信息
          $total = shopcar::where('id',$req['id'])->first();
          $tot = goods::where('id',$total['gid'])->first();
          
          $tota = $tot['gprice'] * $req['gum'];
-
+         
          if($res){
             echo $tota;
          }
