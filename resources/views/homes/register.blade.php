@@ -124,6 +124,8 @@
         return;
 			}
 		})
+  })
+
 	$('#phone').blur(function(){
     /*var phs = document.getElementById('phone');
     var e = document.getElementById('e');
