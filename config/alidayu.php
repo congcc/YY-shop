@@ -4,8 +4,8 @@ return [
 
 
 
-        'app_key' => env('ALDAYUAK',''),
-        'app_secret' => env('ALDAYUCK',''),
+        'accessKeyId' => env('ALDAYUAK',''),
+        'accessKeySecret' => env('ALDAYUCK',''),
 
 ];
 

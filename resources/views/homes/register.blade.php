@@ -34,7 +34,7 @@
               </label>
               <input type="tel" name="" id="code" placeholder="请输入验证码">
               
-              <a class="btn" href="javascript:void(0);" onClick="sendMobileCode();" id="sendMobileCode">
+              <a class="btn" href="javascript:void(0);"  id="sendMobileCode">
 
                 <span id="dyMobileButton">获取</span></a>
 
