@@ -26,6 +26,7 @@
 							<div class="filePic">
 					
 								<img alt="" src="{{$user['user_pic']}}" class="am-circle am-img-thumbnail">
+
 							</div>
 
 							<p class="am-form-help">头像</p>
@@ -46,16 +47,16 @@
 							</div>
 						</div>
 
-						<!-- dd({{$user}}); -->
-
 						<!--个人信息 -->
 						<div class="info-main">
-							<form class="am-form am-form-horizontal">
+							<form class="am-form am-form-horizontal" action="" method="">
 
 								<div class="am-form-group">
 									<label class="am-form-label" for="user-name2">昵称：</label>
 									<div class="am-form-content">
 										<input type="text" placeholder="name" id="user-name2"name="nickname" value="{{$user['nickname']}}" readonly>
+
+
 
 									</div>
 
@@ -64,9 +65,12 @@
 								<div class="am-form-group">
 									<label class="am-form-label" for="user-name">姓名：</label>
 									<div class="am-form-content">
+
 										<input type="text" placeholder="name" id="user-name2"name="truename" value="{{$user['truename']}}" readonly>
 
+
 									</div>
+
 
 								</div>
 
@@ -74,6 +78,7 @@
 									<label class="am-form-label">性别：</label>
 									<div class="am-form-content">
 										<input type="text" placeholder="name" id="user-name2"name="sex" value="{{$user['sex']?'男':'女'}}" readonly>
+
 
 									</div>
 
@@ -91,6 +96,7 @@
 							
 								
 
+
 								<div class="am-form-group">
 									<label class="am-form-label" for="user-birth">生日：</label>
 									<div class="am-form-content">
@@ -103,7 +109,9 @@
 								<div class="am-form-group">
 									<label class="am-form-label" for="user-email">住址：</label>
 									<div class="am-form-content">
+
 										<input type="text" placeholder="name" id="user-name2"name="area" value="{{$user['area']}}" readonly>
+
 
 									</div>			
 
@@ -116,7 +124,9 @@
 
 									</div>					
 
+
 								</div>
+
 
 						</div>
 							

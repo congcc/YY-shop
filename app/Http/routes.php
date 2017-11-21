@@ -34,8 +34,9 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 	//注册
 	Route::resource('register', 'RegController');
 	Route::post('co', 'VerificationController@co');//发送验证码
-	Route::get('cos', 'VerificationController@cos');//验证验证码
-	Route::get('ph','VerificationController@ph');//验证手机号
+	Route::post('cos', 'VerificationController@cos');//验证验证码
+	Route::post('ph','VerificationController@ph');//验证手机号
+
 
 
 	//商品搜索页
@@ -55,8 +56,12 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		Route::resource('userinfo', 'UserinfoController');
 		//用户账户安全
 		Route::resource('usersafe', 'UsersafeController');
-		Route::resource('pass', 'PassController');
-		Route::resource('paypass', 'PaypassController');
+		Route::resource('pass', 'PassController');//修改密码
+		Route::resource('paypass', 'PaypassController');//支付密码
+		Route::post('ajaxpaypass', 'A  jaxpaypassController@store')->where('id', '[0-9]+');
+		Route::resource('bindph', 'BindphController');//换手机号
+		Route::resource('email', 'EmailController');//邮箱认证
+		Route::resource('idcard', 'IdcardController');//身份认证
 		//用户地址
 		Route::resource('useraddr', 'UseraddrController');
 		//用户订单
@@ -79,6 +84,7 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		Route::resource('usernews', 'UsernewsController');
 		//用户购物车
 		Route::resource('shopcart', 'shopcartController');
+		Route::get('cardelete','CarController@delete');
 		
 
 	});

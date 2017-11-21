@@ -19,6 +19,7 @@ class InfoController extends Controller
      */
     public function index()
     {
+
         //从session中获取登录id
         // dd(session('userid'));
 
@@ -33,6 +34,7 @@ class InfoController extends Controller
 
        //将信息传入视图页
         return view('homes.seller.info',["user"=>$user]);
+
 
         // $res = DB::select('select * from 111');
         // // dd($res);
