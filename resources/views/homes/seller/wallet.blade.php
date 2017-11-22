@@ -25,13 +25,13 @@
 						<div class="ebill-section">
 							<div class="ebill-title-section">
 								<h2 class="trade-title section-title">
-                                                                                                                                     交易
-                            <span class="desc">（金额单位：元）</span>
+                                                                                                                                     订单号
+                            <span class="desc">{{$res['0']->o_code}}</span>
                         </h2>
 
 								<div class=" ng-scope">
 									<div class="trade-circle-select  slidedown-">
-										<a class="current-circle ng-binding" href="javascript:void(0);">2015/11/01 - 2015/11/30</a>
+										<a class="current-circle ng-binding" href="javascript:void(0);">{{$result['0']->ord_time}}- {{$result['0']->complete}}</a>
 
 									</div>
 									<span class="title-tag"><i class="num ng-binding">12</i>月</span>
@@ -44,11 +44,9 @@
 										<h3 class="income-title block-title">
                                                                                                           支出
                                       <span class="num ng-binding">
-                                              119.80
+                                              0
                                        </span>
-                                    <span class="desc ng-binding">
-                                           <a href="billlist.html">查看支出明细</a>
-                                         </span>
+                                    
                                              </h3>
 
 										<div class="catatory-details  fn-hide shopping" ng-class="shoppingChart">
@@ -138,76 +136,16 @@
 									<h3 class="expense income-title block-title">
                                                                                                                        收入                                                              
                                       <span class="num ng-binding">
-                                              0.00
+                                              {{$res['0']->total_price}}
                                        </span>
-                                    <span class="desc ng-binding">
-                                           <a href="billlist.html">查看收入明细</a>
-                                    </span>
+                                   
                                 </h3>
 								</div>
 
 								<!--消费走势-->
-								<div class="module-consumeTrend inner-module">
-									<h3 class="module-title">消费走势</h3>
-									<div class="consumeTrend-chart" id="consumeTrend-chart">
-
-									</div>
-								</div>
-
+								
 								<!--银行卡使用情况-->
 
-								<div class="module-card inner-module">
-									<h3 class="module-title">银行卡使用情况</h3>
-									<div class="card-chart valid">
-										<div class="cards-carousel">
-											<div class="mask">
-
-												<div class="bac fn-left"></div>
-												<div style="background-image: url(/homes/images/combo.png);" class="bank ng-binding">中国农业银行</div>
-												<div class="details">
-													<a>查看详情</a>
-												</div>
-											</div>
-										</div>
-										<div class="cards-details">
-											<div class="bank-name">
-												<div style="background-image: url(/homes/images/combo.png);" class="name fn-left"></div>
-												<span class="close fn-right"><a>X</a></span>
-											</div>
-											<div class="bank-detail">
-												<div class="totalin fn-left">
-													<span class="fn-left">流入</span>
-													<span class="amount fn-right">0.00</span>
-												</div>
-												<div class="totalout fn-left">
-													<span class="fn-left">流出</span>
-													<span class="amount fn-right">0.00</span>
-												</div>
-												<div class="expand fn-left">
-													<span class="fn-left">支出</span>
-													<span class="amount fn-right">0.00</span>
-												</div>
-												<div class="withdraw fn-left">
-													<span class="fn-left">提现</span>
-													<span class="amount fn-right">
-							                                0.00
-                            						</span>
-												</div>
-												<div class="recharge fn-left">
-													<span class="fn-left">充值</span>
-													<span class="amount fn-right">
-                                                            0.00
-                            						</span>
-												</div>
-
-												<div class="refund fn-left">
-													<span class="fn-left">银行卡退款</span>
-													<span class="amount fn-right ">0.00</span>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
 
 								<script>
 									$(document).ready(function (ev) {

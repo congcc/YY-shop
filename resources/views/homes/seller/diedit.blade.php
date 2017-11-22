@@ -9,14 +9,14 @@
 
 @endsection
 
-@section('title','个人中心')
+@section('title','店铺信息')
 
 @section('content')
 
 <div class="user-info">
 						<!--标题 -->
 						<div class="am-cf am-padding">
-							<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">个人资料</strong> / <small>Personal&nbsp;information</small></div>
+							<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">店铺信息</strong> / <small>Personal&nbsp;information</small></div>
 						</div>
 						<hr>
 					
@@ -25,14 +25,14 @@
 
 							<div class="filePic">
 					
-								<img alt="" src="{{$user['user_pic']}}" class="am-circle am-img-thumbnail">
+								<img alt="" src="{{$di->simg}}" class="am-circle am-img-thumbnail">
 
 							</div>
 
 							<p class="am-form-help">头像</p>
 
 							<div class="info-m">
-								<div><b>商户名：<i>{{$user['nickname']}}</i></b></div>
+								<div><b>店铺名：<i>{{$di->sname}}</i></b></div>
 								<div class="u-level">
 									<span class="rank r2">
 							             <s class="vip1"></s><a href="#" class="classes">铜牌会员</a>
@@ -49,12 +49,13 @@
 
 						<!--个人信息 -->
 						<div class="info-main">
-							<form class="am-form am-form-horizontal" action="" method="">
+							<form class="am-form am-form-horizontal" action="/home/seller/di/{{$di['id']}}" method="post">
+
 
 								<div class="am-form-group">
-									<label class="am-form-label" for="user-name2">昵称：</label>
+									<label class="am-form-label" for="user-name2">店铺名：</label>
 									<div class="am-form-content">
-										<input type="text" placeholder="name" id="user-name2"name="nickname" value="{{$user['nickname']}}" readonly>
+										<input type="text" placeholder="name" id="user-name2"name="sname" value="{{$di->sname}}" >
 
 
 
@@ -62,22 +63,12 @@
 
 								</div>
 
-								<div class="am-form-group">
-									<label class="am-form-label" for="user-name">姓名：</label>
-									<div class="am-form-content">
-
-										<input type="text" placeholder="name" id="user-name2"name="truename" value="{{$user['truename']}}" readonly>
-
-
-									</div>
-
-
-								</div>
+							
 
 								<div class="am-form-group">
-									<label class="am-form-label">性别：</label>
+									<label class="am-form-label">店铺状态：</label>
 									<div class="am-form-content">
-										<input type="text" placeholder="name" id="user-name2"name="sex" value="{{$user['sex']?'男':'女'}}" readonly>
+										<input type="text" placeholder="name" id="user-name2"name="sauth" value="{{$di->sauth}}" >
 
 
 									</div>
@@ -86,9 +77,9 @@
 									
 
 									<div class="am-form-group">
-									<label class="am-form-label" for="user-birth">身份证：</label>
+									<label class="am-form-label" for="user-birth">店铺类别：</label>
 									<div class="am-form-content">
-										<input type="text" placeholder="name" id="user-name2"name="idcard" value="{{$user['idcard']}}" readonly>
+										<input type="text" placeholder="name" id="user-name2"name="stype" value="{{$di->stype}}" >
 
 									</div>
 									</div>
@@ -98,9 +89,9 @@
 
 
 								<div class="am-form-group">
-									<label class="am-form-label" for="user-birth">生日：</label>
+									<label class="am-form-label" for="user-birth">积分：</label>
 									<div class="am-form-content">
-										<input type="text" placeholder="name" id="user-name2"name="birth" value="{{$user['birth']}}" readonly>
+										<input type="text" placeholder="name" id="user-name2"name="sclass" value="{{$di->sclass}}" >
 
 									</div>
 
@@ -110,7 +101,7 @@
 									<label class="am-form-label" for="user-email">住址：</label>
 									<div class="am-form-content">
 
-										<input type="text" placeholder="name" id="user-name2"name="area" value="{{$user['area']}}" readonly>
+										<input type="text" placeholder="name" id="user-name2"name="saddress" value="{{$di->saddress}}" >
 
 
 									</div>			
@@ -118,9 +109,9 @@
 								</div>
 							
 								<div class="am-form-group">
-									<label class="am-form-label" for="user-email">电子邮件：</label>
+									<label class="am-form-label" for="user-email">资金：</label>
 									<div class="am-form-content">
-										<input type="text" placeholder="name" id="user-name2"name="email" value="{{$user['email']}}" readonly>
+										<input type="text" placeholder="name" id="user-name2"name="swallet" value="{{$di->swallet}}" >
 
 									</div>					
 
@@ -131,10 +122,15 @@
 						</div>
 							
 								<div class="info-btn">
-									<div class="am-btn am-btn-danger"><a href="/home/seller/info/{{$user['id']}}/edit">修改</a></div>
+
+									{{ csrf_field()}}
+
+    								{{method_field('PUT')}}
+
+									<button class="am-btn am-btn-danger">保存修改</button>
 								</div>
 
-
+</form>
 
 								</div>
 
