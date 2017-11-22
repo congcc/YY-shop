@@ -8,5 +8,6 @@ class shop extends Model
 {
     //
     public $table = "shop";
+     public $timestamps = false;
 
 }

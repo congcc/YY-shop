@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\model\orders;
+use App\Http\model\ordersinfo;
+use App\Http\model\shop;
+
+
 
 class WalletController extends Controller
 {
@@ -17,7 +22,46 @@ class WalletController extends Controller
     public function index()
     {
         //
-        return view('homes.seller.wallet');
+       $id=(session('userid'));
+
+       $user=shop::where('uid',$id)->first();
+
+       //获取shop表中uid和session相同的  sid
+       $sid=$user['id'];
+       // dd($su);
+
+       // dd($user);
+         //获取店家所有订单
+        $res=orders::where('sid',$sid)->get();
+
+        
+
+        $m=array();
+        foreach ($res as $key => $value) {
+            
+            $code= $value['o_code'];
+
+            $result = ordersinfo::where('o_code',$code)->get();
+        
+            $m[$key] =  $result;
+        }
+// 
+        // dd($result);
+        // dd($m);
+         // dd($res);
+        
+        
+        // dd($o_code);
+
+        // 获取订单号
+         // $o=orders::where(o_code);
+
+         // $code=orderinfo::where('o_code',)
+
+         // dd($user);
+
+         //dd($user);
+        return view('homes.seller.wallet',["user"=>$user,"res"=>$res,"result"=>$result]);
     }
 
     /**

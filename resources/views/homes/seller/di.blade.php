@@ -21,19 +21,21 @@
 								<div class="m-bg"></div>
 								<div class="m-userinfo">
 									<div class="m-baseinfo">
-										<a href="information.html">
-											<img src="/homes/images/getAvatar.do.jpg">
+										<a href="">
+											<img src="{{$shop['simg']}}">
 										</a>
 										<em class="s-name">{{$shop['sname']}}<span class="vip1"></span></em>
 										<div class="s-prestige am-btn am-round">
 											会员福利</div>
+										<div class="s-prestige am-btn am-round"><a href="/home/seller/di/{{$shop['id']}}/edit">修改</a></div>
+
 									</div>
 									<div class="m-right">
 										<div class="m-new">
 											<a href="news.html"><i class="am-icon-bell-o"></i>消息</a>
 										</div>
 										<div class="m-address">
-											<a class="i-trigger" href="address.html">店铺类别</a>
+											<a class="i-trigger" href="address.html">店铺类别:{{$shop['stype']}}</a>
 										</div>
 									</div>
 								</div>
