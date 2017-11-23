@@ -4,16 +4,17 @@
 
 @section('content')
 		<h3>添加子板块</h3>
-		<form action="typeson" method='post'>
+		<form action="/admin/type" method="post" enctype="multipart/form-data"> 
 			<table border='0' width='400'> 
+			
 				<tr>
 					<td align='right'>一级分类:</td>
-					<td><input type="text" name='title'></td>
+					<td><input type="text" name='fname' value="{{ $pcate_name}}"></td>
 					
 				</tr>
 				<tr>
 					<td align='right'>二级分类:</td>
-					<td><input type="text" name='keywords'></td>
+					<td><input type="text" name='cate_name' value=""></td>
 				</tr>
 				<tr>
 					<td align='right'>文件上传:</td> 
@@ -33,6 +34,7 @@
 					</td>
 					
 				</tr>
+			
 				{{ csrf_field()}}
 
 			</table>

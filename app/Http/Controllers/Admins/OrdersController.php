@@ -12,6 +12,7 @@ use App\Http\model\ordersinfo;
 use App\Http\model\goods;
 use DB;
 
+
 class OrdersController extends Controller
 {
     /**
@@ -24,6 +25,15 @@ class OrdersController extends Controller
         //
         $res = orders::all();
         return view('admins.orders.index',['res'=>$res]);
+
+        
+    //    $id = orders::select('uid')->first();
+
+        $res = user::all();
+        
+
+        return view('admins/ding',['res'=>$res]);
+
     }
 
     /**

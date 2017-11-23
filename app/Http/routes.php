@@ -1,3 +1,4 @@
+
 <?php
 
 /*
@@ -133,9 +134,10 @@ Route::group(['prefix'=>'admin','namespace'=>'Admins',], function () {
 
 	//后台登录
 	Route::resource('login','LoginController');
+
 	// Route::post('dlogin', 'LoginsController@store');
 
-			
+	
 	// 'meddleware'=>'login'
 	Route::group([], function () {
 

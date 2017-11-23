@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Admins;
-
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\Http\model\goods;
+use App\Http\model\cateone;
+use App\Http\model\catetwo;
 class TypeController extends Controller
 {
     /**
@@ -14,10 +15,28 @@ class TypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        return view('admins.type');
+        
+        $res = cateone::all();
+
+        foreach($res as $k => $v){
+           $id = $v->id;
+        }/*
+            if($id>7){
+                $fid = $id;
+            }*/
+            var_dump($id);die;
+        $sres = catetwo::where('pid',$id)->get();
+        
+        /* foreach( $sres as $sk => $sv){
+            $cate_name = $sv->cate_name;
+
+        }*/
+
+    
+         return view('admins.type',['res'=>$res,'sres'=>$sres]);
     }
 
     /**
@@ -40,7 +59,27 @@ class TypeController extends Controller
     public function store(Request $request)
     {
         //
-    }
+             /* $data = $request->except('_token');
+             
+             $pid = goods::where('cate_name',$data['cate_name'])->get();
+            dd($pid);*/
+        //      $res = table('goods')->insert('data')->all();
+          
+        //        $res = DB::table('goodscate')->insert($data.$pid);
+
+         //   var_dump($pid);
+            $data = $request->except('_token');
+           $dataone = cateone::where('cate_name',$data['fname'])->first();
+            $pid = $dataone['id'];
+         //   var_dump($pid);
+            $data['pid'] = $pid;
+            array_shift($data);
+
+            $res = cateone::insert($data);
+            if($res){
+            //    alert('老铁，添加成功了');
+            }
+      }      
 
     /**
      * Display the specified resource.
@@ -85,5 +124,8 @@ class TypeController extends Controller
     public function destroy($id)
     {
         //
+        $res = cateone::where('id',$id)->delete();
+
+        return $res;
     }
 }

@@ -2,7 +2,7 @@
 
 @section('title','添加新闻页面')
 
-@section('content')
+@section('content') 
 <div class="mws-panel grid_8 mws-collapsible">
                     <div class="mws-panel-header">
                                 <span>
@@ -69,6 +69,11 @@
                                                         试用季节
                                                     </th>
                                                     <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
+                                                    rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending"
+                                                    style="width: 111px;">
+                                                        
+                                                    </th>
+                                                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                                                     rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
                                                     style="width: 80px;">
                                                         商品状态
@@ -78,10 +83,58 @@
                                                     </th>
                                                 </tr>
                                             </thead>
+                                           
                                             <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                            @foreach ($res as $k => $v) 
                                                 <tr class="odd">
                                                     <td class="  sorting_1">
-                                                        休闲零食
+                                                        {{ $v->cate_name }}
+                                                    </td>
+                                                    <td class=" ">
+                                                        
+                                                    </td>
+                                                    <td class=" ">
+                                                        
+                                                    </td>
+                                                    <td class=" ">
+                                                        
+                                                    </td>
+                                                     <td class=" ">
+                                                        
+                                                    </td>
+                                                    <td class=" ">
+                                                        <span class="badge badge-info">
+                                                            开启
+                                                        </span>
+                                                    </td>
+                                                    <td class=" ">
+                                                        <span class="btn-group">
+                                                            <a href="" class="btn btn-small">
+                                                                添加父分区
+                                                            </a>
+                                                            <a href="/admin/typeson/{{$v->id}}" class="btn btn-small">
+                                                                添加子版块
+                                                            </a>
+
+                                                        <form action="/admin/type/{{ $v->id}}" method='post'>     
+                                                            <button class="btn btn-small">    <i class="icon-trash">
+                                                                </i>    </button>
+                                                                  {{ csrf_field() }}  
+                                                                 {{ method_field('DELETE') }}
+                                                                    
+                                                         </form>
+                                                         
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                
+                                               @foreach ($res as $sk => $sv)
+                                              @if ($sv->pid==$v->id) 
+                                               
+                                                <tr class="odd">
+                                                    <td class=" sorting_1"></td>
+                                                    <td class="  sorting_1">
+                                                        {{ $sv->cate_name }}
                                                     </td>
                                                     <td class=" ">
                                                         
@@ -99,20 +152,73 @@
                                                     </td>
                                                     <td class=" ">
                                                         <span class="btn-group">
-                                                            <a href="" class="btn btn-small">
-                                                                添加父分区
-                                                            </a>
-                                                            <a href="typeson" class="btn btn-small">
+                                                        
+                                                            <a href="/admin/typeson/{{$v->id}}" class="btn btn-small">
                                                                 添加子版块
                                                             </a>
-                                                            <a href="#" class="btn btn-small">
-                                                                <i class="icon-trash">
-                                                                </i>
-                                                            </a>
+
+                                                        <form action="/admin/type/{{ $v->id}}" method='post'>     
+                                                            <button class="btn btn-small">    <i class="icon-trash">
+                                                                </i>    </button>
+                                                                  {{ csrf_field() }}  
+                                                                 {{ method_field('DELETE') }}
+                                                                    
+                                                         </form>
+                                                         
                                                         </span>
                                                     </td>
                                                 </tr>
+                                                @endif
+                                                @foreach ( $sres as $tk => $tv)
+                                                    @if( $tv->pid==$v->id)
+                                                    <tr class="odd">
+                                                    <td class=" sorting_1"></td>
+                                                    <td class="  sorting_1">
+                                                        {{ $tv->cate_name }}
+                                                    </td>
+                                                    <td class=" ">
+                                                        
+                                                    </td>
+                                                    <td class=" ">
+                                                        
+                                                    </td>
+                                                    <td class=" ">
+                                                        
+                                                    </td>
+                                                    <td class=" ">
+                                                        <span class="badge badge-info">
+                                                            开启
+                                                        </span>
+                                                    </td>
+                                                    <td class=" ">
+                                                        <span class="btn-group">
+                                                        
+                                                            <a href="/admin/typeson/{{$v->id}}" class="btn btn-small">
+                                                                添加子版块
+                                                            </a>
+
+                                                        <form action="/admin/type/{{ $v->id}}" method='post'>     
+                                                            <button class="btn btn-small">    <i class="icon-trash">
+                                                                </i>    </button>
+                                                                  {{ csrf_field() }}  
+                                                                 {{ method_field('DELETE') }}
+                                                                    
+                                                         </form>
+                                                         
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            
+                                           
+                                            @endif
+                                            @endforeach
+                                             
+                                                @endforeach   
+                                             @endforeach   
                                             </tbody>
+
+                                                         
+                                            
                                         </table>
                                         <div class="dataTables_info" id="DataTables_Table_0_info">
                                             Showing 1 to 10 of 20 entries
