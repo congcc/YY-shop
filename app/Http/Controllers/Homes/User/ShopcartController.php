@@ -19,8 +19,10 @@ class ShopcartController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+
         $uid = session('userid');
+
         $uid = 6 ;//假装我有uid
         $result = shopcar::where('uid',$uid)->get();
 
@@ -30,9 +32,11 @@ class ShopcartController extends Controller
             $array[$i] = $res;
         }
         $array = array_unique($array);
+
         //var_dump($array);
         return view('homes.user.shopcart',compact('array','res'));
-        // return view('homes.user.shopcart');1
+        // return view('homes.user.shopcart');
+
     }
 
     /**

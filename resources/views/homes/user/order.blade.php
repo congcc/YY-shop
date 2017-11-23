@@ -2,16 +2,12 @@
 
 
 @section('head')
+<meta name="_token" content="{{ csrf_token() }}"/>
 		<link href="/homes/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
 		<link href="/homes/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
 
 		<link href="/homes/css/personal.css" rel="stylesheet" type="text/css">
 		<link href="/homes/css/orstyle.css" rel="stylesheet" type="text/css">
-		<!-- <style>
-			aside .menu{
-				margin-top: 10px;
-			}
-		</style> -->
 		<script src="/homes/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
 		<script src="/homes/AmazeUI-2.4.2/assets/js/amazeui.js"></script>
 @endsection
@@ -73,7 +69,7 @@
 
 									<div class="order-main">
 										<div class="order-list">
-											
+											<?php $i = 0; ?>
 											<!--交易成功-->
 											@foreach($codearr as $k => $v)
 											<?php $to=0 ?>
@@ -122,10 +118,10 @@
 															<li class="td td-operation">
 																<div class="item-operation">
 																	@if($vs->ostate==1)
-																		<a href="/homes/refund.html">退款</a>
+																		<a href="/homes/refund.html" style="margin-top: 15px;display: block">退款</a>
 																	@elseif($vs->ostate==2)
-																		<a href="/homes/refund.html">退款/退货</a>
-																	<br/>
+																		
+																	
 																	<a href="">确认收货</a>
 																	@elseif($vs->ostate==3)
 																		<a href="/homes/refund.html">退款/退货</a>
@@ -148,19 +144,43 @@
 														<div class="move-right">
 															<li class="td td-status">
 																<div class="item-status">
-																	<p class="Mystatus">交易成功</p>
-																	<p class="order-info"><a href="/homes/orderinfo.html">订单详情</a></p>
+																@if($v[0]->ostate==0)
+																	<p class="Mystatus">等待买家付款</p>
+																	<p class="order-info"><a href="/homes/#">取消订单</a></p>
+																@elseif($v[0]->ostate==1)
+																	<p class="Mystatus">买家已付款</p>
+																	<p class="order-info"><a href="/home/user/ordersinfo/{{$v[0]->o_code}}">订单详情</a></p>
+																@elseif($v[0]->ostate==2)
+																	<p class="Mystatus">卖家已发货</p>
+
+																	<p class="order-info"><a href="/home/user/ordersinfo/{{$v[0]->o_code}}">订单详情</a></p>
 																	<p class="order-info"><a href="/homes/logistics.html">查看物流</a></p>
+																	<p class="order-info"><a href="/homes/#">延长收货</a></p>
+																@elseif($v[0]->ostate==5)
+																	<p class="Mystatus" style="margin-top: 10px;">订单已取消</p>
+																@else($v[0]->ostate==3)
+																	<p class="Mystatus">交易成功</p>
+																	<p class="order-info"><a href="/home/user/ordersinfo/{{$v[0]->o_code}}">订单详情</a></p>
+																	<p class="order-info"><a href="/homes/logistics.html">查看物流</a></p>
+																@endif
+																	
 																</div>
 															</li>
 															<li class="td td-change">
-																<div class="am-btn am-btn-danger anniu">
-																	删除订单</div>
+															
+																<div>
+																<form action="userorder/{{$k}}" method="post">
+																	{{ method_field('DELETE')}}
+																	{{ csrf_field()}}
+																	<input type="submit" value="删除订单" class="delorder am-btn am-btn-danger anniu">
+																</form>
+																</div>
 															</li>
 														</div>
 													</div>
 												</div>
 											</div>
+											<?php $i++; ?>
 											@endforeach
 
 										</div>
@@ -363,7 +383,7 @@
 															<li class="td td-status">
 																<div class="item-status">
 																	<p class="Mystatus">买家已付款</p>
-																	<p class="order-info"><a href="/homes/orderinfo.html">订单详情</a></p>
+																	<p class="order-info"><a href="/home/user/ordersinfo/{{$v2[0]->o_code}}">订单详情</a></p>
 																</div>
 															</li>
 															<li class="td td-change">
@@ -448,8 +468,7 @@
 															</li>
 															<li class="td td-operation">
 																<div class="item-operation">
-																	<a href="/homes/refund.html">退款/退货</a>
-																	<br/>
+																	
 																	<a href="">确认收货</a>
 																</div>
 															</li>
@@ -469,7 +488,7 @@
 															<li class="td td-status">
 																<div class="item-status">
 																	<p class="Mystatus">卖家已发货</p>
-																	<p class="order-info"><a href="/homes/orderinfo.html">订单详情</a></p>
+																	<p class="order-info"><a href="/home/user/ordersinfo/{{$v3[0]->o_code}}">订单详情</a></p>
 																	<p class="order-info"><a href="/homes/logistics.html">查看物流</a></p>
 																	<p class="order-info"><a href="/homes/#">延长收货</a></p>
 																</div>
@@ -576,7 +595,7 @@
 															<li class="td td-status">
 																<div class="item-status">
 																	<p class="Mystatus">交易成功</p>
-																	<p class="order-info"><a href="/homes/orderinfo.html">订单详情</a></p>
+																	<p class="order-info"><a href="/home/user/ordersinfo/{{$v4[0]->o_code}}">订单详情</a></p>
 																	<p class="order-info"><a href="/homes/logistics.html">查看物流</a></p>
 																</div>
 															</li>
@@ -603,7 +622,20 @@
 
 						</div>
 					</div>
-
+<script type="text/javascript">
+	/*function onc(i,k){
+		var con = confirm('确定删除该订单吗？？？');
+		if(con){
+			$.post("delorder",{'_token':'{{ csrf_token() }}',ocode:k},function(data){
+				console.log(data);
+			})
+		}
+	}*/
+	$('.delorder').click(function(){
+		layer.msg('删除成功');
+	})
+</script>
 
 @endsection
+
 
