@@ -58,14 +58,18 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		Route::resource('usersafe', 'UsersafeController');
 		Route::resource('pass', 'PassController');//修改密码
 		Route::resource('paypass', 'PaypassController');//支付密码
-		Route::post('ajaxpaypass', 'A  jaxpaypassController@store')->where('id', '[0-9]+');
+		Route::post('ajaxpaypass', 'AjaxpaypassController@store')->where('id', '[0-9]+');
 		Route::resource('bindph', 'BindphController');//换手机号
 		Route::resource('email', 'EmailController');//邮箱认证
 		Route::resource('idcard', 'IdcardController');//身份认证
 		//用户地址
 		Route::resource('useraddr', 'UseraddrController');
 		//用户订单
+		Route::get('userorders/{o_code}', 'UserorderController@destroy');
 		Route::resource('userorder', 'UserorderController');
+
+		Route::get('ordersinfo/{code}', 'OrdersinfoController@index');			//订单详情
+
 		//用户退款售后
 		Route::resource('usersale', 'UsersaleController');
 		//用户优惠券

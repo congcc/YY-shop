@@ -127,13 +127,7 @@
   })
 
 	$('#phone').blur(function(){
-    /*var phs = document.getElementById('phone');
-    var e = document.getElementById('e');
-		
-		var req = /^1[345678]\d{9}$/;
-		var res = req.exec(ph);*/
     var ph  = $(this).val();
-    
     ch2 = checkTel($('#phone'),$('#e1'));
     if(ch2!=100){
       $('#phone').css('border','solid 2px red');
@@ -156,23 +150,11 @@
         ch2 = 100;
       }
     },'json')
-		/*if(res){
-			$(this).css('border','solid 2px green');
-		}else{
-			$(this).css('border','solid 2px red');
-		}*/
 	})
 
 
 	$('input[name="password"]').blur(function(){
-		/*var pass  = $(this).val();
-		var req = /^\S{6,16}$/;
-		var res = req.exec(pass);
-		if(res){
-			$(this).css('border','solid 2px green');
-		}else{
-			$(this).css('border','solid 2px red');
-		}*/
+		
     ch3 = checkPassword($('#password'),$('#e2'),6);
     if(ch3!=100){
       $('#password').css('border','solid 2px red');
@@ -185,14 +167,6 @@
 	})
 
 	$('input[name="passwordRepeat"]').keyup(function(){
-		/*var Repeat  = $(this).val();
-		var	pass = $('input[name="password"]').val();*/
-		
-		/*if(Repeat==pass){
-			$(this).css('border','solid 2px green');
-		}else{
-			$(this).css('border','solid 2px red');
-		}*/
     ch4 = checkRelPassword($('#password'),$('#passwordRepeat'),$('#e3'),6);
     if(ch4!=100){
       $('#passwordRepeat').css('border','solid 2px red');

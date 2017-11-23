@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\model\orders;
 use App\Http\model\ordersinfo;
+use DB;
 
 class UserorderController extends Controller
 {
@@ -16,13 +17,12 @@ class UserorderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index()     //加载订单页面
     {   
-        session(['userid'=>1]);
+        session(['userid'=>1]);         //测试id为1的用户
 
         //获取当前登录用户的id
         $uid = session('userid');
-        //$uid = 1;
         
         //前台计算总价的变量
         $to = 0;
@@ -170,8 +170,23 @@ class UserorderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id)            //删除订单方法
+    {      
+        DB::beginTransaction();         //开启事务
+
+        //在orders表中删除订单
+        $regres = DB::delete("delete from orders where o_code=".$id);
+        
+        //在ordersinfo表中删除订单
+        $regress = DB::delete("delete from ordersinfo where o_code=".$id);
+
+        //判断是否都删除成功
+        if($regres && $regress){
+            DB::commit();           //成功执行
+            return redirect('home/user/userorder');
+        } else { 
+            DB::rollback();         //失败回滚
+            return back();
+        }
     }
 }
