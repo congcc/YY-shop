@@ -37,6 +37,8 @@ class SearchController extends Controller
      */
     public function store(Request $request)
     {
+        echo 1;
+        // return view('homes.shop.search');
         //
     }
 

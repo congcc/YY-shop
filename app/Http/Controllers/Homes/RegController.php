@@ -40,7 +40,7 @@ class RegController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request)                 //用户注册
     {
         //
         //获取表单传过来数据信息 
@@ -63,10 +63,17 @@ class RegController extends Controller
         
         //将数据添加到userinfo表中
         $regress = DB::insert("insert into userinfo(createtime_user) values ('".$reqs['createtime_user']."')");
+        
+        //获取刚才插入的数据
+        $getid = user::where('phone',$request->input('phone'))->get();
+
+        //获取刚刚插入的id
+        $id = $getid[0]->id;
 
         //判断是否都添加成功
         if($regres && $regress){
             DB::commit();           //成功执行
+            session(['userid'=>$id]);
             return redirect('home/index');      //返回商城主页
         } else { 
             DB::rollback();         //失败回滚

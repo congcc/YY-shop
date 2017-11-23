@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Model\shopcar;
+use App\Http\Model\shop;
+use App\Http\Model\goods;
+use App\Http\Model\goodscate;
 
 class ShopcartController extends Controller
 {
@@ -15,8 +19,24 @@ class ShopcartController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('homes.user.shopcart');
+    {   
+
+        $uid = session('userid');
+
+        $uid = 6 ;//假装我有uid
+        $result = shopcar::where('uid',$uid)->get();
+
+        $array = array();
+        for ($i=0; $i <shopcar::count() ; $i++) { 
+            $res = shopcar::where('sid',$result[$i]->sid)->get();
+            $array[$i] = $res;
+        }
+        $array = array_unique($array);
+
+        //var_dump($array);
+        return view('homes.user.shopcart',compact('array','res'));
+        // return view('homes.user.shopcart');
+
     }
 
     /**

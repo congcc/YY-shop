@@ -56,6 +56,7 @@
                                     <th>折扣</th>
                                     <th>评论</th>
                                     <th>详情</th>
+                                    <th>操作</th>
                                     
                                 </tr>
                             </thead>
@@ -70,6 +71,16 @@
                                     <td>{{$v->discount}}</td>
                                     <td>{{$v->comments}}</td>
                                     <td>{{$v->det}}</td>
+                                     <td class=" ">
+                                        <a href="/home/seller/goodslist/{{$v->id}}/edit" class='btn btn-danger'>修改</a>
+
+                                       <form action="/home/seller/goodslist/{{$v->id}}" method='post' style='display:inline'>
+                                            {{csrf_field()}}
+                                            {{method_field('DELETE')}}
+                                            <button class='btn btn-warning'>删除</button>
+                                       </form>
+                            
+                                    </td>
                                    
                                 </tr>
                              @endforeach  

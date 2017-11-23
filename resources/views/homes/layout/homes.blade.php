@@ -4,6 +4,8 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="_token" content="{{ csrf_token() }}"/>
+		
 
 		<title>@yield('title')</title>
 		
@@ -26,6 +28,7 @@
 		<script src="/homes/js/validate.js"></script>
 		<script src="/homes/layer/layer.js"></script>
 		<script src="/homes/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
+
 	</head>
 
 	<body>
@@ -71,9 +74,9 @@
 							</div>
 
 							<div class="search-bar pr">
-								<a name="index_none_header_sysc" href="#"></a>
-								<form>
-									<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
+								<form action="{{url('home/search')}}" method="post">
+									<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="想吃点什么呢?" autocomplete="off" value="扇贝">
+									
 									<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
 								</form>
 							</div>
