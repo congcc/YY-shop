@@ -46,12 +46,7 @@
                 	<form action="/home/seller/goodslist/{{$mo->id}}" class="mws-form" method='post' enctype='multipart/form-data'>
     		<div class="mws-form-inline">
 
-    			<div class="mws-form-row">
-    				<label class="mws-form-label">编号:</label>
-    				<div class="mws-form-item">
-    					<input type="text" class="small" name='id' value="{{$mo->id}}">
-    				</div>
-    			</div>
+    		
     				
 
     			<div class="mws-form-row">

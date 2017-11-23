@@ -1,16 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Homes\seller;
+namespace App\Http\Controllers\Homes;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\model\review;
-use App\Http\model\shop;
-use App\Http\model\goods;
 
-class CommentsController extends Controller
+class SregController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,37 +17,7 @@ class CommentsController extends Controller
     public function index()
     {
         //
-
-        //获取登录商家的id
-        $id = session('userid');
-        // dd($id);
-
-        //在获取sid
-        $shop=shop::where('uid',$id)->get();
-        // dd($shop);
-
-        //获取id
-        $sid=$shop['0']->id;
-
-        //获取sid为$sid的商品
-        $goods=goods::where('sid',$sid)->get();
-        // dd($goods);
-
-        //定义一个数组
-        $arr=array();
-        foreach ($goods as $key => $value) {
-            
-            $m=review::where('gid',$value['id'])->first();
-            if($m){
-                array_push($arr, $m);
-            }
-            
-
-        }
-
-        // var_dump($arr);die;
-       
-        return view('homes.seller.comments',['goods'=>$goods,'arr'=>$arr]);
+        return view('homes.seller.sregister');
     }
 
     /**
