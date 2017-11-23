@@ -34,7 +34,7 @@ class OrdereditController extends Controller
          //定义一个数组用来储存订单信息(按订单号分组)
         $codearr = array();
         foreach($info as $k=>$v){        //遍历
-            
+            // dd($v);
             //查询所有订单号相同的订单详情
             $resinfo = ordersinfo::where('o_code',$v->o_code)->get();
 
