@@ -21,12 +21,13 @@ class WalletController extends Controller
      */
     public function index()
     {
-        //
+        //session中获取user表中 userid
        $id=(session('userid'));
 
+       //获取shop表中uid=$id  获取登录用户的店铺的所有订单
        $user=shop::where('uid',$id)->first();
 
-       //获取shop表中uid和session相同的  sid
+       //获取店铺id
        $sid=$user['id'];
        // dd($su);
 
@@ -35,15 +36,16 @@ class WalletController extends Controller
         $res=orders::where('sid',$sid)->get();
 
         
-
+        //定义空数组
         $m=array();
         foreach ($res as $key => $value) {
-            
+            //获取订单号
             $code= $value['o_code'];
 
+            //获取订单详情表中order关联的订单单号
             $result = ordersinfo::where('o_code',$code)->get();
-        
-            $m[$key] =  $result;
+            //
+            $m[$code] =  $result;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
         }
 // 
         // dd($result);
@@ -61,7 +63,7 @@ class WalletController extends Controller
          // dd($user);
 
          //dd($user);
-        return view('homes.seller.wallet',["user"=>$user,"res"=>$res,"result"=>$result]);
+        return view('homes.seller.wallet',["user"=>$user,"res"=>$res,"result"=>$result,"m"=>$m]);
     }
 
     /**
