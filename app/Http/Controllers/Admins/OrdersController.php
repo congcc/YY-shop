@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\model\orders;
+use App\Http\model\user;
+use App\Http\model\ordersinfo;
+use App\Http\model\goods;
+use DB;
 
 class OrdersController extends Controller
 {
@@ -17,7 +22,8 @@ class OrdersController extends Controller
     public function index()
     {
         //
-        return view('admins/ding');
+        $res = orders::all();
+        return view('admins.orders.index',['res'=>$res]);
     }
 
     /**
@@ -50,6 +56,17 @@ class OrdersController extends Controller
     public function show($id)
     {
         //
+        $orde = DB::table('orders')->where('id',$id)->first();
+        $ordes = DB::table('ordersinfo')->where('o_code',$orde->o_code)->first();
+        $user = DB::table('user')->where('id',$orde->uid)->first();
+        $shop = DB::table('shop')->where('id',$orde->sid)->first();
+        $good = DB::table('goods')->where('sid',$orde->sid)->first();
+        var_dump($orde);
+        var_dump($ordes);
+        var_dump($user);
+        var_dump($shop);
+        var_dump($good);
+        return view('admins.orders.show',compact('orde','ordes','user','shop','good'));
     }
 
     /**
@@ -84,5 +101,12 @@ class OrdersController extends Controller
     public function destroy($id)
     {
         //
+        $res = DB::table('orders')->where('o_code', $id)->delete();
+
+        if($res){
+            return redirect('/admin/orders')->with('meg','删除成功');
+        } else {
+            return back();
+        }
     }
 }

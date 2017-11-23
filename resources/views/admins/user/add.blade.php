@@ -49,6 +49,7 @@
                 </ul>
             </div>
         </div>
+        <input type="hidden" name="time" value="{{time()}}">
         <input type="hidden" name="time" value="">
     </div>
     {{ csrf_field()}}

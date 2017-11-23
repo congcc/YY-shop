@@ -120,7 +120,7 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 
 
 		
-		
+	
 	});
 
 
@@ -133,10 +133,12 @@ Route::group(['prefix'=>'admin','namespace'=>'Admins',], function () {
 
 	//后台登录
 	Route::resource('login','LoginController');
+	// Route::post('dlogin', 'LoginsController@store');
+
 			
 	// 'meddleware'=>'login'
 	Route::group([], function () {
-		
+
 		//后台首页
 		Route::resource('admin','AdminController');
 
@@ -147,9 +149,18 @@ Route::group(['prefix'=>'admin','namespace'=>'Admins',], function () {
 
 		//买家buyer管理
 		Route::resource('buys','BuysController');
+		Route::put('buyss/{id}','BuyssController@update');
+		// Route::resource('buyss','BuyssController');
+
+		//买家禁用
+		Route::resource('buyedis','BuyedisController');
+
 
 		//卖家seller管理
 		Route::resource('seller','SellerController');
+		//卖家禁用
+		Route::resource('sellerdis','SellerdisController');
+
 
 		//商家申请check
 		Route::resource('check','CheckController');
@@ -168,7 +179,19 @@ Route::group(['prefix'=>'admin','namespace'=>'Admins',], function () {
 		Route::resource('typethree','TypethreeController');
 
 		//订单状态管理
+		// 0代付款
 		Route::resource('orders','OrdersController');
+		// 1 代发货
+
+		// 2 待收货
+
+		//3 待评价
+		Route::resource('plorder','PlorderController');
+		//4 已完成
+		Route::resource('coorder','CoorderController');
+		// 5 已取消
+		
+
 
 		//投诉管理
 		Route::resource('complaint','ComplaintController');

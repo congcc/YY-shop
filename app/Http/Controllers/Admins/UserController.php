@@ -47,8 +47,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
-        var_dump($request);
         //表单验证
         $this->validate($request, [
             'name' => 'required|regex:/^\w{6,12}$/',
@@ -74,17 +72,11 @@ class UserController extends Controller
 
         if($data){
 
-            return redirect('/admin/user')->with('msg','添加成功');
+            return redirect('/admin/user')->with('添加成功');
         } else {
 
             return back()->withInput();
         }
-
-
-
-
-
-        // return view('admins.userauth');
     }
 
     /**
@@ -97,11 +89,6 @@ class UserController extends Controller
     {   
 
         $res = DB::table('admins')->where('id',$id)->first();
-        /*$res = money::where('mid',1)
-                ->join('cinema','cinema.id','=','money.mid')
-                ->select('cinema.cinema','cinema.legal','cinema.phone','money.money')
-                ->get();*/
-        
 
          return view('admins.user.show',['res'=>$res]);
     }

@@ -1,149 +1,141 @@
 @extends('admins.layout.admins')
 
-@section('title','买家列表')
+@section('title','管理员列表')
 
 @section('content')
-<div class="mws-panel grid_8 mws-collapsible">
+<div class="mws-panel grid_8">
     <div class="mws-panel-header">
         <span>
             <i class="icon-table">
             </i>
-            买家列表
+            商品审核列表
         </span>
-        <div class="mws-collapse-button mws-inset">
-            <span>
-            </span>
-        </div>
     </div>
-    <div class="mws-panel-inner-wrap">
-        <div class="mws-panel-body no-padding">
-            <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper" role="grid">
-                <div id="DataTables_Table_0_length" class="dataTables_length">
+    <div class="mws-panel-body no-padding">
+        <div role="grid" class="dataTables_wrapper" id="DataTables_Table_1_wrapper">
+            <form action='/admin/user' method='get'>
+                <div id="DataTables_Table_1_length" class="dataTables_length">
                     <label>
                         显示
-                        <select size="1" name="DataTables_Table_0_length" aria-controls="DataTables_Table_0">
-                            <option value="10" selected="selected">
+                        <select name="num" size="1" aria-controls="DataTables_Table_1">
+                            <option value="10" @if(isset($_GET[ 'num']) ? $_GET[ 'num'] : '10') selected="selected"
+                            @endif>
                                 10
                             </option>
-                            <option value="25">
-                                25
+                            25 {{--
+                            <option value="25" @if($request->
+                                num == '25') selected="selected" @endif>
                             </option>
-                            <option value="50">
+                            --}} {{--
+                            <option value="50" @if($_GET[ 'num']=='50' ) selected="selected" @endif>
                                 50
                             </option>
-                            <option value="100">
-                                100
-                            </option>
+                            --}}
                         </select>
-                        条信息
+                        条数据
                     </label>
                 </div>
-                <div class="dataTables_filter" id="DataTables_Table_0_filter">
+                <div class="dataTables_filter" id="DataTables_Table_1_filter">
                     <label>
-                        Search:
-                        <input type="text" aria-controls="DataTables_Table_0">
+                        关键字:
+                        <input type="text" name='search' aria-controls="DataTables_Table_1" value="{{isset($_GET['search']) ? $_GET['search'] : '' }}">
                     </label>
+                    <button class='btn btn-danger'>
+                        搜索
+                    </button>
                 </div>
-                <table class="mws-table mws-datatable dataTable" id="DataTables_Table_0"
-                aria-describedby="DataTables_Table_0_info">
-                    <thead>
-                        <tr role="row">
-                            <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                            rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
-                            style="width: 128px;">
-                                ID
-                            </th>
-                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                            rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending"
-                            style="width: 173px;">
-                               用户名
-                            </th>
-                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                            rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"
-                            style="width: 158px;">
-                                手机号码
-                                
-                            </th>
-                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                            rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending"
-                            style="width: 111px;">
-                                手机号
-                            </th>
-                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                            rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                            style="width: 80px;">
-                                状态
-                                
-                            </th>
-                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                            rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                            style="width: 80px;">
-                                用户\商户
-                            </th>
-                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                            rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                            style="width: 80px;">
-                                操作
-                            </th>
-                        </tr>
+            </form>
+            <table class="mws-datatable-fn mws-table dataTable" id="DataTables_Table_1"
+            aria-describedby="DataTables_Table_1_info">
+                <thead>
+                    <tr role="row">
+                        <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
+                        rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
+                        style="width: 70px;">
+                            ID
+                        </th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
+                        rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending"
+                        style="width: 150px;">
+                            用户名
+                        </th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
+                        rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending"
+                        style="width: 111px;">
+                            手机号
+                        </th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
+                        rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                        style="width: 80px;">
+                            创建时间
+                        </th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
+                        rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                        style="width: 80px;">
+                            登录时间
+                        </th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
+                        rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                        style="width: 80px;">
+                            状态
+                        </th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
+                        rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                        style="width: 110px;">
+                            操作
+                        </th>
+                    </tr>
+                </thead>
+                <tbody role="alert" aria-live="polite" aria-relevant="all">
+               
+                    <tr class="@if($k % 2 == 0) odd @else even @endif">
+                        <td class="">
+                       
+                        </td>
+                        <td class=" ">
                         
-
-                    </thead>
-                    <tbody role="alert" aria-live="polite" aria-relevant="all">
-                        <tr class="odd">
-                            <td class="sorting_1">
-                                1
-                            </td>
-                            <td class=" ">
-                               niuniu
-                            </td>
-                            <td class=" ">
-                                牛学斌
-                            </td>
-                            <td class=" ">
-                                13545678911
-                            </td>
-                            <td class=" ">
-                                11111
-                            </td>
-                            <td>
-                                1111111
-                            </td>
-                            <td class=" ">
-                                <span class="btn-group">
-                                    <a href="#" class="btn btn-small">
-                                        <i class="icon-search">
-                                        </i>
-                                    </a>
-                                    <a href="#" class="btn btn-small">
-                                        <i class="icon-pencil">
-                                        </i>
-                                    </a>
-                                    <a href="#" class="btn btn-small">
-                                        <i class="icon-trash">
-                                        </i>
-                                    </a>
-                                </span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <div class="dataTables_info" id="DataTables_Table_0_info">
-                    Showing 1 to 10 of 20 entries
-                </div>
-                <div class="dataTables_paginate paging_two_button" id="DataTables_Table_0_paginate">
-                    <a class="paginate_disabled_previous" tabindex="0" role="button" id="DataTables_Table_0_previous"
-                    aria-controls="DataTables_Table_0">
-                        Previous
-                    </a>
-                    <a class="paginate_enabled_next" tabindex="0" role="button" id="DataTables_Table_0_next"
-                    aria-controls="DataTables_Table_0">
-                        Next
-                    </a>
-                </div>
+                        </td>
+                        <td class=" ">
+                      
+                        </td>
+                        <td class=" ">
+                        
+                        </td>
+                        <td class=" ">
+                           
+                        </td>
+                        <td class=" ">
+                            <button class='btn btn-info'>
+                            
+                            </button>
+                        </td>
+                        <td class=" ">
+                            <span class="btn-group">
+                                <a href="/admin/user/" class="btn btn-small"><i class="icol32-application-form-magnify"></i></a>
+                                <a href="/admin/user//edit" class="btn btn-small"><i class="icol32-application-form-edit"></i></a>
+                                
+                                <form action="/admin/user/" method='post' style='display:inline' method="post">
+                                    {{csrf_field()}}
+                                    {{method_field('DELETE')}}
+                                    <button class="btn btn-small"><i class="icol32-cross"></i></button>
+                               </form>
+                            </span>
+                        </td>
+                    </tr>
+              
+                </tbody>
+            </table>
+            <div class="dataTables_info" id="DataTables_Table_1_info">
+                Showing 1 to 10 of 57 entries
+            </div>
+            <div class="dataTables_paginate paging_full_numbers">
+                {!! $res->appends($request->all())->render()!!}
             </div>
         </div>
     </div>
 </div>
+
+
+
+
 @endsection

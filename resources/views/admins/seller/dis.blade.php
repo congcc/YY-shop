@@ -1,14 +1,16 @@
 @extends('admins.layout.admins')
 
-@section('title','买家列表')
+@section('title','卖家禁用列表')
 
 @section('content')
+
+
 <div class="mws-panel grid_8 mws-collapsible">
     <div class="mws-panel-header">
         <span>
             <i class="icon-table">
             </i>
-            买家列表
+            卖家禁用列表
         </span>
         <div class="mws-collapse-button mws-inset">
             <span>
@@ -18,109 +20,99 @@
     <div class="mws-panel-inner-wrap">
         <div class="mws-panel-body no-padding">
             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper" role="grid">
-                <div id="DataTables_Table_0_length" class="dataTables_length">
+                 <form action='/admin/seller' method='get'>
+                <div id="DataTables_Table_1_length" class="dataTables_length">
                     <label>
                         显示
-                        <select size="1" name="DataTables_Table_0_length" aria-controls="DataTables_Table_0">
-                            <option value="10" selected="selected">
+                        <select name="num" size="1" aria-controls="DataTables_Table_1">
+                            <option value="10" @if(isset($_GET[ 'num']) ? $_GET[ 'num'] : '10') selected="selected"
+                            @endif>
                                 10
                             </option>
-                            <option value="25">
-                                25
+                            25 {{--
+                            <option value="25" @if($request->
+                                num == '25') selected="selected" @endif>
                             </option>
-                            <option value="50">
+                            --}} {{--
+                            <option value="50" @if($_GET[ 'num']=='50' ) selected="selected" @endif>
                                 50
                             </option>
-                            <option value="100">
-                                100
-                            </option>
+                            --}}
                         </select>
-                        条信息
+                        条数据
                     </label>
                 </div>
-                <div class="dataTables_filter" id="DataTables_Table_0_filter">
+                <div class="dataTables_filter" id="DataTables_Table_1_filter">
                     <label>
-                        Search:
-                        <input type="text" aria-controls="DataTables_Table_0">
+                        关键字:
+                        <input type="text" name='search' aria-controls="DataTables_Table_1" value="{{isset($_GET['search']) ? $_GET['search'] : '' }}">
                     </label>
+                    <button class='btn btn-danger'>
+                        搜索
+                    </button>
                 </div>
+            </form>
                 <table class="mws-table mws-datatable dataTable" id="DataTables_Table_0"
                 aria-describedby="DataTables_Table_0_info">
                     <thead>
                         <tr role="row">
                             <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                             rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
-                            style="width: 128px;">
+                            style="width: 60px;">
                                 ID
                             </th>
                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                             rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending"
-                            style="width: 173px;">
-                               用户名
+                            style="width: 120px;">
+                               店铺名称
                             </th>
                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                             rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"
-                            style="width: 158px;">
-                                手机号码
+                            style="width: 120px;">
+                                店铺类型
                             </th>
                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                             rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                            style="width: 80px;">
-                                用户\商户
+                            style="width: 150px;">
+                                商户地址                            
                             </th>
                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                            rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                            rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"
                             style="width: 80px;">
                                 状态
                             </th>
                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                             rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                            style="width: 80px;">
+                            style="width: 90px;">
                                 操作
                             </th>
-                        </tr>
                         
-
                     </thead>
                     <tbody role="alert" aria-live="polite" aria-relevant="all">
+                 @foreach($res as $k => $v)
 
-                      @foreach($res as $k => $v)
                     <tr class="@if($k % 2 == 0) odd @else even @endif">
                         <td class="">
                             {{$v->id}}
                         </td>
                         <td class=" ">
-                            {{$v->username}}
+                            {{$v->sname}}
                         </td>
                         <td class=" ">
-                            {{$v->phone}}
+                            {{$v->stype}}
                         </td>
-                        
+
                         <td class=" ">
-                                {{$v->auth ? '是' : '否'}}
-                        </td>
-                        <td class=" ">
-                            <a href="/admin/buyss/{{$v->id}}">
-                                <button class='btn btn-info' id="auth">
-                                    {{$v->auth ? '关闭' : '开启'}}
-                                    {{method_field('PUT')}}
-                                </button>
-                            </a>
+                            {{$v->saddress}}
                         </td>
                         <td class=" ">
-                            <span class="btn-group">
-                                <a href="/admin/buys/{{$v->id}}" class="btn btn-small"><i class="icol32-application-form-magnify"></i></a>
-                                <a href="/admin/buys/{{$v->id}}/edit" class="btn btn-small"><i class="icol32-application-form-edit"></i></a>
-                               <form action="/admin/buys/{{$v->id}}" style='display:inline' method="post">
-                                    {{csrf_field()}}
-                                    {{method_field('DELETE')}}
-                                    <button class="btn btn-small"><i class="icol32-cross"></i></button>
-                               </form>
-                            </span>
+                            {{$v->sauth}}
+                        </td>
+                        <td class=" ">
+                        <a href="/admin/seller/{{$v->id}}/edit"><button type="button" class="am-btn am-btn-default am-btn-warning"><span class="am-icon-archive"></span>开启</button></a>
                         </td>
                     </tr>
-                    @endforeach
-
+                @endforeach
 
                     </tbody>
                 </table>
@@ -144,28 +136,4 @@
 </div>
 
 
-@endsection
-
-@section('js')
-<script>
-    $("#auth").click(function() 
-    {
-        var suth = $('#auth').val();
-        $.ajax({
-            url:"admin/buys",
-            dataa:{'1'},
-            type:"GET",
-            dataType:"JSON",
-            success: function(data)
-            {
-                if(data.trim() =="OK")
-                {
-                    alert("ok");
-                } else {
-                    alert("no");
-                }
-            }
-        });
-    })
-</script>
 @endsection

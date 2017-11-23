@@ -6,21 +6,29 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\model\admins;
-use Session;
+use App\Http\model\shop;
 use DB;
-use Hash;
 
-class LoginController extends Controller
+
+class SellerdisController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-       return view('admins.login');
+        //
+        $res = shop::all();
+        
+        return view('admins.seller.dis',['res'=>$res]);
+/*        var_dump($request);die();
+        $res = DB::table('shop')->
+            where('sname','like','%'.$request->input('search').'%')->
+            orderBy('id','asc')->
+            paginate($request->input('num',10));
+        return view('admins/seller/dis',['res'=>$res,'request'=$request]);*/
     }
 
     /**
@@ -30,7 +38,7 @@ class LoginController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -41,14 +49,7 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-       /* $req = $request->except('_token');
-
-        $res = admins::where('name',$req['name'])->get();
-
-        if (Hash::check($req['key'], $res[0]->key)) {
-           echo "1"; 
-        }*/
-
+        //
     }
 
     /**

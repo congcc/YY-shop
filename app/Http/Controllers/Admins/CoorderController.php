@@ -6,12 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\model\admins;
-use Session;
 use DB;
-use Hash;
 
-class LoginController extends Controller
+class CoorderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +17,9 @@ class LoginController extends Controller
      */
     public function index()
     {
-       return view('admins.login');
+        //
+        $res = DB::table('orders')->where('ostate', '4')->get();
+        return view('admins.orders.completed.index',compact('res'));
     }
 
     /**
@@ -30,7 +29,7 @@ class LoginController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -41,14 +40,7 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-       /* $req = $request->except('_token');
-
-        $res = admins::where('name',$req['name'])->get();
-
-        if (Hash::check($req['key'], $res[0]->key)) {
-           echo "1"; 
-        }*/
-
+        //
     }
 
     /**

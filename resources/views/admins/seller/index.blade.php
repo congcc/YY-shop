@@ -123,9 +123,7 @@
                         </td>
 
                         <td class=" ">
-                            <button class='btn btn-info'>
-                                {{$v->sauth ? '是' : '否'}}
-                            </button>
+                            {{$v->sauth ? '是' : '否'}}
                         </td>
                         <td class=" ">
                             {{$v->swallet}}
@@ -133,7 +131,7 @@
                         <td class=" ">
                             <span class="btn-group">
                                 <a href="/admin/seller/{{$v->id}}" class="btn btn-small"><i class="icol32-application-form-magnify"></i></a>
-                                <a href="/admin/seller//edit" class="btn btn-small"><i class="icol32-application-form-edit"></i></a>
+                                <a href="/admin/seller/{{$v->id}}/edit" class="btn btn-small"><i class="icol32-application-form-edit"></i></a>
                                <form action="/admin/seller/{{$v->id}}" method='post' style='display:inline' method="post">
                                     {{csrf_field()}}
                                     {{method_field('DELETE')}}

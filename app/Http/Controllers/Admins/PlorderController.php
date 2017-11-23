@@ -6,12 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\model\admins;
-use Session;
+use App\Http\model\orders;
 use DB;
-use Hash;
 
-class LoginController extends Controller
+class PlorderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +18,12 @@ class LoginController extends Controller
      */
     public function index()
     {
-       return view('admins.login');
+        //
+        $phb = DB::table('orders')->where('ostate', 2)->get();
+        $del = DB::table('orders')->where('ostate', 3)->get();
+        var_dump($phb);
+        var_dump($del);
+        return view('admins.orders.progress.index',compact('phb','del'));
     }
 
     /**
@@ -30,7 +33,7 @@ class LoginController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -41,14 +44,7 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-       /* $req = $request->except('_token');
-
-        $res = admins::where('name',$req['name'])->get();
-
-        if (Hash::check($req['key'], $res[0]->key)) {
-           echo "1"; 
-        }*/
-
+        //
     }
 
     /**
@@ -60,6 +56,12 @@ class LoginController extends Controller
     public function show($id)
     {
         //
+        $res = DB::table('orders')->where('id', $id)->first();
+
+        var_dump($res);
+
+        return view('admins.orders.progress.show',compact('res'));
+
     }
 
     /**

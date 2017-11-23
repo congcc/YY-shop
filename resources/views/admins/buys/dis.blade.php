@@ -1,6 +1,6 @@
 @extends('admins.layout.admins')
 
-@section('title','买家列表')
+@section('title','买家禁用列表')
 
 @section('content')
 <div class="mws-panel grid_8 mws-collapsible">
@@ -8,7 +8,7 @@
         <span>
             <i class="icon-table">
             </i>
-            买家列表
+            买家禁用列表
         </span>
         <div class="mws-collapse-button mws-inset">
             <span>
@@ -66,11 +66,6 @@
                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                             rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
                             style="width: 80px;">
-                                用户\商户
-                            </th>
-                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                            rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                            style="width: 80px;">
                                 状态
                             </th>
                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
@@ -84,7 +79,7 @@
                     </thead>
                     <tbody role="alert" aria-live="polite" aria-relevant="all">
 
-                      @foreach($res as $k => $v)
+ 				@foreach($res as $k => $v)
                     <tr class="@if($k % 2 == 0) odd @else even @endif">
                         <td class="">
                             {{$v->id}}
@@ -95,33 +90,14 @@
                         <td class=" ">
                             {{$v->phone}}
                         </td>
-                        
                         <td class=" ">
-                                {{$v->auth ? '是' : '否'}}
+                            {{$v->auth ? '关闭' : '开启'}}
                         </td>
                         <td class=" ">
-                            <a href="/admin/buyss/{{$v->id}}">
-                                <button class='btn btn-info' id="auth">
-                                    {{$v->auth ? '关闭' : '开启'}}
-                                    {{method_field('PUT')}}
-                                </button>
-                            </a>
-                        </td>
-                        <td class=" ">
-                            <span class="btn-group">
-                                <a href="/admin/buys/{{$v->id}}" class="btn btn-small"><i class="icol32-application-form-magnify"></i></a>
-                                <a href="/admin/buys/{{$v->id}}/edit" class="btn btn-small"><i class="icol32-application-form-edit"></i></a>
-                               <form action="/admin/buys/{{$v->id}}" style='display:inline' method="post">
-                                    {{csrf_field()}}
-                                    {{method_field('DELETE')}}
-                                    <button class="btn btn-small"><i class="icol32-cross"></i></button>
-                               </form>
-                            </span>
+                        <a href="/admin/buys/{{$v->id}}/edit"><button type="button" class="am-btn am-btn-default am-btn-warning"><span class="am-icon-archive"></span>开启</button></a>
                         </td>
                     </tr>
-                    @endforeach
-
-
+                @endforeach
                     </tbody>
                 </table>
                 
@@ -144,28 +120,4 @@
 </div>
 
 
-@endsection
-
-@section('js')
-<script>
-    $("#auth").click(function() 
-    {
-        var suth = $('#auth').val();
-        $.ajax({
-            url:"admin/buys",
-            dataa:{'1'},
-            type:"GET",
-            dataType:"JSON",
-            success: function(data)
-            {
-                if(data.trim() =="OK")
-                {
-                    alert("ok");
-                } else {
-                    alert("no");
-                }
-            }
-        });
-    })
-</script>
 @endsection
