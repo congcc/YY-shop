@@ -17,38 +17,35 @@
 
 					<div class="user-bill">
 						<!--标题 -->
+
 						<div class="am-cf am-padding">
 							<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">账单</strong> / <small>Electronic&nbsp;bill</small></div>
 						</div>
 						<hr>
-
+						@foreach($m as $k=>$v)
 						<div class="ebill-section">
 							<div class="ebill-title-section">
 								<h2 class="trade-title section-title">
-                                                                                                                                     订单号
-                            <span class="desc">{{$res['0']->o_code}}</span>
+                                                                                                                                     订单号 :
+                            <span class="desc">{{$k}}</span>
                         </h2>
-
+						@foreach($v as $k1=>$v1)
 								<div class=" ng-scope">
 									<div class="trade-circle-select  slidedown-">
-										<a class="current-circle ng-binding" href="javascript:void(0);">{{$result['0']->ord_time}}- {{$result['0']->complete}}</a>
+										<a class="current-circle ng-binding" href="javascript:void(0);">时间起止 : {{$v1->ord_time}}-{{$v1->complete}}</a>
 
 									</div>
-									<span class="title-tag"><i class="num ng-binding">12</i>月</span>
+								
 								</div>
+						@endforeach
 							</div>
-
+							
 							<div class="module-income ng-scope">
 								<div class="income-slider ">
+								
 									<div class="block-income block  fn-left">
-										<h3 class="income-title block-title">
-                                                                                                          支出
-                                      <span class="num ng-binding">
-                                              0
-                                       </span>
-                                    
-                                             </h3>
-
+										
+										
 										<div class="catatory-details  fn-hide shopping" ng-class="shoppingChart">
 											<div class="catatory-chart fn-left fn-hide">
 												<div class="title">类型</div>
@@ -62,111 +59,71 @@
 													购买商品
 												</div>
 												<ul>
-												
+												<?php $to0=0;?>
+											@foreach($v as $k1=>$v1)
 													<li class="ng-scope  delete-false">
 
 														<div class="  ng-scope">
 															<a title="呢子大衣" class="text fn-left " href="#">
-																<span class="emoji-span ng-binding">呢子大衣</span>
-																<span class="amount fn-right ng-binding">349.00</span>
+																<span class="emoji-span ng-binding">{{$v1->orgoods->gname}}</span>
+																<span class="amount fn-right ng-binding">{{$v1->orgoods->gprice}}</span>
 															</a>
 														</div>
 													</li>
-
-													<li class="ng-scope  delete-false">
-
-														<div class="  ng-scope">
-															<a title="金士顿羊年限量版16gU盘" class="text fn-left " href="#">
-																<span class="emoji-span ng-binding">金士顿羊年限量版16gU盘</span>
-																<span class="amount fn-right ng-binding">39.00</span>
-															</a>
-														</div>
-													</li>
-
-													<li class="ng-scope  delete-false">
-
-														<div class="  ng-scope">
-															<a title="呢子大衣" class="text fn-left " href="#">
-																<span class="emoji-span ng-binding">呢子大衣</span>
-																<span class="amount fn-right ng-binding">349.00</span>
-															</a>
-														</div>
-													</li>
-
-													<li class="ng-scope  delete-false">
-
-														<div class="  ng-scope">
-															<a title="金士顿羊年限量版16gU盘" class="text fn-left " href="#">
-																<span class="emoji-span ng-binding">金士顿羊年限量版16gU盘</span>
-																<span class="amount fn-right ng-binding">39.00</span>
-															</a>
-														</div>
-													</li>
-
-													<li class="ng-scope  delete-false">
-
-														<div class="  ng-scope">
-															<a title="呢子大衣" class="text fn-left " href="#">
-																<span class="emoji-span ng-binding">呢子大衣</span>
-																<span class="amount fn-right ng-binding">349.00</span>
-															</a>
-														</div>
-													</li>
-
-													<li class="ng-scope  delete-false">
-
-														<div class="  ng-scope">
-															<a title="羊毛毡底鞋垫" class="text fn-left " href="#">
-																<span class="emoji-span ng-binding">羊毛毡底鞋垫</span>
-																<span class="amount fn-right ng-binding">9.90</span>
-															</a>
-														</div>
-													</li>
-
+											@endforeach
+													
+ <?php $to0+=$v1->orgoods->gprice*$v1->goods_num ?>
 												</ul>
 											</div>
 										</div>
+										
 									</div>
 									<div class="block-expense block  fn-left">
 										<div class="slide-button right"></div>
 									</div>
 									<div class="clear"></div>
-
 									<!--收入-->
 									<h3 class="expense income-title block-title">
-                                                                                                                       收入                                                              
+                                                                                                                       收入      
+                                                                                                                                                                        
                                       <span class="num ng-binding">
-                                              {{$res['0']->total_price}}
-                                       </span>
-                                   
-                                </h3>
-								</div>
 
+										{{$to0}}
+										
+                                       </span>
+                                
+                                </h3>
+                               
+								</div>
+								
+
+								
 								<!--消费走势-->
 								
 								<!--银行卡使用情况-->
 
 
-								<script>
-									$(document).ready(function (ev) {
 								
-									    $('.cards-carousel .details').on('click', function (ev) {
-								             $('.cards-details').css("display","block");
-								             $('.cards-carousel').css("display","none");								 
-									    });									   									    
-								
-									    $('.cards-details .close').on('click', function (ev) {
-								             $('.cards-details').css("display","none");
-								             $('.cards-carousel').css("display","block");								 
-									    });									    
-									    									   								    
-									});
-								</script>
 
 							</div>
 
 						</div>
-
+@endforeach
 					</div>
 				</div>
+				<script>
+					$(document).ready(function (ev) {
+				
+					    $('.cards-carousel .details').on('click', function (ev) {
+				             $('.cards-details').css("display","block");
+				             $('.cards-carousel').css("display","none");								 
+					    });									   									    
+				
+					    $('.cards-details .close').on('click', function (ev) {
+				             $('.cards-details').css("display","none");
+				             $('.cards-carousel').css("display","block");								 
+					    });									    
+					    									   								    
+					});
+				</script>
 @endsection
