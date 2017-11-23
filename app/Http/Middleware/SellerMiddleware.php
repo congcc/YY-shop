@@ -17,30 +17,29 @@ class SellerMiddleware
      */
     public function handle($request, Closure $next)
     {
-        // return $next($request);
-
-    //     $id = session('userid');
-    //    
-
-    //     if(!$id){
-    //         return redirect('/home/login');
-    //     }else{
-    //         if($utype['utype'] == 1 )
-    //         return $next($request);
-    //     }
-
-    // }
-
+        
          $uid = session('userid');
+         // $uid = 2;
          $utype =user::find($uid);
          $mm = $utype['utype'];
-        if($uid && $mm==1){
+         // dd($utype);
+        // if($uid && $mm==1){
            
-           return $next($request);
-        }else{
+        //    return $next($request);
+        // }else{
 
+        //     return redirect('/home/login');
+        // }
+
+         if($uid){
+            if($mm == '1'){
+               return $next($request); 
+            }else{
+              return redirect('/home/sregister');  
+            }
+         }else{
             return redirect('/home/login');
-        }
+         }
 
 
     } 
