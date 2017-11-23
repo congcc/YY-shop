@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\model\orders;
+use App\Http\model\user;
 
 class OrdersController extends Controller
 {
@@ -17,7 +19,14 @@ class OrdersController extends Controller
     public function index()
     {
         //
-       // return view('admins/ding');
+        
+    //    $id = orders::select('uid')->first();
+
+        $res = user::all();
+        
+
+        return view('admins/ding',['res'=>$res]);
+
     }
 
     /**

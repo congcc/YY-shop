@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admins;
 
 use Illuminate\Http\Request;
-use App\classify;
+use App\Http\model\goodscate;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\model\catetwo;
+use App\Http\model\cateone;
 
 class TypesonController extends Controller
 {
@@ -14,7 +16,7 @@ class TypesonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
        /* $res = classify::where('id','1')->first();
@@ -23,7 +25,8 @@ class TypesonController extends Controller
 
             return view('admins/typesonadd');
         }*/
-         return view('admins/typesonadd');
+          
+        
     }
 
     /**
@@ -33,7 +36,7 @@ class TypesonController extends Controller
      */
     public function create()
     {
-        //
+        echo 123;
     }
 
     /**
@@ -45,7 +48,11 @@ class TypesonController extends Controller
     public function store(Request $request)
     {
         //
-            $data = $request->except('_token');
+           $data = $request->except('_token');
+        //    $res = goodscate::insert('cate_name',$data['cate_name']);    
+          
+            // $res = goodscate::insert($data);
+
             var_dump($data);
     }
 
@@ -57,7 +64,13 @@ class TypesonController extends Controller
      */
     public function show($id)
     {
-        //
+            
+        
+        $res = cateone::where('id',$id)->first();
+        $pcate_name = $res['cate_name'];
+        $pid = $res['id'];
+        
+        return view('admins/typesonadd',['pcate_name'=>$pcate_name,'pid'=>$pid]);
     }
 
     /**
@@ -69,6 +82,7 @@ class TypesonController extends Controller
     public function edit($id)
     {
         //
+        echo 123;
     }
 
     /**
@@ -81,6 +95,7 @@ class TypesonController extends Controller
     public function update(Request $request, $id)
     {
         //
+        echo 123;
     }
 
     /**
@@ -92,5 +107,6 @@ class TypesonController extends Controller
     public function destroy($id)
     {
         //
+        echo 123;
     }
 }

@@ -66,13 +66,15 @@
                                                    
                                                 </tr>
                                             </thead>
+                                           @foreach ($res as $k => $v)
                                             <tbody role="alert" aria-live="polite" aria-relevant="all">
                                                 <tr class="odd">
                                                     <td class="sorting"  sorting_1" colspan='2' center>
-                                                        张三的订单
+                                                        {{$v->username}}
+
                                                     </td>
                                                     <td class="sorting"  sorting_1" colspan='2'>
-                                                        张三的订单
+                                                       <button> {{$v->status}} </button>
                                                     </td>
                                                     <td class=" ">
                                                         <span class="btn-group">
@@ -92,6 +94,8 @@
                                                     </td>
                                                 </tr>
                                             </tbody>
+                                            {{ csrf_field()}}
+                                          @endforeach
                                         </table>
                                         <div class="dataTables_info" id="DataTables_Table_0_info">
                                             Showing 1 to 10 of 20 entries
