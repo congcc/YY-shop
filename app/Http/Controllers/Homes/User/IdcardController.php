@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\http\Model\user;
+use App\http\Model\userinfo;
 
 class IdcardController extends Controller
 {
@@ -16,7 +18,10 @@ class IdcardController extends Controller
      */
     public function index()
     {
-        return view('homes.user.idcard');
+        $uid = session('userid');
+        $result = userinfo::where('id',$uid)->first();
+        $res = user::where('id',$uid)->first();
+        return view('homes.user.idcard',compact('result','res'));
     }
 
     /**
@@ -37,7 +42,20 @@ class IdcardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $res = $request->only('id','name','idcard');
+
+        $array = array();
+        $array['truename'] = $res['name'];
+        $array['idcard'] = $res['idcard'];
+        $array['apply'] = 3;
+
+        $result = userinfo::where('id',$res['id'])->update($array);
+
+        if($result){
+            echo 1;
+        }else{
+            echo 2;
+        }
     }
 
     /**

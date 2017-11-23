@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Homes;
+namespace App\Http\Controllers\Homes\User;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Model\user;
+use App\Http\Model\userinfo;
 
-class SearchController extends Controller
+class ShopapplyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +18,12 @@ class SearchController extends Controller
      */
     public function index()
     {
-        return view('homes.shop.search');
+        $uid = session('userid');
+
+        $uid = 9;
+        $res = userinfo::where('id',$uid)->first();
+
+        return view('homes.user.shopapply',compact('res'));
     }
 
     /**
@@ -37,8 +44,6 @@ class SearchController extends Controller
      */
     public function store(Request $request)
     {
-        echo 1;
-        // return view('homes.shop.search');
         //
     }
 

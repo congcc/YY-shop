@@ -19,12 +19,9 @@
 Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 
 	//首页
-	Route::get('index', function () {
-		return view('homes.index');
-	});
-	Route::get('/', function () {
-		return view('homes.index');
-	});
+	
+	Route::resource('index', 'IndexController');
+	Route::resource('/', 'IndexController');
 
 	//前台登录
 
@@ -62,8 +59,14 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		Route::resource('bindph', 'BindphController');//换手机号
 		Route::resource('email', 'EmailController');//邮箱认证
 		Route::resource('idcard', 'IdcardController');//身份认证
+		Route::get('card', 'IdcardController@store');//身份认证
 		//用户地址
 		Route::resource('useraddr', 'UseraddrController');
+		Route::post('addr', 'AddrController@store');
+		Route::post('editaddr', 'AddrController@update');
+		Route::get('addr/{id}', 'AddrController@edit');
+		Route::get('deladdr', 'AddrController@delete');
+
 		//用户订单
 		Route::resource('userorder', 'UserorderController');
 		//用户退款售后
@@ -86,6 +89,11 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		Route::resource('shopcart', 'shopcartController');
 		Route::resource('car', 'CarController@store');
 		Route::get('cardelete','CarController@delete');
+		Route::get('addcar','CarController@addcar');
+		
+
+		//申请成为商家
+		Route::resource('shopapply', 'ShopapplyController');
 		
 
 	});

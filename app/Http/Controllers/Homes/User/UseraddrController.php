@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Model\address;
 
 class UseraddrController extends Controller
 {
@@ -16,7 +17,16 @@ class UseraddrController extends Controller
      */
     public function index()
     {
-        return view('homes.user.useraddr');
+        $uid = session('userid');
+        
+        
+        $res = address::where(['uid'=>$uid,'defadd'=>0])->get();
+        
+        $result = address::where('uid',$uid)->get();
+        $defadd = $result->where('defadd',1)->first();
+        
+        return view('homes.user.useraddr',compact('res','defadd'));
+
     }
 
     /**
@@ -48,7 +58,8 @@ class UseraddrController extends Controller
      */
     public function show($id)
     {
-        //
+        $res = address::where('id',$id)->first();
+        return view('homes.user.editaddr',compact('res'));
     }
 
     /**
@@ -59,7 +70,7 @@ class UseraddrController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**

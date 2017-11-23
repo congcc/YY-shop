@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Model\goodscate;
 
-class SearchController extends Controller
+class IndexController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +17,22 @@ class SearchController extends Controller
      */
     public function index()
     {
-        return view('homes.shop.search');
+        $resa = goodscate::where('pid','like','%00000')->get();
+        // $array = array();
+        // foreach ($resa as $k => $v) {
+        //     $ida = substr($v['pid'],0,1);
+            
+        // }
+        // dd('gao');
+        $id = '1';
+        $id = (Int)$id;
+        
+         // $res = goodscate::where('pid','like',"{$id}%000")->get();
+         // $res = goodscate::where('pid','like',$id.'%')->get();
+         $res =  goodscate::where('pid','like',$id.'%000')->get();
+         $res1 = goodscate::where('pid',$id.'0000')->get();
+         
+        return view('homes.index',compact('resa'));
     }
 
     /**
@@ -37,8 +53,6 @@ class SearchController extends Controller
      */
     public function store(Request $request)
     {
-        echo 1;
-        // return view('homes.shop.search');
         //
     }
 

@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class address extends Model
 {
     public $table = "address";
+    public $timestamps = false;
 }

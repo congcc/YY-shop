@@ -48,7 +48,7 @@
 					
 				   	<div class="bundle-hd">
 								<div class="bd-promos">
-									<div class="bd-has-promo">店铺名称: <span class="bd-has-promo-content">{{$v[0]->shop->sname}}</span>&nbsp;&nbsp;</div>
+									<div class="bd-has-promo">店铺名称: <span class="bd-has-promo-content">{{$res[$k]->shop->sname}}</span>&nbsp;&nbsp;</div>
 									<div class="bd-has-promo">已享优惠:<span class="bd-has-promo-content">省￥19.50</span>&nbsp;&nbsp;</div>
 									<div class="act-promo">
 										<a href="#" target="_blank">第二支半价，第三支<span class="gt">&gt;&gt;</span></a>
@@ -204,7 +204,8 @@ function deleteonc (id,i) {
 			$.get("{{url('home/user/cardelete')}}",{id,id},function(data){
 				if(data){
 					layer.msg('删除成功', {icon: 1});
-				}{
+					location.reload();
+				}else{
 					layer.msg('删除失败', {icon: 2});
 				}
 			},'json')

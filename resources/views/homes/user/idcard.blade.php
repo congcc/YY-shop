@@ -29,15 +29,15 @@
 					<!--进度条-->
 					<div class="m-progress">
 						<div class="m-progress-list">
-							<span class="step-1 step">
+							<span class= @if($result->apply==1) "step-1 step" @else  "step-2 step" @endif>
                                 <em class="u-progress-stage-bg"></em>
                                 <i class="u-stage-icon-inner">1<em class="bg"></em></i>
-                                <p class="stage-name">实名认证</p>
+                                <p class="stage-name">实名认证申请</p>
                             </span>
-							<span class="step-2 step">
+							<span class= @if($result->apply==1) "step-2 step" @else  "step-1 step" @endif>
                                 <em class="u-progress-stage-bg"></em>
                                 <i class="u-stage-icon-inner">2<em class="bg"></em></i>
-                                <p class="stage-name">完成</p>
+                                <p class="stage-name">您已通过</p>
                             </span>
 							<span class="u-progress-placeholder"></span>
 						</div>
@@ -49,27 +49,59 @@
 						<div class="am-form-group bind">
 							<label for="user-info" class="am-form-label">账户名</label>
 							<div class="am-form-content">
-								<span id="user-info">186XXXX0531</span>
+								<span id="user-info">{{$res->phone}}</span>
 							</div>
 						</div>
 						<div class="am-form-group">
 							<label for="user-name" class="am-form-label">真实姓名</label>
 							<div class="am-form-content">
-								<input type="text" id="user-name" placeholder="请输入您的真实姓名">
+								<input type="text" id="user-name" placeholder="请输入您的真实姓名" 
+								@if($result->apply==2)   value= "{{$result->truename}}"  readonly 
+								@elseif($result->apply==3)   value= "{{$result->truename}}"  readonly
+								@endif >
 							</div>
 						</div>
 						<div class="am-form-group">
 							<label for="user-IDcard" class="am-form-label">身份证号</label>
 							<div class="am-form-content">
-								<input type="tel" id="user-IDcard" placeholder="请输入您的身份证信息">
+								<input type="tel" id="user-IDcard" placeholder="请输入您的身份证信息"
+								@if($result->apply==2)   value= "{{$result->idcard}}"  readonly  
+								@elseif($result->apply==3)   value= "{{$result->idcard}}"  readonly  
+								@endif >
 							</div>
 						</div>
+						@if($result->apply==1)       				
 						<div class="info-btn">
-							<div class="am-btn am-btn-danger">保存修改</div>
+							<div class="am-btn am-btn-danger" onclick="idcard({{$res->id}})">提交申请</div>
 						</div>
-
+						@endif
 					</form>
+	<script>
+	function  idcard (id){
+		var name = $('#user-name').val();
+         var idcard = $('#user-IDcard').val();
+		$.get("/home/user/card",{id:id,name:name,idcard:idcard},function(data){
+         	
+         	console.log(id);
+         	console.log(name);
+         	console.log(idcard);
+         	if(data==1){
+         		layer.alert('申请成功,工作人员会在2小时内审核完毕', {
+				  icon: 1,
+				  skin: 'layer-ext-moon' 
+				})
+				
+         	}else{
+         		layer.alert('失败,请重试', {
+				  icon: 2,
+				  skin: 'layer-ext-moon' 
+         		})
+         	}
+        },'json');
+	}	
 
+
+	</script>
 
 				
 @endsection

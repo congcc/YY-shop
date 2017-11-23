@@ -26,9 +26,32 @@ class CarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function addcar(Request $request)
     {
-        //
+        
+        $req = $request->only('gid','label'); //取出数据
+        $res = shopcar::where('gid',$req['gid'])->first();
+        $result = $res->Where('label', $req['label'])->first(); //查询是否重复添加购物车的数据
+
+        if($result){
+            $gum = $result['gum'] + 1;
+            
+             $sta = shopcar::where('id',$result['id'])->update(['gum'=>$gum]);
+            if ($sta) {
+                echo 1;
+            }
+        }else if(!$res || !$result){
+            //无重复,添加数据
+            $uid = session('userid');
+            $uid = 6;
+            $sid = 1;
+
+            $sta = shopcar::insert(['uid'=>$uid,'gid' => $req['gid'],'sid'=>$sid,'label'=>$req['label']]);
+            
+             if ($sta) {
+                echo 2;
+            }
+        }
     }
 
     /**
@@ -49,7 +72,7 @@ class CarController extends Controller
          $tot = goods::where('id',$total['gid'])->first();
          
          $tota = $tot['gprice'] * $req['gum'];
-         
+
          if($res){
             echo $tota;
          }
@@ -99,8 +122,10 @@ class CarController extends Controller
      */
     public function delete(Request $request)
     {
+
         $req = $request->only('id');
-        $res = shopcar::delete($req);
+        // $res = shopcar::delete($req);
+        $res = shopcar::where('id',$req)->delete();
         if($res){
             echo 1;
         }

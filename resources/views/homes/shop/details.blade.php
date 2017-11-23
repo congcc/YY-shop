@@ -266,12 +266,12 @@
 							</div>
 							<li>
 								<div class="clearfix tb-btn tb-btn-buy theme-login">
-									<a id="LikBuy" title="点此按钮到下一步确认购买信息" href="/homes/#">立即购买</a>
+									<a id="LikBuy" title="点此按钮到下一步确认购买信息" href="{{url('home/user/buypage')}}">立即购买</a>
 								</div>
 							</li>
 							<li>
 								<div class="clearfix tb-btn tb-btn-basket theme-login">
-									<a id="LikBasket" title="加入购物车" href="/homes/#"><i></i>加入购物车</a>
+									<a id="LikBasket" title="加入购物车" onclick='addcar()' "><i></i>加入购物车</a>
 								</div>
 							</li>
 						</div>
@@ -1091,5 +1091,16 @@
 				</div>
 			</div>
 
+
+
+<script>
+	function addcar() {
+		var label = "黄花鱼"; 
+		var gid = 2; 
+		$.get('/home/user/addcar',{gid:gid,label:label},function(data){
+			console.log(data);
+		})
+	}
+</script>
 @endsection
 

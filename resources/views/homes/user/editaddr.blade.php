@@ -18,64 +18,10 @@
 
 
 					<div class="user-address">
-						<!--标题 -->
-						<div class="am-cf am-padding">
-							<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">地址管理</strong> / <small>Address&nbsp;list</small></div>
-						</div>
-						<hr>
-						<ul class="am-avg-sm-1 am-avg-md-3 am-thumbnails">
 						
-							<li class="user-addresslist defaultAddr" style="margin: 10px 0 0 5px">
-								<span class="new-option-r"><i class="am-icon-check-circle"></i>默认地址</span>
-								<p class="new-tit new-p-re">
-									<span class="new-txt">{{$defadd->name}}</span>
-									<span class="new-txt-rd2">{{$defadd->phone}}</span>
-								</p>
-								<div class="new-mu_l2a new-p-re">
-									<p class="new-mu_l2cw">
-									<?php  $add = json_decode($defadd->address,true) ?>
-										<span class="title">地址：</span>
-										<span class="province">{{$add['0']}}</span>
-										<span class="city">@if(isset( $add[3]) ? $add[3] : "")  @endif</span>
-										<span class="dist">{{$add['1']}}</span>
-										<span class="street">{{$add['2']}}</span></p>
-								</div>
-								<div class="new-addr-btn">
-									<a href="/home/user/useraddr/{{$defadd->id}}"><i class="am-icon-edit"></i>编辑</a>
-									
-									<span class="new-addr-bar">|</span>
-									<a style="cursor: pointer;" onclick="delClick({{$defadd->id}});"><i class="am-icon-trash"></i>删除</a>
-								</div>
-							</li>
-							
-							@foreach($res as  $k=>$v)
-							<li class="user-addresslist" style="margin: 10px 0 0 5px">
-								<a href="/home/user/addr/{{$v->id}}"><span class="new-option-r"><i class="am-icon-check-circle"></i>设为默认</span></a>
-								<p class="new-tit new-p-re">
-									<span class="new-txt">{{$v->name}}</span>
-									<span class="new-txt-rd2">{{$v->phone}}</span>
-								</p>
-								<div class="new-mu_l2a new-p-re">
-									<p class="new-mu_l2cw">
-										<span class="title">地址：</span>
-										<?php  $addr = json_decode($v->address,true) ?>
-										<span class="province">{{$addr['0']}}</span>
-										<span class="city">@if(isset( $add[3]) ? $add[3] : "")  @endif</span>
-										<span class="dist">{{$addr['1']}}</span>
-										<span class="street">{{$addr['2']}}</span></p>
-								</div>
-								<div class="new-addr-btn">
-									<a href="/home/user/useraddr/{{$v->id}}"><i class="am-icon-edit"></i>编辑</a>
-									<span class="new-addr-bar">|</span>
-									<a style="cursor: pointer;" onclick="delClick({{$v->id}});"><i class="am-icon-trash"></i>删除</a>
-								</div>
-							</li>
-							
-							@endforeach
-							
-						</ul>
+						
 						<div class="clear"></div>
-						<a class="new-abtn-type" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0}">添加新地址</a>
+						<a class="new-abtn-type" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0}">管理地址</a>
 						<!--例子-->
 						<div class="" id="doc-modal-1">
 
@@ -83,7 +29,7 @@
 
 								<!--标题 -->
 								<div class="am-cf am-padding">
-									<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">新增地址</strong> / <small>Add&nbsp;address</small></div>
+									<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">修改地址</strong> / <small>Add&nbsp;address</small></div>
 								</div>
 								<hr>
 
@@ -93,7 +39,7 @@
 										<div class="am-form-group">
 											<label for="user-name" class="am-form-label">收货人</label>
 											<div class="am-form-content">
-												<input type="text" id="user-name" placeholder="收货人">
+												<input type="text" id="user-name" placeholder="收货人" value="{{$res->name}}">
 												<div id="e4" style="width: 200px;height: 20px;display: none;color: black;font-size: 13px;font-weight: bold"></div>
 											</div>
 										</div>
@@ -101,13 +47,15 @@
 										<div class="am-form-group">
 											<label for="user-phone" class="am-form-label">手机号码</label>
 											<div class="am-form-content">
-												<input id="user-phone" placeholder="手机号必填" type="email">
+												<input id="user-phone" placeholder="手机号必填" type="email" value="{{$res->phone}}">
 												<div id="e1" style="width: 200px;height: 20px;display: none;color: black;font-size: 13px;font-weight: bold"></div>
 											</div>
 
 										</div>
 										<div class="am-form-group">
-										<head>
+									<?php  $add = json_decode($res->address,true) ?>
+
+		<head>
         <link rel="stylesheet" type="text/css" href="/homes/style/cssreset-min.css">
         <link rel="stylesheet" type="text/css" href="/homes/style/common.css">
         <style type="text/css">
@@ -168,9 +116,9 @@
                     }
                 };
                 $('#demo3').citys({
-                    province:'福建',
-                    city:'厦门',
-                    area:'思明',
+                    province:'{{$add[0]}}',
+                    city:'@if(isset( $add[3]) ? $add[3] : "")  @endif',
+                    area:'{{$add[1]}}',
                     onChange:function(info){
                         townFormat(info);
                     }
@@ -188,7 +136,7 @@
 
 											<label for="user-intro" class="am-form-label">详细地址</label>
 											<div class="am-form-content">
-												<textarea class="" rows="3" id="user-intro" placeholder="100字以内写出你的详细地址..."></textarea>
+												<textarea class="" rows="3" id="user-intro" placeholder="100字以内写出你的详细地址..." >{{$add[2]}}</textarea>
 												<div id="e5" style="width: 200px;height: 20px;display: none;color: black;font-size: 13px;font-weight: bold"></div>
 												
 											</div>
@@ -272,7 +220,7 @@
    });
 
 
-//添加信息发送ajax
+
 	function address (uid) {
 		
 		var sheng = $('select[name=province]').val();
@@ -282,50 +230,31 @@
 		var ph  = $('#user-phone').val();
 		var addr = $('#user-intro').val();
 
-		$.post("{{url('home/user/addr')}}",{'_token':'{{ csrf_token() }}',uid:uid,name:name,ph:ph,sheng:sheng,shi:shi,xian:xian,addr:addr},function(data){
-         
-         	if(data==1){
-         		layer.alert('保存成功', {
-				  icon: 1,
-				  skin: 'layer-ext-moon' 
-				})
-				location.reload();
-         	}else{
-         		layer.alert('失败,请重试', {
-				  icon: 2,
-				  skin: 'layer-ext-moon' 
-         		})
-         	}
+		console.log(sheng);
+		console.log(shi);
+		console.log(xian);
+
+		$.post("{{url('home/user/editaddr')}}",{'_token':'{{ csrf_token() }}',id:{{$res->id}},uid:uid,name:name,ph:ph,sheng:sheng,shi:shi,xian:xian,addr:addr},function(data){
+         console.log(data);
+    //      	if(data==1){
+    //      		layer.alert('保存成功', {
+				//   icon: 1,
+				//   skin: 'layer-ext-moon' 
+				// })
+				// window.location.href=('/home/user/useraddr');
+    //      	}else{
+    //      		layer.alert('失败,请重试', {
+				//   icon: 2,
+				//   skin: 'layer-ext-moon' 
+    //      		})
+    //      	}
         },'json');
 		
 	}
 
-	//取消按钮刷新页面
 	$('#cancel').click(function(){
 			location.reload();
 	});
-
-
-
-	//删除地址信息
-	function delClick (id) {
-		
-		$.get("/home/user/deladdr",{id:id},function(data){
-         
-         	if(data==1){
-         		layer.alert('删除成功', {
-				  icon: 1,
-				  skin: 'layer-ext-moon' 
-				})
-				location.reload();
-         	}else{
-         		layer.alert('失败,请重试', {
-				  icon: 2,
-				  skin: 'layer-ext-moon' 
-         		})
-         	}
-        },'json');
-	}
 
 </script>
 @endsection

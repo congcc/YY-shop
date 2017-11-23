@@ -30,8 +30,9 @@ class ShopcartController extends Controller
             $array[$i] = $res;
         }
         $array = array_unique($array);
-        return view('homes.user.shopcart',compact('array'));
-        // return view('homes.user.shopcart');
+        //var_dump($array);
+        return view('homes.user.shopcart',compact('array','res'));
+        // return view('homes.user.shopcart');1
     }
 
     /**
