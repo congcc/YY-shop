@@ -15,6 +15,7 @@
 @section('title','个人中心')
 
 @section('content')
+	@if($res)
 <div class="concent">
 				<div id="cartTable">
 					<div class="cart-table-th">
@@ -48,7 +49,7 @@
 					
 				   	<div class="bundle-hd">
 								<div class="bd-promos">
-									<div class="bd-has-promo">店铺名称: <span class="bd-has-promo-content">{{$res[$k]->shop->sname}}</span>&nbsp;&nbsp;</div>
+									<div class="bd-has-promo">店铺名称: <span class="bd-has-promo-content">{{$v[0]->shop->sname}}</span>&nbsp;&nbsp;</div>
 									<div class="bd-has-promo">已享优惠:<span class="bd-has-promo-content">省￥19.50</span>&nbsp;&nbsp;</div>
 									<div class="act-promo">
 										<a href="#" target="_blank">第二支半价，第三支<span class="gt">&gt;&gt;</span></a>
@@ -108,7 +109,7 @@
 											<div class="item-amount ">
 												<div class="sl">
 													<input class="min am-btn" name="goods_gum" type="button" value="-" onclick = "tnc({{$p->id}},{{$i}})">
-													<input class="text_box" name="gums" type="text" value="{{ $p->gum }}" style="width:30px;"  >
+													<input class="text_box" name="gums" type="text" value="{{ $p->gum }}" style="width:30px;" onblur="addgums({{$p->id}},{{$i}})" >
 													<input class="add am-btn" name="goods_gum" type="button" value="+" 
 													onclick = "onc({{$p->id}},{{$i}})">
 												</div>
@@ -171,7 +172,10 @@
 				</div>
 
 			
-			</div>
+</div>
+	@elseif($res==0)
+	<a href=""> 您的购物车还没有商品呢~~,去添加吧</a>
+	@endif
 <script>
 
 // 增加数量
@@ -192,7 +196,14 @@ function tnc (id,i) {
 	
 }
 //获取填写的数量
-
+function addgums (id,i) {
+	var gum = $('input[name="gums"]').eq(i).val();
+	console.log(gum);
+	$.get("{{url('home/user/car')}}",{gum:gum,id,id},function(data){
+		$('.J_ItemSum').eq(i).html(data);
+	})
+	
+}
 
 //删除(确认框)
 function deleteonc (id,i) {

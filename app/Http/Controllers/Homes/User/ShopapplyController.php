@@ -20,7 +20,7 @@ class ShopapplyController extends Controller
     {
         $uid = session('userid');
 
-        $uid = 9;
+        
         $res = userinfo::where('id',$uid)->first();
 
         return view('homes.user.shopapply',compact('res'));

@@ -135,6 +135,12 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 
 		//商品上传
 		Route::resource('goodsup','GoodsupController');
+		Route::get('select','GoodsupController@select');
+		Route::post('upload','GoodsupController@upload');//post方式发送ajax上传图片							
+		Route::get('pic', function () {
+		return view('homes.seller.uploadpic');
+		});//商品上传图片页面
+
 
 		//店铺
 

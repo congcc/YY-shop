@@ -79,6 +79,16 @@ return [
             'region'    => 'IAD',
             'url_type'  => 'publicURL',
         ],
+        
+        'qiniu' => [
+            'driver'  => 'qiniu',
+            'domain' => 'ozsps8743.bkt.clouddn.com', //(自己的域名)
+            'access_key'=> 'txP05NzQM_DciC7EGhnzm5aqwXKV1rouSr-RTzg8',  //AccessKey
+            'secret_key'=> 'CiV5X--6oD7bTESAxRbs2Y0tq9OSbVq5oicMRBjT',  //SecretKey
+            'bucket'    => 'test',  //Bucket名字
+            'notify_url'=> 'ozsps8743.bkt.clouddn.com',  //持久化处理回调地址(自己的域名)
+            'access'    => 'public', //空间访问控制 public 或 private
+        ],
 
     ],
 

@@ -32,11 +32,14 @@ class CarController extends Controller
         $req = $request->only('gid','label'); //取出数据
         $res = shopcar::where('gid',$req['gid'])->first();
         $result = $res->Where('label', $req['label'])->first(); //查询是否重复添加购物车的数据
-
+        //定义修改时间
+        $time = time();
+        
+        //有重复数据添加数量
         if($result){
             $gum = $result['gum'] + 1;
             
-             $sta = shopcar::where('id',$result['id'])->update(['gum'=>$gum]);
+             $sta = shopcar::where('id',$result['id'])->update(['gum'=>$gum,'time'=>time()]);
             if ($sta) {
                 echo 1;
             }
@@ -46,7 +49,7 @@ class CarController extends Controller
             $uid = 6;
             $sid = 1;
 
-            $sta = shopcar::insert(['uid'=>$uid,'gid' => $req['gid'],'sid'=>$sid,'label'=>$req['label']]);
+            $sta = shopcar::insert(['uid'=>$uid,'gid' => $req['gid'],'sid'=>$sid,'label'=>$req['label'],'time'=>time()]);
             
              if ($sta) {
                 echo 2;
@@ -62,11 +65,15 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
+        //ajax  计算购物车单品单价
+        
          $req =  $request->only('gum','id');
         //修改时间(他和另外一个移除数组重复冲突)
-         // $time = data('Y-m-d H:i:s',time());
+        
+        $time = time();
+
         //修改数量
-         $res = shopcar::where('id',$req['id'])->update(['gum'=>$req['gum']]);
+         $res = shopcar::where('id',$req['id'])->update(['gum'=>$req['gum'],'time'=>$time]);
         //获取本id信息
          $total = shopcar::where('id',$req['id'])->first();
          $tot = goods::where('id',$total['gid'])->first();
@@ -122,7 +129,7 @@ class CarController extends Controller
      */
     public function delete(Request $request)
     {
-
+        //删除购物车
         $req = $request->only('id');
         // $res = shopcar::delete($req);
         $res = shopcar::where('id',$req)->delete();

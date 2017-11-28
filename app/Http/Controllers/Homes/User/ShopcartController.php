@@ -23,19 +23,26 @@ class ShopcartController extends Controller
 
         $uid = session('userid');
 
-        $uid = 6 ;//假装我有uid
-        $result = shopcar::where('uid',$uid)->get();
-
-        $array = array();
-        for ($i=0; $i <shopcar::count() ; $i++) { 
-            $res = shopcar::where('sid',$result[$i]->sid)->get();
-            $array[$i] = $res;
+        $req = shopcar::where('uid',$uid)->first();
+        
+        $array = array(); 
+        $res = 0;
+        
+        if($req){
+            $result = shopcar::where('uid',$uid)->orderBy('time', 'desc')->get();
+            
+            for ($i=0; $i <shopcar::count() ; $i++) { 
+                $res = shopcar::where('sid',$result[$i]->sid)->get();
+                $array[$i] = $res;
+            }
+            $array = array_unique($array);
+        
         }
-        $array = array_unique($array);
 
-        //var_dump($array);
         return view('homes.user.shopcart',compact('array','res'));
-        // return view('homes.user.shopcart');
+
+        // return view('homes.user.shopcart1');
+        
 
     }
 

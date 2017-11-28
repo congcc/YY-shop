@@ -29,12 +29,13 @@
 					<!--进度条-->
 					<div class="m-progress">
 						<div class="m-progress-list">
-							<span class= @if($result->apply==1) "step-1 step" @else  "step-2 step" @endif>
+							<span class= @if($result->apply==1) "step-1 step" @else  "step-1 step" @endif
+										 @if($result->apply==3) "step-1 step" @else  "step-1 step" @endif>
                                 <em class="u-progress-stage-bg"></em>
                                 <i class="u-stage-icon-inner">1<em class="bg"></em></i>
                                 <p class="stage-name">实名认证申请</p>
                             </span>
-							<span class= @if($result->apply==1) "step-2 step" @else  "step-1 step" @endif>
+							<span class= @if($result->apply==2) "step-1 step" @else  "step-2 step" @endif>
                                 <em class="u-progress-stage-bg"></em>
                                 <i class="u-stage-icon-inner">2<em class="bg"></em></i>
                                 <p class="stage-name">您已通过</p>
@@ -50,6 +51,7 @@
 							<label for="user-info" class="am-form-label">账户名</label>
 							<div class="am-form-content">
 								<span id="user-info">{{$res->phone}}</span>
+								@if($result->apply==3)  <span id="user-info">您正在申请中,请耐心等待………………</span>  @endif
 							</div>
 						</div>
 						<div class="am-form-group">
