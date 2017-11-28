@@ -2,7 +2,7 @@
 
 
 @section('head')
-<link href="AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
+<link href="/homes/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
 		<link href="/homes/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
 		<link href="/homes/basic/css/demo.css" rel="stylesheet" type="text/css" />
 		<link type="text/css" href="/homes/css/optstyle.css" rel="stylesheet" />
@@ -111,7 +111,7 @@
 						<!--名称-->
 						<div class="tb-detail-hd">
 							<h1>	
-				 良品铺子 手剥松子218g 坚果炒货 巴西松子
+				 {{$res[0]->gname}}
 	          </h1>
 						</div>
 						<div class="tb-detail-list">
@@ -119,7 +119,7 @@
 							<div class="tb-detail-price">
 								<li class="price iteminfo_price">
 									<dt>促销价</dt>
-									<dd><em>¥</em><b class="sys_item_price">56.90</b>  </dd>                                 
+									<dd><em>¥</em><b id="gprices" class="sys_item_price">{{number_format(json_decode($res[0]->gprices,true)['0,0'],2)}}</b>  </dd>                                 
 								</li>
 								<li class="price iteminfo_mktprice">
 									<dt>原价</dt>
@@ -188,20 +188,52 @@
 													<div class="theme-options">
 														<div class="cart-title">口味</div>
 														<ul>
-															<li class="sku-line selected">原味<i></i></li>
-															<li class="sku-line">奶油<i></i></li>
-															<li class="sku-line">炭烧<i></i></li>
-															<li class="sku-line">咸香<i></i></li>
+														@foreach(json_decode($res[0]->label)[0] as $k=>$v)
+															<li class="sku-line lis1">{{$v}}<i></i></li>
+														@endforeach
 														</ul>
 													</div>
 													<div class="theme-options">
 														<div class="cart-title">包装</div>
 														<ul>
-															<li class="sku-line selected">手袋单人份<i></i></li>
-															<li class="sku-line">礼盒双人份<i></i></li>
-															<li class="sku-line">全家福礼包<i></i></li>
+														@foreach(json_decode($res[0]->label)[1] as $k=>$v)
+															<li class="sku-line lis2">{{$v}}<i></i></li>
+														@endforeach
 														</ul>
 													</div>
+													<!-- <div style="width: 50px;height: 50px;background: red;" id="di"></div> -->
+													
+
+													<script type="text/javascript">
+														$(document).ready(function(){
+															$('.lis1').eq(0).attr('class','sku-line lis1 selected');
+															$('.lis2').eq(0).attr('class','sku-line lis2 selected');
+															var ind1 = 0;
+															var ind2 = 0;
+															var lis1 = document.getElementsByClassName('lis1');
+															var lis2 = document.getElementsByClassName('lis2');
+
+															$('.lis1,.lis2').click(function(){
+																for(var i=0; i<lis1.length; i++){
+																if(lis1[i].getAttribute('class')=="sku-line lis1 selected"){
+																	ind1 = i;
+																	}
+																}
+																for(var j=0; j<lis2.length; j++){
+																	if(lis2[j].getAttribute('class')=="sku-line lis2 selected"){
+																		ind2 = j;
+																		}
+																	}
+																var inds = ind1+','+ind2;
+																$.get('/home/detailss',{inds:inds},function(data){
+																	$('#gprices').html(data);
+																})
+															})
+															
+														})
+													</script>
+
+
 													<div class="theme-options">
 														<div class="cart-title number">数量</div>
 														<dd>

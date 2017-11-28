@@ -36,6 +36,7 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 
 
 	//商家注册页面(用户注册成商家)
+	Route::get('detailss', 'DetailsController@show');			//价格ajax
 	Route::resource('sregister','SregController');
 
 
@@ -44,6 +45,7 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 	Route::resource('search', 'SearchController');
 
 	//商品详情页
+	
 	Route::resource('details', 'DetailsController');
 
 
@@ -134,6 +136,7 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		Route::resource('goodslist','GoodslistController');
 
 		//商品上传
+		
 		Route::resource('goodsup','GoodsupController');
 		Route::get('select','GoodsupController@select');
 		Route::post('upload','GoodsupController@upload');//post方式发送ajax上传图片							
