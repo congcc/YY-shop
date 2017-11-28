@@ -44,7 +44,9 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 	Route::resource('search', 'SearchController');
 
 	//商品详情页
+	Route::get('detailss', 'DetailsController@show');			//价格ajax
 	Route::resource('details', 'DetailsController');
+
 
 
 	// 用户是否登录
@@ -72,9 +74,9 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		Route::get('deladdr', 'AddrController@delete');
 
 		//用户订单
-		Route::get('userorders/{o_code}', 'UserorderController@destroy');
+		Route::get('userorders/{o_code}', 'UserorderController@destroy');		//删除订单
 		Route::resource('userorder', 'UserorderController');
-
+		Route::get('orderpay/{o_code}', 'OrderpayController@index');				//支付订单
 		Route::get('ordersinfo/{code}', 'OrdersinfoController@index');			//订单详情
 
 		//用户退款售后

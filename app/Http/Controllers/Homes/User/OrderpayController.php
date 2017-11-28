@@ -1,25 +1,37 @@
 <?php
 
-namespace App\Http\Controllers\Homes;
+namespace App\Http\Controllers\Homes\User;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\model\goods;
+use App\Http\model\orders;
+use App\Http\model\ordersinfo;
 
-class DetailsController extends Controller
+class OrderpayController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {   
-        $res = goods::where('id',6)->get();
+    public function index($code)
+    {
+        //根据传过来的订单号查询该订单信息
+        $res = orders::where('o_code',$code)->first();
 
-        return view('homes.shop.details',compact('res'));
+        //获取该用户手机号
+        $phone = $res->oruser->phone;
+
+        //获取店铺名字
+        $sname = $res->orshop->sname;
+
+        //获取商品名字
+        $gname = $res->ordersinfo->orgoods->gname;
+
+        //跳转支付页面
+        return view('homes.user.orderpay',compact('res','phone','sname','gname'));
     }
 
     /**
@@ -49,20 +61,9 @@ class DetailsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show($id)
     {
-        //获取传过来的inds
-        $inds = $request->input('inds');
-
-        //查询该商品的信息
-        $res = goods::where('id',6)->get();
-
-        //获取对应价格
-        $gprices = number_format(json_decode($res[0]->gprices,true)[$inds],2);
-        
-        //输出返回
-        echo $gprices;
-
+        //
     }
 
     /**

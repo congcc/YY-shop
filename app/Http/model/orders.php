@@ -17,8 +17,8 @@ class orders extends Model
         return $this->hasOne('App\Http\model\userinfo', 'id', 'uid');
     }
 
-    public function oraddress(){
-        return $this->hasOne('App\Http\model\address', 'id', 'o_addr');
+    public function orshop(){
+        return $this->hasOne('App\Http\model\shop', 'id', 'sid');
     }
 
     public function ordersinfo(){

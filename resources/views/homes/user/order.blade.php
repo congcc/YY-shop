@@ -276,11 +276,10 @@
 																<div class="item-status">
 																	<p class="Mystatus">等待买家付款</p>
 																	<p class="order-info"><a href="/homes/#">取消订单</a></p>
-
 																</div>
 															</li>
 															<li class="td td-change">
-																<a href="/homes/pay.html">
+																<a href="/home/user/orderpay/{{$v1[0]->o_code}}">
 																<div class="am-btn am-btn-danger anniu">
 																	一键支付</div></a>
 															</li>
