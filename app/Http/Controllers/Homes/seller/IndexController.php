@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Model\shop;
+
 
 class IndexController extends Controller
 {
@@ -16,8 +18,10 @@ class IndexController extends Controller
      */
     public function index()
     {
-        //
-        return view('homes/seller/index');
+         $uid = session('userid');
+         $shop = shop::where('uid',$uid)->first();
+        
+        return view('homes/seller/index',compact('shop'));
     }
 
     /**

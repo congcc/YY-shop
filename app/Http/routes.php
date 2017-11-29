@@ -104,7 +104,10 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 
 		//申请成为商家
 		Route::resource('shopapply', 'ShopapplyController');
-		
+		Route::get('uploads','ShopapplyController@upload');
+		//被封禁商家 
+		Route::get('auth','ShopapplyController@auth');
+
 
 	});
 

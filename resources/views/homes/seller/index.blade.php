@@ -14,6 +14,7 @@
 @section('title','商户主页')
 
 @section('content')
+
 <!--收藏夹 -->
 							<div class="you-like">
 								<div class="s-bar">我的商品
@@ -51,4 +52,7 @@
 								<div class="s-more-btn i-load-more-item" data-screen="0"><i class="am-icon-refresh am-icon-fw"></i>更多</div>
 
 							</div>
+
+
+
 @endsection
