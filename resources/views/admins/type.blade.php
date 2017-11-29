@@ -74,6 +74,11 @@
                                                         
                                                     </th>
                                                     <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
+                                                    rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending"
+                                                    style="width: 111px;">
+                                                        
+                                                    </th>
+                                                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                                                     rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
                                                     style="width: 80px;">
                                                         商品状态
@@ -86,10 +91,12 @@
                                            
                                             <tbody role="alert" aria-live="polite" aria-relevant="all">
                                             @foreach ($res as $k => $v) 
+                                                @if ( $v->pid == 0 )
                                                 <tr class="odd">
                                                     <td class="  sorting_1">
                                                         {{ $v->cate_name }}
                                                     </td>
+                                                    <td class=" sorting_1"></td>
                                                     <td class=" ">
                                                         
                                                     </td>
@@ -109,8 +116,11 @@
                                                     </td>
                                                     <td class=" ">
                                                         <span class="btn-group">
-                                                            <a href="" class="btn btn-small">
+                                                            <a href="/admin/type/create" class="btn btn-small">
                                                                 添加父分区
+                                                            </a> 
+                                                            <a href="/admin/type/{{ $v->id }}" class="btn btn-small">
+                                                                修改父分区
                                                             </a>
                                                             <a href="/admin/typeson/{{$v->id}}" class="btn btn-small">
                                                                 添加子版块
@@ -127,7 +137,7 @@
                                                         </span>
                                                     </td>
                                                 </tr>
-                                                
+                                                    @endif
                                                @foreach ($res as $sk => $sv)
                                               @if ($sv->pid==$v->id) 
                                                
@@ -136,6 +146,7 @@
                                                     <td class="  sorting_1">
                                                         {{ $sv->cate_name }}
                                                     </td>
+                                                    <td class=" sorting_1"></td>
                                                     <td class=" ">
                                                         
                                                     </td>
@@ -153,11 +164,14 @@
                                                     <td class=" ">
                                                         <span class="btn-group">
                                                         
-                                                            <a href="/admin/typeson/{{$v->id}}" class="btn btn-small">
+                                                            <a href="/admin/typethree/{{$sv->id}}" class="btn btn-small">
                                                                 添加子版块
                                                             </a>
+                                                            <a href="/admin/typeson/{{$sv->id}}/edit" class="btn btn-small">
+                                                                修改
+                                                            </a>
 
-                                                        <form action="/admin/type/{{ $v->id}}" method='post'>     
+                                                        <form action="/admin/typeson/{{ $sv->id}}" method='post'>     
                                                             <button class="btn btn-small">    <i class="icon-trash">
                                                                 </i>    </button>
                                                                   {{ csrf_field() }}  
@@ -168,10 +182,13 @@
                                                         </span>
                                                     </td>
                                                 </tr>
-                                                @endif
+                                                
                                                 @foreach ( $sres as $tk => $tv)
-                                                    @if( $tv->pid==$v->id)
+
+                                                 @if( $sv->id == $tv->pid)
+
                                                     <tr class="odd">
+                                                    <td class=" sorting_1"></td>
                                                     <td class=" sorting_1"></td>
                                                     <td class="  sorting_1">
                                                         {{ $tv->cate_name }}
@@ -193,11 +210,11 @@
                                                     <td class=" ">
                                                         <span class="btn-group">
                                                         
-                                                            <a href="/admin/typeson/{{$v->id}}" class="btn btn-small">
-                                                                添加子版块
+                                                            <a href="/admin/typethree/{{$tv->id}}/edit" class="btn btn-small">
+                                                                修改
                                                             </a>
 
-                                                        <form action="/admin/type/{{ $v->id}}" method='post'>     
+                                                        <form action="/admin/typethree/{{ $tv->id}}" method='post'>     
                                                             <button class="btn btn-small">    <i class="icon-trash">
                                                                 </i>    </button>
                                                                   {{ csrf_field() }}  
@@ -212,7 +229,7 @@
                                            
                                             @endif
                                             @endforeach
-                                             
+                                             @endif
                                                 @endforeach   
                                              @endforeach   
                                             </tbody>

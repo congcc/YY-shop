@@ -274,8 +274,8 @@
                         <a href="#"><i class="icon-user"></i>商品分类</a>
                         <ul class="closed">
                             <li><a href="/admin/type">分类列表</a></li>
-                            <li><a href="/admin/type/create">分类添加</a></li>
-                        
+                            <li><a href="/admin/type">分类添加</a></li>
+                            
                         </ul>
                     </li>
                     <li>

@@ -18,14 +18,10 @@ class TypesonController extends Controller
      */
     public function index(Request $request)
     {
-        //
-       /* $res = classify::where('id','1')->first();
-        var_dump($res->name);
-        if($res){
-
-            return view('admins/typesonadd');
-        }*/
-          
+        $data = $request->except('_token','profile');
+        $id = $data['id'];
+        $res = cateone::where('id',$id)->update($data);
+        var_dump($res);
         
     }
 
@@ -34,9 +30,9 @@ class TypesonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, $id)
     {
-        echo 123;
+        
     }
 
     /**
@@ -47,13 +43,11 @@ class TypesonController extends Controller
      */
     public function store(Request $request)
     {
-        //
-           $data = $request->except('_token');
-        //    $res = goodscate::insert('cate_name',$data['cate_name']);    
-          
-            // $res = goodscate::insert($data);
-
-            var_dump($data);
+        $data = $request->except('_token','profile');
+        $id = $data['id'];
+        $res = cateone::where('id',$id)->update($data);
+        var_dump($res);
+            
     }
 
     /**
@@ -67,10 +61,10 @@ class TypesonController extends Controller
             
         
         $res = cateone::where('id',$id)->first();
-        $pcate_name = $res['cate_name'];
-        $pid = $res['id'];
+        $fcate_name = $res['cate_name'];
         
-        return view('admins/typesonadd',['pcate_name'=>$pcate_name,'pid'=>$pid]);
+        
+        return view('admins/typesonadd',['fcate_name'=>$fcate_name,'id'=>$id]);
     }
 
     /**
@@ -82,7 +76,13 @@ class TypesonController extends Controller
     public function edit($id)
     {
         //
-        echo 123;
+        $data = cateone::where('id',$id)->first();
+        
+        $sename = $data['cate_name'];
+     
+        
+       
+       return view('admins/typesechange',['id'=>$id,'sename'=>$sename]);
     }
 
     /**
@@ -95,7 +95,7 @@ class TypesonController extends Controller
     public function update(Request $request, $id)
     {
         //
-        echo 123;
+        
     }
 
     /**
@@ -107,6 +107,7 @@ class TypesonController extends Controller
     public function destroy($id)
     {
         //
-        echo 123;
+         $res = cateone::where('id',$id)->delete();
+       
     }
 }

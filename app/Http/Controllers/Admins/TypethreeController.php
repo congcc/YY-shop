@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\model\catetwo;
+use App\Http\model\cateone;
+
 
 class TypethreeController extends Controller
 {
@@ -17,7 +20,7 @@ class TypethreeController extends Controller
     public function index()
     {
         
-        return view('admins/typethree');
+        
     }
 
     /**
@@ -28,6 +31,7 @@ class TypethreeController extends Controller
     public function create()
     {
         //
+        
     }
 
     /**
@@ -39,6 +43,12 @@ class TypethreeController extends Controller
     public function store(Request $request)
     {
         //
+            
+            $data = $request->except('_token','profile');
+            $id = $data['id'];
+            $res = catetwo::where('id',$id)->update($data);
+            
+         
     }
 
     /**
@@ -50,6 +60,15 @@ class TypethreeController extends Controller
     public function show($id)
     {
         //
+            //
+            $second = cateone::where('id',$id)->first();
+
+            $sename = $second['cate_name'];
+
+            
+
+            
+            return view('admins.typethreeadd',['sename'=>$sename,'pid'=>$id]);
     }
 
     /**
@@ -61,6 +80,11 @@ class TypethreeController extends Controller
     public function edit($id)
     {
         //
+            $data = catetwo::where('id',$id)->first();
+
+            $thrname = $data['cate_name'];
+            return view('admins/typethreechange',['thrname'=>$thrname,'id'=>$id]);
+            var_dump($thrname);
     }
 
     /**
@@ -73,6 +97,7 @@ class TypethreeController extends Controller
     public function update(Request $request, $id)
     {
         //
+        echo 12312312;
     }
 
     /**
@@ -83,6 +108,15 @@ class TypethreeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $res = catetwo::where('id',$id)->delete();
+        
+    }
+
+    public function aaaa(Request $request)
+    {
+        $data = $request->except('_token','profile');
+        $pid = $data['pid'];
+        $res = catetwo::insert($data);
+
     }
 }

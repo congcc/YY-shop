@@ -9,7 +9,7 @@
 			
 				<tr>
 					<td align='right'>一级分类:</td>
-					<td><input type="text" name='fname' value="{{ $pcate_name}}"></td>
+					<td><input type="text" name='cate_name' value="{{ $fcate_name}}"></td>
 					
 				</tr>
 				<tr>
@@ -34,7 +34,7 @@
 					</td>
 					
 				</tr>
-			
+					<input type="hidden" name='pid' value="{{$id}}">
 				{{ csrf_field()}}
 
 			</table>

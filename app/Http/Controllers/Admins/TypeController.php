@@ -23,19 +23,16 @@ class TypeController extends Controller
 
         foreach($res as $k => $v){
            $id = $v->id;
-        }/*
-            if($id>7){
-                $fid = $id;
-            }*/
-            var_dump($id);die;
-        $sres = catetwo::where('pid',$id)->get();
+        }
+            
+        $sres = catetwo::all();
         
         /* foreach( $sres as $sk => $sv){
             $cate_name = $sv->cate_name;
 
         }*/
 
-    
+        // var_dump($sres);
          return view('admins.type',['res'=>$res,'sres'=>$sres]);
     }
 
@@ -44,9 +41,10 @@ class TypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        
         return view('admins/typeadd');
     }
 
@@ -58,26 +56,13 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
-             /* $data = $request->except('_token');
-             
-             $pid = goods::where('cate_name',$data['cate_name'])->get();
-            dd($pid);*/
-        //      $res = table('goods')->insert('data')->all();
+        
+            $data = $request->except('_token','profile');
           
-        //        $res = DB::table('goodscate')->insert($data.$pid);
-
-         //   var_dump($pid);
-            $data = $request->except('_token');
-           $dataone = cateone::where('cate_name',$data['fname'])->first();
-            $pid = $dataone['id'];
-         //   var_dump($pid);
-            $data['pid'] = $pid;
-            array_shift($data);
-
+            
             $res = cateone::insert($data);
             if($res){
-            //    alert('老铁，添加成功了');
+                return redirect('/admin/type');
             }
       }      
 
@@ -89,7 +74,11 @@ class TypeController extends Controller
      */
     public function show($id)
     {
-        //
+        $res = cateone::where('id',$id)->first();
+        $id = $res['id'];
+        $cate_name = $res['cate_name'];
+       
+        return view('admins/typechange',['id'=>$id,'cate_name'=>$cate_name]);
     }
 
     /**
@@ -98,9 +87,15 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         //
+        $data = $request->except('_token','profile');
+    
+       $res = cateone::where('id',$id)->update($data);
+        if($res){
+            return redirect('/admin/type');
+        }
     }
 
     /**

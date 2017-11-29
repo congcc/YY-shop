@@ -8,4 +8,5 @@ class cateone extends Model
 {
     //
     	public $table = 'cateone';
+    	public $timestamps = false;
 }

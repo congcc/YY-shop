@@ -167,6 +167,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admins',], function () {
 
 		//三级子版块管理
 		Route::resource('typethree','TypethreeController');
+		Route::post('/typethree/aa','TypethreeController@aaaa');
 
 		//订单状态管理
 		Route::resource('orders','OrdersController');
