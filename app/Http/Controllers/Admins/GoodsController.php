@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\Http\model\goods;
+use DB;
 class GoodsController extends Controller
 {
     /**
@@ -14,9 +15,15 @@ class GoodsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $res = DB::table('goods')->where('gstate','2')->get();
+
+        $good = DB::table('goods')->simplePaginate(10);
+
+
+        return view('admins.goods.index',compact('res','good','request'));
     }
 
     /**
@@ -49,6 +56,14 @@ class GoodsController extends Controller
     public function show($id)
     {
         //
+        $res = DB::table('goods')->where('id',$id)->first();
+
+        $shop = DB::table('shop')->where('id',$res->sid)->first();
+
+        $gc = DB::table('goodscate')->where('pid',$res->clid)->first();
+
+         return view('admins.goods.show',compact('res','shop','gc'));
+
     }
 
     /**
@@ -60,6 +75,15 @@ class GoodsController extends Controller
     public function edit($id)
     {
         //
+         $res = ['gstate'=>'0'];
+
+        $data = DB::table('goods')->where('id',$id)->update($res);  
+
+        if($res){
+            return redirect('/admin/goods')->with('未通过申请');
+        } else {
+            return back();
+        }
     }
 
     /**
@@ -72,6 +96,7 @@ class GoodsController extends Controller
     public function update(Request $request, $id)
     {
         //
+
     }
 
     /**
@@ -83,5 +108,16 @@ class GoodsController extends Controller
     public function destroy($id)
     {
         //
+
+
+        $res = ['gstate'=>'1'];
+
+        $data = DB::table('goods')->where('id',$id)->update($res);  
+
+        if($res){
+            return redirect('/admin/goods')->with('通过申请');
+        } else {
+            return back();
+        }
     }
 }

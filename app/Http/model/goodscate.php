@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class goodscate extends Model
 {
+
+
     protected $table = "goodscate";
 
 
@@ -20,3 +22,4 @@ class goodscate extends Model
     	return goodscate::where('pid','like',$id.'%')->get();
     } 
 }
+

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class cateone extends Model
 {
+
     public $table = "cateone";
     public $timestamps = false;
 
@@ -13,4 +14,6 @@ class cateone extends Model
     {
         return $this->hasOne('App\Http\model\catetwo', 'id', 'pid');
     }
+
+
 }

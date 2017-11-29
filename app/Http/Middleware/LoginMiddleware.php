@@ -15,6 +15,12 @@ class LoginMiddleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        $aid = session('adminsid');
+
+       if(session('aid')){
+            return $next($request);
+        } else {
+            return redirect('/admin/login');
+        }
     }
 }

@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Admins;
-
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\Http\model\goods;
+use App\Http\model\cateone;
+use App\Http\model\catetwo;
 class TypeController extends Controller
 {
     /**
@@ -14,9 +15,25 @@ class TypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        
+        $res = cateone::all();
+
+        foreach($res as $k => $v){
+           $id = $v->id;
+        }
+            
+        $sres = catetwo::all();
+        
+        /* foreach( $sres as $sk => $sv){
+            $cate_name = $sv->cate_name;
+
+        }*/
+
+        // var_dump($sres);
+         return view('admins.type',['res'=>$res,'sres'=>$sres]);
     }
 
     /**
@@ -24,9 +41,11 @@ class TypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        
+        return view('admins/typeadd');
     }
 
     /**
@@ -37,8 +56,15 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        
+            $data = $request->except('_token','profile');
+          
+            
+            $res = cateone::insert($data);
+            if($res){
+                return redirect('/admin/type');
+            }
+      }      
 
     /**
      * Display the specified resource.
@@ -48,7 +74,11 @@ class TypeController extends Controller
      */
     public function show($id)
     {
-        //
+        $res = cateone::where('id',$id)->first();
+        $id = $res['id'];
+        $cate_name = $res['cate_name'];
+       
+        return view('admins/typechange',['id'=>$id,'cate_name'=>$cate_name]);
     }
 
     /**
@@ -57,9 +87,15 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         //
+        $data = $request->except('_token','profile');
+    
+       $res = cateone::where('id',$id)->update($data);
+        if($res){
+            return redirect('/admin/type');
+        }
     }
 
     /**
@@ -83,5 +119,8 @@ class TypeController extends Controller
     public function destroy($id)
     {
         //
+        $res = cateone::where('id',$id)->delete();
+
+        return $res;
     }
 }

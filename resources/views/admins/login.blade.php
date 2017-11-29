@@ -1,86 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--><html lang="en"><!--<![endif]-->
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Amaze UI Admin index Examples</title>
-    <meta name="description" content="这是一个 index 页面">
-    <meta name="keywords" content="index">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="icon" type="image/png" href="/admins/assets/i/favicon.png">
-    <link rel="apple-touch-icon-precomposed" href="/admins/assets/i/app-icon72x72@2x.png">
-    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
-    <link rel="stylesheet" href="/admins/assets/css/amazeui.min.css" />
-    <link rel="stylesheet" href="/admins/assets/css/amazeui.datatables.min.css" />
-    <link rel="stylesheet" href="/admins/assets/css/app.css">
-    <script src="/admins/assets/js/jquery.min.js"></script>
+<meta charset="utf-8">
+
+<!-- Viewport Metatag -->
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<!-- Required Stylesheets -->
+<link rel="stylesheet" type="text/css" href="/admins/bootstrap/css/bootstrap.min.css" media="screen">
+<link rel="stylesheet" type="text/css" href="/admins/css/fonts/ptsans/stylesheet.css" media="screen">
+<link rel="stylesheet" type="text/css" href="/admins/css/fonts/icomoon/style.css" media="screen">
+
+<link rel="stylesheet" type="text/css" href="/admins/css/login.css" media="screen">
+
+<link rel="stylesheet" type="text/css" href="/admins/css/mws-theme.css" media="screen">
+
+
+<title>后台登录</title>
 
 </head>
 
-<body data-type="login">
-    <script src="/admins/assets/js/theme.js"></script>
-    <div class="am-g tpl-g">
-        <!-- 风格切换 -->
-        <div class="tpl-skiner">
-            <div class="tpl-skiner-toggle am-icon-cog">
-            </div>
-            <div class="tpl-skiner-content">
-                <div class="tpl-skiner-content-title">
-                    选择主题
-                </div>
-                <div class="tpl-skiner-content-bar">
-                    <span class="skiner-color skiner-white" data-color="theme-white"></span>
-                    <span class="skiner-color skiner-black" data-color="theme-black"></span>
-                </div>
-            </div>
-        </div>
-        <div class="tpl-login">
-            <div class="tpl-login-content">
-                <div class="tpl-login-logo">
-
-                </div>
+<body>
 
 
+    <div id="mws-login-wrapper">
+        <div id="mws-login">
+            <h1>登录</h1>
+            <div class="mws-login-lock"><i class="icon-lock"></i></div>
+            <div id="mws-login-form">
 
-                <form class="am-form tpl-form-line-form">
-                    <div class="am-form-group">
-                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入账号">
-
+                <form class="mws-form" action="/admin/dlogin" method="post">
+                    <div class="mws-form-row">
+                        <div class="mws-form-item">
+                            <input type="text" name="name" id="name" class="mws-login-username required" placeholder="请输入用户名">
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <div class="mws-form-item">
+                            <input type="password" name="key" id="key" class="mws-login-password required" placeholder="请输入密码">
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        {{csrf_field()}}
+                        <input type="submit" id="dlog" value="登录" class="btn btn-success mws-login-button">
                     </div>
 
-                    <div class="am-form-group">
-                        <input type="password" class="tpl-form-input" id="user-name" placeholder="请输入密码">
-
-                    </div>
-                    <div class="am-form-group tpl-login-remember-me">
-                        <input id="remember-me" type="checkbox">
-                        <label for="remember-me">
-       
-                        记住密码
-                         </label>
-
-                    </div>
-
-
-
-
-
-
-                    <div class="am-form-group">
-
-                        <button type="button" class="am-btn am-btn-primary  am-btn-block tpl-btn-bg-color-success  tpl-login-btn">提交</button>
-
-                    </div>
                 </form>
             </div>
         </div>
     </div>
-    <script src="/admins/assets/js/amazeui.min.js"></script>
-    <script src="/admins/assets/js/app.js"></script>
+
+    <!-- JavaScript Plugins -->
+   <script src="/admins/js/libs/jquery-1.8.3.min.js"></script>
+   <script src="/admins/js/libs/jquery.placeholder.min.js"></script>
+  <script src="/admins/custom-plugins/fileinput.js"></script>
+    
+    <!-- jQuery-UI Dependent Scripts -->
+   <script src="/admins/jui/js/jquery-ui-effects.min.js"></script>
+
+    <!-- Plugin Scripts -->
+   <script src="/admins/plugins/validate/jquery.validate-min.js"></script>
+
+    <!-- Login Script -->
+   <script src="/admins/js/core/login.js"></script>
+   
+    <script>
+    $('#dlog').click(function(){
+        var name = $('#name').val();
+        var key = $('#key').val();
+        $.post('/admin/dlogin',{'_token':'{{ csrf_token() }}', name:name, key:key},function(data){
+            // console.log(data);
+            
+            if (data) {
+                alert('登录成功！');
+                // layer.load();
+                window.location.href = "/admin/admin";  
+
+            }else {
+                alert ('账户或密码错误');
+            }
+        });
+        return false;
+     });
+    </script>
 
 </body>
-
 </html>

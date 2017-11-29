@@ -1,3 +1,4 @@
+
 <?php
 
 /*
@@ -156,7 +157,7 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 
 
 		
-		
+	
 	});
 
 
@@ -166,12 +167,16 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 //后台控制组
 Route::group(['prefix'=>'admin','namespace'=>'Admins',], function () {
 	
+
 	//后台登录
 	Route::resource('login','LoginController');
-			
+
+	Route::post('dlogin', 'LoginsController@store');
+
+	
 	// 'meddleware'=>'login'
 	Route::group([], function () {
-		
+
 		//后台首页
 		Route::resource('admin','AdminController');
 
@@ -179,25 +184,65 @@ Route::group(['prefix'=>'admin','namespace'=>'Admins',], function () {
 		Route::resource('user','UserController');
 		Route::get('/userauth','UsersController@index');
 
+		//管理员状态
+		Route::resource('adminsauth','AdminauthController');
+
 
 		//买家buyer管理
 		Route::resource('buys','BuysController');
+		Route::resource('buyss','BuyssController');
+
+		//买家禁用
+		Route::resource('buyedis','BuyedisController');
+
 
 		//卖家seller管理
 		Route::resource('seller','SellerController');
+		//卖家禁用
+		Route::resource('sellerdis','SellerdisController');
+
 
 		//商家申请check
 		Route::resource('check','CheckController');
+		// 1 通过
+		Route::resource('csucc','ChecksucceedController');
+		// 2 未通过
+		Route::resource('cfail','CheckfailController');
+
 
 		//商品上传申请 
+		//  审核中
 		Route::resource('goods','GoodsController');
+		// 通过申请
+		Route::resource('gsucc','GoodssuccedController');
+		// 未通过
+		Route::resource('gfail','GoodsfailController');
 
 
 		//商品分类管理
 		Route::resource('type','TypeController');
 
+		//商品二级子版块管理
+		Route::resource('typeson','TypesonController');
+
+		//三级子版块管理
+		Route::resource('typethree','TypethreeController');
+		Route::post('/typethree/aa','TypethreeController@aaaa');
+
 		//订单状态管理
+		// 0代付款
 		Route::resource('orders','OrdersController');
+		// 1 代发货
+		Route::resource('shipping','ShippingController');
+		// 2 待收货
+		Route::resource('dinggoods','DingoodsController');
+		//3 待评价
+		Route::resource('plorder','PlorderController');
+		//4 已完成
+		Route::resource('coorder','CoorderController');
+		// 5 已取消
+		Route::resource('cancelled','CancelledController');
+
 
 		//投诉管理
 		Route::resource('complaint','ComplaintController');
@@ -210,6 +255,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admins',], function () {
 
 		//网站管理
 		Route::resource('web','WebController');
+
+
 	
 	});
 
