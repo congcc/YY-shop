@@ -28,7 +28,6 @@ class DiController extends Controller
         //从shop表中查询uid  和user表中id相同的 用户所有信息(shop uid->user id 为关联字段)
         $shop=shop::where('uid',$uid)->first();
 
-        // $orders=orders::where('')
         //dd($shop);
 
         return view('homes.seller.di',["shop"=>$shop]);
@@ -82,7 +81,7 @@ class DiController extends Controller
         //dd($id);
         $di=shop::where('id',$id)->first();
         
-
+            // dd($di);
         return view('homes.seller.diedit',["di"=>$di]);
     }
 

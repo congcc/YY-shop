@@ -17,7 +17,7 @@ class SregController extends Controller
     public function index()
     {
         //
-        return view('homes.seller.sregister');
+        return view('homes.user.biseller');
     }
 
     /**

@@ -34,7 +34,7 @@ class CommentsController extends Controller
 
         //获取sid为$sid的商品
         $goods=goods::where('sid',$sid)->get();
-        // dd($goods);
+              // dd($goods)
 
         //定义一个数组
         $arr=array();

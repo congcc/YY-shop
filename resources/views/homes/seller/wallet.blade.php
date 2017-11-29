@@ -78,7 +78,7 @@
 											</div>
 										</div>
 									</div>
-									
+
 									<div class="block-expense block  fn-left">
 										<div class="slide-button right"></div>
 									</div>

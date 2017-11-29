@@ -143,6 +143,8 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 
 		Route::resource('di','DiController');
 
+		//权限不够跳注册页
+
 
 
 
