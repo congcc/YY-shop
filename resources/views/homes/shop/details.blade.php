@@ -71,6 +71,7 @@
 						<div class="box">
 							<script type="text/javascript">
 								$(document).ready(function() {
+									$('#thumblist li').eq(0).addClass("tb-selected");
 									$(".jqzoom").imagezoom();
 									$("#thumblist li a").click(function() {
 										$(this).parents("li").addClass("tb-selected").siblings().removeClass("tb-selected");
@@ -81,24 +82,16 @@
 							</script>
 
 							<div class="tb-booth tb-pic tb-s310">
-								<a href="/homes/images/01.jpg"><img src="/homes/images/01_mid.jpg" alt="" rel="/homes/images/01.jpg" class="jqzoom" style="cursor: crosshair;"></a>
+								<a href="/homes/images/01.jpg"><img src="{{$res[0]->gimg}}" alt="" rel="{{$res[0]->gimg}}" class="jqzoom" style="cursor: crosshair;"></a>
 							</div>
 							<ul class="tb-thumb" id="thumblist">
-								<li class="tb-selected">
-									<div class="tb-pic tb-s40">
-										<a href="#"><img src="/homes/images/01_small.jpg" mid="images/01_mid.jpg" big="images/01.jpg"></a>
-									</div>
-								</li>
+								@foreach($gdpic as $k=>$v)
 								<li>
 									<div class="tb-pic tb-s40">
-										<a href=""><img src="/homes/images/02_small.jpg" mid="images/02_mid.jpg" big="images/02.jpg"></a>
+										<a href="#"><img src="{{$v}}" mid="{{$v}}" big="{{$v}}"></a>
 									</div>
 								</li>
-								<li>
-									<div class="tb-pic tb-s40">
-										<a href="#"><img src="/homes/images/03_small.jpg" mid="images/03_mid.jpg" big="images/03.jpg"></a>
-									</div>
-								</li>
+								@endforeach
 							</ul>
 						</div>
 
