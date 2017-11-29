@@ -1,6 +1,5 @@
 @extends('homes.layout.userbuy')
 
-@section('title','商家申请')
 
 @section('head')
 
@@ -11,133 +10,106 @@
 
 @endsection
 
+@section('title','申请商家')
+
 @section('content')
 <div class="user-info">
 						<!--标题 -->
 						<div class="am-cf am-padding">
-							<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">申请页</strong> / <small>Personal&nbsp;information</small></div>
+							<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">商家注册</strong> / <small>Personal&nbsp;information</small></div>
 						</div>
 						<hr>
-
+					
 						<!--头像 -->
-						<div class="user-infoPic">
-
-							<div class="filePic">
-								<input type="file" class="inputPic" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*">
-								<img class="am-circle am-img-thumbnail" src="/homes/images/getAvatar.do.jpg" alt="">
-							</div>
-
-							<p class="am-form-help">头像</p>
-
-							<div class="info-m">
-								<div><b>用户名：<i>小叮当</i></b></div>
-								<div class="u-level">
-									<span class="rank r2">
-							             <s class="vip1"></s><a class="classes" href="#">铜牌会员</a>
-						            </span>
-								</div>
-								<div class="u-safety">
-									<a href="safety.html">
-									 账户安全
-									<span class="u-profile"><i class="bc_ee0000" style="width: 60px;" width="0">60分</i></span>
-									</a>
-								</div>
-							</div>
-						</div>
+					
 
 						<!--个人信息 -->
 						<div class="info-main">
-							<form class="am-form am-form-horizontal">
+							<form class="am-form am-form-horizontal" action="" method="">
+
 
 								<div class="am-form-group">
-									<label for="user-name2" class="am-form-label">店铺名</label>
+									<label class="am-form-label" for="user-name2">店铺名：</label>
 									<div class="am-form-content">
-										<input type="text" id="user-name2" placeholder="sname">
+										<input type="text" placeholder="店铺名" id="user-name2"name="sname" value="" >
+
+
 
 									</div>
+
 								</div>
 
+							
+
 								<div class="am-form-group">
-									<label for="user-name" class="am-form-label">姓名</label>
+									<label class="am-form-label">店铺状态：</label>
 									<div class="am-form-content">
-										<input type="text" id="user-name2" placeholder="name">
+										<input type="text" placeholder="店铺状态" id="user-name2"name="sauth" value="" >
+
 
 									</div>
-								</div>
 
-								<div class="am-form-group">
-									<label class="am-form-label">性别</label>
-									<div class="am-form-content sex">
-										<label class="am-radio-inline">
-											<input type="radio" name="radio10" value="male" data-am-ucheck="" class="am-ucheck-radio"><span class="am-ucheck-icons"><i class="am-icon-unchecked"></i><i class="am-icon-checked"></i></span> 男
-										</label>
-										<label class="am-radio-inline">
-											<input type="radio" name="radio10" value="female" data-am-ucheck="" class="am-ucheck-radio"><span class="am-ucheck-icons"><i class="am-icon-unchecked"></i><i class="am-icon-checked"></i></span> 女
-										</label>
-										<label class="am-radio-inline">
-											<input type="radio" name="radio10" value="secret" data-am-ucheck="" class="am-ucheck-radio"><span class="am-ucheck-icons"><i class="am-icon-unchecked"></i><i class="am-icon-checked"></i></span> 保密
-										</label>
-									</div>
 								</div>
+									
 
-								<div class="am-form-group">
-									<label for="user-birth" class="am-form-label">生日</label>
-									<div class="am-form-content birth">
+									<div class="am-form-group">
+									<label class="am-form-label" for="user-birth">店铺类别</label>
+									<div class="am-form-content birth">                                                                                                                                                                                                                                                                                                                                                                                                                    
 										<div class="birth-select">
 											<select data-am-selected="" style="display: none;">
-												<option value="a">2015</option>
-												<option value="b">1987</option>
-											</select><div class="am-selected am-dropdown " id="am-selected-q1gnw" data-am-dropdown="">  <button type="button" class="am-selected-btn am-btn am-dropdown-toggle am-btn-default">    <span class="am-selected-status am-fl">2015</span>    <i class="am-selected-icon am-icon-caret-down"></i>  </button>  <div class="am-selected-content am-dropdown-content">    <h2 class="am-selected-header"><span class="am-icon-chevron-left">返回</span></h2>       <ul class="am-selected-list">                     <li class="am-checked" data-index="0" data-group="0" data-value="a">         <span class="am-selected-text">2015</span>         <i class="am-icon-check"></i></li>                                 <li class="" data-index="1" data-group="0" data-value="b">         <span class="am-selected-text">1987</span>         <i class="am-icon-check"></i></li>            </ul>    <div class="am-selected-hint"></div>  </div></div>
-											<em>年</em>
+												<option value="a">西瓜</option>
+												<option value="b">苹果</option>
+												<option value="b">橙子</option>
+												<option value="b">红提</option>
+											</select>
+								
 										</div>
-										<div class="birth-select2">
-											<select data-am-selected="" style="display: none;">
-												<option value="a">12</option>
-												<option value="b">8</option>
-											</select><div class="am-selected am-dropdown " id="am-selected-5o0zh" data-am-dropdown="">  <button type="button" class="am-selected-btn am-btn am-dropdown-toggle am-btn-default">    <span class="am-selected-status am-fl">12</span>    <i class="am-selected-icon am-icon-caret-down"></i>  </button>  <div class="am-selected-content am-dropdown-content">    <h2 class="am-selected-header"><span class="am-icon-chevron-left">返回</span></h2>       <ul class="am-selected-list">                     <li class="am-checked" data-index="0" data-group="0" data-value="a">         <span class="am-selected-text">12</span>         <i class="am-icon-check"></i></li>                                 <li class="" data-index="1" data-group="0" data-value="b">         <span class="am-selected-text">8</span>         <i class="am-icon-check"></i></li>            </ul>    <div class="am-selected-hint"></div>  </div></div>
-											<em>月</em></div>
-										<div class="birth-select2">
-											<select data-am-selected="" style="display: none;">
-												<option value="a">21</option>
-												<option value="b">23</option>
-											</select><div class="am-selected am-dropdown " id="am-selected-abb2j" data-am-dropdown="">  <button type="button" class="am-selected-btn am-btn am-dropdown-toggle am-btn-default">    <span class="am-selected-status am-fl">21</span>    <i class="am-selected-icon am-icon-caret-down"></i>  </button>  <div class="am-selected-content am-dropdown-content">    <h2 class="am-selected-header"><span class="am-icon-chevron-left">返回</span></h2>       <ul class="am-selected-list">                     <li class="am-checked" data-index="0" data-group="0" data-value="a">         <span class="am-selected-text">21</span>         <i class="am-icon-check"></i></li>                                 <li class="" data-index="1" data-group="0" data-value="b">         <span class="am-selected-text">23</span>         <i class="am-icon-check"></i></li>            </ul>    <div class="am-selected-hint"></div>  </div></div>
-											<em>日</em></div>
+									
 									</div>
 							
 								</div>
-								<div class="am-form-group">
-									<label for="user-phone" class="am-form-label">电话</label>
+
+
+									<div class="refund-tip">
+
+									<label class="am-form-label" for="user-birth">店铺头像：</label>
+
+										<div class="filePic">
+											<input type="file" accept="image/*" allowexts="gif,jpeg,jpg,png,bmp" maxsize="5120" max="5" name="file" value="选择图片" class="inputPic">
+											<img alt="" src="/homes/images/image.jpg" style="width:60px;height:60px">
+										</div>
+									</div>
+							
+								<div style="height:20px;clear:both"></div>
+								<div class="am-form-group" style="clear:both;">
+									<label class="am-form-label" for="user-email">住址：</label>
 									<div class="am-form-content">
-										<input id="user-phone" placeholder="telephonenumber" type="tel">
 
-									</div>
+										<input type="text" placeholder="住址" id="user-name2"name="saddress" value="" >
+
+
+									</div>			
+
 								</div>
-								<div class="am-form-group">
-									<label for="user-email" class="am-form-label">电子邮件</label>
-									<div class="am-form-content">
-										<input id="user-email" placeholder="Email" type="email">
+						
 
-									</div>
-								</div>
-								
-								<div class="am-form-group safety">
-									<label for="user-safety" class="am-form-label">账号安全</label>
-									<div class="am-form-content safety">
-										<a href="safety.html">
 
-											<span class="am-icon-angle-right"></span>
-
-										</a>
-
-									</div>
-								</div>
-								<div class="info-btn">
-									<div class="am-btn am-btn-danger">保存修改</div>
-								</div>
-
-							</form>
 						</div>
+							
+								<div class="info-btn">
 
-					</div>
+									{{ csrf_field()}}
+
+    								{{method_field('PUT')}}
+
+									<button class="am-btn am-btn-danger">注册</button>
+								</div>
+						</form>
+									</div>
+
+
+
+
+							
 @endsection
 

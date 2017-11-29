@@ -56,13 +56,6 @@ class WalletController extends Controller
         // dd($o_code);
 
         // 获取订单号
-         // $o=orders::where(o_code);
-
-         // $code=orderinfo::where('o_code',)
-
-         // dd($user);
-
-         //dd($user);
         return view('homes.seller.wallet',["user"=>$user,"res"=>$res,"result"=>$result,"m"=>$m]);
     }
 

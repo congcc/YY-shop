@@ -17,7 +17,7 @@
 <div class="wrap-left">
 						<div class="wrap-list">
 							<div class="m-user">
-								<!--个人信息 -->
+								<!--店铺信息 -->
 								<div class="m-bg"></div>
 								<div class="m-userinfo">
 									<div class="m-baseinfo">

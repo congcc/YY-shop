@@ -32,7 +32,7 @@ class SellerMiddleware
         // }
 
          if($uid){
-            if($mm == '1'){
+            if($mm == '2'){
                return $next($request); 
             }else{
               return redirect('/home/sregister');  
