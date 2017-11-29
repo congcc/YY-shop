@@ -6,10 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\model\user;
 use DB;
 
-class BuyssController extends Controller
+class CancelledController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +17,11 @@ class BuyssController extends Controller
      */
     public function index()
     {
-        //
+        //2 已取消的订单
+        $res = DB::table('orders')->where('ostate', '5')->get();
+        $ord = DB::table('orders')->simplePaginate(10);
+
+        return view('admins.orders.cancelled.index',compact('res','ord'));
     }
 
     /**
@@ -50,16 +53,18 @@ class BuyssController extends Controller
      */
     public function show($id)
     {
-
-        $res = ['status'=>'0'];
-
-        $data = DB::table('user')->where('id',$id)->update($res);  
-
-        if($res){
-            return redirect('/admin/buyedis')->with('买家禁用');
-        } else {
-            return back();
-        }
+        //
+        $orde = DB::table('orders')->where('id',$id)->first();
+        $ordes = DB::table('ordersinfo')->where('o_code',$orde->o_code)->first();
+        $user = DB::table('user')->where('id',$orde->uid)->first();
+        $shop = DB::table('shop')->where('id',$orde->sid)->first();
+        $good = DB::table('goods')->where('id',$orde->sid)->first();
+        var_dump($orde);
+        var_dump($ordes);
+        var_dump($user);
+        var_dump($shop);
+        var_dump($good);
+        return view('admins.orders.cancelled.show',compact('orde','ordes','user','shop','good'));
     }
 
     /**
@@ -70,7 +75,7 @@ class BuyssController extends Controller
      */
     public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -82,7 +87,7 @@ class BuyssController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        //
     }
 
     /**

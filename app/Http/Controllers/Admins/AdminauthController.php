@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\model\user;
-use DB;
+use App\Http\model\admins;
 
-class BuyssController extends Controller
+
+class AdminauthController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,6 +19,9 @@ class BuyssController extends Controller
     public function index()
     {
         //
+        $admins=admins::get();
+        dd($admins);
+
     }
 
     /**
@@ -50,16 +53,7 @@ class BuyssController extends Controller
      */
     public function show($id)
     {
-
-        $res = ['status'=>'0'];
-
-        $data = DB::table('user')->where('id',$id)->update($res);  
-
-        if($res){
-            return redirect('/admin/buyedis')->with('买家禁用');
-        } else {
-            return back();
-        }
+        //
     }
 
     /**
@@ -70,7 +64,7 @@ class BuyssController extends Controller
      */
     public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -82,7 +76,7 @@ class BuyssController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        //
     }
 
     /**

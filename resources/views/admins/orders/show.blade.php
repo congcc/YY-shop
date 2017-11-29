@@ -6,7 +6,7 @@
 @section('content')
 <h3>订单详情</h3>
 <form action="" method='post'>
-    <table border='1' width='1500'>
+    <table border='1' width='1400'>
         <tr>
             <th>ID</th>
          	<th>订单号</th>
@@ -21,17 +21,19 @@
             <th>订单状态</th>
         </tr>
         <tr>
+            
             <td>{{$orde->id}}</td>
             <td>{{$orde->o_code}}</td>
             <td>{{$user->username}}</td>
-            <td>{{$good->gname}}</td>
-            <td>{{$shop->saddress}}</td>
+            <td></td>
+            <td></td>
             <td>{{$ordes->ord_time}}</td>
             <td>{{$ordes->pay_time}}</td>
             <td>{{$ordes->mat_time}}</td>
             <td>{{$ordes->complete}}</td>
             <td>{{$ordes->pay_id}}</td>
             <td>{{$ordes->ostate}}</td>
+            
         </tr>
     </table>
 </form>

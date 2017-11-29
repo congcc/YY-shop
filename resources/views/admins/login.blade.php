@@ -18,28 +18,21 @@
 
 <link rel="stylesheet" type="text/css" href="/admins/css/mws-theme.css" media="screen">
 
+
 <title>后台登录</title>
 
 </head>
 
 <body>
 
+
     <div id="mws-login-wrapper">
         <div id="mws-login">
             <h1>登录</h1>
             <div class="mws-login-lock"><i class="icon-lock"></i></div>
             <div id="mws-login-form">
-                
 
-                    @if(session('msg'))
-                        <div class="mws-form-message info">                 
-
-                            {{session('msg')}}
-
-                        </div>
-                    @endif
-
-                <form class="mws-form" action="/admin/login" method="post">
+                <form class="mws-form" action="/admin/dlogin" method="post">
                     <div class="mws-form-row">
                         <div class="mws-form-item">
                             <input type="text" name="name" id="name" class="mws-login-username required" placeholder="请输入用户名">
@@ -49,15 +42,7 @@
                         <div class="mws-form-item">
                             <input type="password" name="key" id="key" class="mws-login-password required" placeholder="请输入密码">
                         </div>
-                    </div><!-- 
-                    
-                     <div class="mws-form-row">
-                        <div class="mws-form-item">
-                            <input type="text" name="create" class="mws-login required" placeholder="请输入验证码" style='width:120px;height:35px;margin-right:20px'>
-                            <img src="/admin/create" alt=""  class="img-rounded" onclick="this.src = this.src += '?1'">
-                        </div>
                     </div>
-                     -->
                     <div class="mws-form-row">
                         {{csrf_field()}}
                         <input type="submit" id="dlog" value="登录" class="btn btn-success mws-login-button">
@@ -81,7 +66,7 @@
 
     <!-- Login Script -->
    <script src="/admins/js/core/login.js"></script>
-<!-- 
+   
     <script>
     $('#dlog').click(function(){
         var name = $('#name').val();
@@ -102,6 +87,5 @@
      });
     </script>
 
- -->
 </body>
 </html>

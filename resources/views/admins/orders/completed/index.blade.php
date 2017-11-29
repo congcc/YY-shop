@@ -87,12 +87,7 @@
                         
                         <td class=" ">
                             <span class="btn-group">
-                                <a href="/admin/orders/" class="btn btn-small"><i class="icol32-application-form-magnify"></i></a>
-                               <form action="/admin/orders/" style='display:inline' method="post">
-                                    {{csrf_field()}}
-                                    {{method_field('DELETE')}}
-                                    <button class="btn btn-small"><i class="icol32-cross"></i></button>
-                               </form>
+                                <a href="/admin/coorder/{{$v->id}}" class="btn btn-small"><i>详情</i></a>
                             </span>
                         </td>
                     </tr>

@@ -19,11 +19,10 @@ class PlorderController extends Controller
     public function index()
     {
         //
-        $phb = DB::table('orders')->where('ostate', 2)->get();
-        $del = DB::table('orders')->where('ostate', 3)->get();
-        var_dump($phb);
-        var_dump($del);
-        return view('admins.orders.progress.index',compact('phb','del'));
+        $res = DB::table('orders')->where('ostate', '3')->get();
+        $ord = DB::table('orders')->simplePaginate(10);
+
+        return view('admins.orders.progress.index',['res'=>$res,'ord'=>$ord]);
     }
 
     /**
@@ -56,11 +55,17 @@ class PlorderController extends Controller
     public function show($id)
     {
         //
-        $res = DB::table('orders')->where('id', $id)->first();
-
-        var_dump($res);
-
-        return view('admins.orders.progress.show',compact('res'));
+         $orde = DB::table('orders')->where('id',$id)->first();
+        $ordes = DB::table('ordersinfo')->where('o_code',$orde->o_code)->first();
+        $user = DB::table('user')->where('id',$orde->uid)->first();
+        $shop = DB::table('shop')->where('id',$orde->sid)->first();
+        $good = DB::table('goods')->where('sid',$orde->sid)->first();
+        var_dump($orde);
+        var_dump($ordes);
+        var_dump($user);
+        var_dump($shop);
+        var_dump($good);
+        return view('admins.orders.progress.show',compact('orde','ordes','user','shop','good'));
 
     }
 

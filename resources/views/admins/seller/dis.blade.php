@@ -89,7 +89,7 @@
                         
                     </thead>
                     <tbody role="alert" aria-live="polite" aria-relevant="all">
-                 @foreach($res as $k => $v)
+                 @foreach($req as $k => $v)
 
                     <tr class="@if($k % 2 == 0) odd @else even @endif">
                         <td class="">
@@ -109,7 +109,7 @@
                             {{$v->sauth}}
                         </td>
                         <td class=" ">
-                        <a href="/admin/seller/{{$v->id}}/edit"><button type="button" class="am-btn am-btn-default am-btn-warning"><span class="am-icon-archive"></span>开启</button></a>
+                        <a href="/admin/sellerdis/{{$v->id}}/edit"><button type="button" class="am-btn am-btn-default am-btn-warning"><span class="am-icon-archive"></span>开启</button></a>
                         </td>
                     </tr>
                 @endforeach

@@ -6,19 +6,29 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\model\user;
 use DB;
 
-class BuyssController extends Controller
+class ChecksucceedController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $res = DB::table('userinfo')->
+            where('truename','like','%'.$request->input('search').'%')->
+            orderBy('id','asc')->
+            paginate($request->input('num',10));
+
+        $req = DB::table('userinfo')->where('apply','2')->get();
+
+        $uinfo = DB::table('userinfo')->simplePaginate(10);
+
+        return view('admins.check.succeed.index',compact('res','req','uinfo','request'));
+
     }
 
     /**
@@ -50,16 +60,7 @@ class BuyssController extends Controller
      */
     public function show($id)
     {
-
-        $res = ['status'=>'0'];
-
-        $data = DB::table('user')->where('id',$id)->update($res);  
-
-        if($res){
-            return redirect('/admin/buyedis')->with('买家禁用');
-        } else {
-            return back();
-        }
+        //
     }
 
     /**
@@ -70,7 +71,7 @@ class BuyssController extends Controller
      */
     public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -82,7 +83,7 @@ class BuyssController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        //
     }
 
     /**

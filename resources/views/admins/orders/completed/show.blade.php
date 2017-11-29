@@ -22,11 +22,10 @@
                      
         </tr>
         <tr>
-
             <td>{{$orde->id}}</td>
             <td>{{$orde->o_code}}</td>
             <td>{{$user->username}}</td>
-            <td>{{$good->gname}}</td>
+            <td></td>
             <td>{{$shop->saddress}}</td>
             <td>{{$ordes->ord_time}}</td>
             <td>{{$ordes->pay_time}}</td>

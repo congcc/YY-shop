@@ -105,19 +105,22 @@
                             {{$v->last_time}}
                         </td>
                         <td class=" ">
-                            <button class='btn btn-info'>
+
+                       
+                       
+                            <button class='btn btn-info'id="qq">
                                 {{$v->auth ? '开启' : '关闭'}}
                             </button>
                         </td>
                         <td class=" ">
                             <span class="btn-group">
-                                <a href="/admin/user/{{$v->id}}" class="btn btn-small"><i class="icol32-application-form-magnify"></i></a>
-                                <a href="/admin/user/{{$v->id}}/edit" class="btn btn-small"><i class="icol32-application-form-edit"></i></a>
+                                <a href="/admin/user/{{$v->id}}" class="btn btn-small"><i>详情</i></a>
+                                <a href="/admin/user/{{$v->id}}/edit" class="btn btn-small"><i>修改</i></a>
                                 
-                                <form action="/admin/user/{{$v->id}}" method='post' style='display:inline' method="post">
+                                <form action="/admin/user/{{$v->id}}" onclick="return confirm('您确定要删除吗?')" method='post' style='display:inline' method="post">
                                     {{csrf_field()}}
                                     {{method_field('DELETE')}}
-                                    <button class="btn btn-small"><i class="icol32-cross"></i></button>
+                                    <button class="btn btn-small"><i>删除</i></button>
                                </form>
                             </span>
                         </td>
@@ -134,8 +137,12 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
 
-
-
+        $('#qq').click(function(){
+                            
+                             
+             })
+            </script>
 
 @endsection

@@ -1,6 +1,6 @@
 @extends('admins.layout.admins')
 
-@section('title','订单列表')
+@section('title','代发货的订单列表')
 
 @section('content')
 <div class="mws-panel grid_8 mws-collapsible">
@@ -8,7 +8,7 @@
         <span>
             <i class="icon-table">
             </i>
-            订单列表
+            代发货的订单列表
         </span>
         <div class="mws-collapse-button mws-inset">
             <span>
@@ -87,7 +87,7 @@
                                 
                                 <td class=" ">
                                     <span class="btn-group">
-                                        <a href="/admin/plorder/{{$v->id}}" class="btn btn-small"><i>详情</i></a>
+                                        <a href="/admin/shipping/{{$v->id}}" class="btn btn-small"><i>详情</i></a>
                                     </span>
                                 </td>
                             </tr>

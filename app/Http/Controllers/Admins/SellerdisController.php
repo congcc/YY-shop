@@ -21,8 +21,11 @@ class SellerdisController extends Controller
     {
         //
         $res = shop::all();
+        $req = DB::table('shop')->where('sauth', '0')->get();
+        $shops = DB::table('shop')->simplePaginate(10);
+
         
-        return view('admins.seller.dis',['res'=>$res]);
+        return view('admins.seller.dis',compact('res','req','shops'));
 /*        var_dump($request);die();
         $res = DB::table('shop')->
             where('sname','like','%'.$request->input('search').'%')->
@@ -60,7 +63,16 @@ class SellerdisController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $res = ['sauth'=>'0'];
+
+        $data = DB::table('shop')->where('id',$id)->update($res);  
+
+        if($res){
+            return redirect('/admin/sellerdis')->with('卖家禁用');
+        } else {
+            return back();
+        }
     }
 
     /**
@@ -72,6 +84,17 @@ class SellerdisController extends Controller
     public function edit($id)
     {
         //
+        var_dump($id);
+
+        $res = ['sauth'=>'1'];
+
+        $data = DB::table('shop')->where('id',$id)->update($res);  
+
+        if($res){
+            return redirect('/admin/seller')->with('卖家开启');
+        } else {
+            return back();
+        }
     }
 
     /**

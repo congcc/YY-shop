@@ -18,32 +18,38 @@
     <div class="mws-panel-inner-wrap">
         <div class="mws-panel-body no-padding">
             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper" role="grid">
-                <div id="DataTables_Table_0_length" class="dataTables_length">
+                <form action='/admin/orders' method='get'>
+                <div id="DataTables_Table_1_length" class="dataTables_length">
                     <label>
                         显示
-                        <select size="1" name="DataTables_Table_0_length" aria-controls="DataTables_Table_0">
-                            <option value="10" selected="selected">
+                        <select name="num" size="1" aria-controls="DataTables_Table_1">
+                            <option value="10" @if(isset($_GET[ 'num']) ? $_GET[ 'num'] : '10') selected="selected"
+                            @endif>
                                 10
                             </option>
-                            <option value="25">
-                                25
+                            25 {{--
+                            <option value="25" @if($request->
+                                num == '25') selected="selected" @endif>
                             </option>
-                            <option value="50">
+                            --}} {{--
+                            <option value="50" @if($_GET[ 'num']=='50' ) selected="selected" @endif>
                                 50
                             </option>
-                            <option value="100">
-                                100
-                            </option>
+                            --}}
                         </select>
-                        条信息
+                        条数据
                     </label>
                 </div>
-                <div class="dataTables_filter" id="DataTables_Table_0_filter">
+                <div class="dataTables_filter" id="DataTables_Table_1_filter">
                     <label>
-                        Search:
-                        <input type="text" aria-controls="DataTables_Table_0">
+                        关键字:
+                        <input type="text" name='search' aria-controls="DataTables_Table_1" value="{{isset($_GET['search']) ? $_GET['search'] : '' }}">
                     </label>
+                    <button class='btn btn-danger'>
+                        搜索
+                    </button>
                 </div>
+            </form>
                 <table class="mws-table mws-datatable dataTable" id="DataTables_Table_0"
                 aria-describedby="DataTables_Table_0_info">
                     <thead>
@@ -73,32 +79,25 @@
 
                     </thead>
                     <tbody role="alert" aria-live="polite" aria-relevant="all">
-
-                     @foreach($res as $k => $v)
+                 @foreach($req as $k => $v)
                     <tr class="">
                         <td class="">
-                            {{$v->id}}
+                        {{$v->id}}
                         </td>
                         <td class=" ">
-                            {{$v->o_code}}
+                        {{$v->o_code}}
                         </td>
                         <td class=" ">
-                            {{$v->ostate}}
+                        {{$v->ostate}}
                         </td>
                         
                         <td class=" ">
                             <span class="btn-group">
-                                <a href="/admin/orders/{{$v->id}}" class="btn btn-small"><i class="icol32-application-form-magnify"></i></a>
-                               <form action="/admin/orders/{{$v->o_code}}" style='display:inline' method="post">
-                                    {{csrf_field()}}
-                                    {{method_field('DELETE')}}
-                                    <button class="btn btn-small"><i class="icol32-cross"></i></button>
-                               </form>
+                                <a href="/admin/orders/{{$v->id}}" class="btn btn-small"><i>详情</i></a>
                             </span>
                         </td>
                     </tr>
-                   @endforeach
-
+                @endforeach
                     </tbody>
                 </table>
                 

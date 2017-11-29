@@ -20,20 +20,18 @@ class OrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $res = orders::all();
-        return view('admins.orders.index',['res'=>$res]);
+        $res = DB::table('orders')->
+            where('o_code','like','%'.$request->input('search').'%')->
+            orderBy('id','asc')->
+            paginate($request->input('num',10));
+        $req = DB::table('orders')->where('ostate', '0')->get();
 
-        
-    //    $id = orders::select('uid')->first();
+        $ord = DB::table('orders')->simplePaginate(10);
 
-        $res = user::all();
-        
-
-        return view('admins/ding',['res'=>$res]);
-
+        return view('admins.orders.index',compact('res','req','ord','request'));
     }
 
     /**

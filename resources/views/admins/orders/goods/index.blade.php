@@ -87,7 +87,7 @@
                                 
                                 <td class=" ">
                                     <span class="btn-group">
-                                        <a href="/admin/plorder/{{$v->id}}" class="btn btn-small"><i>详情</i></a>
+                                        <a href="/admin/dinggoods/{{$v->id}}" class="btn btn-small"><i>详情</i></a>
                                     </span>
                                 </td>
                             </tr>

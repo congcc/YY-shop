@@ -9,12 +9,12 @@
         <span>
             <i class="icon-table">
             </i>
-            商品审核中列表
+            商品通过列表
         </span>
     </div>
     <div class="mws-panel-body no-padding">
         <div role="grid" class="dataTables_wrapper" id="DataTables_Table_1_wrapper">
-            <form action='/admin/succeed' method='get'>
+            <form action='/admin/user' method='get'>
                 <div id="DataTables_Table_1_length" class="dataTables_length">
                     <label>
                         显示
@@ -88,6 +88,7 @@
                     </tr>
                 </thead>
                 <tbody role="alert" aria-live="polite" aria-relevant="all">
+                @
                @foreach($res as $k => $v)
                     <tr class="">
                         <td class="">
@@ -110,13 +111,7 @@
                         </td>
                         <td class=" ">
                             <span class="btn-group">
-                                <a href="/admin/goods/{{$v->id}}" class="btn btn-small"><i>详情</i></a>
-                                <form action="/admin/goods/{{$v->id}}" onclick="return confirm('您确定要通过申请吗?')" method='post' style='display:inline' method="post">
-                                    {{csrf_field()}}
-                                    {{method_field('DELETE')}}
-                                    <button class="btn btn-small"><i>通过</i></button>
-                               </form>
-                                <a href="/admin/goods/{{$v->id}}/edit" class="btn btn-small" onclick="return confirm('您确定要不通过申请吗?')" ><i>不通过</i></a>
+                                <a href="/admin/succeed/{{$v->id}}" class="btn btn-small"><i>详情</i></a>
                             </span>
                         </td>
                     </tr>

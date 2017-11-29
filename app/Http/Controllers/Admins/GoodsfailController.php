@@ -6,19 +6,23 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\model\user;
 use DB;
 
-class BuyssController extends Controller
+class GoodsfailController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $res = DB::table('goods')->where('gstate','0')->get();
+
+        $good = DB::table('goods')->simplePaginate(10);
+
+        return view('admins.goods.fail.index',compact('res','good','request'));
     }
 
     /**
@@ -50,16 +54,14 @@ class BuyssController extends Controller
      */
     public function show($id)
     {
+        //
+        $res = DB::table('goods')->where('id',$id)->first();
 
-        $res = ['status'=>'0'];
+        $shop = DB::table('shop')->where('id',$res->sid)->first();
 
-        $data = DB::table('user')->where('id',$id)->update($res);  
+        $gc = DB::table('goodscate')->where('pid',$res->clid)->first();
 
-        if($res){
-            return redirect('/admin/buyedis')->with('买家禁用');
-        } else {
-            return back();
-        }
+         return view('admins.goods.fail.show',compact('res','shop','gc'));
     }
 
     /**
@@ -70,7 +72,7 @@ class BuyssController extends Controller
      */
     public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -82,7 +84,7 @@ class BuyssController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        //
     }
 
     /**

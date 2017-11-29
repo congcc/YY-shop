@@ -18,32 +18,38 @@
     <div class="mws-panel-inner-wrap">
         <div class="mws-panel-body no-padding">
             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper" role="grid">
-                <div id="DataTables_Table_0_length" class="dataTables_length">
-                    <label>
-                        显示
-                        <select size="1" name="DataTables_Table_0_length" aria-controls="DataTables_Table_0">
-                            <option value="10" selected="selected">
-                                10
-                            </option>
-                            <option value="25">
-                                25
-                            </option>
-                            <option value="50">
-                                50
-                            </option>
-                            <option value="100">
-                                100
-                            </option>
-                        </select>
-                        条信息
-                    </label>
-                </div>
-                <div class="dataTables_filter" id="DataTables_Table_0_filter">
-                    <label>
-                        Search:
-                        <input type="text" aria-controls="DataTables_Table_0">
-                    </label>
-                </div>
+                <form action='/admin/buyedis' method='get'>
+                    <div id="DataTables_Table_1_length" class="dataTables_length">
+                        <label>
+                            显示
+                            <select name="num" size="1" aria-controls="DataTables_Table_1">
+                                <option value="10" @if(isset($_GET[ 'num']) ? $_GET[ 'num'] : '10') selected="selected"
+                                @endif>
+                                    10
+                                </option>
+                                25 {{--
+                                <option value="25" @if($request->
+                                    num == '25') selected="selected" @endif>
+                                </option>
+                                --}} {{--
+                                <option value="50" @if($_GET[ 'num']=='50' ) selected="selected" @endif>
+                                    50
+                                </option>
+                                --}}
+                            </select>
+                            条数据
+                        </label>
+                    </div>
+                    <div class="dataTables_filter" id="DataTables_Table_1_filter">
+                        <label>
+                            关键字:
+                            <input type="text" name='search' aria-controls="DataTables_Table_1" value="{{isset($_GET['search']) ? $_GET['search'] : '' }}">
+                        </label>
+                        <button class='btn btn-danger'>
+                            搜索
+                        </button>
+                    </div>
+            </form>
                 <table class="mws-table mws-datatable dataTable" id="DataTables_Table_0"
                 aria-describedby="DataTables_Table_0_info">
                     <thead>
@@ -79,7 +85,7 @@
                     </thead>
                     <tbody role="alert" aria-live="polite" aria-relevant="all">
 
- 				@foreach($res as $k => $v)
+ 				@foreach($req as $k => $v)
                     <tr class="@if($k % 2 == 0) odd @else even @endif">
                         <td class="">
                             {{$v->id}}
@@ -91,10 +97,10 @@
                             {{$v->phone}}
                         </td>
                         <td class=" ">
-                            {{$v->auth ? '关闭' : '开启'}}
+                            {{$v->status ? '开启' : '关闭'}}
                         </td>
                         <td class=" ">
-                        <a href="/admin/buys/{{$v->id}}/edit"><button type="button" class="am-btn am-btn-default am-btn-warning"><span class="am-icon-archive"></span>开启</button></a>
+                        <a href="/admin/buyedis/{{$v->id}}"><button type="button" class="am-btn am-btn-default am-btn-warning"><span class="am-icon-archive"></span>开启</button></a>
                         </td>
                     </tr>
                 @endforeach

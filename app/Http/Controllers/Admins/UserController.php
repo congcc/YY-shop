@@ -25,7 +25,12 @@ class UserController extends Controller
             where('name','like','%'.$request->input('search').'%')->
             orderBy('id','asc')->
             paginate($request->input('num',10));
-        return view('admins.user.index',['res'=>$res,'request'=>$request]);
+             $admins=admins::get();
+        // dd($admins);
+             //获取权限
+        $users = DB::table('admins')->simplePaginate(10);
+        
+        return view('admins.user.index',['res'=>$res,'request'=>$request,'users'=>$users]);
     }
 
     /**

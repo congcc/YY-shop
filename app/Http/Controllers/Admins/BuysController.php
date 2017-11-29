@@ -19,12 +19,19 @@ class BuysController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $res = user::all();
+        // $res = user::all();
+        $res = DB::table('user')->
+            where('username','like','%'.$request->input('search').'%')->
+            orderBy('id','asc')->
+            paginate($request->input('num',10));
+        $req = DB::table('user')->where('status', '1')->get();
+        $users = DB::table('user')->simplePaginate(10);
 
-        return view('admins.buys.index',['res'=>$res]);
+
+        return view('admins.buys.index',compact('res','req','request','users'));
     }
 
     /**

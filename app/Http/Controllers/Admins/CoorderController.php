@@ -17,9 +17,11 @@ class CoorderController extends Controller
      */
     public function index()
     {
-        //
+        //4 已完成的订单
         $res = DB::table('orders')->where('ostate', '4')->get();
-        return view('admins.orders.completed.index',compact('res'));
+        $ord = DB::table('orders')->simplePaginate(10);
+
+        return view('admins.orders.completed.index',compact('res','ord'));
     }
 
     /**
@@ -52,6 +54,17 @@ class CoorderController extends Controller
     public function show($id)
     {
         //
+        $orde = DB::table('orders')->where('id',$id)->first();
+        $ordes = DB::table('ordersinfo')->where('o_code',$orde->o_code)->first();
+        $user = DB::table('user')->where('id',$orde->uid)->first();
+        $shop = DB::table('shop')->where('id',$orde->sid)->first();
+        $good = DB::table('goods')->where('sid',$orde->sid)->first();
+        var_dump($orde);
+        var_dump($ordes);
+        var_dump($user);
+        var_dump($shop);
+        var_dump($good);
+        return view('admins.orders.completed.show',compact('orde','ordes','user','shop','good'));
     }
 
     /**

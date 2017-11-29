@@ -21,10 +21,13 @@ class SellerController extends Controller
         //
         // $res = shop::all();
         $res = DB::table('shop')->
-            where('uid','like','%'.$request->input('sname').'%')->
+            where('sname','like','%'.$request->input('search').'%')->
             orderBy('id','asc')->
             paginate($request->input('num',10));
-        return view('admins.seller.index',['res'=>$res]);
+        $req = DB::table('shop')->where('sauth', '1')->get();
+        $shops = DB::table('shop')->simplePaginate(10);
+
+        return view('admins.seller.index',compact('res','req','request','shops'));
     }
 
     /**

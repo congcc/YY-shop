@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\model\admin;
 
 class LoginsController extends Controller
 {
@@ -37,7 +38,18 @@ class LoginsController extends Controller
      */
     public function store(Request $request)
     {
-    
+        $req = $request->except('_token');
+
+        $res = admins::where('name',$req['name'])->get();
+        var_dump($res);
+        die();
+
+        if (Hash::check($req['key'], $res[0]->key)) {
+           session(['userid'=>$res[0]->id,'utype'=>$res[0]->utype]);
+
+           echo "1"; 
+        }
+
     }
 
     /**

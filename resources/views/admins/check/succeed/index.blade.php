@@ -1,26 +1,19 @@
 @extends('admins.layout.admins')
 
-@section('title','卖家列表')
+@section('title','管理员列表')
 
 @section('content')
-
-
-<div class="mws-panel grid_8 mws-collapsible">
+<div class="mws-panel grid_8">
     <div class="mws-panel-header">
         <span>
             <i class="icon-table">
             </i>
-            卖家列表
+            管理员列表
         </span>
-        <div class="mws-collapse-button mws-inset">
-            <span>
-            </span>
-        </div>
     </div>
-    <div class="mws-panel-inner-wrap">
-        <div class="mws-panel-body no-padding">
-            <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper" role="grid">
-                <form action='/admin/seller' method='get'>
+    <div class="mws-panel-body no-padding">
+        <div role="grid" class="dataTables_wrapper" id="DataTables_Table_1_wrapper">
+            <form action='/admin/user' method='get'>
                 <div id="DataTables_Table_1_length" class="dataTables_length">
                     <label>
                         显示
@@ -52,127 +45,93 @@
                     </button>
                 </div>
             </form>
-                <table class="mws-table mws-datatable dataTable" id="DataTables_Table_0"
-                aria-describedby="DataTables_Table_0_info">
-                    <thead>
-                        <tr role="row">
+            <table class="mws-datatable-fn mws-table dataTable" id="DataTables_Table_1"
+            aria-describedby="DataTables_Table_1_info">
+                <thead>
+                     <tr role="row">
                             <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                             rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
-                            style="width: 60px;">
+                            style="width: 128px;">
                                 ID
                             </th>
                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                             rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending"
-                            style="width: 120px;">
-                               店铺名称
+                            style="width: 173px;">
+                               昵称
                             </th>
                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                             rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"
-                            style="width: 120px;">
-                                店铺类型
+                            style="width: 158px;">
+                                真实名称
                             </th>
                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                             rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"
-                            style="width: 80px;">
-                                积分
+                            style="width: 158px;">
+                                头像
                             </th>
                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                             rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
                             style="width: 80px;">
-                                店铺图片                            
-                            </th>
-                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                            rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                            style="width: 150px;">
-                                商户地址                            
+                                性别
                             </th>
                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                             rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
                             style="width: 80px;">
-                                商户状态
-                            </th>
-                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                            rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"
-                            style="width: 80px;">
-                                店铺资金
+                                状态
                             </th>
                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                             rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                            style="width: 90px;">
+                            style="width: 80px;">
                                 操作
                             </th>
-                        
-                    </thead>
-                    <tbody role="alert" aria-live="polite" aria-relevant="all">
-                 @foreach($req as $k => $v)
-
+                        </tr>
+                </thead>
+                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                     @foreach($req as $k => $v)
                     <tr class="@if($k % 2 == 0) odd @else even @endif">
                         <td class="">
-                            {{$v->id}}
+                        {{$v->id}}
                         </td>
                         <td class=" ">
-                            {{$v->sname}}
+                            {{$v->nickname}}
                         </td>
                         <td class=" ">
-                            {{$v->stype}}
+                            {{$v->truename}}
+                        </td>
+                        <td>
+                            <img src="{{$v->user_pic}}" alt="" style="width: 150px;height: 80px;">
+                        </td>
+                        
+                        <td class=" ">
+                            {{$v->sex ? '女': '男'}}
                         </td>
                         <td class=" ">
-                            {{$v->sclass}}
-                        </td>
-
-                        <td class=" ">
-                            <img src="{{$v->simg}}" alt="" >
-                        </td>
-
-                        <td class=" ">
-                            {{$v->saddress}}
-                        </td>
-
-                        <td class=" ">
-                            <a href="/admin/sellerdis/{{$v->id}}">
-                                <button id="auth">
-                                    {{$v->sauth ? '关闭' : '开启'}}
-                                    {{method_field('PUT')}}
-                                </button>
-                            </a>
-                        </td>
-                        <td class=" ">
-                            {{$v->swallet}}
+                            {{$v->apply}}
                         </td>
                         <td class=" ">
                             <span class="btn-group">
-                                <a href="/admin/seller/{{$v->id}}" class="btn btn-small"><i>详情</i></a>
-                                <a href="/admin/seller/{{$v->id}}/edit" class="btn btn-small"><i>修改</i></a>
-                               <form action="/admin/seller/{{$v->id}}" onclick="return confirm('您确定要删除吗?')" method='post' style='display:inline' method="post">
-                                    {{csrf_field()}}
-                                    {{method_field('DELETE')}}
-                                    <button class="btn btn-small"><i>删除</i></button>
-                               </form>
+                                <a href="/admin/check/{{$v->id}}" class="btn btn-small"><i>详情</i></a>
                             </span>
                         </td>
                     </tr>
-                @endforeach
-
-                    </tbody>
-                </table>
-                
-                <div class="dataTables_info" id="DataTables_Table_0_info">
-                    Showing 1 to 10 of 20 entries
-                </div>
-                <div class="dataTables_paginate paging_two_button" id="DataTables_Table_0_paginate">
-                    <a class="paginate_disabled_previous" tabindex="0" role="button" id="DataTables_Table_0_previous"
-                    aria-controls="DataTables_Table_0">
-                        Previous
-                    </a>
-                    <a class="paginate_enabled_next" tabindex="0" role="button" id="DataTables_Table_0_next"
-                    aria-controls="DataTables_Table_0">
-                        Next
-                    </a>
-                </div>
+                    @endforeach
+                </tbody>
+            </table>
+            <div class="dataTables_info" id="DataTables_Table_1_info">
+                Showing 1 to 10 of 57 entries
+            </div>
+            <div class="dataTables_paginate paging_full_numbers">
+                {!! $res->appends($request->all())->render()!!}
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
 
+        $('#qq').click(function(){
+                            
+                             
+             })
+            </script>
 
 @endsection
