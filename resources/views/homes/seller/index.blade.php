@@ -15,6 +15,7 @@
 
 @section('content')
 <!--收藏夹 -->
+<a target=blank href=http://wpa.qq.com/msgrd?V=3&uin=2403287971&Site=QQ客服&Menu=yes><img border="0" SRC=http://wpa.qq.com/pa?p=1:2403287971:3 alt="点击这里给我发消息"></a>
 							<div class="you-like">
 								<div class="s-bar">我的商品
 									<a class="am-badge am-badge-danger am-round">降价</a>

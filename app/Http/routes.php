@@ -119,6 +119,9 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		
 		//订单管理
 		Route::resource('orderedit','OrdereditController');
+
+		//订单详情
+		Route::resource('ordersinfo','OrderinfoController');
 		
 		//退货管理
 		Route::resource('orderback','OrderbackController');

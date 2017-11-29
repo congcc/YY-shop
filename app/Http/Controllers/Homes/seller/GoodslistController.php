@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Http\model\test;
+use App\Http\model\goods;
+use App\Http\model\shop;
+use App\Http\model\gdetails;
 
 class GoodslistController extends Controller
 {
@@ -18,16 +20,37 @@ class GoodslistController extends Controller
      */
     public function index()
     {
-        //
-          // return view('homes.seller.goodslist');
+        $uid=session('userid');
 
-          // $res = DB::table('test');
-        $re=test::all();
+        //获取sid
+        $res=shop::where('uid',$uid)->get();
+        $sid=$res['0']->id;
 
-          // dd($res);
-      
+        //获取goods表里的商品
+        $goods=goods::where('sid',$sid)->get();
+
+        //获取gprices里
+        $prices=array();
+        foreach ($goods as $key => $value) {
+            if($value->gprices){
+                $mm=json_decode($value->gprices,true);
+                array_push($prices,$mm);
+            }
             
-        return view('homes.seller.goodslist',['ress'=>$re]);
+        }
+
+        //定义一个数组来接收$goods里gid=$goods里的id的东西
+        $arr=array();
+        foreach ($goods as $key => $value) {
+
+           $gd=gdetails::where('gid',$value->id)->first();
+           
+            if($gd){
+                array_push($arr, $gd);
+            }
+        }
+
+        return view('homes/seller/goodslist',compact('goods','arr','prices'));
 
 
     }
@@ -74,12 +97,21 @@ class GoodslistController extends Controller
     public function edit($id)
     {
         //
+        $update = ['gstatus'=>'0'];
+        $upres=goods::where('id',$id)->update($update);
 
+        if($upres){
+
+            return redirect('/home/seller/goodslist')->with('修改成功');
+        } else {
+
+            return back();
+        }
         //修改
-        $fres=test::find($id);
+        // $fres=test::find($id);
 
         // dd($fres);
-        return view('homes.seller.goodslistedit',['mo'=>$fres]);
+        // return view('homes.seller.goodslistedit',['mo'=>$fres]);
     }
 
     /**
@@ -96,11 +128,11 @@ class GoodslistController extends Controller
         // dd($id);
         // dd($request);
 
-        $update=$request->except('_token','_method');
+        // $update=$request->except('_token','_method');
          // $res = $request->except('_token','_method');
         // dd($update);
-
-        $upres=test::where('id',$id)->update($update);
+        $update = ['gstatus'=>'1'];
+        $upres=goods::where('id',$id)->update($update);
 
         if($upres){
 
@@ -122,12 +154,12 @@ class GoodslistController extends Controller
     public function destroy($id)
     {
         //
-        $res=test::where('id',$id)->first();
+        $res=goods::where('id',$id)->first();
 
         // dd($res);
 
         if($res){
-            $info=test::where('id',$id)->delete();
+            $info=goods::where('id',$id)->delete();
             if($info){
                 return redirect('/home/seller/goodslist');
             }else{

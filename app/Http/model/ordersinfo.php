@@ -14,4 +14,8 @@ class ordersinfo extends Model
     public function oraddress(){
         return $this->hasOne('App\Http\model\address', 'id', 'o_addr');
     }
+    
+    public function shop(){
+        return $this->hasOne('App\Http\model\shop','id', 'sid');
+    }
 }

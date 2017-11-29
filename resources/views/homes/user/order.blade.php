@@ -77,7 +77,10 @@
 												<div class="order-title">
 													<div class="dd-num">订单编号：<a href="/homes/javascript:;">{{$k}}</a></div>
 													<span>订单时间：{{date("Y-m-d",$v[0]->ord_time)}}</span>
+													
+													<div style="float:right"><a target=blank href=http://wpa.qq.com/msgrd?V=3&uin=2403287971&Site=QQ客服&Menu=yes><img border="0"  style="height:30px;width:80px;" SRC=http://wpa.qq.com/pa?p=1:2403287971:3 alt="点击这里给我发消息"></a></div>
 													<!--    <em>店铺：小桔灯</em>-->
+													
 												</div>
 												<div class="order-content">
 													<div class="order-left">

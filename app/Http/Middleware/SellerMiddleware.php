@@ -19,7 +19,7 @@ class SellerMiddleware
     {
         
          $uid = session('userid');
-         // $uid = 2;
+         // dd($uid);
          $utype =user::find($uid);
          $mm = $utype['utype'];
          // dd($utype);
@@ -32,7 +32,7 @@ class SellerMiddleware
         // }
 
          if($uid){
-            if($mm == '1'){
+            if($mm == '2'){
                return $next($request); 
             }else{
               return redirect('/home/sregister');  

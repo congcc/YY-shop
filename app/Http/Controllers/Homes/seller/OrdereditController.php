@@ -11,6 +11,7 @@ use App\Http\model\shop;
 
 use App\Http\model\ordersinfo;
 use App\Http\model\orders;
+use DB;
 
 class OrdereditController extends Controller
 {
@@ -204,5 +205,22 @@ class OrdereditController extends Controller
     public function destroy($id)
     {
         //
+
+         DB::beginTransaction();         //开启事务
+
+        //在orders表中删除订单
+        $regres = DB::delete("delete from orders where o_code=".$id);
+        
+        //在ordersinfo表中删除订单
+        $regress = DB::delete("delete from ordersinfo where o_code=".$id);
+
+        //判断是否都删除成功
+        if($regres && $regress){
+            DB::commit();           //成功执行
+            return redirect('home/seller/orderedit');
+        } else { 
+            DB::rollback();         //失败回滚
+            return back();
+        }
     }
 }

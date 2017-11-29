@@ -8,5 +8,5 @@ class goods extends Model
 {
     //
     public $table = "goods";
-
+    public $timestamps = false;
 }

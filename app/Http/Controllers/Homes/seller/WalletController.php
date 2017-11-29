@@ -47,7 +47,7 @@ class WalletController extends Controller
             //
             $m[$code] =  $result;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
         }
-// 
+ 
         // dd($result);
         // dd($m);
          // dd($res);
@@ -63,7 +63,7 @@ class WalletController extends Controller
          // dd($user);
 
          //dd($user);
-        return view('homes.seller.wallet',["user"=>$user,"res"=>$res,"result"=>$result,"m"=>$m]);
+        return view('homes.seller.wallet',["user"=>$user,"res"=>$res,"m"=>$m]);
     }
 
     /**

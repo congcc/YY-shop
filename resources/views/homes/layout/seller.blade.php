@@ -13,7 +13,9 @@
 		<link href="/homes/css/personal.css" rel="stylesheet" type="text/css">
 		<link href="/homes/css/systyle.css" rel="stylesheet" type="text/css">
 		<script src="/homes/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
-		
+		<script src="/homes/js/validate.js"></script>
+		<script src="/homes/layer/layer.js"></script>
+
 		@section('head')
 
 		@show
