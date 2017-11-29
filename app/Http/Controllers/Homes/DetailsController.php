@@ -17,9 +17,13 @@ class DetailsController extends Controller
      */
     public function index()
     {   
-        $res = goods::where('id',6)->get();
+        $res = goods::where('id',11)->get();
 
-        return view('homes.shop.details',compact('res'));
+        $gdpics = $res[0]->gdpic;
+
+        $gdpic = explode(',', $gdpics);
+
+        return view('homes.shop.details',compact('res','gdpic'));
     }
 
     /**
@@ -55,7 +59,7 @@ class DetailsController extends Controller
         $inds = $request->input('inds');
 
         //查询该商品的信息
-        $res = goods::where('id',6)->get();
+        $res = goods::where('id',11)->get();
 
         //获取对应价格
         $gprices = number_format(json_decode($res[0]->gprices,true)[$inds],2);

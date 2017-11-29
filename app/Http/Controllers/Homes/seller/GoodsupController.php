@@ -76,17 +76,15 @@ class GoodsupController extends Controller
 
         $pricesjson = json_encode($prices);
 
-        $sid = 1;
-        $clid = 100000;
+        $sid = session('userid');
+        $clid = $res['clid'];
+        $gname = $res['gname'];
+        $gimg = $res['gimg'];
+        $gdpic = $res['gdpic'];
+        $gprice = $res['gprice'];
+        $gcontent = $res['gdcont'];
 
-
-        $gname = '';
-        $gimg = '/uploads/goodspic/g1.jpg';
-        $gprice = 10;
-        $gstate = 2;
-        $gstatus = 1;
-
-        $bool = goods::insert(['sid'=>$sid,'clid'=>$clid,'gname'=>$gname,'gimg'=>$gimg,'gprice'=>$gprice,'gstate'=>$gstate,'gstatus'=>$gstatus,'label'=>$catesjson,'gprices'=>$pricesjson]);
+        $bool = goods::insert(['sid'=>$sid,'clid'=>$clid,'gname'=>$gname,'gimg'=>$gimg,'gprice'=>$gprice,'label'=>$catesjson,'gprices'=>$pricesjson,'gcontent'=>$gcontent,'gdpic'=>$gdpic]);
 
 
         if($bool){
@@ -94,7 +92,6 @@ class GoodsupController extends Controller
         }else{
             echo 0;
         }
-
 
 
     }
