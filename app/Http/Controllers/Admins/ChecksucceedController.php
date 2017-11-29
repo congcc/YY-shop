@@ -1,23 +1,34 @@
 <?php
 
-namespace App\Http\Controllers\Homes\seller;
+namespace App\Http\Controllers\Admins;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use DB;
 
-class ShopController extends Controller
+class ChecksucceedController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        return view('homes.seller.shop');
+        $res = DB::table('userinfo')->
+            where('truename','like','%'.$request->input('search').'%')->
+            orderBy('id','asc')->
+            paginate($request->input('num',10));
+
+        $req = DB::table('userinfo')->where('apply','2')->get();
+
+        $uinfo = DB::table('userinfo')->simplePaginate(10);
+
+        return view('admins.check.succeed.index',compact('res','req','uinfo','request'));
+
     }
 
     /**

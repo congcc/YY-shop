@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\model\orders;
+use App\Http\model\ordersinfo;
+use App\Http\model\shop;
+
+
 
 class WalletController extends Controller
 {
@@ -16,8 +21,49 @@ class WalletController extends Controller
      */
     public function index()
     {
-        //
-        return view('homes.seller.wallet');
+        //session中获取user表中 userid
+       $id=(session('userid'));
+
+       //获取shop表中uid=$id  获取登录用户的店铺的所有订单
+       $user=shop::where('uid',$id)->first();
+
+       //获取店铺id
+       $sid=$user['id'];
+       // dd($su);
+
+       // dd($user);
+         //获取店家所有订单
+        $res=orders::where('sid',$sid)->get();
+
+        
+        //定义空数组
+        $m=array();
+        foreach ($res as $key => $value) {
+            //获取订单号
+            $code= $value['o_code'];
+
+            //获取订单详情表中order关联的订单单号
+            $result = ordersinfo::where('o_code',$code)->get();
+            //
+            $m[$code] =  $result;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+        }
+// 
+        // dd($result);
+        // dd($m);
+         // dd($res);
+        
+        
+        // dd($o_code);
+
+        // 获取订单号
+         // $o=orders::where(o_code);
+
+         // $code=orderinfo::where('o_code',)
+
+         // dd($user);
+
+         //dd($user);
+        return view('homes.seller.wallet',["user"=>$user,"res"=>$res,"result"=>$result,"m"=>$m]);
     }
 
     /**

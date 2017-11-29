@@ -4,7 +4,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
-
+		<meta name="_token" content="{{ csrf_token() }}"/>
+		
 		<title>@yield('title')</title>
 		<link href="/homes/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
 		<link href="/homes/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
@@ -12,6 +13,10 @@
 		<link href="/homes/css/systyle.css" rel="stylesheet" type="text/css">
 		<script src="/homes/js/validate.js"></script>
 		<script src="/homes/layer/layer.js"></script>
+		<script src="/homes/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
+		
+		
+
 
 		
 		@section('head')

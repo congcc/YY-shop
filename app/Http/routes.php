@@ -20,12 +20,9 @@
 Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 
 	//首页
-	Route::get('index', function () {
-		return view('homes.index');
-	});
-	Route::get('/', function () {
-		return view('homes.index');
-	});
+	
+	Route::resource('index', 'IndexController');
+	Route::resource('/', 'IndexController');
 
 	//前台登录
 
@@ -35,8 +32,13 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 	//注册
 	Route::resource('register', 'RegController');
 	Route::post('co', 'VerificationController@co');//发送验证码
-	Route::get('cos', 'VerificationController@cos');//验证验证码
-	Route::get('ph','VerificationController@ph');//验证手机号
+	Route::post('cos', 'VerificationController@cos');//验证验证码
+	Route::post('ph','VerificationController@ph');//验证手机号
+
+
+	//商家注册页面(用户注册成商家)
+	Route::resource('sregister','SregController');
+
 
 
 	//商品搜索页
@@ -56,12 +58,26 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		Route::resource('userinfo', 'UserinfoController');
 		//用户账户安全
 		Route::resource('usersafe', 'UsersafeController');
-		Route::resource('pass', 'PassController');
-		Route::resource('paypass', 'PaypassController');
+		Route::resource('pass', 'PassController');//修改密码
+		Route::resource('paypass', 'PaypassController');//支付密码
+		Route::post('ajaxpaypass', 'AjaxpaypassController@store')->where('id', '[0-9]+');
+		Route::resource('bindph', 'BindphController');//换手机号
+		Route::resource('email', 'EmailController');//邮箱认证
+		Route::resource('idcard', 'IdcardController');//身份认证
+		Route::get('card', 'IdcardController@store');//身份认证
 		//用户地址
 		Route::resource('useraddr', 'UseraddrController');
+		Route::post('addr', 'AddrController@store');
+		Route::post('editaddr', 'AddrController@update');
+		Route::get('addr/{id}', 'AddrController@edit');
+		Route::get('deladdr', 'AddrController@delete');
+
 		//用户订单
+		Route::get('userorders/{o_code}', 'UserorderController@destroy');
 		Route::resource('userorder', 'UserorderController');
+
+		Route::get('ordersinfo/{code}', 'OrdersinfoController@index');			//订单详情
+
 		//用户退款售后
 		Route::resource('usersale', 'UsersaleController');
 		//用户优惠券
@@ -80,6 +96,13 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		Route::resource('usernews', 'UsernewsController');
 		//用户购物车
 		Route::resource('shopcart', 'shopcartController');
+		Route::resource('car', 'CarController@store');
+		Route::get('cardelete','CarController@delete');
+		Route::get('addcar','CarController@addcar');
+		
+
+		//申请成为商家
+		Route::resource('shopapply', 'ShopapplyController');
 		
 
 	});
@@ -87,13 +110,10 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 
 
 	//商家 笑
-	Route::group(['prefix'=>'seller','namespace'=>'seller'],function(){
+	Route::group(['prefix'=>'seller','namespace'=>'seller','middleware'=>'slogin'],function(){
 		
 		//商家主页
 		Route::resource('index','IndexController');
-		
-		//安全中心
-		Route::resource('safety','SafetyController');
 		
 		//商家个人中心
 		Route::resource('info','InfoController');
@@ -110,18 +130,22 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		//评论中心
 		Route::resource('comments','CommentsController');
 
-		//商铺信息
-		Route::resource('shop','ShopController');
-
+		
 		//商品列表
 		Route::resource('goodslist','GoodslistController');
 
 		//商品上传
 		Route::resource('goodsup','GoodsupController');
 
+		//店铺
+
+		Route::resource('di','DiController');
+
+
+
 
 		
-		
+	
 	});
 
 
@@ -134,10 +158,13 @@ Route::group(['prefix'=>'admin','namespace'=>'Admins',], function () {
 
 	//后台登录
 	Route::resource('login','LoginController');
-			
+
+	Route::post('dlogin', 'LoginsController@store');
+
+	
 	// 'meddleware'=>'login'
 	Route::group([], function () {
-		
+
 		//后台首页
 		Route::resource('admin','AdminController');
 
@@ -145,18 +172,39 @@ Route::group(['prefix'=>'admin','namespace'=>'Admins',], function () {
 		Route::resource('user','UserController');
 		Route::get('/userauth','UsersController@index');
 
+		//管理员状态
+		Route::resource('adminsauth','AdminauthController');
+
 
 		//买家buyer管理
 		Route::resource('buys','BuysController');
+		Route::resource('buyss','BuyssController');
+
+		//买家禁用
+		Route::resource('buyedis','BuyedisController');
+
 
 		//卖家seller管理
 		Route::resource('seller','SellerController');
+		//卖家禁用
+		Route::resource('sellerdis','SellerdisController');
+
 
 		//商家申请check
 		Route::resource('check','CheckController');
+		// 1 通过
+		Route::resource('csucc','ChecksucceedController');
+		// 2 未通过
+		Route::resource('cfail','CheckfailController');
+
 
 		//商品上传申请 
+		//  审核中
 		Route::resource('goods','GoodsController');
+		// 通过申请
+		Route::resource('gsucc','GoodssuccedController');
+		// 未通过
+		Route::resource('gfail','GoodsfailController');
 
 
 		//商品分类管理
@@ -170,7 +218,19 @@ Route::group(['prefix'=>'admin','namespace'=>'Admins',], function () {
 		Route::post('/typethree/aa','TypethreeController@aaaa');
 
 		//订单状态管理
+		// 0代付款
 		Route::resource('orders','OrdersController');
+		// 1 代发货
+		Route::resource('shipping','ShippingController');
+		// 2 待收货
+		Route::resource('dinggoods','DingoodsController');
+		//3 待评价
+		Route::resource('plorder','PlorderController');
+		//4 已完成
+		Route::resource('coorder','CoorderController');
+		// 5 已取消
+		Route::resource('cancelled','CancelledController');
+
 
 		//投诉管理
 		Route::resource('complaint','ComplaintController');
@@ -183,6 +243,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admins',], function () {
 
 		//网站管理
 		Route::resource('web','WebController');
+
+
 	
 	});
 
