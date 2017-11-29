@@ -33,7 +33,11 @@
 <link rel="stylesheet" type="text/css" href="/homes/home/css/mws-theme.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/homes/home/css/themer.css" media="screen">
 
+<link href="/homes/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
+        <link href="/homes/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
 
+        <link href="/homes/css/personal.css" rel="stylesheet" type="text/css">
+        <link href="/homes/css/footstyle.css" rel="stylesheet" type="text/css">
 @endsection
 
 @section('title','商品列表')
@@ -41,51 +45,56 @@
 @section('content')
 
 
+@foreach( $goods as $k=>$v)
 
-<div class="mws-panel grid_8" style="padding-top:20px">
-                	
-                    <div class="mws-panel-body no-padding">
-                        <table class="mws-table">
-                            <thead>
-                                <tr>
-                                    <th>编号</th>
-                                    <th>商品名</th>
-                                    <th>价格</th>
-                                    <th>图片</th>
-                                    <th>库存</th>
-                                    <th>折扣</th>
-                                    <th>评论</th>
-                                    <th>详情</th>
-                                    <th>操作</th>
-                                    
-                                </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($ress as $k => $v)
-                                <tr class="@if($k % 2 == 0) odd @else even @endif">
-                                    <td>{{$v->id}}</td>
-                                    <td>{{$v->name}}</td>
-                                    <td>{{$v->price}}</td>
-                                    <td>{{$v->pic}}</td>
-                                    <td>{{$v->count}}</td>
-                                    <td>{{$v->discount}}</td>
-                                    <td>{{$v->comments}}</td>
-                                    <td>{{$v->det}}</td>
-                                     <td class=" ">
-                                        <a href="/home/seller/goodslist/{{$v->id}}/edit" class='btn btn-danger'>修改</a>
+    <div class="goods">
+        <div class="goods-date" data-date="2015-12-21">
+            
+            <s class="line"></s>
+        </div>
 
-                                       <form action="/home/seller/goodslist/{{$v->id}}" method='post' style='display:inline'>
-                                            {{csrf_field()}}
-                                            {{method_field('DELETE')}}
-                                            <button class='btn btn-warning'>删除</button>
-                                       </form>
-                            
-                                    </td>
-                                   
-                                </tr>
-                             @endforeach  
-                            </tbody>
-                        </table>
+        <div class="goods-box first-box">
+            <div class="goods-pic">
+                <div class="goods-pic-box">
+                    <a class="goods-pic-link" target="_blank" href="#" title="意大利费列罗进口食品巧克力零食24粒  进口巧克力食品">
+                        <img src="{{$v->gimg}}" class="goods-img"></a>
+                </div>
+                <form action="/home/seller/goodslist/{{$v->id}}" method='post'>
+                {{csrf_field()}}
+                {{method_field('DELETE')}}
+                <button><a class="goods-delete" href="javascript:void(0);"><i class="am-icon-trash"></i></a></button>
+                
+                </form>
+                <div class="goods-status goods-status-show" ><span class="desc">{{$v->gstatus ? '热卖中' : '商品已下架'}}</span></div>
+            </div>
+
+            <div class="goods-attr">
+                <div class="good-title">
+                    <a class="title" href="#" target="_blank">{{$v->gname}}</a>
+                </div>
+                <div class="goods-price">
+                    <span class="g_price">                                    
+                    <span>¥</span><strong>{{$v->gprice}}</strong>
+                    </span>
+                    <span class="g_price g_price-original">                                    
+                    <span>¥</span><strong>142</strong>
+                    </span>
+                </div>
+                <div class="clear"></div>
+                <div class="goods-num">
+                    <div class="match-recom">
+                    <form action="/home/seller/goodslist/{{$v->id}}" method='post' style='display:inline'>
+                                {{csrf_field()}}
+                                {{method_field('PUT')}}
+                                <button class='btn btn-danger'>上架</button>
+                    </form>
+                        <a href="/home/seller/goodslist/{{$v->id}}/edit" ><button class='btn btn-danger'>下架</button></a>
+                       
+                        <i><em></em><span></span></i>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+@endforeach
 @endsection

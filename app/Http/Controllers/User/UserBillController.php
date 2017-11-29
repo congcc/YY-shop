@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Homes;
+namespace App\Http\Controllers\\User;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class SregController extends Controller
+class UserBillController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,6 @@ class SregController extends Controller
     public function index()
     {
         //
-        return view('homes.user.biseller');
     }
 
     /**

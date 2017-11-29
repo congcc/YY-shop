@@ -18,8 +18,10 @@
 					<div class="user-bill">
 						<!--标题 -->
 
-						<div class="am-cf am-padding">
+						<div class="am-cf am-padding"><?php $to=0; ?>
 							<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">账单</strong> / <small>Electronic&nbsp;bill</small></div>
+							<!-- <div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">{{$to}}</strong> / <small>Electronic&nbsp;bill</small></div> -->
+
 						</div>
 						<hr>
 						@foreach($m as $k=>$v)
@@ -32,14 +34,13 @@
 						@foreach($v as $k1=>$v1)
 								<div class=" ng-scope">
 									<div class="trade-circle-select  slidedown-">
-										<a class="current-circle ng-binding" href="javascript:void(0);">时间起止 : {{$v1->ord_time}}-{{$v1->complete}}</a>
+										<a class="current-circle ng-binding" href="javascript:void(0);">时间起止 : {{date('Y-m-d',$v1->ord_time)}}-{{date('Y-m-d',$v1->complete)}}</a>
 
 									</div>
 								
 								</div>
 						@endforeach
-							</div>
-							
+							</div>	
 							<div class="module-income ng-scope">
 								<div class="income-slider ">
 								
@@ -56,28 +57,28 @@
 											</div>
 											<div class="catatory-detail fn-left">
 												<div class="title ng-binding">
-													购买商品
+													售出的商品
 												</div>
 												<ul>
-												<?php $to0=0;?>
+												
+											<?php $to0=0;?>
 											@foreach($v as $k1=>$v1)
 													<li class="ng-scope  delete-false">
 
 														<div class="  ng-scope">
 															<a title="呢子大衣" class="text fn-left " href="#">
 																<span class="emoji-span ng-binding">{{$v1->orgoods->gname}}</span>
-																<span class="amount fn-right ng-binding">{{$v1->orgoods->gprice}}</span>
+																<span class="amount fn-right ng-binding">{{$v1->goods_num}} x {{$v1->orgoods->gprice}}</span>
 															</a>
 														</div>
 													</li>
+													<?php $to0+=$v1->orgoods->gprice*$v1->goods_num ?>
 											@endforeach
-													
- <?php $to0+=$v1->orgoods->gprice*$v1->goods_num ?>
 												</ul>
 											</div>
 										</div>
-										
 									</div>
+
 									<div class="block-expense block  fn-left">
 										<div class="slide-button right"></div>
 									</div>
@@ -87,9 +88,9 @@
                                                                                                                        收入      
                                                                                                                                                                         
                                       <span class="num ng-binding">
-
+									
 										{{$to0}}
-										
+
                                        </span>
                                 
                                 </h3>
@@ -102,13 +103,13 @@
 								
 								<!--银行卡使用情况-->
 
-
 								
-
 							</div>
-
+							<?php $to+=$to0 ?>
+								
 						</div>
 @endforeach
+					<div style="position: absolute;top:25px; right:30px; color:red;">{{$to}} 元</div>
 					</div>
 				</div>
 				<script>

@@ -125,6 +125,9 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		
 		//订单管理
 		Route::resource('orderedit','OrdereditController');
+
+		//订单详情
+		Route::resource('ordersinfo','OrderinfoController');
 		
 		//退货管理
 		Route::resource('orderback','OrderbackController');
@@ -152,6 +155,8 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		//店铺
 
 		Route::resource('di','DiController');
+
+		//权限不够跳注册页
 
 
 

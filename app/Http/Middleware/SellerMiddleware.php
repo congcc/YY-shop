@@ -21,7 +21,7 @@ class SellerMiddleware
     {
         
          $uid = session('userid');
-         // $uid = 2;
+         // dd($uid);
          $utype =user::find($uid);
          $mm = $utype['utype'];
          // dd($utype);
@@ -33,6 +33,7 @@ class SellerMiddleware
          
 
          if($uid){
+
             //如果拥有店铺
             if($mm == '2'){
                 //判断店铺状态
@@ -42,6 +43,7 @@ class SellerMiddleware
                     return redirect('/home/user/auth');
                 }
             //没有店铺
+
             }else{
               return redirect('/home/user/shopapply');  
             }

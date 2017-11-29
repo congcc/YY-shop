@@ -62,12 +62,12 @@
 														
 														<div class="item-name">
 															<a href="#">
-																<p class="item-basic-info"></p>
+																<p class="item-basic-info">{{$v->goods->gname}}</p>
 															</a>
 														</div>
 														
 													</div>
-													<div class="item-comment">
+													<div class="item-comment" style="position:relative; left:70px; top:30px">
 														{{$v['content']}}
 													</div>
 														
