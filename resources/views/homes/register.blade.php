@@ -96,7 +96,7 @@
   var ch4;
 	$('#dyMobileButton').click(function(){
 		var ph = $('#phone').val();
-		$.post("co",{'_token':'{{ csrf_token() }}',ph:ph},function(data){
+		$.post("/home/co",{'_token':'{{ csrf_token() }}',ph:ph},function(data){
 			if(data=="0"){
 			}
 		})
@@ -154,7 +154,7 @@
 
 
 	$('input[name="password"]').blur(function(){
-		
+    
     ch3 = checkPassword($('#password'),$('#e2'),6);
     if(ch3!=100){
       $('#password').css('border','solid 2px red');
@@ -177,6 +177,20 @@
       ch4 = 100;
     }
 	})
+
+  $('input[name="password"]').change(function(){
+    $(this).keyup(function(){
+    ch4 = checkRelPassword($('#password'),$('#passwordRepeat'),$('#e3'),6);
+      if(ch4!=100){
+        $('#passwordRepeat').css('border','solid 2px red');
+        $('#e3').css('display','block');
+      }else{
+        $('#passwordRepeat').css('border','solid 1px green');
+        $('#e3').css('display','none');
+        ch4 = 100;
+      }
+    })
+  })
   $(".res-banner").keyup(function(){
     if(ch1!=100||ch2!=100||ch3!=100||ch4!=100){
       $('#regi').attr("disabled", true); 

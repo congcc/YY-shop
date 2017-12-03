@@ -79,7 +79,8 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		//用户订单
 		Route::get('userorders/{o_code}', 'UserorderController@destroy');
 		Route::resource('userorder', 'UserorderController');
-
+		Route::get('orderpay/{code}','OrderpayController@index');			//支付
+		Route::get('ordersub/{gid}/{sid}/{toprice}/{num}', 'OrdersubController@index');			//下订单
 		Route::get('ordersinfo/{code}', 'OrdersinfoController@index');			//订单详情
 
 		//用户退款售后
@@ -102,7 +103,7 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		Route::resource('shopcart', 'shopcartController');
 		Route::resource('car', 'CarController@store');
 		Route::get('cardelete','CarController@delete');
-		Route::get('addcar','CarController@addcar');
+		Route::post('addcar','CarController@addcar');
 		
 
 		//申请成为商家

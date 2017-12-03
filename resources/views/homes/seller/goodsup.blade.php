@@ -187,6 +187,17 @@
 				</div>
 			</div>
 
+			
+			<div class="am-form-group" style="clear: both">
+				<label class="am-form-label" for="user-name2">商品标签</label>
+				<div class="am-form-content">
+					<input type="text" placeholder="商品标签" name="labels1" class="tags" style="float: left;width: 85px;margin-left: 15px;">
+					<input type="text" placeholder="商品标签" name="labels2" class="tags" style="float: left;width: 85px;margin-left: 15px;">
+					<input type="text" placeholder="商品标签" name="labels3" class="tags" style="float: left;width: 85px;margin-left: 15px;">
+					<input type="text" placeholder="商品标签" name="labels4" class="tags" style="float: left;width: 85px;margin-left: 15px;">
+				</div>
+			</div>
+		
 			<div class="am-form-group">
 				<label class="am-form-label" for="user-name2">商品规格</label><br/>
 				<div style="height: 30px;clear: height;"></div>
@@ -254,15 +265,13 @@
 			 
 
 			 {{ csrf_field()}}
-			<div  class="btn btn-info"  onclick="upgoods({{session('userid')}})">添加商品</div>
-
-		</form>
+			<div class="btn btn-info"  onclick="upgoods({{session('userid')}})">添加商品</div>
+			
 	</div>
 
 <script>
 	var ue = UE.getEditor('editor');
-
-
+	var tags = document.getElementsByClassName('tags');
 
 	$('#area').change(function(){
 
@@ -363,8 +372,13 @@ function upgoods(uid){
 	var gdcont = UE.getEditor('editor').getContent();
 	var gdpic = $('#pic1').attr('src')+','+$('#pic2').attr('src')+','+$('#pic3').attr('src')+','+$('#pic4').attr('src')+','+$('#pic5').attr('src');
 	var gprice = $('#gprice').val();
+	var tagsarr = [];
+	for(var q=0;q<tags.length;q++){
+		tagsarr.push(tags[q].value);
+	}
+		
 
-	$.post("/home/seller/goodsup",{'_token':'{{ csrf_token() }}',arr1:arr1,arr2:arr2,arr3:arr3,arr4:arr4,clid:clid,gname:gname,gimg:gimg,gdcont:gdcont,gdpic:gdpic,gprice:gprice},function(data){
+	$.post("/home/seller/goodsup",{'_token':'{{ csrf_token() }}',arr1:arr1,arr2:arr2,arr3:arr3,arr4:arr4,clid:clid,gname:gname,gimg:gimg,gdcont:gdcont,gdpic:gdpic,gprice:gprice,tagsarr:tagsarr},function(data){
 	    	if(data==1){
 	    		layer.msg('添加成功');
 	    	}else{
