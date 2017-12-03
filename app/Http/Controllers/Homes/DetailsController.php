@@ -22,6 +22,7 @@ class DetailsController extends Controller
         //获取当前商品信息
         $res = goods::where('id',15)->get();
 
+
         //商品小图
         $gdpics = $res[0]->gdpic;
 
@@ -30,6 +31,7 @@ class DetailsController extends Controller
 
         //获取当前商品评论
         $re = review::where('gid',15)->get();
+        
 
         //显示页面
         return view('homes.shop.details',compact('res','gdpic','re','gid'));
