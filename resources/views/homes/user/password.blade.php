@@ -44,31 +44,83 @@
 							<div class="u-progress-bar-inner"></div>
 						</div>
 					</div>
-					<form class="am-form am-form-horizontal">
-						<div class="am-form-group">
-							<label for="user-old-password" class="am-form-label">原密码</label>
-							<div class="am-form-content">
-								<input type="password" id="user-old-password" placeholder="请输入原登录密码">
-							</div>
-						</div>
-						<div class="am-form-group">
-							<label for="user-new-password" class="am-form-label">新密码</label>
-							<div class="am-form-content">
-								<input type="password" id="user-new-password" placeholder="由数字、字母组合">
-							</div>
-						</div>
-						<div class="am-form-group">
-							<label for="user-confirm-password" class="am-form-label">确认密码</label>
-							<div class="am-form-content">
-								<input type="password" id="user-confirm-password" placeholder="请再次输入上面的密码">
-							</div>
-						</div>
-						<div class="info-btn">
-							<div class="am-btn am-btn-danger">保存修改</div>
-						</div>
+					 <form class="am-form am-form-horizontal">
+                        <div class="am-form-group bind">
+                            <label for="user-phone" class="am-form-label">验证手机</label>
+                            <div class="am-form-content">
+                                <span id="user-phone">{{$res->phone}}</span>
+                            </div>
+                        </div>
+                        <div class="am-form-group code">
+                            <label for="user-code" class="am-form-label">验证码</label>
+                            <div class="am-form-content" id="gaocong">
+                                <input type="tel" id="user-code" name="ph-code" placeholder="短信验证码">
+                            </div>
+                            <div id="e3" style="margin-left: 85px;width: 200px;height: 20px;display: none;color: red;font-size: 13px;font-weight: bold"></div>
+                            <a class="btn"  id="sendMobileCode">
+                                <div class="am-btn am-btn-danger" >验证码</div>
+                            </a>
+                        </div>
+                        
+                      
+                        <div class="info-btn">
+                            <div class="am-btn am-btn-danger" id="suremodifi">前去修改</div>
+                        </div>
+                        {{ csrf_field()}}
+                    </form>
 
-					</form>
+<script>
+	var ch1=100;
+    
+    var ch3=100;
+	$('#sendMobileCode').click(function(){
+	        var ph = $('#user-phone').html();
+	        // console.log(ph);
+	        //发送验证码
+	        $.post("/home/co",{'_token':'{{ csrf_token() }}',ph:ph},function(data){
+	         if(data=="0"){
+	         
+	         }
+	         console.log(data);
+	        })
+	    })
 
-				
+    //无验证码变色
+    $('input[name="ph-code"]').blur(function(){
+        var cos = $('#user-code').val();
+        //console.log(cos);
+        if(cos==""){
+          $('#user-code').css('border','solid 2px red');
+          $('#e3').css('display','block');
+          $('#e3').html('验证码不能为空');
+        }else{
+          $('input[name="password"]').css('border','solid 1px green');
+          $('#e3').css('display','none');
+          ch1 = 100;
+        }
+
+        //验证验证码是否正确
+    	$.post("/home/cos",{'_token':'{{ csrf_token() }}',cos:cos},function(data){
+	         if(data==1){
+	             	$('#user-code').css('border','solid 2px green');
+	             	ch3 = 100;
+	         }else{
+		            $('#e3').css('display','block');
+	        		$('#e3').html('您输入的验证码不正确呢');
+					$('#user-code').css('border','solid 2px red');
+			        ch1 = 0;
+			        return;
+			      }
+			  
+	    })
+    })
+
+    $('#suremodifi').click(function(){
+    	//全部符合才可以发送ajax
+        if(ch1==100&&ch3==100){
+           location.href = ('/home/user/pass/{{$res->id}}/edit');
+	    }       
+    })
+</script>
 @endsection
 

@@ -63,15 +63,29 @@ class AddrController extends Controller
         //转成json字符串
         $str = json_encode($addr);
         
-        //拼接插入信息的数组
-         $address = array('uid'=>$req['uid'],'name'=>$req['name'],'phone'=>$req['ph'],'address'=>$str);
-        //添加
-        $res = address::insert($address);
+        //判断此人是否拥有地址
+        $site = address::where('uid',$req['uid'])->first();
 
-        if($res){
-            return 1;
+        if($site){
+            //拼接插入信息的数组
+             $address = array('uid'=>$req['uid'],'name'=>$req['name'],'phone'=>$req['ph'],'address'=>$str);
+            //添加
+            $res = address::insert($address);
+
+            if($res){
+                return 1;
+            }
+        }else{
+            //如果地址给一条默认地址
+            //拼接插入信息的数组
+             $address = array('uid'=>$req['uid'],'name'=>$req['name'],'phone'=>$req['ph'],'address'=>$str,'defadd'=>1);
+            //添加
+            $res = address::insert($address);
+
+            if($res){
+                return 1;
+            }
         }
-
     }
 
     /**

@@ -25,7 +25,7 @@
 
 							<div class="filePic">
 					
-								<img alt="" src="{{$user['user_pic']}}" class="am-circle am-img-thumbnail">
+								<img alt="" src="http://ozsps8743.bkt.clouddn.com/img/image_{{$user['user_pic']}}" class="am-circle am-img-thumbnail">
 
 							</div>
 

@@ -58,9 +58,11 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		Route::resource('/', 'UserController');
 		//用户个人信息
 		Route::resource('userinfo', 'UserinfoController');
+		Route::resource('userpic', 'UserpicController');
 		//用户账户安全
 		Route::resource('usersafe', 'UsersafeController');
 		Route::resource('pass', 'PassController');//修改密码
+		Route::resource('passedit', 'PasseditController');//修改密码
 		Route::resource('paypass', 'PaypassController');//支付密码
 		Route::post('ajaxpaypass', 'AjaxpaypassController@store')->where('id', '[0-9]+');
 		Route::resource('bindph', 'BindphController');//换手机号
@@ -105,7 +107,7 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 
 		//申请成为商家
 		Route::resource('shopapply', 'ShopapplyController');
-		Route::get('uploads','ShopapplyController@upload');
+		Route::resource('uploads','UploadsController');
 		//被封禁商家 
 		Route::get('auth','ShopapplyController@auth');
 
