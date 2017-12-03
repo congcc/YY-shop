@@ -186,7 +186,14 @@
 
 				</div>
 			</div>
+			
+			<div class="am-form-group" style="clear: both">
+				<label class="am-form-label" for="user-name2">库存</label>
+				<div class="am-form-content">
+					<input type="text" placeholder="库存" id="knumber" name="knumber" style="width: 85px;">
 
+				</div>
+			</div>
 			
 			<div class="am-form-group" style="clear: both">
 				<label class="am-form-label" for="user-name2">商品标签</label>
@@ -372,13 +379,14 @@ function upgoods(uid){
 	var gdcont = UE.getEditor('editor').getContent();
 	var gdpic = $('#pic1').attr('src')+','+$('#pic2').attr('src')+','+$('#pic3').attr('src')+','+$('#pic4').attr('src')+','+$('#pic5').attr('src');
 	var gprice = $('#gprice').val();
+	var knumber = $('#knumber').val();
 	var tagsarr = [];
 	for(var q=0;q<tags.length;q++){
 		tagsarr.push(tags[q].value);
 	}
 		
 
-	$.post("/home/seller/goodsup",{'_token':'{{ csrf_token() }}',arr1:arr1,arr2:arr2,arr3:arr3,arr4:arr4,clid:clid,gname:gname,gimg:gimg,gdcont:gdcont,gdpic:gdpic,gprice:gprice,tagsarr:tagsarr},function(data){
+	$.post("/home/seller/goodsup",{'_token':'{{ csrf_token() }}',arr1:arr1,arr2:arr2,arr3:arr3,arr4:arr4,clid:clid,gname:gname,gimg:gimg,gdcont:gdcont,gdpic:gdpic,gprice:gprice,tagsarr:tagsarr,knumber:knumber},function(data){
 	    	if(data==1){
 	    		layer.msg('添加成功');
 	    	}else{

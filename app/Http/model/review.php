@@ -9,10 +9,12 @@ class review extends Model
     //
     public $table = "review";
 
-
-     public function goods(){
+    public function goods(){
         return $this->hasOne('App\Http\model\goods', 'id', 'gid');
+    }
 
+    public function reuserinfo(){
+        return $this->hasOne('App\Http\model\userinfo', 'id', 'uid');
     }
 
 }
