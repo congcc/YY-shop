@@ -324,21 +324,12 @@
 							    },'json')
 							})
 							$('#LikBuy').click(function(){
-								/*for(var i = 0;i<lis1.length;i++){
-									if(lis1[i].getAttribute('class')=="sku-line lis1 selected"){
-										var label1 = $('.lis1').eq(i).html();
-									}
-								}
-								for(var j = 0;j<lis2.length;j++){
-									if(lis2[j].getAttribute('class')=="sku-line lis2 selected"){
-										var label2 = $('.lis2').eq(j).html();
-									}
-								}
-								var label = label1+','+label2;
 								var gum = $('#text_box').val();
-								$.post("/home/user/addcar",{'_token':'{{ csrf_token() }}',label:label,gum:gum,gid:gid},function(data){
+
+								
+								$.get("/home/user/ordersub",{label:label,gum:gum,gid:gid},function(data){
 							      console.log(data);
-							    },'json')*/
+							    },'json')
 							})
 						</script>
 

@@ -90,6 +90,7 @@ class GoodsupController extends Controller
         $gdpic = $res['gdpic'];             //商品小图
         $gprice = $res['gprice'];           //商品价格
         $gcontent = $res['gdcont'];         //富文本内容
+        $knumber = $res['knumber'];         //库存
 
         //获取商品标签数据
         $tag_a = $res['tagsarr'][0];
@@ -100,7 +101,7 @@ class GoodsupController extends Controller
         DB::beginTransaction();         //开启事务  
 
         //添加商品（获取添加id）
-        $regres = goods::insertGetId(['sid'=>$sid,'clid'=>$clid,'gname'=>$gname,'gimg'=>$gimg,'gprice'=>$gprice,'label'=>$catesjson,'gprices'=>$pricesjson,'gcontent'=>$gcontent,'gdpic'=>$gdpic]);
+        $regres = goods::insertGetId(['sid'=>$sid,'clid'=>$clid,'gname'=>$gname,'gimg'=>$gimg,'gprice'=>$gprice,'label'=>$catesjson,'gprices'=>$pricesjson,'gcontent'=>$gcontent,'gdpic'=>$gdpic,'knumber'=>$knumber]);
         
         //添加商品标签
         $regress = goodstags::insert(['gid'=>$regres,'cateid'=>$clid,'tag_a'=>$tag_a,'tag_b'=>$tag_b,'tag_c'=>$tag_c,'tag_d'=>$tag_d]);
