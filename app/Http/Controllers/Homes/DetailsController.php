@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\model\goods;
+use App\Http\model\review;
 
 class DetailsController extends Controller
 {
@@ -17,13 +18,21 @@ class DetailsController extends Controller
      */
     public function index()
     {   
-        $res = goods::where('id',11)->get();
+        $gid = 15;
+        //获取当前商品信息
+        $res = goods::where('id',15)->get();
 
+        //商品小图
         $gdpics = $res[0]->gdpic;
 
+        //转为数组
         $gdpic = explode(',', $gdpics);
 
-        return view('homes.shop.details',compact('res','gdpic'));
+        //获取当前商品评论
+        $re = review::where('gid',15)->get();
+
+        //显示页面
+        return view('homes.shop.details',compact('res','gdpic','re','gid'));
     }
 
     /**
@@ -59,7 +68,7 @@ class DetailsController extends Controller
         $inds = $request->input('inds');
 
         //查询该商品的信息
-        $res = goods::where('id',11)->get();
+        $res = goods::where('id',15)->get();
 
         //获取对应价格
         $gprices = number_format(json_decode($res[0]->gprices,true)[$inds],2);
