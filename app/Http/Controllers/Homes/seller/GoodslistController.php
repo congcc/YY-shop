@@ -27,7 +27,7 @@ class GoodslistController extends Controller
         $sid=$res['0']->id;
 
         //获取goods表里的商品
-        $goods=goods::where('sid',$sid)->get();
+        $goods=goods::where('sid',$sid)->paginate(8);
 
         //获取gprices里
         $prices=array();
@@ -49,6 +49,8 @@ class GoodslistController extends Controller
                 array_push($arr, $gd);
             }
         }
+
+        // $res = gdetails::join('goods','goodstype.id','=','goods.fid')->where('goodstype.bid','=',"$a")->where("status",'=','1')->where('goods.bid','=',"$a")->paginate(4);
 
         return view('homes/seller/goodslist',compact('goods','arr','prices'));
 

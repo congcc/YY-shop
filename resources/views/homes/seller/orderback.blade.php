@@ -14,7 +14,7 @@
 @section('title','退货管理')
 
 @section('content')
-	<div class="main-wrap">
+
 
 					<div class="user-orderinfo">
 
@@ -168,6 +168,5 @@
 						</div>
 					</div>
 
-				</div>
 
 @endsection

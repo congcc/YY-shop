@@ -49,7 +49,7 @@
                                 </span>
 								<span class="step-4 step">
                                    <em class="u-progress-stage-bg"></em>
-                                   <i class="u-stage-icon-inner">4<em class="bg" @if($res->ostate==3 || $res->ostate==4) style="background-image: url(/homes/images/sprite.png);background-position: -103px -135px;" @endif></em></i>
+                                   <i class="u-stage-icon-inner">4<em class="bg" @if($res->ostate==4) style="background-image: url(/homes/images/sprite.png);background-position: -103px -135px;" @endif></em></i>
                                    <p class="stage-name">交易完成</p>
                                 </span>
 								<span class="u-progress-placeholder"></span>
@@ -62,7 +62,7 @@
 							<div class="order-logistics">
 								<a href="logistics.html">
 									<div class="icon-log">
-										<i><img src="images/receive.png"></i>
+										<i><img src="/homes/images/receive.png"></i>
 									</div>
 									<div class="latest-logistics">
 										<p class="text">已签收,签收人是青年城签收，感谢使用天天快递，期待再次为您服务</p>

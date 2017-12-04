@@ -1,4 +1,4 @@
-@extends('homes.layout.seller')
+@extends('homes.layout.userbuy')
 
 @section('head')
 <link href="/homes/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
@@ -46,7 +46,7 @@
 
 @endsection
 
-@section('title','评论中心')
+@section('title','我的评论')
 
 @section('content')
 
@@ -76,39 +76,26 @@
         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
         rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending"
         style="width: 70px;">
-            评论人
+            回复我的
         </th>
         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
         rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
         style="width: 80px;">
            评论内容
         </th>
-        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-        rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
-        style="width: 80px;">
-           服务评分
-        </th>
-        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-        rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
-        style="width: 80px;">
-           价格评分
-        </th>
-        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-        rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
-        style="width: 80px;">
-           质量评分
-        </th>
+       
         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
         rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
         style="width: 70px;">
-           操作
+           评论时间
         </th>
        
     </tr>
 </thead>
-@foreach($arr as $k=>$v)
+@foreach($re as $k=>$v)
 
  <tr class="" rows="4">
+ 
     <td class="">
         {{$v->goods->gname}}
     </td>
@@ -116,36 +103,18 @@
     <td class=" ">
         <img src="{{$v->picture}}" alt="" style="width: 150px;height: 80px;">
     </td>
+ 
     <td class=" ">
-        {{$v->gg->nickname}}
+        {{$v->nn}}
     </td>
+
     <td class="  ng-scope">
         {{$v->content}}
     </td>
     <td class=" ">
-        {{$v->g_grade}}
+        {{date('Y-m-d',$v->time)}}
     </td>
-    <td class=" ">
-        {{$v->s_grade}}
-    </td>
-    <td class=" ">
-        {{$v->m_grade}}
-    </td>
-    <td class=" ">
-        <div class="btn-group">
-	        <div onclick="com({{$v->oid}},{{$v->gid}})" >  
-	          <a  class="btn btn-small" style="width:100px;"><i>回复</i></a>
-	        </div>
-         	<div>   
-	         	<form action="/home/seller/comments/{{$v->oid}}" method='post' style='display:inline'>
-	                {{csrf_field()}}
-	                {{method_field('PUT')}}
-					<input type="hidden" name="status" value="{{$v->status}}">
-	                <button class="btn btn-small" style="width:100px;">{{$v->status ? '解封' : '禁言'}}</button>
-	    		</form>
-    		</div>
-        </div>
-    </td>
+ 
 </tr>
 
 @endforeach	
@@ -159,27 +128,18 @@
 	
     
 
-	function com(oid,gid){
+	function com(oid){
 		 layer.alert('<textarea rows=6 cols=80 class="review"></textarea>',{
           type: 1,
-          btn: ['回复','取消'],
+          btn: ['添加','取消'],
           skin: 'layui-layer-molv', //加上边框
           area: ['520px', '240px'], //宽高
                     yes:function(index){
               
                var content = $('.review').val();
-               yes:function(index){
-                    $.post("{{url('/home/seller/comments')}}",{'_token':'{{ csrf_token() }}',content:content,oid:oid,gid:gid},function(data){
-                        if(data){
-                   
-                     layer.alert('添加成功！', {icon: 1});}
-
-
-    
+                $.post("{{url('/home/seller/comments')}}",{'_token':'{{ csrf_token() }}',content:content,oid:oid},function(data){
+                  			
                 });
-               }
-
-                
 
                layer.close(index);   
             }

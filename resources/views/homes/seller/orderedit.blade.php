@@ -377,10 +377,14 @@
 													<p class="order-info"><a href="/home/seller/ordersinfo/{{$v[0]->o_code}}">订单详情</a></p>
 												</div>
 											</li>
+											<form action="/home/seller/orderedit/{{$k}}" method="post">
 											<li class="td td-change">
-												<div class="am-btn am-btn-danger anniu">
-													提醒发货</div>
+												<button class="am-btn am-btn-danger anniu">
+													发货</button>
 											</li>
+											{{csrf_field()}}
+											{{method_field('PUT')}}
+											</form>
 										</div>
 									</div>
 								</div>
@@ -482,7 +486,7 @@
 											</li>
 											<li class="td td-change">
 												<div class="am-btn am-btn-danger anniu">
-													确认收货</div>
+													等待收货</div>
 											</li>
 										</div>
 									</div>
