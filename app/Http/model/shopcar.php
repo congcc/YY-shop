@@ -10,12 +10,12 @@ class shopcar extends Model
     protected $table = "shopcar";
     public $timestamps = false;
 
-    public function shop()
+    public function carshop()
     {
         return $this->hasOne('App\Http\model\shop', 'id', 'sid');
     }
 
-    public function goods()
+    public function cargoods()
     {
         return $this->hasOne('App\Http\model\goods', 'id', 'gid');
     }

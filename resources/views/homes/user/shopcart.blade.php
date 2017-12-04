@@ -49,10 +49,10 @@
 					
 				   	<div class="bundle-hd">
 								<div class="bd-promos">
-									<div class="bd-has-promo">店铺名称: <span class="bd-has-promo-content">{{$v[0]->shop->sname}}</span>&nbsp;&nbsp;</div>
-									<div class="bd-has-promo">已享优惠:<span class="bd-has-promo-content">省￥19.50</span>&nbsp;&nbsp;</div>
+									<div class="bd-has-promo">店铺名称: <span class="bd-has-promo-content">{{$v[0]->carshop->sname}}</span>&nbsp;&nbsp;</div>
+									<div class="bd-has-promo"><span class="bd-has-promo-content"></span>&nbsp;&nbsp;</div>
 									<div class="act-promo">
-										<a href="#" target="_blank">第二支半价，第三支<span class="gt">&gt;&gt;</span></a>
+										<a href="#" target="_blank"><span class="gt">&gt;&gt;</span></a>
 									</div>
 									<span class="list-change theme-login">编辑</span>
 								</div>
@@ -60,7 +60,7 @@
 
 
 				    @foreach($v as $o=>$p)
-
+						
 					<div class="clear"></div>
 						<div class="bundle  bundle-last ">
 							
@@ -76,12 +76,12 @@
 									</li>
 									<li class="td td-item">
 										<div class="item-pic">
-											<a href="#" target="_blank" data-title="美康粉黛醉美东方唇膏口红正品 持久保湿滋润防水不掉色护唇彩妆" class="J_MakePoint" data-point="tbcart.8.12">
-												<img src="{{ $p->goods->gimg }}" class="itempic J_ItemImg"></a>
+											<a href="/home/details/{{$p->cargoods->id}}/edit" target="_blank" data-title="{{$p->cargoods->gname}}" class="J_MakePoint" data-point="tbcart.8.12">
+												<img src="{{$p->cargoods->gimg}}" class="itempic J_ItemImg" style="width: 100%"></a>
 										</div>
 										<div class="item-info">
 											<div class="item-basic-info" style="margin-top: -82px;">
-												<a href="#" target="_blank" title="美康粉黛醉美唇膏 持久保湿滋润防水不掉色"  class="item-title J_MakePoint" data-point="tbcart.8.11">{{ $p->goods->gname }}</a> 											</div>
+												<a href="/home/details/{{$p->cargoods->id}}/edit" target="_blank" title="{{$p->cargoods->gname}}"  class="item-title J_MakePoint" data-point="tbcart.8.11">{{$p->cargoods->gname}}</a> 											</div>
 										</div>
 									</li>
 									<li class="td td-info">
@@ -96,10 +96,10 @@
 										<div class="item-price price-promo-promo">
 											<div class="price-content">
 												<div class="price-line">
-													<em class="price-original">78.00</em>
+													<em class="price-original">{{ $p->cargoods->gprice }}</em>
 												</div>
 												<div class="price-line">
-													<em class="J_Price price-now" tabindex="0">{{ $p->goods->gprice }}</em>
+													<em class="J_Price price-now" tabindex="0">{{ $p->cargoods->gprice }}</em>
 												</div>
 											</div>
 										</div>
@@ -118,7 +118,7 @@
 									</li>
 									<li class="td td-sum">
 										<div class="td-inner">
-											<em tabindex="0" class="J_ItemSum number">{{ $p->goods->gprice * $p->gum}}</em>
+											<em tabindex="0" class="J_ItemSum number">{{ $p->cargoods->gprice * $p->gum}}</em>
 										</div>
 									</li>
 									<li class="td td-op">

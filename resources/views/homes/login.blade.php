@@ -40,7 +40,7 @@
         
         <div class="login-links">
             <label for="remember-me"><input id="remember-me" type="checkbox">记住密码</label>
-							<a href="/homes/#" class="am-fr">忘记密码</a>
+							<a href="/home/slogin/" class="am-fr">忘记密码</a>
 							<a href="/home/register" class="zcnext am-fr am-btn-default">注册</a>
 							<div class="am-cf"><input type="submit" name="" id="ulog" value="登 录" class="am-btn am-btn-primary am-btn-sm">
 							</div>
@@ -106,7 +106,7 @@
 				layer.confirm('您的账号已被封禁,请联系管理员进行解封', {
 					  btn: ['申请解封','取消'] //按钮
 					}, function(){
-						
+						layer.msg('您已申请成功', {icon: 1});
 					}, function(){
 						
 					});

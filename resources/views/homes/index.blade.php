@@ -1811,4 +1811,26 @@
 			window.jQuery || document.write('<script src="/homes/basic/js/jquery.min.js "><\/script>');
 		</script>
 		<script type="text/javascript " src="/homes/basic/js/quick_links.js "></script>
+@if($userid==1)
+		<script>
+			$.post('/home/user/user',{'_token':'{{ csrf_token() }}',id:{{$user->id}}},function(data){
+				            
+				           // console.log(data);
+				            if (data==1) {
+				                layer.open({
+					          	   type: 1
+						          ,offset: 't' //具体配置参考：offset参数项
+						          ,content: '<div style="padding: 20px 80px;">您的信息还未完善,点击此处前去完善</div>'
+						          ,btn: '确定'
+						          ,btnAlign: 'c' //按钮居中
+						          ,shade: 0 //不显示遮罩
+						          ,yes: function(){
+						            layer.closeAll();
+						            location.href="/home/user/userinfo";
+						          }
+						        });
+				            }
+				        },);
+		</script>
+@endif
 @endsection

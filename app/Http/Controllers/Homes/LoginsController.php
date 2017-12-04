@@ -19,7 +19,9 @@ class LoginsController extends Controller
      */
     public function index()
     {
-        //
+        
+        return view('homes.logins');
+        
     }
 
     /**

@@ -82,11 +82,10 @@
 	function  idcard (id){
 		var name = $('#user-name').val();
          var idcard = $('#user-IDcard').val();
-		$.get("/home/user/card",{id:id,name:name,idcard:idcard},function(data){
+
+		$.post("/home/user/card",{'_token':'{{ csrf_token() }}',id:id,name:name,idcard:idcard},function(data){
          	
-         	console.log(id);
-         	console.log(name);
-         	console.log(idcard);
+         	
          	if(data==1){
 
 				layer.open({

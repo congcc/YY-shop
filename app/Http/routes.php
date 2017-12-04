@@ -28,6 +28,7 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 
 	Route::resource('login', 'LoginController');
 	Route::post('slogin', 'LoginsController@store');
+	Route::resource('slogin', 'LoginsController');
 
 	//注册
 	Route::resource('register', 'RegController');
@@ -44,9 +45,10 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 
 	//商品搜索页
 	Route::resource('search', 'SearchController');
-	Route::get('sales/{id}', 'SearController@create');
-	Route::get('price/{ad}', 'SearController@car');
-	Route::get('cyn/{cd}', 'SearController@bar');
+	Route::resource('sales', 'SalesController');
+	Route::resource('price', 'PriceController');
+	Route::resource('syn', 'SynController');
+	
 
 	//商品详情页
 	
@@ -59,6 +61,8 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		//用户个人中心首页
 		Route::resource('user', 'UserController');
 		Route::resource('/', 'UserController');
+		
+
 		//用户个人信息
 		Route::resource('userinfo', 'UserinfoController');
 		Route::resource('userpic', 'UserpicController');
@@ -71,7 +75,7 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		Route::resource('bindph', 'BindphController');//换手机号
 		Route::resource('email', 'EmailController');//邮箱认证
 		Route::resource('idcard', 'IdcardController');//身份认证
-		Route::get('card', 'IdcardController@store');//身份认证
+		Route::post('card', 'IdcardController@store');//身份认证
 		//用户地址
 		Route::resource('useraddr', 'UseraddrController');
 		Route::post('addr', 'AddrController@store');

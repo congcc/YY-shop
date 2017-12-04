@@ -29,8 +29,15 @@
 						<ul class="message-l">
 							<div class="topMessage">
 								<div class="menu-hd">
-									<a href="{{url('home/login')}}" target="_top" class="h">亲,请登录</a>
+									@if($userid==0)<a href="{{url('home/login/')}}" target="_top" class="h">亲,登录</a>
 									<a href="{{url('home/register')}}" target="_top">免费注册</a>
+									@elseif($userid==1)<a href="{{url('home/user/')}}" target="_top" class="h">
+										@if($user->userinfo->truename) 亲爱的{{$user->userinfo->truename}}
+										@elseif(!$useruserinfo->truename) 亲爱的用户
+										@endif
+										</a>
+									<a href="/home/index/{{$user->id}}/edit" target="_top">退出登录</a>
+									@endif
 								</div>
 							</div>
 						</ul>
@@ -63,8 +70,8 @@
 							</div>
 
 							<div class="search-bar pr">
-								<form  action="{{url('home/search')}}"  method="post">
-									<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="想吃点什么呢?" autocomplete="off" value="扇贝">
+								<form  action="{{url('home/search')}}"  method="get">
+									<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="想吃点什么呢?" autocomplete="off" value="">
 									
 									<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
 									{{ csrf_field()}}

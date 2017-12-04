@@ -19,6 +19,7 @@
 @section('title','商品搜索页')
 
 @section('content')
+
 <div class="am-g am-g-fixed">
 						<div class="am-u-sm-12 am-u-md-12">
 	                  	<div class="theme-popover">														
@@ -79,12 +80,30 @@
                         </div>
 							<div class="search-content">
 								<div class="sort">
-									<li class="first"><a title="综合" href="/home/cyn/{{$search}}">综合排序</a></li>
-									<li>
-										<a title="价格" href="/home/sales/{{$search}}" >销量优先</a></li>
-								
+									<li class="first">
+									<!-- <a title="综合" href="/home/cyn/">综合排序</a> -->
+									<form action="/home/syn/" method="get">
+											<input type="hidden" name= "search" value="{{$search}}">
+											<input type="submit" value="综合排序">
+											{{ csrf_field()}}
+										</form>
 									</li>
-									<li><a title="价格" href="/home/price/{{$search}}" >价格优先</a></li>
+									<li>
+										<form action="/home/sales/" method="get">
+										<!-- <a title="价格" href="" >销量优先</a></li> -->
+											<input type="hidden" name= "search" value="{{$search}}">
+											<input type="submit" value="销量优先">
+											{{ csrf_field()}}
+										</form>
+									</li>
+									<li>
+									<!-- <a title="价格" href="/home/price/" >价格优先</a> -->
+									<form action="/home/price/" method="get">
+											<input type="hidden" name= "search" value="{{$search}}">
+											<input type="submit" value="价格优先">
+											{{ csrf_field()}}
+										</form>
+									</li>
 									
 								</div>
 								<div class="clear"></div>
@@ -159,6 +178,7 @@
 							<div class="clear"></div>
 							<!--分页 -->
 							<ul class="am-pagination am-pagination-right">
+							{!! $res->appends($request->all())->render()!!}
 								<li class="am-disabled"><a href="/homes/#">«</a></li>
 								<li class="am-active"><a href="/homes/#">1</a></li>
 								<li><a href="/homes/#">2</a></li>

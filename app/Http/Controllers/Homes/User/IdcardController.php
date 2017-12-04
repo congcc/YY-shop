@@ -21,6 +21,7 @@ class IdcardController extends Controller
         $uid = session('userid');
         $result = userinfo::where('id',$uid)->first();
         $res = user::where('id',$uid)->first();
+        // dd($result);
         return view('homes.user.idcard',compact('result','res'));
     }
 
@@ -42,15 +43,17 @@ class IdcardController extends Controller
      */
     public function store(Request $request)
     {
+
         $res = $request->only('id','name','idcard');
+
 
         $array = array();
         $array['truename'] = $res['name'];
         $array['idcard'] = $res['idcard'];
-        $array['apply'] = 3;
+        $array['apply'] = '3';
 
         $result = userinfo::where('id',$res['id'])->update($array);
-
+        
         if($result){
             echo 1;
         }else{

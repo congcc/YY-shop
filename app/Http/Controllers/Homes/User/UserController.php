@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Homes\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Model\userinfo;
 use App\Http\Controllers\Controller;
 
 class UserController extends Controller
@@ -37,7 +38,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $req = $request->only('id');
+        $res = userinfo::where('id',$req['id'])->first();
+        if($res['nickname']){
+            return 0;
+        }else{
+            return 1;
+        }
     }
 
     /**
@@ -48,7 +55,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -59,7 +66,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+       
+        
     }
 
     /**

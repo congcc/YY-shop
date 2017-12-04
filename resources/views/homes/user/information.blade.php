@@ -111,7 +111,7 @@
 								<div class="am-form-group">
 									<label for="user-email" class="am-form-label">qq</label>
 									<div class="am-form-content">
-										<input id="qq" placeholder="qq号码" type="text" value="{{ $result->qq }}" >
+										<input id="qq" placeholder="qq号码" type="text" value="{{ $result->qq }}" 	readonly >
 
 									</div> 
 								</div>
@@ -119,7 +119,7 @@
 								<div class="am-form-group">
 									<label for="user-email" class="am-form-label">电子邮件</label>
 									<div class="am-form-content">
-										<input id="user-email" placeholder="Email" type="email" value="{{ $result->email }}" >
+										<input id="user-email" placeholder="Email" type="email" value="{{ $result->email }}"  	readonly  >
 
 									</div>
 								</div>
@@ -202,7 +202,18 @@ $.ajaxSetup({
                                         layer.close(a);
                                         // console.log(data);
                                         $('#img1').attr('src','http://ozsps8743.bkt.clouddn.com/img/image_'+data);
-                                       
+                                       	layer.open({
+							          	   type: 1
+							          	  ,icon:2
+								          ,offset: 't' //具体配置参考：offset参数项
+								          ,content: '<div style="padding: 20px 80px;">头像修改成功</div>'
+								          ,btn: '关闭'
+								          ,btnAlign: 'c' //按钮居中
+								          ,shade: 0 //不显示遮罩
+								          ,yes: function(){
+								            layer.closeAll();
+								          }
+								        });
                                       // $('#art_thumb').val(data);
                                     },
                                     error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -227,8 +238,8 @@ $.ajaxSetup({
 						<div class="user-infoPic">
 
 							<div class="filePic">
-								<input type="file" class="inputPic" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*">
-								<img class="am-circle am-img-thumbnail"  src="{{$result->user_pic}}" alt="">
+								
+								<img class="am-circle am-img-thumbnail"  src="http://ozsps8743.bkt.clouddn.com/img/image_{{$result->user_pic}}" alt="">
 							</div>
 
 							<p class="am-form-help">头像</p>
@@ -287,8 +298,8 @@ $.ajaxSetup({
 								<div class="am-form-group">
 									<label for="user-birth" class="am-form-label">生日</label>
 									<div class="am-form-content birth">
-										<div class="birth-select">
-											<select data-am-selected="" id="select1" style="display: none;">
+										<div class="birth-select" style="height:80px;overflow-y:auto">
+											<select data-am-selected="" id="select1" >
 
 												@for($i=1980;$i<=2020;$i++)
 												<option value="{{$i}}">{{$i}}</option>
@@ -296,15 +307,15 @@ $.ajaxSetup({
 											</select>
 											<em>年</em>
 										</div>
-										<div class="birth-select2">
-											<select data-am-selected=""  id="select2" style="display: none;">
+										<div class="birth-select2" style="height:80px;overflow-y:auto" >
+											<select data-am-selected=""  id="select2" style="display: none;height:200px;overflow-y:auto">
 												@for($j=1;$j<=12;$j++)
 												<option value="@if($j<10) {{'0'.$j}} @elseif($j>=10) {{$j}} @endif">@if($j<10) {{'0'.$j}} @elseif($j>=10) {{$j}} @endif</option>
 												@endfor
 											</select>
 											<em>月</em></div>
-										<div class="birth-select2">
-											<select data-am-selected="" id="select3" style="display: none;">
+										<div class="birth-select2" style="height:80px;overflow-y:auto">
+											<select data-am-selected="" id="select3" style="display: none;height:200px;overflow-y:auto">
 												@for($z=1;$z<=31;$z++)
 												<option value="@if($z<10) {{'0'.$z}} @elseif($z>=10) {{$z}} @endif">@if($z<10) {{'0'.$z}} @elseif($z>=10) {{$z}} @endif</option>
 												@endfor
@@ -315,7 +326,7 @@ $.ajaxSetup({
 								</div>
 
 
-								<div class="am-form-group">
+								<div class="am-form-group" style="clear: both;">
 									<label for="user-email" class="am-form-label">qq</label>
 									<div class="am-form-content">
 										<input id="qq" placeholder="qq号码" type="text" value="{{ $result->qq }}" >
@@ -323,7 +334,7 @@ $.ajaxSetup({
 									</div>
 								</div>
 								
-								<div class="am-form-group">
+								<div class="am-form-group" >
 									<label for="user-email" class="am-form-label">电子邮件</label>
 									<div class="am-form-content">
 										<input id="user-email" placeholder="Email" type="email" value="{{ $result->email }}" >

@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\model\goods;
 use App\Http\model\review;
+use App\Http\model\user;
 
 class DetailsController extends Controller
 {
@@ -37,9 +38,15 @@ class DetailsController extends Controller
         //获取当前商品评论
         $re = review::where('gid',129)->get();
         
+         $userid = 0;
 
+         if(session('userid')){
+            $user = user::where('id',session('userid'))->first();
+            $userid = 1;
+         }
+        
         //显示页面
-        return view('homes.shop.details',compact('res','gdpic','re','gid','sid'));
+        return view('homes.shop.details',compact('res','gdpic','re','gid','sid','user','userid'));
     }
 
     /**
@@ -110,9 +117,15 @@ class DetailsController extends Controller
         //获取当前商品评论
         $re = review::where('gid',$gid)->get();
         
+         $userid = 0;
 
+         if(session('userid')){
+            $user = user::where('id',session('userid'))->first();
+            $userid = 1;
+         }
+       
         //显示页面
-        return view('homes.shop.details',compact('res','gdpic','re','gid','sid'));
+        return view('homes.shop.details',compact('res','gdpic','re','gid','sid','user','userid'));
     }
 
     /**

@@ -31,8 +31,7 @@
 						<ul class="message-l">
 							<div class="topMessage">
 								<div class="menu-hd">
-									<a href="{{url('home/user/')}}" target="_top" class="h">亲爱的xxx</a>
-									<a href="{{url('home/user/usernews')}}" target="_top">消息</a>
+									
 								</div>
 							</div>
 						</ul>
@@ -53,6 +52,9 @@
 							</div>
 							<div class="topMessage my-shangcheng">
 								<div class="menu-hd MyShangcheng"><a href="{{url('home/seller/index')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>商户中心</a></div>
+							</div>
+							<div class="topMessage my-shangcheng">
+								<div class="menu-hd MyShangcheng"><a href="{{url('home/index/5/edit')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>退出登录</a></div>
 							</div>
 						</ul>
 						</div>

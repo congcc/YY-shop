@@ -30,15 +30,21 @@ class ShopcartController extends Controller
         
         if($req){
             $result = shopcar::where('uid',$uid)->orderBy('time', 'desc')->get();
-            
-            for ($i=0; $i <shopcar::count() ; $i++) { 
-                $res = shopcar::where('sid',$result[$i]->sid)->get();
+            $count = shopcar::where('uid',$uid)->count();
+            for ($i=0; $i < $count; $i++) {
+                //查询sid的并且uid=本人id的数据
+                $res = shopcar::where('sid',$result[$i]->sid)->Where('uid',$uid)->get();
+                // $res = shopcar::where(function($query) {
+                //                 $query->where('uid', '=', $uid)
+                //                       ->where('sid', '=', $result[$i]->sid);
+                //             })->get();
                 $array[$i] = $res;
             }
+            //移除数组中重复的值
             $array = array_unique($array);
-        
+            
         }
-
+        
         return view('homes.user.shopcart',compact('array','res'));
 
         // return view('homes.user.shopcart1');

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Model\goods;
+use App\Http\Model\user;
 use App\Http\Model\goodstags;
 
 use App\Http\Controllers\Controller;
@@ -61,7 +62,13 @@ class SearController extends Controller
             $goo[$j] = goods::where('id',$array[rand(0,4)])->first();
         }
 
-        return view('homes.shop.search',compact('res','search','count','tag_a','tag_b','tag_c','goo'));
+        $userid = 0;
+
+         if(session('userid')){
+            $user = user::where('id',session('userid'))->first();
+            $userid = 1;
+         }
+        return view('homes.shop.search',compact('res','search','count','tag_a','tag_b','tag_c','goo','user','userid'));
     }
 
     public function car($ad)
@@ -95,7 +102,13 @@ class SearController extends Controller
         }
 
         
-        return view('homes.shop.search',compact('res','search','count','tag_a','tag_b','tag_c','goo'));
+        $userid = 0;
+
+         if(session('userid')){
+            $user = user::where('id',session('userid'))->first();
+            $userid = 1;
+         }
+        return view('homes.shop.search',compact('res','search','count','tag_a','tag_b','tag_c','goo','user','userid'));
     }
 
     public function bar($cd)
@@ -126,8 +139,13 @@ class SearController extends Controller
             $goo[$j] = goods::where('id',$array[rand(0,4)])->first();
         }
         
-        return view('homes.shop.search',compact('res','search','count','tag_a','tag_b','tag_c','goo'));
-        
+        $userid = 0;
+
+         if(session('userid')){
+            $user = user::where('id',session('userid'))->first();
+            $userid = 1;
+         }
+        return view('homes.shop.search',compact('res','search','count','tag_a','tag_b','tag_c','goo','user','userid'));
         
         
     }
