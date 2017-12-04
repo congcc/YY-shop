@@ -142,6 +142,10 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		//评论中心
 		Route::resource('comments','CommentsController');
 
+		//定时器
+		Route::resource('interval','IntervalController');
+
+
 		
 		//商品列表
 		Route::resource('goodslist','GoodslistController');
