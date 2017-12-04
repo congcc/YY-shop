@@ -11,6 +11,7 @@ use App\Http\model\shop;
 
 use App\Http\model\ordersinfo;
 use App\Http\model\orders;
+use App\Http\model\material;
 use DB;
 
 class OrdereditController extends Controller
@@ -110,7 +111,7 @@ class OrdereditController extends Controller
 
 
 
-          //定义一个数组待取消的订单
+          //定义一个数组已完成的订单
 
         $qorder = array();
             
@@ -121,7 +122,7 @@ class OrdereditController extends Controller
 
             //把未发货的订单放入一个数组
             foreach ($resinfo as $key => $v) {
-                if($v->ostate==5){
+                if($v->ostate==4){
                 $qorder[$value->o_code]=$resinfo;
                 }
             }
@@ -194,6 +195,29 @@ class OrdereditController extends Controller
     public function update(Request $request, $id)
     {
         //
+        // DB::beginTransaction();         //开启事务
+
+        //将数据添加到user表中
+        // $regres = DB::insert("insert into material(o_code,mstate) values ('".$id.","0"')");
+
+         $pp['o_code'] = $id;
+         $pp['mstate'] = 0;
+         $rt=material::insert($pp);
+
+        $orders['ostate']=2;
+        $ost=orders::where('o_code',$id)->update($orders);
+        // dd($ost);
+        
+        $fost=ordersinfo::where('o_code',$id)->update($orders);
+        // dd($fost);
+
+        if($rt && $ost && $fost){
+
+            echo "<script>alert('发货成功');window.location.href='{$_SERVER['HTTP_REFERER']}';</script>";
+        } else {
+
+            return redirect()->back();
+        }
     }
 
     /**

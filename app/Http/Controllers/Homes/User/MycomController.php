@@ -6,12 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\model\orders;
-use App\Http\model\ordersinfo;
+use App\Http\model\review;
+use App\Http\model\comments;
 
-
-
-class UsersaleController extends Controller
+class MycomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,34 +18,44 @@ class UsersaleController extends Controller
      */
     public function index()
     {
-        //取session中id
+        //获取用户id
         $id=session('userid');
-        // dd($id);
 
-        //订单表中找登陆者的订单
-        $ud=orders::where('uid',$id)->get();
-        // dd($ud);
-
-
-        //定义一个空数组
-        $res=array();
-        foreach($ud as $k => $v){
-
-            // dd($v);
-
-            //详情表中取订单号相同的数据
-        $re=ordersinfo::where('o_code',$v->o_code)->get();
-
-
-        $res[$v->o_code]=$re;
-        // dd($v);
-           
+        //获取我的评论
+        $re = review::where('uid',$id)->get();
+        // dd($re);
+        //定义一个空数组获取gid
+        $arr=array();
+        foreach ($re as $key => $value) {
+            $gid = $value->gid;
+            if($gid){
+                array_push($arr,$gid);
+            }
         }
+        // $mm=array_unique($arr);
+        // dd($mm);
+        //获取comments回复我的内容
+        // $array=array();
+        foreach ($arr as $key => $value) {
+           
+            $gg=comments::where('gid',$value)->get();
+           
+              foreach ($gg as $key => $value) {
+                $hh=$value->content;
+                foreach ($re as $k1 => $v1) {
+                    $v1['nn']=$hh;
+                
+                }
+            }
+            
+        }
+        
 
-        // dd($res);
+        
 
 
-        return view('homes.user.sale',compact('res'));
+        return view('homes.user.mycomments',compact('re'));
+
     }
 
     /**

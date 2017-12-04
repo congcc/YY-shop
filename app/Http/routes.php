@@ -79,6 +79,7 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		Route::get('addr/{id}', 'AddrController@edit');
 		Route::get('deladdr', 'AddrController@delete');
 
+
 		//用户订单
 		Route::get('userorders/{o_code}', 'UserorderController@destroy');
 		Route::resource('userorder', 'UserorderController');
@@ -103,6 +104,9 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		Route::resource('userfoot', 'UserfootController');
 		//用户评价
 		Route::resource('ureview', 'UserreviewController');
+		Route::resource('ucomments', 'UsercommentsController');
+		Route::resource('mycom', 'MycomController');
+
 		//用户消息
 		Route::resource('usernews', 'UsernewsController');
 		//用户购物车
@@ -167,10 +171,6 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 
 		//权限不够跳注册页
 
-
-
-
-		
 	
 	});
 

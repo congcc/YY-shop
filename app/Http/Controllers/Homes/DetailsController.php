@@ -91,10 +91,14 @@ class DetailsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($gid)
     {
+        //获取商户id
+        $si = goods::where('id',$gid)->first();
+        $sid = $si['sid'];
+        
         //获取当前商品信息
-        $res = goods::where('id',$id)->get();
+        $res = goods::where('id',$gid)->get();
 
 
         //商品小图
@@ -104,12 +108,11 @@ class DetailsController extends Controller
         $gdpic = explode(',', $gdpics);
 
         //获取当前商品评论
-        $re = review::where('gid',$id)->get();
+        $re = review::where('gid',$gid)->get();
         
-        $gid = $id;
 
         //显示页面
-        return view('homes.shop.details',compact('res','gdpic','re','gid'));
+        return view('homes.shop.details',compact('res','gdpic','re','gid','sid'));
     }
 
     /**

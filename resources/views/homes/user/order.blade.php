@@ -12,7 +12,7 @@
 		<script src="/homes/AmazeUI-2.4.2/assets/js/amazeui.js"></script>
 @endsection
 
-@section('title','个人中心')
+@section('title','订单管理')
 
 
 @section('content')
@@ -78,7 +78,7 @@
 													<div class="dd-num">订单编号：<a href="/homes/javascript:;">{{$k}}</a></div>
 													<span>订单时间：{{date("Y-m-d",$v[0]->ord_time)}}</span>
 													
-													<div style="float:right"><a target=blank href=http://wpa.qq.com/msgrd?V=3&uin=2403287971&Site=QQ客服&Menu=yes><img border="0"  style="height:30px;width:80px;" SRC=http://wpa.qq.com/pa?p=1:2403287971:3 alt="点击这里给我发消息"></a></div>
+													<div style="float:right"><a target=blank href=http://wpa.qq.com/msgrd?V=3&uin={{$v[0]->shop['qq']}}&Site=QQ客服&Menu=yes><img border="0"  style="height:30px;width:80px;" SRC=http://wpa.qq.com/pa?p=1:{{$v[0]->shop['qq']}}:3 alt="点击这里给我发消息"></a></div>
 													<!--    <em>店铺：小桔灯</em>-->
 													
 												</div>
@@ -601,8 +601,9 @@
 																	<p class="order-info"><a href="/homes/logistics.html">查看物流</a></p>
 																</div>
 															</li>
+															
 															<li class="td td-change">
-																<a href="/homes/commentlist.html">
+																<a href="/home/user/ureview/{{$v4[0]->o_code}}">
 																	<div class="am-btn am-btn-danger anniu">
 																		评价商品</div>
 																</a>

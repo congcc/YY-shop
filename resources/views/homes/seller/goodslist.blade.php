@@ -38,13 +38,54 @@
 
         <link href="/homes/css/personal.css" rel="stylesheet" type="text/css">
         <link href="/homes/css/footstyle.css" rel="stylesheet" type="text/css">
+        <style>
+    .pagination li{
+       background-color:rgb(57,49,237) ;
+        border-left: 1px solid rgba(255, 255, 255, 0.15);
+        border-right: 1px solid rgba(0, 0, 0, 0.5);
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.15) inset;
+        
+        cursor: pointer;
+        display: block;
+        float: left;
+        font-size: 12px;
+        width:40px;
+        height: 30px;
+        line-height: 30px;
+        outline: medium none;
+        padding: 0 10px;
+        text-align: center;
+        text-decoration: none;
+    }
+    .pagination a{
+            color: #fff;
+
+        }
+        
+    .pagination .active{
+            background-color: #4BBCDB;
+            background-image: none;
+            border: medium none;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.25) inset;
+            color: #323232;
+        }
+
+    .pagination .disabled{
+            color: #666666;
+            cursor: default;
+        }
+
+    
+
+
+    </style>
 @endsection
 
 @section('title','商品列表')
 
 @section('content')
 
-
+<div class="user-foot">
 @foreach( $goods as $k=>$v)
 
     <div class="goods">
@@ -93,8 +134,11 @@
                         <i><em></em><span></span></i>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
 @endforeach
+{!!$goods->render()!!}
+</div>
 @endsection

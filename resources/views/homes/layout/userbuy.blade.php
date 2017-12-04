@@ -166,7 +166,7 @@
 						<ul>
 							<li> <a href="{{url('home/user/usercollect')}}">收藏</a></li>
 							<li> <a href="{{url('home/user/userfoot')}}">足迹</a></li>
-							<li> <a href="{{url('home/user/ureview')}}">评价</a></li>
+							<li> <a href="{{url('home/user/mycom')}}">评价</a></li>
 							<li> <a href="{{url('home/user/usernews')}}">消息</a></li>
 						</ul>
 					</li>

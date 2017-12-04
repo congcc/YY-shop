@@ -11,6 +11,8 @@ class orders extends Model
     public $timestamps = false;
 
 
+    
+
     public function oruser(){
         return $this->hasOne('App\Http\model\user', 'id', 'uid');
     }

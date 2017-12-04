@@ -104,6 +104,18 @@
 									</div>					
 
 								</div>
+
+
+
+								<div class="am-form-group">
+									<label class="am-form-label" for="user-email">QQ：</label>
+									<div class="am-form-content">
+										<input type="text" placeholder="name" id="user-name2"name="qq" value="{{$user['qq']}}">
+
+									</div>					
+
+
+								</div>
 							
 								<div class="info-btn">
 										{{ csrf_field()}}

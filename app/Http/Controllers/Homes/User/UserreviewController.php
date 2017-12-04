@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\model\ordersinfo;
+use App\Http\model\orders;
+use App\Http\model\goods;
+use App\Http\model\review;
+
 
 class UserreviewController extends Controller
 {
@@ -16,7 +21,14 @@ class UserreviewController extends Controller
      */
     public function index()
     {
-        return view ('homes.user.ureview');
+        //获取用户的id
+        $id = session('userid');
+        // dd($id);
+
+        //获取orders表里面本用户的订单号
+        $code = orders::where('uid',$id)->get();
+        // dd($code);
+        //
     }
 
     /**
@@ -37,7 +49,9 @@ class UserreviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      
+
+       
     }
 
     /**
@@ -48,7 +62,42 @@ class UserreviewController extends Controller
      */
     public function show($id)
     {
-        //
+        //获取要修改的订单号的商品
+        $goods = ordersinfo::where('o_code',$id)->get();
+        // dd($goods);
+
+        //获取要修改的订单号的id
+        $orders = orders::where('o_code',$id)->first();
+        $oid = $orders['id'];
+        // dd($oid);
+
+        $uid=session("userid");
+
+        
+
+        //定义一个数组来接收获取good的id
+        $arr=array();
+
+        foreach ($goods as $key => $value) {
+            $mm = $value->gid;
+
+            if($mm){
+                array_push($arr,$mm);
+            } 
+        }
+
+        // dd($arr);
+
+        // 获取评论内容
+        $dd = array();
+        foreach ($arr as $key => $value) {
+            $cc = ordersinfo::where('gid',$value)->first();
+            if($cc){
+                array_push($dd,$cc);
+            }
+        }
+// dd($dd);
+        return view ('homes.user.ureview',compact('arr','id','uid','oid','dd'));
     }
 
     /**
@@ -60,6 +109,8 @@ class UserreviewController extends Controller
     public function edit($id)
     {
         //
+
+       
     }
 
     /**
@@ -72,6 +123,11 @@ class UserreviewController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $oid=$request->oid;
+        $uid=$request->uid;
+         $id= $id;
+         
+        return view ('homes.user.comments',compact('id','oid','uid'));
     }
 
     /**

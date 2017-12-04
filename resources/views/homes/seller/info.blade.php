@@ -128,6 +128,17 @@
 								</div>
 
 
+								<div class="am-form-group">
+									<label class="am-form-label" for="user-email">QQ：</label>
+									<div class="am-form-content">
+										<input type="text" placeholder="name" id="user-name2"name="qq" value="{{$user['qq']}}" readonly>
+
+									</div>					
+
+
+								</div>
+
+
 						</div>
 							
 								<div class="info-btn">

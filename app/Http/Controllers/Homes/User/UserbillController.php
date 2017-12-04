@@ -20,7 +20,7 @@ class UserbillController extends Controller
     {
        //获取登录用户id
         $id = session('userid');
-
+        
         //查询orders表里uid为$id的信息
         $arr=array();
         for ($i=1; $i <=4 ; $i++) { 
@@ -30,6 +30,9 @@ class UserbillController extends Controller
            }
           
         }
+
+        
+
         //获取他的所有订单号
         // dd($arr);
         //定义一个空数组
