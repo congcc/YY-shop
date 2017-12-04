@@ -51,18 +51,18 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
   </tr>
     <tr>
       <td align="left" valign="top">
-        <form action="/admin/flink" enctype="multipart/form-data" method="post">
+        <form action="/admin/flink/{{ $data->id }}" enctype="multipart/form-data" method="post">
           <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
             <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
               <td align="right" valign="middle" class="borderright borderbottom bggray">链接标题：</td>
               <td align="left" valign="middle" class="borderright borderbottom main-for">
-                <input type="text" name="fs_name" value="" class="text-word">
+                <input type="text" name="fs_name" value="{{ $data->fs_name}}" class="text-word">
               </td>
             </tr>
             <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
               <td align="right" valign="middle" class="borderright borderbottom bggray">链接LOGO：</td>
               <td align="left" valign="middle" class="borderright borderbottom main-for">
-                <input type="file" name="fs_image" value="">
+                <input type="file" name="fs_image" value="{{ $data->fs_image }}">
               </td>
             </tr>
             <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
@@ -78,7 +78,7 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
             <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
               <td align="right" valign="middle" class="borderright borderbottom bggray">链接地址：</td>
               <td align="left" valign="middle" class="borderright borderbottom main-for">
-                <input type="text" name="fs_link" value="" class="text-word">
+                <input type="text" name="fs_link" value="{{ $data->fs_link }}" class="text-word">
               </td>
             </tr>
             
@@ -88,7 +88,7 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
                 <input name="" type="submit" value="提交" class="text-but">
                 <input name="" type="reset" value="重置" class="text-but"></td>
             </tr>
-
+                    {{method_field('PUT')}}
                     {{ csrf_field()}}
           </table>
         </form>

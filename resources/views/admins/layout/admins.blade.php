@@ -34,6 +34,7 @@
 <link rel="stylesheet" type="text/css" href="/admins/css/themer.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admins/css/style.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admins/css/pagination.css" media="screen">
+<link rel="stylesheet" type="text/css" href="/admins/css/style.css" media="screen">
 
 
 <title>@yield('title')</title>
@@ -292,7 +293,7 @@
                     <li>
                         <a href="#"><i class="icon-comment"></i> 订单投诉</a>
                         <ul class="closed">
-                            <li><a href="/admin/user/create">买家投诉</a></li>
+                            <li><a href="/admin/complaint">买家投诉</a></li>
                             <li><a href="/admins/form_wizard.html">卖家投诉</a></li>
                         </ul>
                     </li>

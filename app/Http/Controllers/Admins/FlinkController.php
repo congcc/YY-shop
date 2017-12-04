@@ -41,14 +41,14 @@ class FlinkController extends Controller
     public function store(Request $request)
     {
         //
-      
+        
 
-          if(empty($request['fs_name']) || empty($request['fs_code']) || empty($request['fs_image']) || empty($request['fs_auth']) || empty($request['fs_link'])){
+          if(empty($request['fs_name']) || empty($request['fs_image']) || empty($request['fs_link']) || empty($request['fs_auth'])){
            echo "不能提交空数据";
             die;
         }
 
-           
+        
        if($request->hasFile('fs_image')){
 
             //修改名字
@@ -58,14 +58,16 @@ class FlinkController extends Controller
             $suffix = $request->file('fs_image')->getClientOriginalExtension();
 
             //移动图片
-            $request->file('fs_image')->move('./public/Upload',$name.'.'.$suffix);
+            $request->file('fs_image')->move('./Upload',$name.'.'.$suffix);
+
+
         }
 
             $res = $request->except('_token','fs_image');
 
-            $res['fs_image'] = '/public/uploads/'.$name.'.'.$suffix;
-
-            $res = friendship::insert($res);
+            $res['fs_image'] = './Upload/'.$name.'.'.$suffix;
+                // dd($res);
+           $res = friendship::insert($res);
             //判断是否上传成功
             if(!$res){
                 echo "上传失败";
@@ -130,6 +132,9 @@ class FlinkController extends Controller
     public function show($id)
     {
         //
+        $data = friendship::where('id',$id)->first();
+
+        return view('/admins/flinkchange',['data'=>$data]);
     }
 
     /**
@@ -138,9 +143,12 @@ class FlinkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         //
+          
+
+
     }
 
     /**
@@ -153,6 +161,36 @@ class FlinkController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if($request->hasFile('fs_image')) {
+            
+            $data = friendship::where('id',$id)->first();
+            
+             if($request->fs_image != $data->image) {
+            unlink("$data->fs_image");
+            }
+            
+            
+            //修改名字
+            $name = rand(1111,9999).time();
+
+            //获取后缀
+            $suffix = $request->file('fs_image')->getClientOriginalExtension();
+
+            //移动图片
+             $request->file('fs_image')->move('./Upload/',$name.'.'.$suffix);
+
+            
+         }
+            $request = $request->except('_token','fs_image','_method');
+            $request['fs_image'] = './Upload/'.$name.'.'.$suffix;
+            
+            $res = friendship::where('id',$id)->update($request);
+
+            if($res){
+                return redirect('/admin/flink');
+            } else {
+                alert('修改失败');
+            }
     }
 
     /**
@@ -164,5 +202,17 @@ class FlinkController extends Controller
     public function destroy($id)
     {
         //
+        
+         $data = friendship::where('id',$id)->first();
+            
+         unlink("$data->fs_image");
+            
+
+        $res = friendship::where('id',$id)->delete();
+        if($res){
+            return redirect('/admin/flink');
+        } else {
+            alert('删除失败了哦吼');
+        }
     }
 }

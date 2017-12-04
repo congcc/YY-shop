@@ -1,0 +1,40 @@
+@charset "gb2312";
+/* CSS Document */
+
+*{ margin:0px; padding:0px;transition:all 1s;}
+body{ margin:0px; padding:0px; font-size:12px; font-family:"ÐÂËÎÌå"; color:#6e6e6e; background:#ffffff;}
+ul,ol,li,hr,p{ margin:0px;  padding:0px; border:none;}
+li{ list-style:none;}
+div{zoom:1}
+img{ border:none;}
+a{ text-decoration:none; color:#6e6e6e;}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clearfix{display:inline-table;}/* Hides from IE-mac \*/
+*html .clearfix{height:1%;}
+.clearfix{display:block;}/* End hide from IE-mac */
+*+html .clearfix{min-height:1%;}
+/*****ieÏÂÈ¥³ýÐéÏß¿ò*****/
+a{blur:expression_r(this.blur());}
+a { outline:none; } 
+.fr{ float:right;}
+.fl{ float:left;}
+
+
+nav{ width:1200px; margin:0 auto; background:#C90;}
+#nav{ line-height:34px; overflow:hidden; background:rgb(204,102,0);}
+#nav li {float: left; width:171px;height:34px; font-size:14px;font-family:"Î¢ÈíÑÅºÚ";line-height: 34px;text-align: center;}
+#nav li a {display: block;font-weight:600 !important;color:rgb(9,59,100);}
+#nav li a:hover {color:rgb(255,255,255);background:url(../images/dh.gif) repeat-x;}
+#nav li ul {display: none;position: absolute;background:rgb(31,147,198);width: 171px; font-size:12px; font-weight:normal;}
+#nav ul li:hover>ul {position: relative;left: 171px;top: -35px;}
+#nav li:hover>ul {display: block;}
+#nav li ul li {float: none; color:rgb(255,255,255);margin: 0px;}
+#nav li ul li a {background:url(../images/img1.gif) center right no-repeat; background-position:80% 50%; color:rgb(255,255,255); font-size:12px;}
+#nav li ul li a:hover{background:url(../images/img2.gif) center  right no-repeat rgb(3,133,191);background-position:80% 50%}
+#nav li ul li ul{display: none;position: absolute;background:rgb(3,133,191);width: 171px; }
+#nav li ul li:hover>ul {position: relative;left: 171px;top: -15px;}
+#nav li ul li:hover>ul {display: block;}
+#nav li ul li  ul li ul{float: none;margin: 0px; background:rgb(29,146,198);}
+#nav li ul li ul li a {background:url(../images/img1.gif) center right no-repeat; background-position:80% 50%;}
+#nav li ul li  ul li ul a{ background:none;}
+#nav li ul li  ul li ul a:hover{ background:rgb(3,133,191);}

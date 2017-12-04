@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
+
 class LoginMiddleware
 {
     /**
@@ -15,12 +16,12 @@ class LoginMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $aid = session('adminsid');
+        $aid = session('adminid');
 
-       if(session('aid')){
+       if($aid){
             return $next($request);
         } else {
-            return redirect('/admin/login');
+           return redirect('/admin/login');
         }
     }
 }

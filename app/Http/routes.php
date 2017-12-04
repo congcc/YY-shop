@@ -170,8 +170,9 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 
 
 //后台控制组
-Route::group(['prefix'=>'admin','namespace'=>'Admins',], function () {
+Route::group(['prefix'=>'admin','namespace'=>'Admins','Middleware'=>'login'], function () {
 	
+	Route::resource('admin','AdminController');
 
 	//后台登录
 	Route::resource('login','LoginController');
@@ -182,8 +183,10 @@ Route::group(['prefix'=>'admin','namespace'=>'Admins',], function () {
 	// 'meddleware'=>'login'
 	Route::group([], function () {
 
+		
 		//后台首页
-		Route::resource('admin','AdminController');
+		
+		
 
 		//后台人员管理
 		Route::resource('user','UserController');
