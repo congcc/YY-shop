@@ -82,8 +82,11 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		//用户订单
 		Route::get('userorders/{o_code}', 'UserorderController@destroy');
 		Route::resource('userorder', 'UserorderController');
-		Route::get('orderpay/{code}','OrderpayController@index');			//支付
-		Route::get('ordersub/{gid}/{sid}/{toprice}/{num}', 'OrdersubController@index');			//下订单
+		Route::get('orderpay/{code}', 'OrderpayController@index');			//支付
+		Route::get('orderpays', 'OrderpayController@create');			//支付完成
+		Route::get('oraddr', 'OraddrController@index');					//改变地址
+		Route::get('ordersub/{gid}/{sid}/{toprice}/{num}/{label}/{gprices}', 'OrdersubController@index');			//下订单
+		Route::post('ordersubs', 'OrdersubController@create');			//生成订单
 		Route::get('ordersinfo/{code}', 'OrdersinfoController@index');			//订单详情
 
 		//用户退款售后

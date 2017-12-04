@@ -2,10 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 	<head>
+	<meta name="_token" content="{{ csrf_token() }}"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0 ,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>结算页面</title>
+		<title>提交订单</title>
 
 		<link href="/homes/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
 
@@ -92,10 +93,8 @@
 										<span class="buy-line-title buy-line-title-type">收货地址：</span>
 										<?php $addrs = json_decode($v['address']) ?>
 										<span class="buy--address-detail">
-								   		<span class="province">{{$addrs[0]}}</span>
-										<span class="city">{{$addrs[1]}}</span>
-										<span class="dist">{{$addrs[2]}}</span>
-										<span class="street">{{$addrs[3]}}</span>
+								   		<span class="province">{{$addrs[0]}}&nbsp;&nbsp;{{$addrs[1]}}&nbsp;&nbsp;{{$addrs[3]}}&nbsp;&nbsp;{{$addrs[2]}}</span>
+										
 										</span>
 
 										</span>
@@ -139,10 +138,8 @@
 										<span class="buy-line-title buy-line-title-type">收货地址：</span>
 										<?php $addrs = json_decode($v1['address']) ?>
 										<span class="buy--address-detail">
-								   		<span class="province">{{$addrs[0]}}</span>
-										<span class="city">{{$addrs[1]}}</span>
-										<span class="dist">{{$addrs[2]}}</span>
-										<span class="street">{{$addrs[3]}}</span>
+								   		<span class="province">{{$addrs[0]}}&nbsp;&nbsp;<?php if($addrs[3]){echo $addrs[3]; }else{echo "";} ?>&nbsp;&nbsp;{{$addrs[1]}}&nbsp;&nbsp;{{$addrs[2]}}</span>
+										
 										</span>
 
 										</span>
@@ -231,7 +228,7 @@
 												<li class="td td-item">
 													<div class="item-pic">
 														<a href="/homes/#" class="J_MakePoint">
-															<img src="{{$resgoods[0]->gimg}}" class="itempic J_ItemImg"></a>
+															<img src="{{$resgoods[0]->gimg}}" width="100%" class="itempic J_ItemImg"></a>
 													</div>
 													<div class="item-info">
 														<div class="item-basic-info">
@@ -241,14 +238,13 @@
 												</li>
 												<li class="td td-info">
 													<div class="item-props">
-														<span class="sku-line">颜色：12#川南玛瑙</span>
-														<span class="sku-line">包装：裸装</span>
+														<span class="sku-line">规格：{{$label}}</span>
 													</div>
 												</li>
 												<li class="td td-price">
 													<div class="item-price price-promo-promo">
 														<div class="price-content">
-															<em class="J_Price price-now">39.00</em>
+															<em class="J_Price price-now">{{$gprices}}</em>
 														</div>
 													</div>
 												</li>
@@ -259,22 +255,60 @@
 														<span class="phone-title">购买数量</span>
 														<div class="sl">
 															<input class="min am-btn" name="" type="button" value="-" />
-															<input class="text_box" name="" type="text" value="3" style="width:30px;" />
+															<input class="text_box" name="" type="text" value="{{$num}}" style="width:30px;" />
 															<input class="add am-btn" name="" type="button" value="+" />
 														</div>
 													</div>
 												</div>
 											</li>
+				
+											<script type="text/javascript">
+												//var toprice = 0;
+												$('.min').click(function(){
+													var num = $('.text_box').val()-1;
+													var pri = $('.J_Price').html();
+													var toprice = parseFloat(pri)*parseInt(num);
+													$('.J_ItemSum').html(toDecimal2(toprice));
+													$('.pay-sum').html(toDecimal2(toprice));
+													$('.style-large-bold-red').html(toDecimal2(toprice));
+												})
+												$('.add').click(function(){
+													var num = parseInt($('.text_box').val())+parseInt(1);
+													var pri = $('.J_Price').html();
+													var toprice = parseFloat(pri)*parseInt(num);
+													$('.J_ItemSum').html(toDecimal2(toprice));
+													$('.pay-sum').html(toDecimal2(toprice));
+													$('.style-large-bold-red').html(toDecimal2(toprice));	
+												})
+												function toDecimal2(x) {    
+												        var f = parseFloat(x);    
+												        if (isNaN(f)) {    
+												            return false;    
+												        }    
+												        var f = Math.round(x*100)/100;    
+												        var s = f.toString();    
+												        var rs = s.indexOf('.');    
+												        if (rs < 0) {    
+												            rs = s.length;    
+												            s += '.';    
+												        }    
+												        while (s.length <= rs + 2) {    
+												            s += '0';    
+												        }    
+												        return s;    
+												    }    
+											</script>
+
 											<li class="td td-sum">
 												<div class="td-inner">
-													<em tabindex="0" class="J_ItemSum number">117.00</em>
+													<em tabindex="0" class="J_ItemSum number">{{number_format($toprice,2)}}</em>
 												</div>
 											</li>
 											<li class="td td-oplist">
 												<div class="td-inner">
 													<span class="phone-title">配送方式</span>
 													<div class="pay-logis">
-														快递<b class="sys_item_freprice">10</b>元
+														快递<b class="sys_item_freprice">0</b>元
 													</div>
 												</div>
 											</li>
@@ -358,7 +392,7 @@
 							<!--含运费小计 -->
 							<div class="buy-point-discharge ">
 								<p class="price g_price ">
-									合计（含运费） <span>¥</span><em class="pay-sum">244.00</em>
+									合计（含运费） <span>¥</span><em class="pay-sum">{{number_format($toprice,2)}}</em>
 								</p>
 							</div>
 
@@ -368,7 +402,7 @@
 									<div class="box">
 										<div tabindex="0" id="holyshit267" class="realPay"><em class="t">实付款：</em>
 											<span class="price g_price ">
-                                    <span>¥</span> <em class="style-large-bold-red " id="J_ActualFee">244.00</em>
+                                    <span>¥</span> <em class="style-large-bold-red " id="J_ActualFee">{{number_format($toprice,2)}}</em>
 											</span>
 										</div>
 
@@ -377,32 +411,77 @@
 											<p class="buy-footer-address">
 												<span class="buy-line-title buy-line-title-type">寄送至：</span>
 												<span class="buy--address-detail">
-								   <span class="province">湖北</span>省
-												<span class="city">武汉</span>市
-												<span class="dist">洪山</span>区
-												<span class="street">雄楚大道666号(中南财经政法大学)</span>
+								   				<span class="province1">湖北</span>
+												<span class="city1">武汉</span>
+												<span class="dist1">洪山</span>
+												<span class="street1">雄楚大道666号(中南财经政法大学)</span>
 												</span>
 												</span>
 											</p>
 											<p class="buy-footer-address">
 												<span class="buy-line-title">收货人：</span>
 												<span class="buy-address-detail">   
-                                         <span class="buy-user">艾迪 </span>
-												<span class="buy-phone">15871145629</span>
+                                         <span class="buy-user1">艾迪 </span>
+												<span class="buy-phone1">15871145629</span>
 												</span>
 											</p>
 										</div>
 									</div>
-
+									{{ csrf_field()}}
 									<div id="holyshit269" class="submitOrder">
 										<div class="go-btn-wrap">
-											<a id="J_Go" href="/homes/success.html" class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</a>
+											<a id="J_Go" href="javascript:void(0)" class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</a>
 										</div>
 									</div>
 									<div class="clear"></div>
 								</div>
 							</div>
 						</div>
+						
+						<script type="text/javascript">
+							var ad = document.getElementsByClassName('user-addresslist');
+							var addrs;
+							$(document).ready(function(){
+								addrs = 0;
+								$.get("/home/user/oraddr",{addrs:addrs},function(data){
+									$('.province1').html(JSON.parse(data.address)[0]);
+									$('.city1').html(JSON.parse(data.address)[3]);
+									$('.dist1').html(JSON.parse(data.address)[1]);
+									$('.street1').html(JSON.parse(data.address)[2]);
+									$('.buy-user1').html(data.name);
+									$('.buy-phone1').html(data.phone);
+								},'json')
+							})
+							$('.user-addresslist').click(function(){
+								addrs = (parseInt($(this).index())+1)/2-1;
+								$.get("/home/user/oraddr",{addrs:addrs},function(data){
+									$('.province1').html(JSON.parse(data.address)[0]);
+									$('.city1').html(JSON.parse(data.address)[3]);
+									$('.dist1').html(JSON.parse(data.address)[1]);
+									$('.street1').html(JSON.parse(data.address)[2]);
+									$('.buy-user1').html(data.name);
+									$('.buy-phone1').html(data.phone);
+								},'json')
+							})
+							$("#J_Go").click(function(){
+								var mes = $('.memo-input').val();
+								var gid = {{$gid}};
+								var num = $('.text_box').val();
+								var total_price = $('.style-large-bold-red').html();
+								var label = "{{$label}}";
+								var sid = {{$sid}};
+								$.post("/home/user/ordersubs",{'_token':'{{ csrf_token() }}',label:label,addrs:addrs,mes:mes,gid:gid,goods_num:num,total_price:total_price,sid:sid},function(data){
+							      	if(data){
+							      		location.href = "/home/user/orderpay/"+data;
+							      	}else{
+							      		alert('抱歉，提交失败了呢，请您稍后再试');
+							      	}
+							    },'json')
+							})
+							
+							
+							
+						</script>
 
 						<div class="clear"></div>
 					</div>

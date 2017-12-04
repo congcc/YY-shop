@@ -288,9 +288,12 @@
 							<a><span class="am-icon-heart am-icon-fw">收藏</span></a>
 							
 							</div>
+							
+							
+							
 							<li>
 								<div class="clearfix tb-btn tb-btn-buy theme-login">
-									<a id="LikBuy" title="点此按钮到下一步确认购买信息" href="{{url('home/user/ordersub/2/1/90/3')}}">立即购买</a>
+									<a id="LikBuy" title="点此按钮到下一步确认购买信息" href="javascript:void(0)">立即购买</a>
 								</div>
 							</li>
 							<li>
@@ -301,7 +304,8 @@
 						</div>
 						
 						<script type="text/javascript">
-							var gid = {{$gid}}
+							var gid = {{$gid}};
+							var sid = {{$sid}};
 							var lis1 = document.getElementsByClassName('lis1');
 							var lis2 = document.getElementsByClassName('lis2');
 							$('#LikBasket').click(function(){
@@ -322,12 +326,21 @@
 							    },'json')
 							})
 							$('#LikBuy').click(function(){
+								for(var i = 0;i<lis1.length;i++){
+									if(lis1[i].getAttribute('class')=="sku-line lis1 selected"){
+										var label1 = $('.lis1').eq(i).html();
+									}
+								}
+								for(var j = 0;j<lis2.length;j++){
+									if(lis2[j].getAttribute('class')=="sku-line lis2 selected"){
+										var label2 = $('.lis2').eq(j).html();
+									}
+								}
+								var label = label1+','+label2;
 								var gum = $('#text_box').val();
-
-								
-								$.get("/home/user/ordersub",{label:label,gum:gum,gid:gid},function(data){
-							      console.log(data);
-							    },'json')
+								var gprices = $('#gprices').html();
+								var toprice = parseFloat(gprices)*parseInt(gum);
+								location.href = "/home/user/ordersub/"+gid+"/"+sid+"/"+toprice+"/"+gum+"/"+label+"/"+gprices;
 							})
 						</script>
 
