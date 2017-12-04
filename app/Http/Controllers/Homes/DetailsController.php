@@ -18,9 +18,14 @@ class DetailsController extends Controller
      */
     public function index()
     {   
-        $gid = 15;
+        $gid = 129;
+
+        //获取商户id
+        $si = goods::where('id',$gid)->first();
+        $sid = $si['sid'];
+        
         //获取当前商品信息
-        $res = goods::where('id',15)->get();
+        $res = goods::where('id',129)->get();
 
 
         //商品小图
@@ -30,11 +35,11 @@ class DetailsController extends Controller
         $gdpic = explode(',', $gdpics);
 
         //获取当前商品评论
-        $re = review::where('gid',15)->get();
+        $re = review::where('gid',129)->get();
         
 
         //显示页面
-        return view('homes.shop.details',compact('res','gdpic','re','gid'));
+        return view('homes.shop.details',compact('res','gdpic','re','gid','sid'));
     }
 
     /**
@@ -70,7 +75,7 @@ class DetailsController extends Controller
         $inds = $request->input('inds');
 
         //查询该商品的信息
-        $res = goods::where('id',15)->get();
+        $res = goods::where('id',129)->get();
 
         //获取对应价格
         $gprices = number_format(json_decode($res[0]->gprices,true)[$inds],2);

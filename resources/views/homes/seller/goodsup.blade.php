@@ -124,7 +124,7 @@
 			font-family: "微软雅黑";
 			margin: 0 0 0 7px;
 			cursor: pointer;
-		}
+		} 
 		.subpri{
 			display: none;
 		}
@@ -227,9 +227,10 @@
 					</div>
 					<div style="width: 780px;height: 45px;">
 						<ul class="ul2">
-
+					
 						</ul>
 					</div>
+					
 					<div class="subpri">
 						<input type="text" name="prices" value="" style="width: 70px;">
 						<span style="margin: 10px 0 0 0;" class="span1 spansub btn btn-danger">确定</span>
@@ -306,6 +307,7 @@
 	var arr2 = [];
 	var arr3 = [];
 	var arr4 = [];
+
 	$('.span3').click(function(){
 		$('.ul1').empty();
 		$('.ul2').empty();
@@ -319,6 +321,9 @@
 			arr4.push(flavor2[j-1].value);
 		}
 	})
+	
+
+
 	$(".ul1").on("click",".lis1",function(){
 		$('.ul1 li').css('border','1px solid #ddd');
 		$('.ul1 li').attr('name','b');

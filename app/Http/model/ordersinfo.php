@@ -8,6 +8,7 @@ class ordersinfo extends Model
 {
     //
     public $table = "ordersinfo";
+    public $timestamps = false;
     public function orgoods(){
         return $this->hasOne('App\Http\model\goods', 'id', 'gid');
     }
