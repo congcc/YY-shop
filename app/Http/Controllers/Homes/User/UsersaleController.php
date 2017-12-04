@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\model\orders;
+use App\Http\model\ordersinfo;
+
+
 
 class UsersaleController extends Controller
 {
@@ -16,7 +20,34 @@ class UsersaleController extends Controller
      */
     public function index()
     {
-        return view('homes.user.sale');
+        //取session中id
+        $id=session('userid');
+        // dd($id);
+
+        //订单表中找登陆者的订单
+        $ud=orders::where('uid',$id)->get();
+        // dd($ud);
+
+
+        //定义一个空数组
+        $res=array();
+        foreach($ud as $k => $v){
+
+            // dd($v);
+
+            //详情表中取订单号相同的数据
+        $re=ordersinfo::where('o_code',$v->o_code)->get();
+
+
+        $res[$v->o_code]=$re;
+        // dd($v);
+           
+        }
+
+        // dd($res);
+
+
+        return view('homes.user.sale',compact('res'));
     }
 
     /**

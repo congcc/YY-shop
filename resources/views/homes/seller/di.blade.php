@@ -46,14 +46,14 @@
 										<i class="s-icon"></i>个人资产
 									</div>
 									<p class="m-bonus">
-										<a href="bonus.html">
+										<a href="">
 											<i><img src="/homes/images/bonus.png"></i>
 											<span class="m-title">精彩活动</span>
 											<em class="m-num">2</em>
 										</a>
 									</p>
 									<p class="m-coupon">
-										<a href="coupon.html">
+										<a href="">
 											<i><img src="/homes/images/coupon.png"></i>
 											<span class="m-title">优惠券</span>
 											<em class="m-num">2</em>
@@ -86,30 +86,17 @@
 							<div class="m-order">
 								<div class="s-bar">
 									<i class="s-icon"></i>我的订单
-									<a href="order.html" class="i-load-more-item-shadow">全部订单</a>
+									<a href="/home/seller/orderedit" class="i-load-more-item-shadow">全部订单</a>
 								</div>
 								<ul>
 									
 									<li><a href="order.html"><i><img src="/homes/images/send.png"></i><span>待发货<em class="m-num">1</em></span></a></li>
 									<li><a href="order.html"><i><img src="/homes/images/receive.png"></i><span>待收货</span></a></li>
-									<li><a href="order.html"><i><img src="/homes/images/comment.png"></i><span>评价<em class="m-num">3</em></span></a></li>
-									<li><a href="change.html"><i><img src="/homes/images/refund.png"></i><span>退换货</span></a></li>
+									<li><a href="/home/seller/comments"><i><img src="/homes/images/comment.png"></i><span>评价<em class="m-num">3</em></span></a></li>
+									<li><a href="/home/seller/orderback"><i><img src="/homes/images/refund.png"></i><span>退换售后</span></a></li>
 								</ul>
 							</div>
-							<!--九宫格-->
-							<div class="user-patternIcon">
-								<div class="s-bar">
-									<i class="s-icon"></i>我的常用
-								</div>
-								<ul>
-
-									<a href="home/shopcart.html"><li class="am-u-sm-4"><i class="am-icon-shopping-basket am-icon-md"></i><img src="/homes/images/iconbig.png"><p>购物车</p></li></a>
-									<a href="collection.html"><li class="am-u-sm-4"><i class="am-icon-heart am-icon-md"></i><img src="/homes/images/iconsmall1.png"><p>我的收藏</p></li></a>
-									<a href="home/home.html"><li class="am-u-sm-4"><i class="am-icon-gift am-icon-md"></i><img src="/homes/images/iconsmall0.png"><p>为你推荐</p></li></a>
-									<a href="comment.html"><li class="am-u-sm-4"><i class="am-icon-pencil am-icon-md"></i><img src="/homes/images/iconsmall3.png"><p>好评宝贝</p></li></a>
-									<a href="foot.html"><li class="am-u-sm-4"><i class="am-icon-clock-o am-icon-md"></i><img src="/homes/images/iconsmall2.png"><p>我的足迹</p></li></a>                                                                        
-								</ul>
-							</div>
+							
 							<!--物流 -->
 							<div class="m-logistics">
 
