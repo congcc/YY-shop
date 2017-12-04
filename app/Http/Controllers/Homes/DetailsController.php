@@ -115,7 +115,7 @@ class DetailsController extends Controller
         $gdpic = explode(',', $gdpics);
 
         //获取当前商品评论
-        $re = review::where('gid',$gid)->get();
+        $re = review::where('gid',$gid)->paginate(2);
         
          $userid = 0;
 

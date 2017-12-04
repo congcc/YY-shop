@@ -26,7 +26,8 @@
 			<ul class="message-l">
 				<div class="topMessage">
 					<div class="menu-hd">
-						
+						<a href="/homes/#" target="_top" class="h">亲，请登录</a>
+						<a href="/homes/#" target="_top">免费注册</a>
 					</div>
 				</div>
 			</ul>
@@ -47,7 +48,20 @@
 
 			<!--悬浮搜索框-->
 
-			
+			<div class="nav white">
+				<div class="logo"><img src="/homes/images/logo.png" /></div>
+				<div class="logoBig">
+					<li><img src="/homes/images/logobig.png" /></li>
+				</div>
+
+				<div class="search-bar pr">
+					<a name="index_none_header_sysc" href="/homes/#"></a>
+					<form>
+						<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
+						<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
+					</form>
+				</div>
+			</div>
 
 			<div class="clear"></div>
 			<div class="concent">
@@ -506,8 +520,8 @@
 
 				<div class="am-u-md-12">
 					<form class="am-form am-form-horizontal">
-						
-						<!-- <div class="am-form-group">
+
+						<div class="am-form-group">
 							<label for="user-name" class="am-form-label">收货人</label>
 							<div class="am-form-content">
 								<input type="text" id="user-name" placeholder="收货人">
@@ -552,213 +566,8 @@
 								<div class="am-btn am-btn-danger">保存</div>
 								<div class="am-btn am-btn-danger close">取消</div>
 							</div>
-						</div> -->
-
-
-										<div class="am-form-group">
-											<label for="user-name" class="am-form-label">收货人</label>
-											<div class="am-form-content">
-												<input type="text" id="user-name" placeholder="收货人">
-												<div id="e4" style="width: 200px;height: 20px;display: none;color: black;font-size: 13px;font-weight: bold"></div>
-											</div>
-										</div>
-
-										<div class="am-form-group">
-											<label for="user-phone" class="am-form-label">手机号码</label>
-											<div class="am-form-content">
-												<input id="user-phone" placeholder="手机号必填" type="email">
-												<div id="e1" style="width: 200px;height: 20px;display: none;color: black;font-size: 13px;font-weight: bold"></div>
-											</div>
-
-										</div>
-										<div class="am-form-group">
-										<head>
-		<meta name="_token" content="{{ csrf_token() }}"/>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0 ,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-		
-
-		<link href="/homes/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
-
-		<link href="/homes/basic/css/demo.css" rel="stylesheet" type="text/css" />
-		<link href="/homes/css/cartstyle.css" rel="stylesheet" type="text/css" />
-
-		<link href="/homes/css/jsstyle.css" rel="stylesheet" type="text/css" />
-
-		<script type="text/javascript" src="/homes/js/address.js"></script>
-        <link rel="stylesheet" type="text/css" href="/homes/style/cssreset-min.css">
-        <link rel="stylesheet" type="text/css" href="/homes/style/common.css">
-        <style type="text/css">
-            .citys{
-                margin-bottom: 10px;
-            }
-            .citys p{
-                line-height: 28px;
-            }
-            .warning{
-                color: #c00;
-            }
-            .main a{
-                margin-right: 8px;
-                color: #369;
-            }
-        </style>
-        <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-        <script type="text/javascript" src="/homes/script/jquery.citys.js"></script>
-    </head>
-    <body>   
-        
-           
-            <script type="text/javascript">
-                $('#demo2').citys({
-                    required:false,
-                    nodata:'disabled',
-                    onChange:function(data){
-                        var text = data['direct']?'(直辖市)':'';
-                        $('#place').text('当前选中地区：'+data['province']+text+' '+data['city']+' '+data['area']);
-                    }
-                });
-            </script>
-            <p style="float: left;margin: 0 0 0 8px;text-align: center;width: 67px;height: 30px;line-height: 30px;">收货地址</p>
-            <div id="demo3" class="citys" style="float: left;">
-                <span>
-                    <select name="province" style="float:left;width:105px"></select>
-                    <select name="city"   style="float:left;width:105px;margin:0 0 0 10px;"></select>
-                    <select name="area"   style="float:left;width:105px;margin:0 0 0 10px;"></select>
-                </span>
-            </div>
-            
-            <script type="text/javascript">
-                var $town = $('#demo3 select[name="town"]');
-                var townFormat = function(info){
-                    $town.hide().empty();
-                    if(info['code']%1e4&&info['code']<7e5){ //是否为“区”且不是港澳台地区
-                        $.ajax({
-                            url:'http://passer-by.com/data_location/town/'+info['code']+'.json',
-                            dataType:'json',
-                            success:function(town){
-                                $town.show();
-                                for(i in town){
-                                        $town.append('<option value="'+i+'">'+town[i]+'</option>');
-                                }
-                            }
-                        });
-                    }
-                };
-                $('#demo3').citys({
-                    province:'福建',
-                    city:'厦门',
-                    area:'思明',
-                    onChange:function(info){
-                        townFormat(info);
-                    }
-                },function(api){
-                    var info = api.getInfo();
-                    townFormat(info);
-                });
-            </script>
-            
-        
-    </body>
-										</div>
-										
-										<div class="am-form-group">
-
-											<label for="user-intro" class="am-form-label">详细地址</label>
-											<div class="am-form-content">
-												<textarea class="" rows="3" id="user-intro" placeholder="100字以内写出你的详细地址..."></textarea>
-												<div id="e5" style="width: 200px;height: 20px;display: none;color: black;font-size: 13px;font-weight: bold"></div>
-												
-											</div>
-										</div>
-
-										<div class="am-form-group theme-poptit" >
-											<div class="am-u-sm-9 am-u-sm-push-3">
-												<a class="am-btn am-btn-danger" onclick="address({{session('userid')}})"  >保存</a>
-												<div class="am-btn am-btn-danger close">取消</div>
-											</div>
-										</div>
-										
 						</div>
 					</form>
-					<script>
-	var ch1=100;
-  	var ch2=100;
-  	var ch3=100;
-  	
-  	$('#user-name').blur(function(){
-		var name = $('#user-name').val();
-		
-		if(name==''){
-			$('#e4').css('display','block');
-			$('#e4').html('收货人不能为空哦');
-			ch1 = 66;
-		}else{
-			$('#e4').css('display','none');
-      		ch1 = 100;
-		}
-   });
-
-
-	$('#user-phone').blur(function(){
-
-	    var ph  = 	$('#user-phone').val();
-	    
-	    ch2 = checkTel($('#user-phone'),$('#e1'));
-	    if(ch2!=100){
-	      $('#e1').css('display','block');
-	      return;
-	    }else{
-	      $('#e1').css('display','none');
-	      ch2 = 100;
-	    }
-	});
-
-	$('#user-intro').blur(function(){
-		var addr = $('#user-intro').val();
-
-		if(addr==''){
-			$('#e5').css('display','block');
-			$('#e5').html('内容不能为空');
-			ch3 = 66;
-		}else{
-			$('#e5').css('display','none');
-      		ch3 = 100;
-		}
-   });
-
-
-//添加信息发送ajax
-	function address (uid) {
-		
-		var sheng = $('select[name=province]').val();
-		var shi = $('select[name=city]').val();
-		var xian = $('select[name=area]').val();
-		var name = $('#user-name').val();
-		var ph  = $('#user-phone').val();
-		var addr = $('#user-intro').val();
-
-		// console.log('省'+sheng);
-		// console.log('市'+shi);
-		// console.log('县'+xian);
-
-		$.post("{{url('home/user/addr')}}",{'_token':'{{ csrf_token() }}',uid:uid,name:name,ph:ph,sheng:sheng,shi:shi,xian:xian,addr:addr},function(data){
-         // console.log(data);
-         	if(data==1){
-         		
-				
-				location.reload();
-         	}else{
-         		layer.alert('失败,请重试', {
-				  icon: 2,
-				  skin: 'layer-ext-moon' 
-         		})
-         	}
-        },'json');
-		
-	}
-					</script>
 				</div>
 
 			</div>

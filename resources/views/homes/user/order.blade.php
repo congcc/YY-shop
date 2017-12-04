@@ -5,7 +5,7 @@
 <meta name="_token" content="{{ csrf_token() }}"/>
 		<link href="/homes/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
 		<link href="/homes/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
-
+<script src="/homes/layer/layer.js"></script>
 		<link href="/homes/css/personal.css" rel="stylesheet" type="text/css">
 		<link href="/homes/css/orstyle.css" rel="stylesheet" type="text/css">
 		<script src="/homes/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
@@ -185,7 +185,7 @@
 											</div>
 											<?php $i++; ?>
 											@endforeach
-
+											
 										</div>
 
 									</div>
@@ -278,8 +278,27 @@
 															<li class="td td-status">
 																<div class="item-status">
 																	<p class="Mystatus">等待买家付款</p>
-																	<p class="order-info"><a href="/homes/#">取消订单</a></p>
+																	<p class="order-info orderre"><a href="javascript:void(0)">取消订单</a></p>
 																</div>
+																<script type="text/javascript">
+																///home/user/orderre/{{$v1[0]->o_code}}
+																	$('.orderre').click(function(){
+																		var code = {{$v1[0]->o_code}};
+																		layer.confirm('您确定要取消该订单吗?', {
+																		  btn: ['确定','取消'] //按钮
+																		}, function(){
+																			$.get("/home/user/orderre",{code:code},function(data){
+
+																			});
+																			location.reload();
+																			
+																		}, function(){
+
+																		});
+																		
+																		
+																	})
+																</script>
 															</li>
 															<li class="td td-change">
 																<a href="/home/user/orderpay/{{$v1[0]->o_code}}">
@@ -471,11 +490,12 @@
 															<li class="td td-operation">
 																<div class="item-operation">
 																	
-																	<a href="">确认收货</a>
+																	<a href="javascript:void(0)">确认收货</a>
 																</div>
+
 															</li>
 														</ul>
-
+														
 														@endforeach
 
 													</div>
@@ -496,8 +516,48 @@
 																</div>
 															</li>
 															<li class="td td-change">
-																<div class="am-btn am-btn-danger anniu">
+																<div class="am-btn am-btn-danger anniu shouhuo">
 																	确认收货</div>
+
+																	<script type="text/javascript">
+																				layer.config({
+																				    extend: 'extend/layer.ext.js'
+																				});
+																			$('.shouhuo').click(function(){
+																				var code = {{$v3[0]->o_code}};
+																				/*layer.prompt(function(val, index){
+																				  layer.msg('得到了'+val);
+																				  layer.close(index);
+																				});*/
+
+																				layer.prompt({formType: 1,ormType: 1, title: '请输入支付密码'},function(val, index, elem){
+
+																				  	$.get("/home/user/ordersu",{code:code,pass:val},function(data){
+																				  		if(data==1){
+																				  			layer.msg("支付成功");
+																				  		}else if(data==0){
+																				  			layer.msg("密码不正确");
+																				  		}
+																				  		//console.log(data);
+																					});
+																					location.reload();
+																				  layer.close(index);
+																				})
+																				/*layer.confirm('确认收货吗?', {
+																				  btn: ['确定','取消'] //按钮
+																				}, function(){
+																					$.get("/home/user/ordersu",{code:code},function(data){
+
+																					});
+																					location.reload();
+																					
+																				}, function(){
+
+																				});*/
+																				
+																				
+																			})
+																</script>
 															</li>
 														</div>
 													</div>

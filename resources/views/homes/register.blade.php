@@ -97,7 +97,8 @@
 	$('#dyMobileButton').click(function(){
 		var ph = $('#phone').val();
 		$.post("/home/co",{'_token':'{{ csrf_token() }}',ph:ph},function(data){
-			if(data=="0"){
+			if(data==1){
+        layer.msg('已发送验证码');
 			}
 		})
 	})

@@ -16,6 +16,27 @@
 		<script type="text/javascript" src="/homes/js/jquery.imagezoom.min.js"></script>
 		<script type="text/javascript" src="/homes/js/jquery.flexslider.js"></script>
 		<script type="text/javascript" src="/homes/js/list.js"></script>
+		<style>
+			.pagination > li > a, .pagination > li > span {
+			    position: relative;
+			    display: block;
+			    padding: 0.5em 1em;
+			    text-decoration: none;
+			    line-height: 1.2;
+			    background-color: #fff;
+			    border: 1px solid #ddd;
+			    border-radius: 0;
+			    margin-bottom: 5px;
+			    margin-right: 5px;
+			}
+			.pagination > .am-active > a, .pagination > .am-active > span, .pagination > .am-active > a:hover, .pagination > .am-active > span:hover, .pagination > .am-active > a:focus, .pagination > .am-active > span:focus {
+			    z-index: 2;
+			    color: #fff;
+			    background-color: #0e90d2;
+			    border-color: #0e90d2;
+			    cursor: default;
+			}
+		</style>
 
 @endsection
 
@@ -123,38 +144,17 @@
 							</div>
 
 							<!--地址-->
-							<dl class="iteminfo_parameter freight">
-								<dt>配送至</dt>
-								<div class="iteminfo_freprice">
-									<div class="am-form-content address">
-										<select data-am-selected="" style="display: none;">
-											<option value="a">浙江省</option>
-											<option value="b">湖北省</option>
-										</select><div class="am-selected am-dropdown " id="am-selected-1lgpa" data-am-dropdown="">  <button type="button" class="am-selected-btn am-btn am-dropdown-toggle am-btn-default">    <span class="am-selected-status am-fl">浙江省</span>    <i class="am-selected-icon am-icon-caret-down"></i>  </button>  <div class="am-selected-content am-dropdown-content">    <h2 class="am-selected-header"><span class="am-icon-chevron-left">返回</span></h2>       <ul class="am-selected-list">                     <li class="am-checked" data-index="0" data-group="0" data-value="a">         <span class="am-selected-text">浙江省</span>         <i class="am-icon-check"></i></li>                                 <li class="" data-index="1" data-group="0" data-value="b">         <span class="am-selected-text">湖北省</span>         <i class="am-icon-check"></i></li>            </ul>    <div class="am-selected-hint"></div>  </div></div>
-										<select data-am-selected="" style="display: none;">
-											<option value="a">温州市</option>
-											<option value="b">武汉市</option>
-										</select><div class="am-selected am-dropdown " id="am-selected-ga789" data-am-dropdown="">  <button type="button" class="am-selected-btn am-btn am-dropdown-toggle am-btn-default">    <span class="am-selected-status am-fl">温州市</span>    <i class="am-selected-icon am-icon-caret-down"></i>  </button>  <div class="am-selected-content am-dropdown-content">    <h2 class="am-selected-header"><span class="am-icon-chevron-left">返回</span></h2>       <ul class="am-selected-list">                     <li class="am-checked" data-index="0" data-group="0" data-value="a">         <span class="am-selected-text">温州市</span>         <i class="am-icon-check"></i></li>                                 <li class="" data-index="1" data-group="0" data-value="b">         <span class="am-selected-text">武汉市</span>         <i class="am-icon-check"></i></li>            </ul>    <div class="am-selected-hint"></div>  </div></div>
-										<select data-am-selected="" style="display: none;">
-											<option value="a">瑞安区</option>
-											<option value="b">洪山区</option>
-										</select><div class="am-selected am-dropdown " id="am-selected-msi2i" data-am-dropdown="">  <button type="button" class="am-selected-btn am-btn am-dropdown-toggle am-btn-default">    <span class="am-selected-status am-fl">瑞安区</span>    <i class="am-selected-icon am-icon-caret-down"></i>  </button>  <div class="am-selected-content am-dropdown-content">    <h2 class="am-selected-header"><span class="am-icon-chevron-left">返回</span></h2>       <ul class="am-selected-list">                     <li class="am-checked" data-index="0" data-group="0" data-value="a">         <span class="am-selected-text">瑞安区</span>         <i class="am-icon-check"></i></li>                                 <li class="" data-index="1" data-group="0" data-value="b">         <span class="am-selected-text">洪山区</span>         <i class="am-icon-check"></i></li>            </ul>    <div class="am-selected-hint"></div>  </div></div>
-									</div>
-									<div class="pay-logis">
-										快递<b class="sys_item_freprice">10</b>元
-									</div>
-								</div>
-							</dl>
+							
 							<div class="clear"></div>
 
 							<!--销量-->
 							<ul class="tm-ind-panel">
 								
 								<li class="tm-ind-item tm-ind-sumCount canClick">
-									<div class="tm-indcon"><span class="tm-label">累计销量</span><span class="tm-count">6015</span></div>
+									<div class="tm-indcon"><span class="tm-label">累计销量</span><span class="tm-count">{{$res[0]->xnumber}}</span></div>
 								</li>
 								<li class="tm-ind-item tm-ind-reviewCount canClick tm-line3">
-									<div class="tm-indcon"><span class="tm-label">累计评价</span><span class="tm-count">640</span></div>
+									<div class="tm-indcon"><span class="tm-label">累计评价</span><span class="tm-count">{{$res[0]->geva}}</span></div>
 								</li>
 							</ul>
 							<div class="clear"></div>
@@ -207,10 +207,10 @@
 
 															$('.lis1,.lis2').click(function(){
 																for(var i=0; i<lis1.length; i++){
-																if(lis1[i].getAttribute('class')=="sku-line lis1 selected"){
-																	ind1 = i;
+																	if(lis1[i].getAttribute('class')=="sku-line lis1 selected"){
+																		ind1 = i;
+																		}
 																	}
-																}
 																for(var j=0; j<lis2.length; j++){
 																	if(lis2[j].getAttribute('class')=="sku-line lis2 selected"){
 																		ind2 = j;
@@ -495,17 +495,13 @@
 									</ul>
 
 									<div class="clear"></div>
+									
+										
 
+										
+										
 									<!--分页 -->
-									<ul class="am-pagination am-pagination-right">
-										<li class="am-disabled"><a href="/homes/#">«</a></li>
-										<li class="am-active"><a href="/homes/#">1</a></li>
-										<li><a href="/homes/#">2</a></li>
-										<li><a href="/homes/#">3</a></li>
-										<li><a href="/homes/#">4</a></li>
-										<li><a href="/homes/#">5</a></li>
-										<li><a href="/homes/#">»</a></li>
-									</ul>
+									
 									<div class="clear"></div>
 
 									<div class="tb-reviewsft">
