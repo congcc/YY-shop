@@ -9,8 +9,10 @@
 
 		<link href="/homes/css/seastyle.css" rel="stylesheet" type="text/css" />
 
-		<script type="text/javascript" src="basic/js/jquery-1.7.min.js"></script>
-		<script type="text/javascript" src="js/script.js"></script>
+		<script type="text/javascript" src="/homes/basic/js/jquery-1.7.min.js"></script>
+		<script type="text/javascript" src="/homes/js/script.js"></script>
+		<script src="/homes/layer/layer.js"></script>
+		<script src="/homes/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
 
 @endsection
 
@@ -20,17 +22,11 @@
 <div class="am-g am-g-fixed">
 						<div class="am-u-sm-12 am-u-md-12">
 	                  	<div class="theme-popover">														
-							<div class="searchAbout">
-								<span class="font-pale">相关搜索：</span>
-								<a title="坚果" href="/homes/#">坚果</a>
-								<a title="瓜子" href="/homes/#">瓜子</a>
-								<a title="鸡腿" href="/homes/#">豆干</a>
-
-							</div>
+							
 							<ul class="select">
 								<p class="title font-normal">
-									<span class="fl">松子</span>
-									<span class="total fl">搜索到<strong class="num">997</strong>件相关商品</span>
+									<span class="fl">{{$search}}</span>
+									<span class="total fl">搜索到<strong class="num">{{$count}}</strong>件相关商品</span>
 								</p>
 								<div class="clear"></div>
 								<li class="select-result">
@@ -46,13 +42,10 @@
 										<dt class="am-badge am-round">品牌</dt>	
 									
 										 <div class="dd-conent">										
-											<dd class="select-all selected"><a href="/homes/#">全部</a></dd>
-											<dd><a href="/homes/#">百草味</a></dd>
-											<dd><a href="/homes/#">良品铺子</a></dd>
-											<dd><a href="/homes/#">新农哥</a></dd>
-											<dd><a href="/homes/#">楼兰蜜语</a></dd>
-											<dd><a href="/homes/#">口水娃</a></dd>
-											<dd><a href="/homes/#">考拉兄弟</a></dd>
+											<dd class="select-all selected"><a >全部</a></dd>
+											@foreach($tag_a as $k=>$v)
+											<dd><a style="cursor: pointer;" onclick="titlea({{$v}})" >{{$v}}</a></dd>
+											@endforeach
 										 </div>
 						
 									</dl>
@@ -62,10 +55,9 @@
 										<dt class="am-badge am-round">种类</dt>
 										<div class="dd-conent">
 											<dd class="select-all selected"><a href="/homes/#">全部</a></dd>
-											<dd><a href="/homes/#">东北松子</a></dd>
-											<dd><a href="/homes/#">巴西松子</a></dd>
-											<dd><a href="/homes/#">夏威夷果</a></dd>
-											<dd><a href="/homes/#">松子</a></dd>
+											@foreach($tag_b as $o=>$p)
+											<dd><a href="">{{$p}}</a></dd>
+											@endforeach
 										</div>
 									</dl>
 								</li>
@@ -74,10 +66,10 @@
 										<dt class="am-badge am-round">选购热点</dt>
 										<div class="dd-conent">
 											<dd class="select-all selected"><a href="/homes/#">全部</a></dd>
-											<dd><a href="/homes/#">手剥松子</a></dd>
-											<dd><a href="/homes/#">薄壳松子</a></dd>
-											<dd><a href="/homes/#">进口零食</a></dd>
-											<dd><a href="/homes/#">有机零食</a></dd>
+											@foreach($tag_c as $q=>$w)
+											<dd><a href="">{{$w}}</a></dd>
+											@endforeach
+											
 										</div>
 									</dl>
 								</li>
@@ -87,181 +79,33 @@
                         </div>
 							<div class="search-content">
 								<div class="sort">
-									<li class="first"><a title="综合">综合排序</a></li>
-									<li><a title="销量">销量排序</a></li>
-									<li><a title="价格">价格优先</a></li>
-									<li class="big"><a title="评价" href="/homes/#">评价为主</a></li>
+									<li class="first"><a title="综合" href="/home/cyn/{{$search}}">综合排序</a></li>
+									<li>
+										<a title="价格" href="/home/sales/{{$search}}" >销量优先</a></li>
+								
+									</li>
+									<li><a title="价格" href="/home/price/{{$search}}" >价格优先</a></li>
+									
 								</div>
 								<div class="clear"></div>
 
 								<ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 boxes">
+									@foreach($res as $k=>$v)
 									<li>
-										<div class="i-pic limit">
-											<a href="{{url('home/details')}}"><img src="/homes/images/imgsearch1.jpg"></a>										
-											<a href="{{url('home/details')}}"><p class="title fl">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
-											<p class="price fl"></a>
-												<b>¥</b>
-												<strong>56.90</strong>
-											</p>
-											<p class="number fl">
-												销量<span>1110</span>
-											</p>
-										</div>
-									</li>
-									<li>
-										<div class="i-pic limit">
+										<a href="/home/details/{{$v->id}}/edit" ><div class="i-pic limit">
 											
-											<img src="/homes/images/imgsearch1.jpg">
-											<p class="title fl">手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
+											<img src="{{$v->gimg}}" style="width: 218px;height: 218px;">
+											<p class="title fl">{{$v->gname}}</p>
 											<p class="price fl">
 												<b>¥</b>
-												<strong>56.90</strong>
+												<strong>{{$v->gprice}}</strong>
 											</p>
 											<p class="number fl">
-												销量<span>1110</span>
+												销量<span>{{$v->xnumber}}</span>
 											</p>
-										</div>
+										</div></a>
 									</li>
-									<li>
-										<div class="i-pic limit">
-											
-											<img src="/homes/images/imgsearch1.jpg">
-											<p class="title fl">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
-											<p class="price fl">
-												<b>¥</b>
-												<strong>56.90</strong>
-											</p>
-											<p class="number fl">
-												销量<span>1110</span>
-											</p>
-										</div>
-									</li>
-									<li>
-										<div class="i-pic limit">
-											
-											<img src="/homes/images/imgsearch1.jpg">
-											<p class="title fl">手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
-											<p class="price fl">
-												<b>¥</b>
-												<strong>56.90</strong>
-											</p>
-											<p class="number fl">
-												销量<span>1110</span>
-											</p>
-										</div>
-									</li>
-									<li>
-										<div class="i-pic limit">
-											
-											<img src="/homes/images/imgsearch1.jpg">
-											<p class="title fl">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
-											<p class="price fl">
-												<b>¥</b>
-												<strong>56.90</strong>
-											</p>
-											<p class="number fl">
-												销量<span>1110</span>
-											</p>
-										</div>
-									</li>
-									<li>
-										<div class="i-pic limit">
-											
-											<img src="/homes/images/imgsearch1.jpg">
-											<p class="title fl">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
-											<p class="price fl">
-												<b>¥</b>
-												<strong>56.90</strong>
-											</p>
-											<p class="number fl">
-												销量<span>1110</span>
-											</p>
-										</div>
-									</li>
-									<li>
-										<div class="i-pic limit">
-											
-											<img src="/homes/images/imgsearch1.jpg">
-											<p class="title fl">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
-											<p class="price fl">
-												<b>¥</b>
-												<strong>56.90</strong>
-											</p>
-											<p class="number fl">
-												销量<span>1110</span>
-											</p>
-										</div>
-									</li>
-									<li>
-										<div class="i-pic limit">
-											
-											<img src="/homes/images/imgsearch1.jpg">
-											<p class="title fl">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
-											<p class="price fl">
-												<b>¥</b>
-												<strong>56.90</strong>
-											</p>
-											<p class="number fl">
-												销量<span>1110</span>
-											</p>
-										</div>
-									</li>
-									<li>
-										<div class="i-pic limit">
-											
-											<img src="/homes/images/imgsearch1.jpg">
-											<p class="title fl">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
-											<p class="price fl">
-												<b>¥</b>
-												<strong>56.90</strong>
-											</p>
-											<p class="number fl">
-												销量<span>1110</span>
-											</p>
-										</div>
-									</li>
-									<li>
-										<div class="i-pic limit">
-											
-											<img src="/homes/images/imgsearch1.jpg">
-											<p class="title fl">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
-											<p class="price fl">
-												<b>¥</b>
-												<strong>56.90</strong>
-											</p>
-											<p class="number fl">
-												销量<span>1110</span>
-											</p>
-										</div>
-									</li>
-									<li>
-										<div class="i-pic limit">
-											
-											<img src="/homes/images/imgsearch1.jpg">
-											<p class="title fl">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
-											<p class="price fl">
-												<b>¥</b>
-												<strong>56.90</strong>
-											</p>
-											<p class="number fl">
-												销量<span>1110</span>
-											</p>
-										</div>
-									</li>
-									<li>
-										<div class="i-pic limit">
-											
-											<img src="/homes/images/imgsearch1.jpg">
-											<p class="title fl">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
-											<p class="price fl">
-												<b>¥</b>
-												<strong>56.90</strong>
-											</p>
-											<p class="number fl">
-												销量<span>1110</span>
-											</p>
-										</div>
-									</li>
+									@endforeach
 								</ul>
 							</div>
 							<div class="search-side">
@@ -269,21 +113,22 @@
 								<div class="side-title">
 									经典搭配
 								</div>
-
+								@foreach($goo as $z=>$x)
 								<li>
-									<div class="i-pic check">
-										<img src="/homes/images/cp.jpg">
-										<p class="check-title">萨拉米 1+1小鸡腿</p>
+									<a href="/home/details/{{$x->id}}/edit" ><div class="i-pic check">
+										<img src="{{$x->gimg}}">
+										<p class="check-title">{{$x->gname}}</p>
 										<p class="price fl">
 											<b>¥</b>
-											<strong>29.90</strong>
+											<strong>{{$x->gprice}}</strong>
 										</p>
 										<p class="number fl">
-											销量<span>1110</span>
+											销量<span>{{$x->xnumber}}</span>
 										</p>
-									</div>
+									</div></a>
 								</li>
-								<li>
+								@endforeach
+								<!-- <li>
 									<div class="i-pic check">
 										<img src="/homes/images/cp2.jpg">
 										<p class="check-title">ZEK 原味海苔</p>
@@ -308,7 +153,7 @@
 											销量<span>1110</span>
 										</p>
 									</div>
-								</li>
+								</li> -->
 
 							</div>
 							<div class="clear"></div>
@@ -325,6 +170,16 @@
 
 						</div>
 					</div>
+<script>
+ 
+ 
 
+ function sales () {
+ 	var search = "{{$search}}";
+ 	$.post('/home/sales',{'_token':'{{ csrf_token() }}',search:search},function(data){
+ 		console.log(data);
+ 	},'json');
+ }
+</script>
 @endsection
 

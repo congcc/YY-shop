@@ -49,18 +49,28 @@ class AddrController extends Controller
         $data = json_decode($json_string, true);
          
         // 显示出来看看
-        // dd($data);
+        // dd($data);    
         //将省市县,地址 找出来,并拼接成一个数组
-        $sheng = $data[$req['sheng']];
-        $shi = $data[$req['shi']];
+        $sheng = $data[$req['sheng']];  
+        if ($req['shi']) {
+            $shi = $data[$req['shi']];
+        }
         $xian = $data[$req['xian']];
         $xiangxi = $req['addr'];
+
         $addr = array();
-        array_push($addr,$sheng);
-        array_push($addr,$shi);
+        array_push($addr,$sheng);  
+        
         array_push($addr,$xian);
         array_push($addr,$xiangxi);
-        //转成json字符串
+
+        if ($req['shi']) {
+            array_push($addr,$shi);
+        }else{
+            array_push($addr,'');
+        }
+        
+        // //转成json字符串
         $str = json_encode($addr);
         
         //判断此人是否拥有地址
@@ -161,6 +171,8 @@ class AddrController extends Controller
 
         if ($req['shi']) {
             array_push($addr,$shi);
+        }else{
+            array_push($addr,'');
         }
         // return $addr;
         //转成json字符串

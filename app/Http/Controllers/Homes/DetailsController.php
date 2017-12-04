@@ -88,7 +88,23 @@ class DetailsController extends Controller
      */
     public function edit($id)
     {
-        //
+        //获取当前商品信息
+        $res = goods::where('id',$id)->get();
+
+
+        //商品小图
+        $gdpics = $res[0]->gdpic;
+
+        //转为数组
+        $gdpic = explode(',', $gdpics);
+
+        //获取当前商品评论
+        $re = review::where('gid',$id)->get();
+        
+        $gid = $id;
+
+        //显示页面
+        return view('homes.shop.details',compact('res','gdpic','re','gid'));
     }
 
     /**

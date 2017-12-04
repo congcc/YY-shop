@@ -44,6 +44,9 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 
 	//商品搜索页
 	Route::resource('search', 'SearchController');
+	Route::get('sales/{id}', 'SearController@create');
+	Route::get('price/{ad}', 'SearController@car');
+	Route::get('cyn/{cd}', 'SearController@bar');
 
 	//商品详情页
 	

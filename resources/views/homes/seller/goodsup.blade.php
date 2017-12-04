@@ -198,10 +198,10 @@
 			<div class="am-form-group" style="clear: both">
 				<label class="am-form-label" for="user-name2">商品标签</label>
 				<div class="am-form-content">
-					<input type="text" placeholder="商品标签" name="labels1" class="tags" style="float: left;width: 85px;margin-left: 15px;">
-					<input type="text" placeholder="商品标签" name="labels2" class="tags" style="float: left;width: 85px;margin-left: 15px;">
+					<input type="text" placeholder="商品品牌" name="labels1" class="tags" style="float: left;width: 85px;margin-left: 15px;">
+					<input type="text" placeholder="商品种类" name="labels2" class="tags" style="float: left;width: 85px;margin-left: 15px;">
 					<input type="text" placeholder="商品标签" name="labels3" class="tags" style="float: left;width: 85px;margin-left: 15px;">
-					<input type="text" placeholder="商品标签" name="labels4" class="tags" style="float: left;width: 85px;margin-left: 15px;">
+					<input type="text" placeholder="热门标签" name="labels4" class="tags" style="float: left;width: 85px;margin-left: 15px;">
 				</div>
 			</div>
 		

@@ -12,7 +12,7 @@ class cateone extends Model
 
      public function catetwo()
     {
-        return $this->hasOne('App\Http\model\catetwo', 'id', 'pid');
+        return $this->hasMany('App\Http\model\catetwo', 'pid', 'id');
     }
 
 

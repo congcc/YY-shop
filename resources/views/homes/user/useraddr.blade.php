@@ -34,9 +34,10 @@
 								<div class="new-mu_l2a new-p-re">
 									<p class="new-mu_l2cw">
 									<?php  $add = json_decode($defadd->address,true) ?>
+
 										<span class="title">地址：</span>
 										<span class="province">{{$add['0']}}</span>
-										<span class="city">@if(isset( $add[3]) ? $add[3] : "")  @endif</span>
+										<span class="city"><?php if($add['3']){echo $add['3'];}else{echo "";} ?></span>
 										<span class="dist">{{$add['1']}}</span>
 										<span class="street">{{$add['2']}}</span></p>
 								</div>
@@ -60,7 +61,7 @@
 										<span class="title">地址：</span>
 										<?php  $addr = json_decode($v->address,true) ?>
 										<span class="province">{{$addr['0']}}</span>
-										<span class="city">@if(isset( $add[3]) ? $add[3] : "")  @endif</span>
+										<span class="city"><?php if($addr['3']){echo $addr['3'];}else{echo "";} ?></span>
 										<span class="dist">{{$addr['1']}}</span>
 										<span class="street">{{$addr['2']}}</span></p>
 								</div>
@@ -70,7 +71,6 @@
 									<a style="cursor: pointer;" onclick="delClick({{$v->id}});"><i class="am-icon-trash"></i>删除</a>
 								</div>
 							</li>
-							
 							@endforeach
 							
 						</ul>
@@ -282,8 +282,12 @@
 		var ph  = $('#user-phone').val();
 		var addr = $('#user-intro').val();
 
+		// console.log('省'+sheng);
+		// console.log('市'+shi);
+		// console.log('县'+xian);
+
 		$.post("{{url('home/user/addr')}}",{'_token':'{{ csrf_token() }}',uid:uid,name:name,ph:ph,sheng:sheng,shi:shi,xian:xian,addr:addr},function(data){
-         
+         // console.log(data);
          	if(data==1){
          		layer.alert('保存成功', {
 				  icon: 1,
@@ -541,19 +545,19 @@
 		var addr = $('#user-intro').val();
 
 		$.post("{{url('home/user/addr')}}",{'_token':'{{ csrf_token() }}',uid:uid,name:name,ph:ph,sheng:sheng,shi:shi,xian:xian,addr:addr},function(data){
-         
-         	if(data==1){
-         		layer.alert('保存成功', {
-				  icon: 1,
-				  skin: 'layer-ext-moon' 
-				})
-				location.reload();
-         	}else{
-         		layer.alert('失败,请重试', {
-				  icon: 2,
-				  skin: 'layer-ext-moon' 
-         		})
-         	}
+         	// console.log(data);
+    //      	if(data==1){
+    //      		layer.alert('保存成功', {
+				//   icon: 1,
+				//   skin: 'layer-ext-moon' 
+				// })
+				// location.reload();
+    //      	}else{
+    //      		layer.alert('失败,请重试', {
+				//   icon: 2,
+				//   skin: 'layer-ext-moon' 
+    //      		})
+    //      	}
         },'json');
 		
 	}

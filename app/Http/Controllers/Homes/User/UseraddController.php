@@ -17,6 +17,18 @@ class UseraddrController extends Controller
      */
     public function index()
     {
+        // $uid = session('userid');
+        
+        
+        // $res = address::where(['uid'=>$uid,'defadd'=>0])->get();
+        
+        // $result = address::where('uid',$uid)->get();
+        // $defadd = $result->where('defadd',1)->first();
+        // if($defadd){
+        //     return view('homes.user.useraddr',compact('res','defadd','result'));
+        // }else{
+        //     return view('homes.user.useradd',compact('res','defadd','result'));
+        // }
         $uid = session('userid');
         
         
@@ -24,11 +36,8 @@ class UseraddrController extends Controller
         
         $result = address::where('uid',$uid)->get();
         $defadd = $result->where('defadd',1)->first();
-        if($defadd){
-            return view('homes.user.useraddr',compact('res','defadd','result'));
-        }else{
-            return view('homes.user.useradd',compact('res','defadd','result'));
-        }
+        
+        return view('homes.user.useraddr',compact('res','defadd','result'));
     }
 
     /**

@@ -27,8 +27,8 @@
 				<!--分类-->
 			
 				<ol class="am-breadcrumb am-breadcrumb-slash">
-					<li><a href="/homes/#">首页</a></li>
-					<li><a href="/homes/#">分类</a></li>
+					<li><a href="/homes/">首页</a></li>
+					<li><a href="/homes/">分类</a></li>
 					<li class="am-active">内容</li>
 				</ol>
 				<script type="text/javascript">
@@ -149,9 +149,7 @@
 
 							<!--销量-->
 							<ul class="tm-ind-panel">
-								<li class="tm-ind-item tm-ind-sellCount canClick">
-									<div class="tm-indcon"><span class="tm-label">月销量</span><span class="tm-count">1015</span></div>
-								</li>
+								
 								<li class="tm-ind-item tm-ind-sumCount canClick">
 									<div class="tm-indcon"><span class="tm-label">累计销量</span><span class="tm-count">6015</span></div>
 								</li>
