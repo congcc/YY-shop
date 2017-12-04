@@ -24,7 +24,7 @@
 
 							<div class="filePic">
 								<input type="file" accept="image/*" allowexts="gif,jpeg,jpg,png,bmp" class="inputPic" >
-								<img alt="" src="{{$user['user_pic']}}" class="am-circle am-img-thumbnail">
+								<img alt="" src="http://ozsps8743.bkt.clouddn.com/img/image_{{$user['user_pic']}}" class="am-circle am-img-thumbnail">
 							</div>
 
 							<p class="am-form-help">头像</p>

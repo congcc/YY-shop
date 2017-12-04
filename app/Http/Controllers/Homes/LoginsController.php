@@ -40,25 +40,40 @@ class LoginsController extends Controller
      */
     public function store(Request $request)
     {
-        // $req = $request->except('_token');
-       // var_dump($request);
-        // $req = $request->except('_token');
-        // $res = user::where('phone',$request->input('phone'))->get();
-        // $resa = Hash::check($request->input('pass'), $res->password);
-            
-        //     // session(['userid'=>);
-        //     echo $resa;
-       
+    
         $req = $request->except('_token');
-
-        $res = user::where('phone',$req['uname'])->get();
-       
-        if (Hash::check($req['password'], $res[0]->password)) {
-           session(['userid'=>$res[0]->id,'utype'=>$res[0]->utype]);
-
-           echo "1"; 
-        }
+        $i = $req['i'];//定义登录失败次数
         
+        //查询该用户信息
+        $res = user::where('phone',$req['uname'])->first();
+        if(!$res){ return 404;die; }
+        
+
+
+        //查询该用户状态
+        if($res['status']=='1'){
+            //查询密码
+            $hash = Hash::check($req['password'], $res['password']);
+            
+            //密码正常
+            if ($hash) {
+               $result = session(['userid'=>$res['id'],'utype'=>$res['utype']]);
+               return 1; 
+            //密码错误
+            }else{
+                $i++;
+                    //登录次数过多封禁用户  2状态是封禁24小时
+                    if ($i>103) { 
+                        $stats = user::where('phone',$req['uname'])->update(['status'=>2]);
+                        return 2;
+                        }
+                return $i;
+            }
+        }else if($res['status']==0){
+            return 3; //0状态必须由管理员解封
+        }else if($res['status']==2){
+            return 2; //2状态是封禁24小时
+        }
 
 
     }

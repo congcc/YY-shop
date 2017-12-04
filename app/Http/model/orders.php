@@ -8,9 +8,9 @@ class orders extends Model
 {
     //
     public $table = "orders";
-
-
     public $timestamps = false;
+
+
     
 
     public function oruser(){

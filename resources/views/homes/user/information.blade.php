@@ -8,6 +8,9 @@
 		<link href="/homes/css/infstyle.css" rel="stylesheet" type="text/css">
 		<script src="/homes/AmazeUI-2.4.2/assets/js/jquery.min.js" type="text/javascript"></script>
 		<script src="/homes/AmazeUI-2.4.2/assets/js/amazeui.js" type="text/javascript"></script>
+		<!-- <meta name="_token" content="{{ csrf_token() }}"/> -->
+		<meta name="csrf-token" content="{{ csrf_token() }}">
+
 
 @endsection
 
@@ -23,12 +26,12 @@
 
 						<!--头像 -->
 						<div class="user-infoPic">
-
+						<form id="art_form">
 							<div class="filePic">
-								<input type="file" class="inputPic" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*">
-								<img class="am-circle am-img-thumbnail"  src="{{$result->user_pic}}" alt="">
+								<input type="file" class="inputPic" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*" name="userpic"  id="file_upload">
+								<img class="am-circle am-img-thumbnail" id="img1" src="http://ozsps8743.bkt.clouddn.com/img/image_{{$result->user_pic}}" alt="">
 							</div>
-
+						</form>
 							<p class="am-form-help">头像</p>
 
 							<div class="info-m">
@@ -85,32 +88,34 @@
 									<label for="user-birth" class="am-form-label">生日</label>
 									<div class="am-form-content birth">
 										<div class="birth-select">
-											<select data-am-selected="" style="display: none;">
-
-												@for($i=1980;$i<=2020;$i++)
-												<option value="a">{{ $i }}</option>
-												@endfor
+											<select data-am-selected="" id="select1"  style="display: none;">
+ 
+												<option value="a" selected >{{substr($result->birth,0,4)}}</option>
 											</select>
 											<em>年</em>
 										</div>
 										<div class="birth-select2">
-											<select data-am-selected="" style="display: none;">
-												@for($j=1;$j<=12;$j++)
-												<option value="a">{{$j}}</option>
-												@endfor
+											<select data-am-selected="" id="select2" style="display: none;">
+												<option value="a" selected>{{substr($result->birth,4,2)}}</option>
 											</select>
 											<em>月</em></div>
 										<div class="birth-select2">
-											<select data-am-selected="" style="display: none;">
-												@for($z=1;$z<=31;$z++)
-												<option value="a">{{$z}}</option>
-												@endfor
+											<select data-am-selected="" id="select3" style="display: none;">
+												<option value="a" selected >{{substr($result->birth,6,2)}}</option>
 											</select>
 											<em>日</em></div>
 									</div>
 							
 								</div>
 								
+								<div class="am-form-group">
+									<label for="user-email" class="am-form-label">qq</label>
+									<div class="am-form-content">
+										<input id="qq" placeholder="qq号码" type="text" value="{{ $result->qq }}" >
+
+									</div> 
+								</div>
+
 								<div class="am-form-group">
 									<label for="user-email" class="am-form-label">电子邮件</label>
 									<div class="am-form-content">
@@ -150,6 +155,66 @@
 						</div>
 
 					</div>
+
+<script>
+$.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+                            $(function () {
+                                $("#file_upload").change(function (){ 
+                                    uploadImage();
+                                });
+                            });
+                            function uploadImage() {
+//                            判断是否有选择上传文件
+//                            input type file
+                                var imgPath = $("#file_upload").val();
+                                if (imgPath == "") {
+                                    alert("请选择上传图片！");
+                                    return;
+                                }
+                                //判断上传文件的后缀名
+                                var strExtension = imgPath.substr(imgPath.lastIndexOf('.') + 1);
+                                if (strExtension != 'jpg' && strExtension != 'gif'
+                                    && strExtension != 'png' && strExtension != 'bmp') {
+                                    alert("请选择图片文件");
+                                    return;
+                                }
+                                var formData = new FormData($( "#art_form" )[0]);
+                                console.log(formData);
+                                $.ajax({
+                                    type: "post",
+                                    url: "/home/user/userpic",
+                                    data: formData,
+                                    async: true,
+                                    cache: false,
+                                    contentType: false,
+                                    processData: false,
+                                    beforeSend:function(){
+                                          // 菊花转转图
+                                          // $('#img1').attr('src', 'http://img.lanrentuku.com/img/allimg/1212/5-121204193R0-50.gif');
+                                          //
+                                           a = layer.load();
+                                      },
+                                    success: function(data) {
+                                        layer.close(a);
+                                        // console.log(data);
+                                        $('#img1').attr('src','http://ozsps8743.bkt.clouddn.com/img/image_'+data);
+                                       
+                                      // $('#art_thumb').val(data);
+                                    },
+                                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                    	 // console.log(data);
+                                        alert("上传失败，请检查网络后重试");
+                                        layer.close(a);
+                                        $('#img1').attr('src','/homes/images/image.jpg');
+                                    }
+                                });
+                            }
+</script>
+
 @elseif(!$result->nickname)
 <div class="user-info">
 						<!--标题 -->
@@ -191,7 +256,7 @@
 								<div class="am-form-group">
 									<label for="user-name2" class="am-form-label">用户名</label>
 									<div class="am-form-content">
-										<input type="text" id="user-name2" placeholder="用户名一经设置不得修改" value=""	 name="">
+										<input type="text" id="nickname" placeholder="用户名一经设置不得修改" value="{{$result->nickname}}"	 name="">
 
 									</div>
 								</div>
@@ -213,6 +278,7 @@
 											<span class="am-ucheck-icons">
 											<i class="am-icon-unchecked"></i>
 											<i class="am-icon-checked"></i></span> 女
+											<!-- <span style="color:#ddd;">性别设置后不允许修改哟</span> -->
 										</label>
 										
 									</div>
@@ -222,30 +288,39 @@
 									<label for="user-birth" class="am-form-label">生日</label>
 									<div class="am-form-content birth">
 										<div class="birth-select">
-											<select data-am-selected="" style="display: none;">
+											<select data-am-selected="" id="select1" style="display: none;">
 
 												@for($i=1980;$i<=2020;$i++)
-												<option value="a">{{ $i }}</option>
+												<option value="{{$i}}">{{$i}}</option>
 												@endfor
 											</select>
 											<em>年</em>
 										</div>
 										<div class="birth-select2">
-											<select data-am-selected="" style="display: none;">
+											<select data-am-selected=""  id="select2" style="display: none;">
 												@for($j=1;$j<=12;$j++)
-												<option value="a">{{$j}}</option>
+												<option value="@if($j<10) {{'0'.$j}} @elseif($j>=10) {{$j}} @endif">@if($j<10) {{'0'.$j}} @elseif($j>=10) {{$j}} @endif</option>
 												@endfor
 											</select>
 											<em>月</em></div>
 										<div class="birth-select2">
-											<select data-am-selected="" style="display: none;">
+											<select data-am-selected="" id="select3" style="display: none;">
 												@for($z=1;$z<=31;$z++)
-												<option value="a">{{$z}}</option>
+												<option value="@if($z<10) {{'0'.$z}} @elseif($z>=10) {{$z}} @endif">@if($z<10) {{'0'.$z}} @elseif($z>=10) {{$z}} @endif</option>
 												@endfor
 											</select>
 											<em>日</em></div>
 									</div>
 							
+								</div>
+
+
+								<div class="am-form-group">
+									<label for="user-email" class="am-form-label">qq</label>
+									<div class="am-form-content">
+										<input id="qq" placeholder="qq号码" type="text" value="{{ $result->qq }}" >
+
+									</div>
 								</div>
 								
 								<div class="am-form-group">
@@ -254,18 +329,67 @@
 										<input id="user-email" placeholder="Email" type="email" value="{{ $result->email }}" >
 
 									</div>
-								</div>
-								
+								</div>								
 								
 								<div class="info-btn">
-									<div class="am-btn am-btn-danger">保存修改</div>
+									<div class="am-btn am-btn-danger" onclick="save({{session('userid')}})">保存修改</div>
 								</div>
 
-							</form>
+							</form>	
 						</div>
 
 					</div>
+<script>
+function save (id) {
+	var nickname = $('#nickname').val();
+	var sex = $('input[name="radioo"]').val();
+	var nian = $('#select1').val();
+	var yue = $('#select2').val();
+	var ri = $('#select3').val();
+	var birth = nian+yue+ri;
+	var qq = $('#qq').val();
+	var email = $('#user-email').val();
 
+	// console.log(nickname);
+	// console.log(id);
+	// console.log(sex);
+	// console.log(qq);
+	// console.log(birth);
+	// console.log(email);
+
+	$.post('/home/user/userinfo',{'_token':'{{ csrf_token() }}',id:id,sex:sex,birth:birth,qq:qq,email:email,nickname:nickname},function(data){
+	            
+	            // console.log(data);
+	            if (data) {
+	                layer.open({
+		          	   type: 1
+			          ,offset: 't' //具体配置参考：offset参数项
+			          ,content: '<div style="padding: 20px 80px;">信息保存成功</div>'
+			          ,btn: '关闭'
+			          ,btnAlign: 'c' //按钮居中
+			          ,shade: 0 //不显示遮罩
+			          ,yes: function(){
+			            layer.closeAll();
+			            location.href= '/home/user/userinfo';
+			          }
+			        });
+	            }else {
+	                layer.open({
+		          	   type: 1
+			          ,offset: 't' //具体配置参考：offset参数项
+			          ,content: '<div style="padding: 20px 80px;">信息保存失败,请重试</div>'
+			          ,btn: '关闭'
+			          ,btnAlign: 'c' //按钮居中
+			          ,shade: 0 //不显示遮罩
+			          ,yes: function(){
+			            layer.closeAll();
+			          }
+			        });
+	            }
+	        },);
+}
+
+</script>
 @endif
 
 @endsection

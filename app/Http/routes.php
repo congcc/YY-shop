@@ -44,6 +44,9 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 
 	//商品搜索页
 	Route::resource('search', 'SearchController');
+	Route::get('sales/{id}', 'SearController@create');
+	Route::get('price/{ad}', 'SearController@car');
+	Route::get('cyn/{cd}', 'SearController@bar');
 
 	//商品详情页
 	
@@ -58,9 +61,11 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		Route::resource('/', 'UserController');
 		//用户个人信息
 		Route::resource('userinfo', 'UserinfoController');
+		Route::resource('userpic', 'UserpicController');
 		//用户账户安全
 		Route::resource('usersafe', 'UsersafeController');
 		Route::resource('pass', 'PassController');//修改密码
+		Route::resource('passedit', 'PasseditController');//修改密码
 		Route::resource('paypass', 'PaypassController');//支付密码
 		Route::post('ajaxpaypass', 'AjaxpaypassController@store')->where('id', '[0-9]+');
 		Route::resource('bindph', 'BindphController');//换手机号
@@ -78,7 +83,11 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		//用户订单
 		Route::get('userorders/{o_code}', 'UserorderController@destroy');
 		Route::resource('userorder', 'UserorderController');
-
+		Route::get('orderpay/{code}', 'OrderpayController@index');			//支付
+		Route::get('orderpays', 'OrderpayController@create');			//支付完成
+		Route::get('oraddr', 'OraddrController@index');					//改变地址
+		Route::get('ordersub/{gid}/{sid}/{toprice}/{num}/{label}/{gprices}', 'OrdersubController@index');			//下订单
+		Route::post('ordersubs', 'OrdersubController@create');			//生成订单
 		Route::get('ordersinfo/{code}', 'OrdersinfoController@index');			//订单详情
 
 		//用户退款售后
@@ -104,12 +113,12 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		Route::resource('shopcart', 'shopcartController');
 		Route::resource('car', 'CarController@store');
 		Route::get('cardelete','CarController@delete');
-		Route::get('addcar','CarController@addcar');
+		Route::post('addcar','CarController@addcar');
 		
 
 		//申请成为商家
 		Route::resource('shopapply', 'ShopapplyController');
-		Route::get('uploads','ShopapplyController@upload');
+		Route::resource('uploads','UploadsController');
 		//被封禁商家 
 		Route::get('auth','ShopapplyController@auth');
 

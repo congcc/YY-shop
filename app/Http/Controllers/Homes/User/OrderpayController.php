@@ -21,6 +21,9 @@ class OrderpayController extends Controller
         //根据传过来的订单号查询该订单信息
         $res = orders::where('o_code',$code)->first();
 
+        //获取验证码
+        $code = $code;
+
         //获取该用户手机号
         $phone = $res->oruser->phone;
 
@@ -31,7 +34,7 @@ class OrderpayController extends Controller
         $gname = $res->ordersinfo->orgoods->gname;
 
         //跳转支付页面
-        return view('homes.user.orderpay',compact('res','phone','sname','gname'));
+        return view('homes.user.orderpay',compact('res','phone','sname','gname','code'));
     }
 
     /**
@@ -39,9 +42,13 @@ class OrderpayController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        $time = time();
+        $code = $request->input('code');
+        orders::where('o_code',$code)->update(['ostate'=>1]);
+        ordersinfo::where('o_code',$code)->update(['ostate'=>1,'pay_time'=>$time]);
     }
 
     /**

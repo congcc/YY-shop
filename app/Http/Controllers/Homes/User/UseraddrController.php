@@ -25,7 +25,7 @@ class UseraddrController extends Controller
         $result = address::where('uid',$uid)->get();
         $defadd = $result->where('defadd',1)->first();
         
-        return view('homes.user.useraddr',compact('res','defadd'));
+        return view('homes.user.useraddr',compact('res','defadd','result'));
 
     }
 

@@ -41,14 +41,14 @@ class LoginController extends Controller
     public function store(Request $request)
     {
 
+        // $req = $request->except('_token');
 
-        $req = $request->except('_token');
-
-        $res = user::where('phone',$req['uname'])->get();
+        // $res = user::where('phone',$req['uname'])->get();
+        // // return $res;
        
-        if (Hash::check($req['password'], $res[0]->password)) {
-           echo "1"; 
-        }
+        // if (Hash::check($req['password'], $res[0]->password)) {
+        //    echo "1"; 
+        // }
          
     }
 

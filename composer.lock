@@ -1249,7 +1249,8 @@
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
 
-            "time": "2017-11-15T09:26:39+00:00"
+            "time": "2017-11-11T22:09:14+00:00"
+
 
         },
         {
@@ -1664,7 +1665,7 @@
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
 
-            "time": "2017-11-16T16:24:22+00:00"
+            "time": "2017-11-13T18:51:22+00:00"
 
         },
         {
@@ -2507,7 +2508,7 @@
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
 
-            "time": "2017-11-27T17:38:31+00:00"
+            "time": "2017-08-30T18:51:59+00:00"
 
         },
         {
@@ -2731,7 +2732,7 @@
                 "stub"
             ],
 
-            "time": "2017-11-24T13:59:53+00:00"
+            "time": "2017-09-04T11:05:03+00:00"
 
         },
         {
@@ -2842,7 +2843,7 @@
                 "iterator"
             ],
 
-            "time": "2017-11-27T13:52:08+00:00"
+            "time": "2016-10-03T07:40:28+00:00"
 
         },
         {
@@ -3538,7 +3539,7 @@
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
 
-            "time": "2017-07-23T12:43:26+00:00"
+            "time": "2017-11-10T18:26:04+00:00"
 
         },
         {

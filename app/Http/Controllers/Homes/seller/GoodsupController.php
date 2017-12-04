@@ -14,6 +14,8 @@ use App\Http\model\catetwo;
 use App\Http\model\shop;
 use zgldh\QiniuStorage\QiniuStorage;
 use App\Http\model\goods;
+use App\Http\model\goodstags;
+use DB;
 
 class GoodsupController extends Controller
 {
@@ -60,40 +62,58 @@ class GoodsupController extends Controller
     public function store(Request $request)
     {
 
-        
+        //获取传递来的数据
         $res = $request->except('_token');
         
+        //定义一个用来存储规格的数组
         $cates = array();
         
-        $cates[0] = $res['arr3'];       
+        //口味
+        $cates[0] = $res['arr3'];  
         
+        //包装
         $cates[1] = $res['arr4'];       
         
+        //将数组转为json字符串
         $catesjson = json_encode($cates);
 
+        //合并数组，不同规格对应不同价格
         $prices = array_combine($res['arr1'], $res['arr2']);
 
-
+        //将数组转为json字符串
         $pricesjson = json_encode($prices);
 
-        $sid = session('userid');
-        $clid = $res['clid'];
-        $gname = $res['gname'];
-        $gimg = $res['gimg'];
-        $gdpic = $res['gdpic'];
-        $gprice = $res['gprice'];
-        $gcontent = $res['gdcont'];
+        $sid = session('userid');           //商家id
+        $clid = $res['clid'];               //商品分类
+        $gname = $res['gname'];             //商品名称
+        $gimg = $res['gimg'];               //商品图片
+        $gdpic = $res['gdpic'];             //商品小图
+        $gprice = $res['gprice'];           //商品价格
+        $gcontent = $res['gdcont'];         //富文本内容
+        $knumber = $res['knumber'];         //库存
 
-        $bool = goods::insert(['sid'=>$sid,'clid'=>$clid,'gname'=>$gname,'gimg'=>$gimg,'gprice'=>$gprice,'label'=>$catesjson,'gprices'=>$pricesjson,'gcontent'=>$gcontent,'gdpic'=>$gdpic]);
+        //获取商品标签数据
+        $tag_a = $res['tagsarr'][0];
+        $tag_b = $res['tagsarr'][1];
+        $tag_c = $res['tagsarr'][2];
+        $tag_d = $res['tagsarr'][3];
 
+        DB::beginTransaction();         //开启事务  
 
-        if($bool){
+        //添加商品（获取添加id）
+        $regres = goods::insertGetId(['sid'=>$sid,'clid'=>$clid,'gname'=>$gname,'gimg'=>$gimg,'gprice'=>$gprice,'label'=>$catesjson,'gprices'=>$pricesjson,'gcontent'=>$gcontent,'gdpic'=>$gdpic,'knumber'=>$knumber]);
+        
+        //添加商品标签
+        $regress = goodstags::insert(['gid'=>$regres,'cateid'=>$clid,'tag_a'=>$tag_a,'tag_b'=>$tag_b,'tag_c'=>$tag_c,'tag_d'=>$tag_d]);
+
+        //判断是否都成功
+        if($regres && $regress){
+            DB::commit();               //成功执行      
             echo 1;
-        }else{
+        } else { 
+            DB::rollback();             //失败
             echo 0;
         }
-
-
     }
 
     /**

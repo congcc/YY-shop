@@ -30,6 +30,7 @@
              <div class="user-pass">
 							    <label for="password"><i class="am-icon-lock"></i></label>
 							    <input type="password" name="password" id="password" placeholder="请输入密码">
+							    <input type="hidden" name="hidden" id="hidden" value="100">
              </div>
              					
              {{ csrf_field()}}
@@ -84,22 +85,47 @@
 				</div>
 
 	<script>
+	
+
 	$('#ulog').click(function(){
+		var i = $('#hidden').val();
+		// console.log(i);
+		
 		var uname = $('#iuser').val();
 	 	var password = $('#password').val();
-	 	$.post('/home/slogin',{'_token':'{{ csrf_token() }}',uname:uname,password:password},function(data){
+	 	$.post('/home/slogin',{'_token':'{{ csrf_token() }}',uname:uname,password:password,i:i},function(data){
 	 		// console.log(data);
 			
-			if (data) {
-				alert('登录成功！');
-				// layer.load();
+			if (data==1) {
+				layer.msg('登录成功', {icon: 1});
 				window.location.href = "/home/index";  
-
-			}else {
-				alert ('账户或密码错误');
+			}else if(data==2){
+				layer.msg('登录失败次数超过3次,24小时内不允许登录', {icon: 2});
+			}else if(data==3){
+				// 询问框
+				layer.confirm('您的账号已被封禁,请联系管理员进行解封', {
+					  btn: ['申请解封','取消'] //按钮
+					}, function(){
+						
+					}, function(){
+						
+					});
+			}else if(data==404){
+				layer.msg('账号或密码错误', {icon: 2});
+			}else{
+				// console.log(data);
+				if(data>103){
+					//  $('#hidden').val(data);
+					layer.msg('登录失败次数超过3次,24小时内不允许登录', {icon: 2});
+				}else{
+					$('#hidden').val(data);
+					layer.msg('账户或密码错误', {icon: 2});
+				}
+				
 			}
-	 	});
-	 	return false;
+			
+	 	},'json');
+	 	
 	 });
 	</script>
 

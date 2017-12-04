@@ -124,7 +124,7 @@
 			font-family: "微软雅黑";
 			margin: 0 0 0 7px;
 			cursor: pointer;
-		}
+		} 
 		.subpri{
 			display: none;
 		}
@@ -186,7 +186,25 @@
 
 				</div>
 			</div>
+			
+			<div class="am-form-group" style="clear: both">
+				<label class="am-form-label" for="user-name2">库存</label>
+				<div class="am-form-content">
+					<input type="text" placeholder="库存" id="knumber" name="knumber" style="width: 85px;">
 
+				</div>
+			</div>
+			
+			<div class="am-form-group" style="clear: both">
+				<label class="am-form-label" for="user-name2">商品标签</label>
+				<div class="am-form-content">
+					<input type="text" placeholder="商品品牌" name="labels1" class="tags" style="float: left;width: 85px;margin-left: 15px;">
+					<input type="text" placeholder="商品种类" name="labels2" class="tags" style="float: left;width: 85px;margin-left: 15px;">
+					<input type="text" placeholder="商品标签" name="labels3" class="tags" style="float: left;width: 85px;margin-left: 15px;">
+					<input type="text" placeholder="热门标签" name="labels4" class="tags" style="float: left;width: 85px;margin-left: 15px;">
+				</div>
+			</div>
+		
 			<div class="am-form-group">
 				<label class="am-form-label" for="user-name2">商品规格</label><br/>
 				<div style="height: 30px;clear: height;"></div>
@@ -209,9 +227,10 @@
 					</div>
 					<div style="width: 780px;height: 45px;">
 						<ul class="ul2">
-
+					
 						</ul>
 					</div>
+					
 					<div class="subpri">
 						<input type="text" name="prices" value="" style="width: 70px;">
 						<span style="margin: 10px 0 0 0;" class="span1 spansub btn btn-danger">确定</span>
@@ -254,15 +273,13 @@
 			 
 
 			 {{ csrf_field()}}
-			<div  class="btn btn-info"  onclick="upgoods({{session('userid')}})">添加商品</div>
-
-		</form>
+			<div class="btn btn-info"  onclick="upgoods({{session('userid')}})">添加商品</div>
+			
 	</div>
 
 <script>
 	var ue = UE.getEditor('editor');
-
-
+	var tags = document.getElementsByClassName('tags');
 
 	$('#area').change(function(){
 
@@ -290,6 +307,7 @@
 	var arr2 = [];
 	var arr3 = [];
 	var arr4 = [];
+
 	$('.span3').click(function(){
 		$('.ul1').empty();
 		$('.ul2').empty();
@@ -303,6 +321,9 @@
 			arr4.push(flavor2[j-1].value);
 		}
 	})
+	
+
+
 	$(".ul1").on("click",".lis1",function(){
 		$('.ul1 li').css('border','1px solid #ddd');
 		$('.ul1 li').attr('name','b');
@@ -363,8 +384,14 @@ function upgoods(uid){
 	var gdcont = UE.getEditor('editor').getContent();
 	var gdpic = $('#pic1').attr('src')+','+$('#pic2').attr('src')+','+$('#pic3').attr('src')+','+$('#pic4').attr('src')+','+$('#pic5').attr('src');
 	var gprice = $('#gprice').val();
+	var knumber = $('#knumber').val();
+	var tagsarr = [];
+	for(var q=0;q<tags.length;q++){
+		tagsarr.push(tags[q].value);
+	}
+		
 
-	$.post("/home/seller/goodsup",{'_token':'{{ csrf_token() }}',arr1:arr1,arr2:arr2,arr3:arr3,arr4:arr4,clid:clid,gname:gname,gimg:gimg,gdcont:gdcont,gdpic:gdpic,gprice:gprice},function(data){
+	$.post("/home/seller/goodsup",{'_token':'{{ csrf_token() }}',arr1:arr1,arr2:arr2,arr3:arr3,arr4:arr4,clid:clid,gname:gname,gimg:gimg,gdcont:gdcont,gdpic:gdpic,gprice:gprice,tagsarr:tagsarr,knumber:knumber},function(data){
 	    	if(data==1){
 	    		layer.msg('添加成功');
 	    	}else{
