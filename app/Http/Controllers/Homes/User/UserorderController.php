@@ -8,7 +8,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\model\orders;
 use App\Http\model\ordersinfo;
+use App\Http\model\pay;
 use DB;
+use Hash;
 
 class UserorderController extends Controller
 {
@@ -19,8 +21,6 @@ class UserorderController extends Controller
      */
     public function index()     //加载订单页面
     {   
-        session(['userid'=>1]);         //测试id为1的用户
-
         //获取当前登录用户的id
         $uid = session('userid');
         
@@ -114,9 +114,14 @@ class UserorderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        //获取订单号
+        $code = $request->only('code');
+
+        //改变订单状态为5
+        $res = orders::where('o_code',$code)->update(['ostate'=>5]);
+        $ress = ordersinfo::where('o_code',$code)->update(['ostate'=>5]);
     }
 
     /**
@@ -127,7 +132,32 @@ class UserorderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //获取订单号
+        $code = $request->only('code');
+
+        //获取传过来的密码
+        $pass = $request->only('pass');
+
+        //获取用户id
+        $uid = session('userid');
+        
+        //获取支付密码
+        $res = pay::where('uid',$uid)->first();
+
+        //验证密码
+        $hash = Hash::check($pass['pass'], $res['password']);
+
+        if($hash){
+            echo 1;
+            //改变订单状态为3
+            $re = orders::where('o_code',$code)->update(['ostate'=>3]);
+            $ress = ordersinfo::where('o_code',$code)->update(['ostate'=>3]);
+        }else{
+            echo 0;
+        }
+
+        //return $code;
+        
     }
 
     /**
