@@ -25,7 +25,7 @@ class UserController extends Controller
             where('name','like','%'.$request->input('search').'%')->
             orderBy('id','asc')->
             paginate($request->input('num',10));
-             $admins=admins::get();
+            $admins=admins::get();
         // dd($admins);
              //获取权限
         $users = DB::table('admins')->simplePaginate(10);
@@ -93,7 +93,7 @@ class UserController extends Controller
     public function show($id)
     {   
 
-        $res = DB::table('admins')->where('id',$id)->first();
+        $res = admins::where('id',$id)->first();
 
          return view('admins.user.show',['res'=>$res]);
     }
@@ -106,7 +106,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $res = DB::table('admins')->where('id',$id)->first();
+        $res = admins::where('id',$id)->first();
+
         return view('admins.user.edit',['res'=>$res]);
     }
 
@@ -123,11 +124,11 @@ class UserController extends Controller
 
         $res = $request->except('_token','_method');
 
-        $data = DB::table('admins')->where('id',$id)->update($res);
-
+        $data = admins::where('id',$id)->update($res);
+        
         if($data){
 
-            return redirect('/admin/user')->with('msg','修改成功');
+            return redirect('/admin/user')->with('修改成功');
         } else {
 
             return back();
@@ -142,10 +143,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $res = DB::table('admins')->where('id', $id)->delete();
+        $res = admins::where('id', $id)->delete();
 
         if($res){
-            return redirect('/admin/user')->with('meg','删除成功');
+            return redirect('/admin/user')->with('删除成功');
         } else {
             return back();
         }

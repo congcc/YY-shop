@@ -105,12 +105,11 @@
                             {{$v->last_time}}
                         </td>
                         <td class=" ">
-
-                       
-                       
-                            <button class='btn btn-info'id="qq">
-                                {{$v->auth ? '开启' : '关闭'}}
-                            </button>
+                            <a href="/admin/users/{{$v->id}}">
+                                <button id="auth">
+                                    {{$v->auth ?  '关闭' : '开启'}}
+                                </button>
+                            </a>
                         </td>
                         <td class=" ">
                             <span class="btn-group">
@@ -138,11 +137,5 @@
     </div>
 </div>
 <script type="text/javascript">
-
-        $('#qq').click(function(){
-                            
-                             
-             })
-            </script>
 
 @endsection

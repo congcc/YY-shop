@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\model\userinfo;
 use DB;
 
 class ChecksucceedController extends Controller
@@ -18,16 +19,13 @@ class ChecksucceedController extends Controller
     public function index(Request $request)
     {
         //
-        $res = DB::table('userinfo')->
-            where('truename','like','%'.$request->input('search').'%')->
-            orderBy('id','asc')->
-            paginate($request->input('num',10));
+        $res = userinfo::where('truename','like','%'.$request->input('search').'%')
+        ->orderBy('apply','asc')
+        ->paginate(5);
 
-        $req = DB::table('userinfo')->where('apply','2')->get();
+        $req = userinfo::where('apply','2')->get();
 
-        $uinfo = DB::table('userinfo')->simplePaginate(10);
-
-        return view('admins.check.succeed.index',compact('res','req','uinfo','request'));
+        return view('admins.check.succeed.index',compact('res','req','request'));
 
     }
 

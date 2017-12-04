@@ -20,18 +20,13 @@ class SellerdisController extends Controller
     public function index(Request $request)
     {
         //
-        $res = shop::all();
-        $req = DB::table('shop')->where('sauth', '0')->get();
-        $shops = DB::table('shop')->simplePaginate(10);
+        $res = shop::where('sname','like','%'.$request->input('search').'%')
+        ->orderBy('sauth','asc')
+        ->paginate(5);
+        $req = shop::where('sauth', '0')->get();
 
         
-        return view('admins.seller.dis',compact('res','req','shops'));
-/*        var_dump($request);die();
-        $res = DB::table('shop')->
-            where('sname','like','%'.$request->input('search').'%')->
-            orderBy('id','asc')->
-            paginate($request->input('num',10));
-        return view('admins/seller/dis',['res'=>$res,'request'=$request]);*/
+        return view('admins.seller.dis',compact('res','req','request'));
     }
 
     /**
@@ -66,7 +61,7 @@ class SellerdisController extends Controller
 
         $res = ['sauth'=>'0'];
 
-        $data = DB::table('shop')->where('id',$id)->update($res);  
+        $data = shop::where('id',$id)->update($res);  
 
         if($res){
             return redirect('/admin/sellerdis')->with('卖家禁用');
@@ -84,11 +79,9 @@ class SellerdisController extends Controller
     public function edit($id)
     {
         //
-        var_dump($id);
-
         $res = ['sauth'=>'1'];
 
-        $data = DB::table('shop')->where('id',$id)->update($res);  
+        $data = shop::where('id',$id)->update($res); 
 
         if($res){
             return redirect('/admin/seller')->with('卖家开启');

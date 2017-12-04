@@ -106,7 +106,7 @@
                             {{$v->saddress}}
                         </td>
                         <td class=" ">
-                            {{$v->sauth}}
+                            {{$v->sauth ? '开启' : '关闭'}}
                         </td>
                         <td class=" ">
                         <a href="/admin/sellerdis/{{$v->id}}/edit"><button type="button" class="am-btn am-btn-default am-btn-warning"><span class="am-icon-archive"></span>开启</button></a>
@@ -120,15 +120,8 @@
                 <div class="dataTables_info" id="DataTables_Table_0_info">
                     Showing 1 to 10 of 20 entries
                 </div>
-                <div class="dataTables_paginate paging_two_button" id="DataTables_Table_0_paginate">
-                    <a class="paginate_disabled_previous" tabindex="0" role="button" id="DataTables_Table_0_previous"
-                    aria-controls="DataTables_Table_0">
-                        Previous
-                    </a>
-                    <a class="paginate_enabled_next" tabindex="0" role="button" id="DataTables_Table_0_next"
-                    aria-controls="DataTables_Table_0">
-                        Next
-                    </a>
+                <div class="dataTables_paginate paging_full_numbers">
+                    {!! $res->appends($request->all())->render()!!}
                 </div>
             </div>
         </div>

@@ -53,7 +53,7 @@ class BuyssController extends Controller
 
         $res = ['status'=>'0'];
 
-        $data = DB::table('user')->where('id',$id)->update($res);  
+        $data = user::where('id',$id)->update($res);  
 
         if($res){
             return redirect('/admin/buyedis')->with('买家禁用');

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\model\userinfo;
 use DB;
 
 class CheckfailController extends Controller
@@ -18,14 +19,11 @@ class CheckfailController extends Controller
     public function index(Request $request)
     {
         //
-        $res = DB::table('userinfo')->
-            where('truename','like','%'.$request->input('search').'%')->
-            orderBy('id','asc')->
-            paginate($request->input('num',10));
+        $res = userinfo::where('truename','like','%'.$request->input('search').'%')
+        ->orderBy('apply','asc')
+        ->paginate(5);
 
-        $req = DB::table('userinfo')->where('apply','3')->get();
-
-        $uinfo = DB::table('userinfo')->simplePaginate(10);
+        $req = userinfo::where('apply','3')->get();
 
         return view('admins.check.fail.index',compact('res','req','uinfo','request'));
 
