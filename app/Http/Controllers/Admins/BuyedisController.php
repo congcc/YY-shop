@@ -22,7 +22,7 @@ class BuyedisController extends Controller
         ->orderBy('status','asc')
          ->paginate(5);
 
-        $req = user::where('status','1')->get();
+        $req = user::where('status','0')->get();
 
         return view('admins/buys.dis',compact('res','request','req'));
     }

@@ -24,7 +24,7 @@ class CheckController extends Controller
         ->orderBy('apply','asc')
         ->paginate(5);
 
-        $req = userinfo::where('apply','1')->get();
+        $req = userinfo::where('apply','3')->get();
 
         return view('admins.check.index',compact('res','req','request'));
     }

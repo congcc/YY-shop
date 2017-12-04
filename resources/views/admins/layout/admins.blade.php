@@ -231,38 +231,38 @@
                     <li>
                         <a href="#"><i class="icol32-widescreen"></i> 管理人员</a>
                         <ul class="closed">
-                            <li><a href="/admin/user/create">添加管理员</a></li>
-                            <li><a href="/admin/user">后台人员</a></li>
+                            <li><a href="{{url('admin/user/create')}}">添加管理员</a></li>
+                            <li><a href="{{url('admin/user')}}">后台人员</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#"><i class="icol32-reseller-programm"></i> 买家管理</a>
                         <ul class="closed">
-                            <li><a href="/admin/buys">买家列表</a></li>
-                            <li><a href="/admin/buyedis">买家禁用</a></li>
+                            <li><a href="{{url('admin/buys')}}">买家列表</a></li>
+                            <li><a href="{{url('admin/buyedis')}}">买家禁用</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href=""><i class="icol32-user-female"></i> 卖家管理</a>
+                        <a href="#"><i class="icol32-user-female"></i> 卖家管理</a>
                         <ul class="closed">
-                            <li><a href="/admin/seller">用户列表</a></li>
-                            <li><a href="/admin/sellerdis">卖家禁用</a></li>
+                            <li><a href="{{url('admin/seller')}}">用户列表</a></li>
+                            <li><a href="{{url('admin/sellerdis')}}">卖家禁用</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href=""><i class="icol32-vcard"></i> 商家入驻</a>
                         <ul class="closed">
-                            <li><a href="/admin/check">待审核申请</a></li>
-                            <li><a href="/admin/csucc">成功申请</a></li>
-                            <li><a href="/admin/cfail">失败申请</a></li>
+                            <li><a href="{{url('admin/check')}}">待审核申请</a></li>
+                            <li><a href="{{url('admin/csucc')}}">成功申请</a></li>
+                            <li><a href="{{url('admin/cfail')}}">失败申请</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href=""><i class="icol32-report-disk"></i> 商品审核</a>
                         <ul class="closed">
-                            <li><a href="/admin/goods">审核中</a></li>
-                            <li><a href="/admin/gsucc">通过申请</a></li>
-                            <li><a href="/admin/gfail">未通过</a></li>
+                            <li><a href="{{url('admin/goods')}}">审核中</a></li>
+                            <li><a href="{{url('admin/gsucc')}}">通过申请</a></li>
+                            <li><a href="{{url('admin/gfail')}}">未通过</a></li>
                         </ul>
                     </li>
                     <li>
@@ -275,29 +275,29 @@
                     <li>
                         <a href=""><i class="icol32-webcam"></i> 订单管理</a>
                         <ul class="closed">
-                            <li><a href="/admin/orders">0 代付款</a></li>
-                            <li><a href="/admin/shipping">1 代发货</a></li>
-                            <li><a href="admin/dinggoods">2 待收货</a></li>
-                            <li><a href="/admin/plorder">3 待评价</a></li>
-                            <li><a href="/admin/coorder">4 已完成</a></li>
-                            <li><a href="/admin/cancelled">5 已取消</a></li>
-                            <li><a href="/admin/apply">6 买家申请退货</a></li>
-                            <li><a href="/admin/return">7 卖家同意退货</a></li>
-                            <li><a href="/admin/refund">8 卖家退款</a></li>
-                            <li><a href="/admin/success">9 退款成功</a></li>
+                            <li><a href="{{url('admin/orders')}}">0 代付款</a></li>
+                            <li><a href="{{url('admin/shipping')}}">1 代发货</a></li>
+                            <li><a href="{{url('admin/dinggoods')}}">2 待收货</a></li>
+                            <li><a href="{{url('admin/plorder')}}">3 待评价</a></li>
+                            <li><a href="{{url('dmin/coorder')}}">4 已完成</a></li>
+                            <li><a href="{{url('admin/cancelled')}}">5 已取消</a></li>
+                            <li><a href="{{url('admin/apply')}}">6 买家申请退货</a></li>
+                            <li><a href="{{url('admin/return')}}">7 卖家同意退货</a></li>
+                            <li><a href="{{url('admin/refund')}}">8 卖家退款</a></li>
+                            <li><a href="{{url('admin/success')}}">9 退款成功</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href=""><i class="icol32-cart"></i> 支付管理</a>
                         <ul class="closed">
-                            <li><a href="/admin/pay">用户列表</a></li>
-                            <li><a href="/admin/pays">商户列表</a></li>
+                            <li><a href="{{url('admin/pay')}}">用户列表</a></li>
+                            <li><a href="{{url('admin/pays')}}">商户列表</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="/admin/logis"><i class="icol32-lorry-link"></i> 物流管理</a>
                         <ul class="closed">
-                            <li><a href="/admin/logis">物流列表</a></li>
+                            <li><a href="{{url('admin/logis')}}">物流列表</a></li>
                         </ul>
                     </li>
                     <li>

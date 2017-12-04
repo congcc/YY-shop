@@ -23,7 +23,7 @@ class CheckfailController extends Controller
         ->orderBy('apply','asc')
         ->paginate(5);
 
-        $req = userinfo::where('apply','3')->get();
+        $req = userinfo::where('apply','1')->get();
 
         return view('admins.check.fail.index',compact('res','req','uinfo','request'));
 
