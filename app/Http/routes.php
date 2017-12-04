@@ -162,10 +162,6 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 
 		//权限不够跳注册页
 
-
-
-
-		
 	
 	});
 

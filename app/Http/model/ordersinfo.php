@@ -8,6 +8,7 @@ class ordersinfo extends Model
 {
     //
     public $table = "ordersinfo";
+
     public $timestamps = false;
     public function orgoods(){
         return $this->hasOne('App\Http\model\goods', 'id', 'gid');
@@ -18,5 +19,9 @@ class ordersinfo extends Model
     
     public function shop(){
         return $this->hasOne('App\Http\model\shop','id', 'sid');
+    }
+
+    public function order(){
+        return $this->hasOne('App\Http\model\orders','o_code','o_code');
     }
 }

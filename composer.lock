@@ -1248,7 +1248,9 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
+
             "time": "2017-11-15T09:26:39+00:00"
+
         },
         {
             "name": "symfony/css-selector",
@@ -1661,7 +1663,9 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
+
             "time": "2017-11-16T16:24:22+00:00"
+
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -2502,7 +2506,9 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
+
             "time": "2017-11-27T17:38:31+00:00"
+
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -2724,7 +2730,9 @@
                 "spy",
                 "stub"
             ],
+
             "time": "2017-11-24T13:59:53+00:00"
+
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -2833,7 +2841,9 @@
                 "filesystem",
                 "iterator"
             ],
+
             "time": "2017-11-27T13:52:08+00:00"
+
         },
         {
             "name": "phpunit/php-text-template",
@@ -3527,7 +3537,9 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
+
             "time": "2017-07-23T12:43:26+00:00"
+
         },
         {
             "name": "webmozart/assert",
