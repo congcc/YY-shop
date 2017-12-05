@@ -19,11 +19,11 @@ class AdminController extends Controller
     {
 
            
-        if(session('adminid')){
+        // if(session('adminid')){
             return view('admins.admin');
-        }else{
-            return view('admins.login');
-        }
+        // }else{
+        //     return view('admins.login');
+        // }
 
     }
 

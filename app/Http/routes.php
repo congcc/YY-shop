@@ -185,7 +185,7 @@ Route::group(['prefix'=>'home','namespace'=>'Homes','middleware'=>'die'], functi
 
 
 //后台控制组
-Route::group(['prefix'=>'admin','namespace'=>'Admins','middleware'=>'login'], function () {
+Route::group(['prefix'=>'admin','namespace'=>'Admins'], function () {
 	
 	Route::resource('admin','AdminController');
 	
