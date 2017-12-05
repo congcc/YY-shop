@@ -19,11 +19,25 @@
 
 @endsection
 
-@section('title','用户评价')
+@section('title','发送')
 
-					
+			
 
  
 @section('content')
-<div class="item-comment"> 宝贝非常漂亮，超级喜欢！！！ 口红颜色很正呐，还有第两支半价，买三支免单一支的活动，下次还要来买。就是物流太慢了，还要我自己去取快递，店家不考虑换个物流么？ </div>
+<script type="text/javascript">
+		 setInterval(function(){
+
+ 					$.post("{{url('/home/seller/interval)}}",{'_token':'{{ csrf_token() }}',content:content,oid:oid,gid:gid},function(data){
+                       
+ 						console.log(data);
+
+    
+                });                        
+
+		},60000)
+
+
+		
+	</script>		
 @endsection

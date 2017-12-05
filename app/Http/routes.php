@@ -105,6 +105,8 @@ Route::group(['prefix'=>'home','namespace'=>'Homes','middleware'=>'die'], functi
 		//用户账单明细
 		Route::resource('userbill', 'UserbillController');
 		//用户收藏
+		Route::get('usercollect/{id}', 'UsercollectController@del');
+
 		Route::resource('usercollect', 'UsercollectController');
 		//用户足迹
 		Route::resource('userfoot', 'UserfootController');
@@ -156,6 +158,13 @@ Route::group(['prefix'=>'home','namespace'=>'Homes','middleware'=>'die'], functi
 		
 		//评论中心
 		Route::resource('comments','CommentsController');
+
+		//定时器
+		Route::resource('interval','IntervalController');
+		
+		//商户消息
+		Route::resource('news','NewsController');
+
 
 		
 		//商品列表

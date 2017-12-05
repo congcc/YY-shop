@@ -118,8 +118,6 @@
 								@endforeach
 							</ul>
 						</div>
-
-						<div class="clear"></div>
 					</div>
 
 					<div class="clearfixRight">
@@ -127,9 +125,18 @@
 						<!--规格属性-->
 						<!--名称-->
 						<div class="tb-detail-hd">
-							<h1>	
-				 {{$res[0]->gname}}
-	          </h1>
+							<span><h1>	
+				        {{$res[0]->gname}}
+	          			</h1>
+
+					
+					
+		</span>
+		<script type="text/javascript">
+
+
+</script>
+
 						</div>
 						<div class="tb-detail-list">
 							<!--价格-->

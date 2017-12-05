@@ -32,6 +32,9 @@
 							<p class="am-form-help">头像</p>
 
 							<div class="info-m">
+
+
+
 								<div><b>商户名：<i>{{$user['nickname']}}</i></b></div>
 								<div class="u-level">
 									<span class="rank r2">
@@ -152,3 +155,15 @@
 						
 
 @endsection
+<script type="text/javascript">
+	
+	function yue (date) {
+
+	 $.get('/home/user/{{$user['id']}}/edit',function(data){
+                	           
+                });
+		
+}
+
+
+</script>

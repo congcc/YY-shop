@@ -97,7 +97,7 @@
         <div class="goods-box first-box">
             <div class="goods-pic">
                 <div class="goods-pic-box">
-                    <a class="goods-pic-link" target="_blank" href="#" title="意大利费列罗进口食品巧克力零食24粒  进口巧克力食品">
+                    <a class="goods-pic-link" target="_blank" href="/home/details/{{$v->id}}/edit" title="意大利费列罗进口食品巧克力零食24粒  进口巧克力食品">
                         <img src="{{$v->gimg}}" class="goods-img"></a>
                 </div>
                 <form action="/home/seller/goodslist/{{$v->id}}" method='post'>

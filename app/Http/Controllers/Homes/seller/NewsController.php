@@ -6,13 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\model\shop;
 use App\Http\model\orders;
+use App\Http\model\ordersinfo;
 
-
-
-
-class DiController extends Controller
+class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,26 +18,48 @@ class DiController extends Controller
      */
     public function index()
     {
-        //dd(session('userid'));
-        //session 取id
-        $uid=(session('userid'));
+        //
+         $uid=(session('userid'));
 
         //获取我的所有订单
         $res=orders::where(['ostate'=>1,'uid'=>$uid])->get();
         // dd($res);
-        $o=0;
+        //获取所有订单号
+        $arr=array();
         foreach ($res as $key => $value) {
-            $o++;
+           $kk=$value->o_code;
+           if($kk){
+            array_push($arr,$kk);
+           }
 
         }
-        // dd($o);
+
         
-        //从shop表中查询uid  和user表中id相同的 用户所有信息(shop uid->user id 为关联字段)
-        $shop=shop::where('uid',$uid)->first();
+        
+        foreach ($arr as $key => $value) {
+            //查询订单号的所有信息
+            // $ll = orders::where('o_code',$value)->get();
 
-        //dd($shop);
+            //根据传过来的订单号查询该订单信息
+            $gg = orders::where('o_code',$value)->first();
 
-        return view('homes.seller.di',["shop"=>$shop],["o"=>$o]);
+            //获取用户电话
+            $phone = $gg->oruser->phone;
+
+            //获取用户昵称
+            $nickname = $gg->oruserinfo->nickname;
+
+            //获取该订单的收货地址
+            $addres = $gg->ordersinfo->oraddress->address;
+
+            //将其从json字符串转换为数组
+            $maddress = json_decode($addres,true);
+
+        }
+
+        // dd($maddress);
+        //跳转到订单详情页面
+        return view('homes.seller.news',compact('phone','nickname','maddress','gg'));
 
     }
 
@@ -85,14 +104,6 @@ class DiController extends Controller
     public function edit($id)
     {
         //
-        // $uid=$shop[]
-        
-        // $di=shop::where('id',$uid)->find();
-        //dd($id);
-        $di=shop::where('id',$id)->first();
-        
-            // dd($di);
-        return view('homes.seller.diedit',["di"=>$di]);
     }
 
     /**
@@ -105,24 +116,24 @@ class DiController extends Controller
     public function update(Request $request, $id)
     {
         //
+         $pp['o_code'] = $id;
+         $pp['mstate'] = 0;
+         $rt=material::insert($pp);
 
-
-        $input=$request->except('_token','_method');
-        // dd($input);
-        // var_dump($input);die;
-
-        $res=shop::where('id',$id)->update($input);
-        // dd($res);
-        if($res){
-
-            return redirect('/home/seller/di');
-
-        }else{
-
-            return back();
-        }
-         
+        $orders['ostate']=2;
+        $ost=orders::where('o_code',$id)->update($orders);
+        // dd($ost);
         
+        $fost=ordersinfo::where('o_code',$id)->update($orders);
+        // dd($fost);
+
+        if($rt && $ost && $fost){
+
+            echo "<script>alert('发货成功');window.location.href='{$_SERVER['HTTP_REFERER']}';</script>";
+        } else {
+
+            return redirect()->back();
+        }
     }
 
     /**

@@ -32,7 +32,7 @@
 									</div>
 									<div class="m-right">
 										<div class="m-new">
-											<a href="news.html"><i class="am-icon-bell-o"></i>消息</a>
+											<a href="/home/seller/news"><i class="am-icon-bell-o"></i>消息{{$o}}</a>
 										</div>
 										<div class="m-address">
 											<a class="i-trigger" href="address.html">店铺类别:{{$shop['stype']}}</a>

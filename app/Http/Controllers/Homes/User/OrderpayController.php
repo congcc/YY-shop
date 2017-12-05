@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\model\orders;
 use App\Http\model\ordersinfo;
+use App\Http\model\goods;
+use DB;
 
 class OrderpayController extends Controller
 {
@@ -49,7 +51,35 @@ class OrderpayController extends Controller
         $code = $request->input('code');
         orders::where('o_code',$code)->update(['ostate'=>1]);
         ordersinfo::where('o_code',$code)->update(['ostate'=>1,'pay_time'=>$time]);
-        return view('/home/user/order');
+
+
+        //获取订单表里的商品
+        $res=ordersinfo::where('o_code',$code)->get();
+        // dd($res);
+
+        $arr=array();
+        foreach ($res  as $key => $value) {
+            //获取gid
+            $gid=$value->gid;
+            if($gid){
+                array_push($arr,$gid);
+            }
+
+        }
+
+        foreach ($arr as $key => $value) {
+            $fi=goods::where('id',$value)->first();
+            $kn=$fi->knumber;
+            $xn=$fi->xnumber;
+            $kn=$kn+1;
+            $xn=$xn-1;
+            $mv['knumber']=$kn;
+            $mv['xnumber']=$xn;
+            goods::where('id'$value)->update($mv);
+
+
+        }
+
     }
 
     /**

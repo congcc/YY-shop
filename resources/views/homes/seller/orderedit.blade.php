@@ -273,9 +273,9 @@
 												</div>
 											</li>
 											<li class="td td-change">
-												<a href="pay.html">
+												<a href="/home/seller/ordersinfo/{{$v[0]->o_code}}">
 												<div class="am-btn am-btn-danger anniu">
-													一键支付</div></a>
+													订单详情</div></a>
 											</li>
 										</div>
 									</div>
@@ -588,9 +588,9 @@
 												</div>
 											</li>
 											<li class="td td-change">
-												<a href="commentlist.html">
+												<a href="/home/seller/ordersinfo/{{$v[0]->o_code}}">
 													<div class="am-btn am-btn-danger anniu">
-														评价商品</div>
+														查看订单</div>
 												</a>
 											</li>
 										</div>

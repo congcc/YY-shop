@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Homes\User;
+namespace App\Http\Controllers\Homes\seller;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\model\collect;
-use App\Http\model\goods;
+use App\Http\model\orders;
+use App\Http\model\shop;
 
-
-class UsercollectController extends Controller
+class IntervalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,21 +18,7 @@ class UsercollectController extends Controller
      */
     public function index()
     {
-
-        $id=session('userid');
-        // dd($id);
-
-        $res=collect::where('uid',$id)->get();
-        // dd($res);
-    
-        //$re=$res['0']->gid;
-        // dd($re);
-       // $ri=goods::where('id',$re)->get();
-        // dd($ri);
-        // dd($r);
-        return view('homes.user.collect',compact('res'));
-
-
+        //
     }
 
     /**
@@ -54,7 +39,16 @@ class UsercollectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //获取订单列表里的本商户的订单状态为1的订单
+        //获取本商户的id
+        $id=session('userid');
+        // dd($id);
+        //获取shop表里面uid为$id的店的id也就是sid
+        $shop=shop::where('uid',$id)->first();
+        $sid=$shop->id;
+        //获取表里订单状态为1的订单信息
+        $res=orders::where('sid',$sid)->get();
+
     }
 
     /**
@@ -77,9 +71,6 @@ class UsercollectController extends Controller
     public function edit($id)
     {
         //
-        // dd($id)
-        return view('homes.user.details',compact('id'));
-
     }
 
     /**
@@ -103,15 +94,5 @@ class UsercollectController extends Controller
     public function destroy($id)
     {
         //
-    }
-    public function del(Request $request,$id)
-    {           
-        
-       $res = collect::where('id',$id)->delete();
-        if ($res) {
-            echo 1;
-        }else{
-            echo 0;
-        }
     }
 }
