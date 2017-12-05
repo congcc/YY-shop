@@ -67,16 +67,6 @@
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                         rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
                         style="width: 80px;">
-                            创建时间
-                        </th>
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                        rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                        style="width: 80px;">
-                            登录时间
-                        </th>
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                        rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                        style="width: 80px;">
                             状态
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
@@ -97,12 +87,6 @@
                         </td>
                         <td class=" ">
                             {{$v->phone}}
-                        </td>
-                        <td class=" ">
-                            {{$v->time}}
-                        </td>
-                        <td class=" ">
-                            {{$v->last_time}}
                         </td>
                         <td class=" ">
                             <a href="/admin/users/{{$v->id}}">
