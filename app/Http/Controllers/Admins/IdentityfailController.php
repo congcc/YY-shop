@@ -6,10 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\model\shop;
-use DB;
+use App\Http\model\userinfo;
 
-class ChecksucceedController extends Controller
+class IdentityfailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,14 +18,13 @@ class ChecksucceedController extends Controller
     public function index(Request $request)
     {
         //
-        $res = shop::where('sname','like','%'.$request->input('search').'%')
-        ->orderBy('sauth','asc')
+        $res = userinfo::where('truename','like','%'.$request->input('search').'%')
+        ->orderBy('apply','asc')
         ->paginate(5);
 
-        $req = shop::where('sauth','1')->get();
+        $req = userinfo::where('apply','1')->get();
 
-        return view('admins.check.succeed.index',compact('res','req','request'));
-
+        return view('admins.ident.fail.index',compact('res','req','request'));
     }
 
     /**

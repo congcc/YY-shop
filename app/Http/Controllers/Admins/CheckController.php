@@ -6,8 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\model\check;
-use App\Http\model\userinfo;
+use App\Http\model\shop;
 use DB;
 
 class CheckController extends Controller
@@ -20,11 +19,11 @@ class CheckController extends Controller
     public function index(Request $request)
     {
         //
-        $res = userinfo::where('truename','like','%'.$request->input('search').'%')
-        ->orderBy('apply','asc')
+        $res = shop::where('sname','like','%'.$request->input('search').'%')
+        ->orderBy('sauth','asc')
         ->paginate(5);
 
-        $req = userinfo::where('apply','3')->get();
+        $req = shop::where('sauth','3')->get();
 
         return view('admins.check.index',compact('res','req','request'));
     }
@@ -70,12 +69,12 @@ class CheckController extends Controller
     public function edit($id)
     {
 
-        $res = ['apply'=>'3'];
+        $res = ['sauth'=>'2'];
 
-        $data = userinfo::where('id',$id)->update($res);  
+        $data = shop::where('id',$id)->update($res);  
 
         if($res){
-            return redirect('/admin/cfail')->with('通过申请');
+            return redirect('/admin/cfail')->with('不通过申请');
         } else {
             return back();
         }
@@ -102,9 +101,9 @@ class CheckController extends Controller
     public function destroy($id)
     {
         //
-        $res = ['apply'=>'2'];
+        $res = ['sauth'=>'1'];
 
-        $data = userinfo::where('id',$id)->update($res);  
+        $data = shop::where('id',$id)->update($res);  
 
         if($res){
             return redirect('/admin/csucc')->with('通过申请');

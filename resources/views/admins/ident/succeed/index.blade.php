@@ -1,6 +1,6 @@
 @extends('admins.layout.admins')
 
-@section('title','管理员列表')
+@section('title','实名认证')
 
 @section('content')
 <div class="mws-panel grid_8">
@@ -8,7 +8,7 @@
         <span>
             <i class="icon-table">
             </i>
-            管理员列表
+            通过列表
         </span>
     </div>
     <div class="mws-panel-body no-padding">
@@ -49,50 +49,65 @@
             aria-describedby="DataTables_Table_1_info">
                 <thead>
                     <tr role="row">
-                            <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                            rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
-                            style="width: 128px;">
-                                ID
-                            </th>
-                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                            rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending"
-                            style="width: 173px;">
-                               店铺名称
-                            </th>
-                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                            rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"
-                            style="width: 158px;">
-                                店铺图片
-                            </th>
-                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                            rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"
-                            style="width: 158px;">
-                                店铺地址
-                            </th>
-                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                            rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                            style="width: 80px;">
-                                操作
-                            </th>
-                        </tr>
+                        <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
+                        rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
+                        style="width: 70px;">
+                            ID
+                        </th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
+                        rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending"
+                        style="width: 150px;">
+                            昵称
+                        </th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
+                        rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending"
+                        style="width: 111px;">
+                            真实姓名
+                        </th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
+                        rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending"
+                        style="width: 111px;">
+                            性别
+                        </th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
+                        rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                        style="width: 80px;">
+                            身份证号
+                        </th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
+                        rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                        style="width: 80px;">
+                            地址
+                        </th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
+                        rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                        style="width: 110px;">
+                            操作
+                        </th>
+                    </tr>
                 </thead>
                 <tbody role="alert" aria-live="polite" aria-relevant="all">
-                @foreach($req as $k => $v)
+                    @foreach($req as $k => $v)
                     <tr class="@if($k % 2 == 0) odd @else even @endif">
                         <td class="">
-                        {{$v->id}}
+                            {{$v->id}}
                         </td>
                         <td class=" ">
-                            {{$v->sname}}
-                        </td>
-                        <td>
-                            <img src="{{$v->simg}}" alt="" style="width: 150px;height: 80px;">
-                        </td>
-                        
-                        <td class=" ">
-                            {{$v->saddress}}
+                            {{$v->nickname}}
                         </td>
                         <td class=" ">
+                            {{$v->truename}}
+                        </td>
+                        <td class=" ">
+                            {{$v->sex ? '女' : '男'}}
+                        </td>
+                        <td class=" ">
+                            {{$v->idcard}}
+                        </td>
+                        <td class=" ">
+                            {{$v->area}}
+                        </td>
+ 						<td class=" ">
                             <span class="btn-group">
                                 <a href="/admin/check/{{$v->id}}" class="btn btn-small"><i>详情</i></a>
                             </span>
@@ -110,5 +125,6 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
 
 @endsection

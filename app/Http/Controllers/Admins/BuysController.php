@@ -23,12 +23,18 @@ class BuysController extends Controller
     {
         //
         $res = user::where('username','like','%'.$request->input('search').'%')
-        ->orderBy('status','asc')
-        ->paginate(5);
+            ->orderBy('id','asc')
+            ->paginate($request->input('num',10));
+
+        // $res = DB::table('admins')->
+        //     where('name','like','%'.$request->input('search').'%')->
+        //     orderBy('id','asc')->
+        //     paginate($request->input('num',10));
+
 
         $req = user::where('status', '1')->get();
 
-        return view('admins.buys.index',compact('res','req','request'));
+        return view('admins.buys.index',['res'=>$res,'req'=>$req,'request'=>$request]);
     }
 
     /**

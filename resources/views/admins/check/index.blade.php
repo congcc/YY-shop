@@ -57,27 +57,17 @@
                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                             rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending"
                             style="width: 173px;">
-                               昵称
+                               店铺名称
                             </th>
                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                             rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"
                             style="width: 158px;">
-                                真实名称
+                                店铺图片
                             </th>
                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                             rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"
                             style="width: 158px;">
-                                头像
-                            </th>
-                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                            rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                            style="width: 80px;">
-                                性别
-                            </th>
-                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                            rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                            style="width: 80px;">
-                                状态
+                                店铺地址
                             </th>
                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                             rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
@@ -96,20 +86,14 @@
                         {{$v->id}}
                         </td>
                         <td class=" ">
-                            {{$v->nickname}}
-                        </td>
-                        <td class=" ">
-                            {{$v->truename}}
+                            {{$v->sname}}
                         </td>
                         <td>
-                            <img src="{{$v->user_pic}}" alt="" style="width: 150px;height: 80px;">
+                            <img src="{{$v->simg}}" alt="" style="width: 150px;height: 80px;">
                         </td>
                         
                         <td class=" ">
-                            {{$v->sex ? '女': '男'}}
-                        </td>
-                        <td class=" ">
-                            {{$v->apply}}
+                            {{$v->saddress}}
                         </td>
                         <td class=" ">
                             <span class="btn-group">
@@ -125,8 +109,7 @@
                     </tr>
                     @endforeach
 
-
-                    </tbody>
+                 </tbody>
                 </table>
                 
                 <div class="dataTables_info" id="DataTables_Table_0_info">

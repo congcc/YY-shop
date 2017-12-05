@@ -23,16 +23,17 @@
                         <label>
                             显示
                             <select name="num" size="1" aria-controls="DataTables_Table_1">
-                                <option value="10" @if(isset($_GET[ 'num']) ? $_GET[ 'num'] : '10') selected="selected"
-                                @endif>
+                                <option value="10" @if($request->num == '10') selected = "selected"
+                                @endif
                                     10
                                 </option>
                                 25 {{--
-                                <option value="25" @if($request->
-                                    num == '25') selected="selected" @endif>
+                                <option value="25" @if($request->num == '25') selected = "selected"
+                                @endif>
                                 </option>
                                 --}} {{--
-                                <option value="50" @if($_GET[ 'num']=='50' ) selected="selected" @endif>
+                                <option value="50" @if($request->num == '50') selected = "selected"
+                                @endif>
                                     50
                                 </option>
                                 --}}

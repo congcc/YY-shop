@@ -209,6 +209,15 @@ Route::group(['prefix'=>'admin','namespace'=>'Admins',], function () {
 		Route::resource('sellerdis','SellerdisController');
 
 
+
+		//身份认证 identity
+		Route::resource('ident','IdentityController');
+		// 1 通过
+		Route::resource('isucc','IdentitysucceedController');
+		// 2 未通过
+		Route::resource('ifail','IdentityfailController');
+
+
 		//商家申请check
 		Route::resource('check','CheckController');
 		// 1 通过

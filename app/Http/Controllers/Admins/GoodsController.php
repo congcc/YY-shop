@@ -79,8 +79,6 @@ class GoodsController extends Controller
         //
         $res = ['gstate'=>'0'];
 
-        // $data = DB::table('goods')->where('id',$id)->update($res);
-
         $data = goods::where('id',$id)->update($res);
 
         if($res){
