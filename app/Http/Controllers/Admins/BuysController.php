@@ -24,7 +24,7 @@ class BuysController extends Controller
         //
         $res = user::where('username','like','%'.$request->input('search').'%')
             ->orderBy('id','asc')
-            ->paginate($request->input('num',10));
+            ->paginate(5);
 
         // $res = DB::table('admins')->
         //     where('name','like','%'.$request->input('search').'%')->
