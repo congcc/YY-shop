@@ -25,7 +25,7 @@ class GoodsfailController extends Controller
         ->orderBy('gstate','asc')
         ->paginate(5);
 
-        $res = goods::where('gstate','0')->get();
+        $req = goods::where('gstate','0')->get();
 
         return view('admins.goods.fail.index',compact('res','req','request'));
     }
