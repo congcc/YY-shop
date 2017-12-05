@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\model\collect;
+use App\Http\model\goods;
+
 
 class UsercollectController extends Controller
 {
@@ -16,7 +19,21 @@ class UsercollectController extends Controller
      */
     public function index()
     {
-        return view('homes.user.collect');
+
+        $id=session('userid');
+        // dd($id);
+
+        $res=collect::where('uid',$id)->get();
+        // dd($res);
+    
+        //$re=$res['0']->gid;
+        // dd($re);
+       // $ri=goods::where('id',$re)->get();
+        // dd($ri);
+        // dd($r);
+        return view('homes.user.collect',compact('res'));
+
+
     }
 
     /**
@@ -60,6 +77,9 @@ class UsercollectController extends Controller
     public function edit($id)
     {
         //
+        // dd($id)
+        return view('homes.user.details',compact('id'));
+
     }
 
     /**
@@ -83,5 +103,15 @@ class UsercollectController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function del(Request $request,$id)
+    {           
+        
+       $res = collect::where('id',$id)->delete();
+        if ($res) {
+            echo 1;
+        }else{
+            echo 0;
+        }
     }
 }

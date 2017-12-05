@@ -8,6 +8,8 @@ class collect extends Model
 {
     //
     public $table = "collect";
+    public $timestamps = false;
+
 
     public function shop()
     {

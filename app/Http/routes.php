@@ -99,6 +99,8 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 		//用户账单明细
 		Route::resource('userbill', 'UserbillController');
 		//用户收藏
+		Route::get('usercollect/{id}', 'UsercollectController@del');
+
 		Route::resource('usercollect', 'UsercollectController');
 		//用户足迹
 		Route::resource('userfoot', 'UserfootController');
