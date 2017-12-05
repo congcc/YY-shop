@@ -37,6 +37,7 @@
 <link href="/admins/css/page.css" type="text/css" rel="stylesheet"/>
 <script type="text/javascript" src="/admins/js/jquery.min.js"></script>
 <script type="text/javascript" src="/admins/js/page.js"></script>
+<link rel="stylesheet" type="text/css" href="/admins/css/style.css" media="screen">
 
 
 <title>@yield('title')</title>
@@ -298,8 +299,13 @@
                     <li>
                         <a href=""><i class="icol32-cart"></i> 支付管理</a>
                         <ul class="closed">
+
+                            <li><a href="/admin/complaint">买家投诉</a></li>
+                            <li><a href="/admins/form_wizard.html">卖家投诉</a></li>
+
                             <li><a href="/admin/pay">用户列表</a></li>
                             <li><a href="/admin/pays">商户列表</a></li>
+
                         </ul>
                     </li>
                     <li>
@@ -309,10 +315,18 @@
                         </ul>
                     </li>
                     <li>
-                        <a href=""><i class="icol32-www-page"></i> 网站管理</a>
+                        <a href="#"><i class="icol32-www-page"></i>友情链接</a>
                         <ul class="closed">
-                            <li><a href="/admin/flink">网站状态</a></li>
-                            <li><a href="/admin/flink/create">网站Logo</a></li>
+                            <li><a href="/admin/flink">列表</a></li>
+                            <li><a href="/admin/flink/create">添加链接</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="icol32-www-page"></i> 网站管理</a>
+
+                        <ul class="closed">
+                            <li><a href="/admin/web">网站状态</a></li>
+                            <li><a href="">网站Logo</a></li>
                         </ul>
                     </li>
                 </ul>

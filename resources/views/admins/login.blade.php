@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--><html lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-
+<meta name="_token" content="{{ csrf_token() }}"/>
 <!-- Viewport Metatag -->
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
@@ -32,15 +32,15 @@
             <div class="mws-login-lock"><i class="icon-lock"></i></div>
             <div id="mws-login-form">
 
-                <form class="mws-form" action="/admin/dlogin" method="post">
+                <form class="mws-form" action="" method="post">
                     <div class="mws-form-row">
                         <div class="mws-form-item">
-                            <input type="text" name="name" id="name" class="mws-login-username required" placeholder="请输入用户名">
+                            <input type="text" name="" id="name" class="mws-login-username required" placeholder="请输入用户名">
                         </div>
                     </div>
                     <div class="mws-form-row">
                         <div class="mws-form-item">
-                            <input type="password" name="key" id="key" class="mws-login-password required" placeholder="请输入密码">
+                            <input type="password" name="" id="key" class="mws-login-password required" placeholder="请输入密码">
                         </div>
                     </div>
                     <div class="mws-form-row">
@@ -68,16 +68,24 @@
    <script src="/admins/js/core/login.js"></script>
    
     <script>
+    /* $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                 }
+            });*/
+
     $('#dlog').click(function(){
-        var name = $('#name').val();
-        var key = $('#key').val();
+        var name = $("#name").val();
+        
+        var key = $("#key").val();
         $.post('/admin/dlogin',{'_token':'{{ csrf_token() }}', name:name, key:key},function(data){
-            // console.log(data);
+        //    console.log(data);
             
             if (data) {
                 alert('登录成功！');
                 // layer.load();
-                window.location.href = "/admin/admin";  
+                location.reload();
+               return redirect("/admin/admin") ;  
 
             }else {
                 alert ('账户或密码错误');

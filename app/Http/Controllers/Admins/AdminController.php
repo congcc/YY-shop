@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use session;
 
 class AdminController extends Controller
 {
@@ -16,7 +17,12 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admins.admin');
+        var_dump(session('adminid'));   
+        if(session('adminid')){
+            return view('admins.admin');
+        }else{
+            return view('admins.login');
+        }
     }
 
     /**
@@ -84,4 +90,6 @@ class AdminController extends Controller
     {
         //
     }
+    
+
 }

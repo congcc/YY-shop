@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\model\admin;
+use App\Http\model\admins;
+use Hash;
+use session;
+
 
 class LoginsController extends Controller
 {
@@ -41,13 +45,12 @@ class LoginsController extends Controller
         $req = $request->except('_token');
 
         $res = admins::where('name',$req['name'])->get();
-        var_dump($res);
-        die();
 
+      
         if (Hash::check($req['key'], $res[0]->key)) {
-           session(['userid'=>$res[0]->id,'utype'=>$res[0]->utype]);
-
-           echo "1"; 
+           session(['id'=>$res[0]->id]);
+           session(['adminid'=>$res[0]->id]);
+          echo "1";    
         }
 
     }

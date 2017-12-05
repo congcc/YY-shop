@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\model\website;
 
 class WebController extends Controller
 {
@@ -15,8 +16,9 @@ class WebController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('admins.web');
+    {   
+        $res = website::all();
+        return view('admins.web',['res'=>$res]);
     }
 
     /**
@@ -24,9 +26,10 @@ class WebController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('admins.logo');
+       
+       
     }
 
     /**
@@ -60,6 +63,18 @@ class WebController extends Controller
     public function edit($id)
     {
         //
+    //    $request = $request->except('_token');
+   //    var_dump($id);
+         $res = website::where('id',$id)->get();
+         // var_dump($res);
+         $mm = array();
+        if($res[0]->w_status == '1'){
+            $mm['w_status']='0';
+            $res = website::where('id',$id)->update($mm);
+        } else {
+            $mm['w_status']='1';
+            $res = website::where('id',$id)->update($mm);}
+            return redirect('/admin/web');
     }
 
     /**

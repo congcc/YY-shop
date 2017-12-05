@@ -8,5 +8,6 @@ class friendship extends Model
 {
     //
     public $table = "friendship";
-
+    public $timestamps = false;
+    
 }

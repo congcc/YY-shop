@@ -18,12 +18,15 @@ class TypeController extends Controller
     public function index(Request $request)
     {
         //
-        
-        $res = cateone::all();
+         $f = cateone::
+            where('cate_name','like','%'.$request->input('search').'%')->
+            orderBy('id','asc')->
+            paginate($request->input('num',1));
 
-        foreach($res as $k => $v){
-           $id = $v->id;
-        }
+            
+         //   foreach ( $f as $k=>$v)
+
+        $res = cateone::all();
             
         $sres = catetwo::all();
         
@@ -33,7 +36,7 @@ class TypeController extends Controller
         }*/
 
         // var_dump($sres);
-         return view('admins.type',['res'=>$res,'sres'=>$sres]);
+         return view('admins.type',['res'=>$res,'sres'=>$sres,'f'=>$f,'request'=>$request]);
     }
 
     /**
@@ -119,8 +122,16 @@ class TypeController extends Controller
     public function destroy($id)
     {
         //
-        $res = cateone::where('id',$id)->delete();
+        $data = cateone::where('pid',$id)->first();
 
-        return $res;
+        if($data == null){
+         $res = cateone::where('id',$id)->delete();
+         return redirect('/admin/type');
+         
+         } else {
+
+            return redirect('/admin/type');
+        }
+       // return $res;
     }
 }

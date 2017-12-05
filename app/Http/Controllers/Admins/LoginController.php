@@ -45,8 +45,8 @@ class LoginController extends Controller
         $req = $request->except('_token');
 
         $res = admins::where('name',$req['name'])->get();
-        var_dump($res);
-        die();
+        // var_dump($res);
+        // die();
 
         if (Hash::check($req['key'], $res[0]->key)) {
            echo "1"; 

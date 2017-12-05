@@ -107,7 +107,18 @@ class TypesonController extends Controller
     public function destroy($id)
     {
         //
+        
+        $data = catetwo::where('pid',$id)->first();
+
+        if($data == null){
          $res = cateone::where('id',$id)->delete();
+         return redirect('/admin/type');
+         
+         } else {
+
+            return redirect('/admin/type');
+        }
+        
        
     }
 }

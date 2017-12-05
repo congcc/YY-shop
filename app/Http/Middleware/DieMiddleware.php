@@ -3,9 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Http\model\website;
 
-
-class LoginMiddleware
+class DieMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,12 +16,13 @@ class LoginMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $aid = session('adminid');
+        $res = website::where('w_status')->first();
 
-       if($aid){
+        if($res['w_status'] == 0){
+            return view('/homes/404');
+           } else {
+            
             return $next($request);
-        } else {
-           return redirect('/admin/login');
-        }
+           }
     }
 }
