@@ -393,7 +393,8 @@ function upgoods(uid){
 
 	$.post("/home/seller/goodsup",{'_token':'{{ csrf_token() }}',arr1:arr1,arr2:arr2,arr3:arr3,arr4:arr4,clid:clid,gname:gname,gimg:gimg,gdcont:gdcont,gdpic:gdpic,gprice:gprice,tagsarr:tagsarr,knumber:knumber},function(data){
 	    	if(data==1){
-	    		layer.msg('添加成功');
+	    		layer.msg('添加成功,请等待后台人员审核');
+	    		location.reload();
 	    	}else{
 	    		layer.msg('添加失败');
 	    	}

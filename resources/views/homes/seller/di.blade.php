@@ -90,8 +90,8 @@
 								</div>
 								<ul>
 									
-									<li><a href="order.html"><i><img src="/homes/images/send.png"></i><span>待发货<em class="m-num">1</em></span></a></li>
-									<li><a href="order.html"><i><img src="/homes/images/receive.png"></i><span>待收货</span></a></li>
+									<li><a href="/home/seller/orderedit"><i><img src="/homes/images/send.png"></i><span>待发货<em class="m-num">1</em></span></a></li>
+									<li><a href="/home/seller/orderedit"><i><img src="/homes/images/receive.png"></i><span>待收货</span></a></li>
 									<li><a href="/home/seller/comments"><i><img src="/homes/images/comment.png"></i><span>评价<em class="m-num">3</em></span></a></li>
 									<li><a href="/home/seller/orderback"><i><img src="/homes/images/refund.png"></i><span>退换售后</span></a></li>
 								</ul>
@@ -136,9 +136,7 @@
 												</div>
 
 											</div>
-											<div class="lg-confirm">
-												<a href="#" class="i-btn-typical">确认收货</a>
-											</div>
+											
 										</li>
 										<div class="clear"></div>
 
@@ -172,9 +170,7 @@
 												</div>
 
 											</div>
-											<div class="lg-confirm">
-												<a href="#" class="i-btn-typical">确认收货</a>
-											</div>
+											
 										</li>
 
 									</ul>

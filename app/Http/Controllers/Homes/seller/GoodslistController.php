@@ -27,7 +27,7 @@ class GoodslistController extends Controller
         $sid=$res['0']->id;
 
         //获取goods表里的商品
-        $goods=goods::where('sid',$sid)->paginate(8);
+        $goods=goods::where('sid',$sid)->paginate(4);
 
         //获取gprices里
         $prices=array();
