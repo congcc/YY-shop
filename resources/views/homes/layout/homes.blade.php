@@ -77,7 +77,7 @@
 
 						<div class="nav white">
 							<div class="logoBig">
-								<li><img src="/homes/images/logobig.png" /></li>
+								<li><img src="http://ozsps8743.bkt.clouddn.com/img/image_61531512438063png" /></li>
 							</div>
 
 							<div class="search-bar pr">

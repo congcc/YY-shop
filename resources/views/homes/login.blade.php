@@ -8,12 +8,12 @@
 
 @section('content')
 	<div class="login-boxtitle">
-		<a href="/homes/home.html"><img alt="logo" style="height: 60px;width: 150px;" src="/homes/images/logobig.png" /></a>
+		<a href="/home/"><img alt="logo" style="height: 60px;width: 150px;" src="http://ozsps8743.bkt.clouddn.com/img/image_61531512438063png" /></a>
 	</div>
 
 	<div class="login-banner">
 		<div class="login-main">
-			<div class="login-banner-bg"><span></span><img src="/homes/images/big.jpg" /></div>
+			<a href="" ><div class="login-banner-bg"><span></span><img src="/homes/images/big.jpg" /></div></a>
 			<div class="login-box">
 
 						<h3 class="title">登录商城</h3>

@@ -88,7 +88,7 @@
 														<ul class="item-list">
 															<li class="td td-item">
 																<div class="item-pic">
-																	<a href="/homes/#" class="J_MakePoint">
+																	<a href="/home/details/{{$vs->orgoods->id}}/edit" class="J_MakePoint">
 																		<img src="{{$vs->orgoods->gimg}}">
 																	</a>
 																</div>
@@ -96,7 +96,7 @@
 																
 
 																	<div class="item-basic-info" style="margin-left: -70px;"> 
-																		<a href="/homes/#">
+																		<a href="/home/details/{{$vs->orgoods->id}}/edit">
 																			<p>{{$vs->orgoods->gname}}</p>
 																			<p class="info-little" style="margin-top:8px;">
 																				商品规格：{{$vs->label}}
@@ -235,13 +235,13 @@
 														<ul class="item-list">
 															<li class="td td-item">
 																<div class="item-pic">
-																	<a href="/homes/#" class="J_MakePoint">
+																	<a href="/home/details/{{$vs1->orgoods->id}}/edit" class="J_MakePoint">
 																		<img src="{{$vs1->orgoods->gimg}}">
 																	</a>
 																</div>
 																<div class="item-info" style="width: 220px;">
 																	<div class="item-basic-info" style="margin-left: -70px;">
-																		<a href="/homes/#">
+																		<a href="/home/details/{{$vs1->orgoods->id}}/edit">
 																			<p>{{$vs1->orgoods->gname}}</p>
 																			<p class="info-little" style="margin-top:8px;">商品规格：{{$vs1->label}}</p>
 																		</a>
@@ -360,13 +360,13 @@
 														<ul class="item-list">
 															<li class="td td-item">
 																<div class="item-pic">
-																	<a href="/homes/#" class="J_MakePoint">
+																	<a href="/home/details/{{$vs2->orgoods->id}}/edit" class="J_MakePoint">
 																		<img src="{{$vs2->orgoods->gimg}}" class="itempic J_ItemImg">
 																	</a>
 																</div>
 																<div class="item-info" style="width: 200px;">
 																	<div class="item-basic-info" style="margin-left: -70px;">
-																		<a href="/homes/#">
+																		<a href="/home/details/{{$vs2->orgoods->id}}/edit">
 																			<p>{{$vs2->orgoods->gname}}</p>
 																			<p class="info-little" style="margin-top:8px;">商品规格：{{$vs2->label}}</p>
 																		</a>
@@ -463,13 +463,13 @@
 														<ul class="item-list">
 															<li class="td td-item">
 																<div class="item-pic">
-																	<a href="/homes/#" class="J_MakePoint">
+																	<a href="/home/details/{{$vs3->orgoods->id}}/edit" class="J_MakePoint">
 																		<img src="{{$vs3->orgoods->gimg}}" class="itempic J_ItemImg">
 																	</a>
 																</div>
 																<div class="item-info" style="width: 200px;">
 																	<div class="item-basic-info" style="margin-left: -70px;">
-																		<a href="/homes/#">
+																		<a href="/home/details/{{$vs3->orgoods->id}}/edit">
 																			<p>{{$vs3->orgoods->gname}}</p>
 																			<p class="info-little" style="margin-top:8px;">商品规格：{{$vs3->label}}</p>
 																		</a>
@@ -612,13 +612,13 @@
 														<ul class="item-list">
 															<li class="td td-item">
 																<div class="item-pic">
-																	<a href="/homes/#" class="J_MakePoint">
+																	<a href="/home/details/{{$vs4->orgoods->id}}/edit" class="J_MakePoint">
 																		<img src="{{$vs4->orgoods->gimg}}" class="itempic J_ItemImg">
 																	</a>
 																</div>
 																<div class="item-info" style="width: 200px;">
 																	<div class="item-basic-info" style="margin-left: -70px;">
-																		<a href="/homes/#">
+																		<a href="/home/details/{{$vs4->orgoods->id}}/edit">
 																			<p>{{$vs4->orgoods->gname}}</p>
 																			<p class="info-little" style="margin-top:8px;">商品规格：{{$vs4->label}}</p>
 																		</a>

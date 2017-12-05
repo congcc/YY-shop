@@ -16,6 +16,8 @@
 		<script type="text/javascript" src="/homes/js/jquery.imagezoom.min.js"></script>
 		<script type="text/javascript" src="/homes/js/jquery.flexslider.js"></script>
 		<script type="text/javascript" src="/homes/js/list.js"></script>
+		<script src="/homes/layer/layer.js"></script>
+		
 		<style>
 			.pagination > li > a, .pagination > li > span {
 			    position: relative;
@@ -322,7 +324,11 @@
 								var label = label1+','+label2;
 								var gum = $('#text_box').val();
 								$.post("/home/user/addcar",{'_token':'{{ csrf_token() }}',label:label,gum:gum,gid:gid},function(data){
-							      console.log(data);
+							      // console.log(data);
+								      if(data){
+											layer.msg('加入购物车成功', {icon: 1});
+
+								      }
 							    },'json')
 							})
 							$('#LikBuy').click(function(){

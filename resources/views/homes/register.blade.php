@@ -6,7 +6,7 @@
 @section('content')
 
 		<div class="login-boxtitle">
-      <a href="home/demo.html"><img alt="" style="width: 150px;height: 60px;" src="/homes/images/logobig.png" /></a>
+      <a href="home/demo.html"><img alt="" style="width: 150px;height: 60px;" src="http://ozsps8743.bkt.clouddn.com/img/image_61531512438063png" /></a>
     </div>
 <div class="res-banner" >
   <div class="res-main">
