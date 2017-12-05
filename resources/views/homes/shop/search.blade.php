@@ -177,16 +177,15 @@
 							</div>
 							<div class="clear"></div>
 							<!--分页 -->
-							<ul class="am-pagination am-pagination-right">
-							{!! $res->appends($request->all())->render()!!}
-								<li class="am-disabled"><a href="/homes/#">«</a></li>
-								<li class="am-active"><a href="/homes/#">1</a></li>
-								<li><a href="/homes/#">2</a></li>
-								<li><a href="/homes/#">3</a></li>
-								<li><a href="/homes/#">4</a></li>
-								<li><a href="/homes/#">5</a></li>
-								<li><a href="/homes/#">»</a></li>
-							</ul>
+							<div class="fenyes">
+								{!! $res->appends($request->all())->render()!!}
+							</div>
+							<script type="text/javascript">
+								$(document).ready(function(){
+									$('.pagination').addClass('am-pagination am-pagination-right');
+								})
+							</script>
+							
 
 						</div>
 					</div>

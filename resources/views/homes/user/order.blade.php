@@ -221,6 +221,7 @@
 
 									<div class="order-main">
 										<div class="order-list">
+										<?php $o = 0; ?>
 										@foreach($codearr1 as $k1=>$v1)
 										<?php $to1 = 0; ?>
 											<div class="order-status1">
@@ -278,17 +279,17 @@
 															<li class="td td-status">
 																<div class="item-status">
 																	<p class="Mystatus">等待买家付款</p>
-																	<p class="order-info orderre"><a href="javascript:void(0)">取消订单</a></p>
+																	<p class="order-info orderre{{$o}}"><a href="javascript:void(0)">取消订单</a></p>
 																</div>
 																<script type="text/javascript">
 																///home/user/orderre/{{$v1[0]->o_code}}
-																	$('.orderre').click(function(){
+																	$('.orderre{{$o}}').click(function(){
 																		var code = {{$v1[0]->o_code}};
 																		layer.confirm('您确定要取消该订单吗?', {
 																		  btn: ['确定','取消'] //按钮
 																		}, function(){
 																			$.get("/home/user/orderre",{code:code},function(data){
-
+																				//console.log(data);
 																			});
 																			location.reload();
 																			
@@ -312,6 +313,7 @@
 												</div>
 
 											</div>
+											<?php $o++; ?>
 											@endforeach
 										</div>
 
@@ -459,6 +461,7 @@
 												</div>
 												<div class="order-content">
 													<div class="order-left">
+													<?php $p = 0; ?>
 													@foreach($v3 as $ks3=>$vs3)
 														<ul class="item-list">
 															<li class="td td-item">
@@ -516,14 +519,14 @@
 																</div>
 															</li>
 															<li class="td td-change">
-																<div class="am-btn am-btn-danger anniu shouhuo">
+																<div class="am-btn am-btn-danger anniu shouhuo{{$p}}">
 																	确认收货</div>
 
 																	<script type="text/javascript">
 																				layer.config({
 																				    extend: 'extend/layer.ext.js'
 																				});
-																			$('.shouhuo').click(function(){
+																			$('.shouhuo{{$p}}').click(function(){
 																				var code = {{$v3[0]->o_code}};
 																				/*layer.prompt(function(val, index){
 																				  layer.msg('得到了'+val);
@@ -563,6 +566,7 @@
 													</div>
 												</div>
 											</div>
+											<?php $p++; ?>
 											@endforeach
 										</div>
 									</div>

@@ -32,22 +32,24 @@
 			</ul>
 			<ul class="message-r">
 				<div class="topMessage home">
-					<div class="menu-hd"><a href="/homes/#" target="_top" class="h">商城首页</a></div>
+					<div class="menu-hd"><a href="{{url('home/index')}}" target="_top" class="h">商城首页</a></div>
 				</div>
 				<div class="topMessage my-shangcheng">
-					<div class="menu-hd MyShangcheng"><a href="/homes/#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+					<div class="menu-hd MyShangcheng"><a href="{{url('home/user/user')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 				</div>
 				<div class="topMessage mini-cart">
-					<div class="menu-hd"><a id="mc-menu-hd" href="/homes/#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
+					<div class="menu-hd"><a id="mc-menu-hd" href="{{url('home/user/shopcart')}}" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
 				</div>
 				<div class="topMessage favorite">
-					<div class="menu-hd"><a href="/homes/#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
+					<div class="menu-hd"><a href="{{url('home/user/usercollect')}}" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
 			</ul>
 			</div>
 
+
+
 			<!--悬浮搜索框-->
 
-			
+
 
 			<div class="clear"></div>
 			<div class="concent">
@@ -93,13 +95,7 @@
 								</div>
 								<div class="clear"></div>
 
-								<div class="new-addr-btn">
-									<a href="/homes/#" class="hidden">设为默认</a>
-									<span class="new-addr-bar hidden">|</span>
-									<a href="/homes/#">编辑</a>
-									<span class="new-addr-bar">|</span>
-									<a href="/homes/javascript:void(0);" onclick="delClick(this);">删除</a>
-								</div>
+								
 
 							</li>
 						@endif
@@ -138,13 +134,7 @@
 								</div>
 								<div class="clear"></div>
 
-								<div class="new-addr-btn">
-									<a href="/homes/#" class="hidden">设为默认</a>
-									<span class="new-addr-bar hidden">|</span>
-									<a href="/homes/#">编辑</a>
-									<span class="new-addr-bar">|</span>
-									<a href="/homes/javascript:void(0);" onclick="delClick(this);">删除</a>
-								</div>
+								
 
 							</li>
 						@endif
@@ -240,9 +230,9 @@
 													<div class="item-amount ">
 														<span class="phone-title">购买数量</span>
 														<div class="sl">
-															<input class="min am-btn" name="" type="button" value="-" />
+															<input class="mins am-btn" name="" type="button" value="-" />
 															<input class="text_box" name="" type="text" value="{{$num}}" style="width:30px;" />
-															<input class="add am-btn" name="" type="button" value="+" />
+															<input class="adds am-btn" name="" type="button" value="+" />
 														</div>
 													</div>
 												</div>
@@ -250,16 +240,18 @@
 				
 											<script type="text/javascript">
 												//var toprice = 0;
-												$('.min').click(function(){
+												$('.mins').click(function(){
 													var num = $('.text_box').val()-1;
+													$('.text_box').val(num);
 													var pri = $('.J_Price').html();
 													var toprice = parseFloat(pri)*parseInt(num);
 													$('.J_ItemSum').html(toDecimal2(toprice));
 													$('.pay-sum').html(toDecimal2(toprice));
 													$('.style-large-bold-red').html(toDecimal2(toprice));
 												})
-												$('.add').click(function(){
+												$('.adds').click(function(){
 													var num = parseInt($('.text_box').val())+parseInt(1);
+													$('.text_box').val(num);
 													var pri = $('.J_Price').html();
 													var toprice = parseFloat(pri)*parseInt(num);
 													$('.J_ItemSum').html(toDecimal2(toprice));

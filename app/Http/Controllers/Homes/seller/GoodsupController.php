@@ -83,7 +83,9 @@ class GoodsupController extends Controller
         //将数组转为json字符串
         $pricesjson = json_encode($prices);
 
-        $sid = session('userid');           //商家id
+        $uid = session('userid');           
+        $si = shop::where('uid',$uid)->first();
+        $sid = $si['id'];                   //商家id
         $clid = $res['clid'];               //商品分类
         $gname = $res['gname'];             //商品名称
         $gimg = $res['gimg'];               //商品图片

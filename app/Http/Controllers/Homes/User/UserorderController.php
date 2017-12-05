@@ -149,6 +149,7 @@ class UserorderController extends Controller
 
         if($hash){
             echo 1;
+
             //改变订单状态为3
             $re = orders::where('o_code',$code)->update(['ostate'=>3]);
             $ress = ordersinfo::where('o_code',$code)->update(['ostate'=>3]);
