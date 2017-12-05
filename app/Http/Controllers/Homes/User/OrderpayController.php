@@ -49,6 +49,7 @@ class OrderpayController extends Controller
         $code = $request->input('code');
         orders::where('o_code',$code)->update(['ostate'=>1]);
         ordersinfo::where('o_code',$code)->update(['ostate'=>1,'pay_time'=>$time]);
+        return view('/home/user/order');
     }
 
     /**

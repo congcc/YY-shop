@@ -164,6 +164,7 @@
 				console.log(data);
 			})
 			layer.msg('付款成功');
+			location.href = '/home/user/userorder';
 		})
 	</script>
 

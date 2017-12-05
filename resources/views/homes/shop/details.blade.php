@@ -249,7 +249,7 @@
 													</div>
 													<div class="text-info">
 														<span class="J_Price price-now">¥39.00</span>
-														<span id="Stock" class="tb-hidden">库存<span class="stock">1000</span>件</span>
+														<span id="Stock" class="tb-hidden">库存<span class="stock">{{$res[0]->knumber}}</span>件</span>
 													</div>
 												</div>
 
