@@ -18,7 +18,7 @@
                                     <td class=" ">{{ $v->fs_name }}</td>
                                     <td class=" "><img src=".{{ $v->fs_image}}" width='10%px'></td>
                                     <td class=" ">{{ $v->fs_link }}</td>
-                                    <td class=" ">{{ $v->fs_auth }}</td>
+                                    <td class=" "><button onclick="ooo({{$v->fs_auth}},{{ $v->id }})" id="auth">{{ $v->fs_auth ? '关闭' : '开启'}}</button></td>
                                     <td class=" ">
                                         <span class="btn-group">
                                            
@@ -37,4 +37,21 @@
                                 <div class="dataTables_info" id="DataTables_Table_0_info">Showing 1 to 10 of 20 entries</div><div class="dataTables_paginate paging_two_button" id="DataTables_Table_0_paginate"><a class="paginate_disabled_previous" tabindex="0" role="button" id="DataTables_Table_0_previous" aria-controls="DataTables_Table_0">Previous</a><a class="paginate_enabled_next" tabindex="0" role="button" id="DataTables_Table_0_next" aria-controls="DataTables_Table_0">Next</a></div></div>
                     </div></div>
                 </div>
+
+        <script type="text/javascript">
+            function ooo(fs,id){
+
+                
+
+                    
+                     $.post('/admin/flink/bu',{'_token':'{{ csrf_token() }}', fs_auth:fs,id:id},function(data){
+
+                        location.reload();
+                     console.log(data);
+                })
+
+                 }
+
+        </script>
+
 @endsection

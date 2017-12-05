@@ -127,7 +127,7 @@
                     Showing 1 to 10 of 20 entries
                 </div>
                 <div class="dataTables_paginate paging_full_numbers">
-                    {!! $uinfo->appends($request->all())->render()!!}
+                    {!! $res->appends($request->all())->render()!!}
                 </div>
         </div>
     </div>

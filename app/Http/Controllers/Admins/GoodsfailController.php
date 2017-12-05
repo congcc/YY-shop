@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\model\goods;
+use App\Http\model\shop;
+use App\Http\model\goodscate;
 use DB;
 
 class GoodsfailController extends Controller
@@ -18,11 +21,13 @@ class GoodsfailController extends Controller
     public function index(Request $request)
     {
         //
-        $res = DB::table('goods')->where('gstate','0')->get();
+        $res = goods::where('gname','like','%'.$request->input('search').'%')
+        ->orderBy('gstate','asc')
+        ->paginate(5);
 
-        $good = DB::table('goods')->simplePaginate(10);
+        $res = goods::where('gstate','0')->get();
 
-        return view('admins.goods.fail.index',compact('res','good','request'));
+        return view('admins.goods.fail.index',compact('res','req','request'));
     }
 
     /**
@@ -55,11 +60,11 @@ class GoodsfailController extends Controller
     public function show($id)
     {
         //
-        $res = DB::table('goods')->where('id',$id)->first();
+        $res = goods::where('id',$id)->first();
 
-        $shop = DB::table('shop')->where('id',$res->sid)->first();
+        $shop = shop::where('id',$res->sid)->first();
 
-        $gc = DB::table('goodscate')->where('pid',$res->clid)->first();
+        $gc = goodscate::where('pid',$res->clid)->first();
 
          return view('admins.goods.fail.show',compact('res','shop','gc'));
     }

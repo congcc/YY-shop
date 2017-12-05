@@ -215,4 +215,16 @@ class FlinkController extends Controller
             alert('删除失败了哦吼');
         }
     }
+
+    public function bu(Request $request)
+    {
+        $request = $request->except('_token');
+        // $res = friendship::where('fs_auth',$request->fs_auth);
+        if($request['fs_auth'] == '1'){
+            $mm['fs_auth']='0';
+            $res = friendship::where('id',$request['id'])->update($mm);
+        } else {
+            $mm['fs_auth']='1';
+            $res = friendship::where('id',$request['id'])->update($mm);}
+    }
 }

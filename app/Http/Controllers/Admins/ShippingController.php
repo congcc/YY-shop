@@ -7,8 +7,12 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\model\orders;
-
+use App\Http\model\ordersinfo;
+use App\Http\model\user;
+use App\Http\model\shop;
+use App\Http\model\goods;
 use DB;
+
 
 class ShippingController extends Controller
 {
@@ -17,13 +21,16 @@ class ShippingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //1 代发货的订单
-        $res = DB::table('orders')->where('ostate', '1')->get();
-        $ord = DB::table('orders')->simplePaginate(10);
+        $res = orders::where('o_code','like','%'.$request->input('search').'%')
+        ->orderBy('ostate','asc')
+        ->paginate(5);
 
-        return view('admins.orders.shipping.index',['res'=>$res,'ord'=>$ord]);
+        $req = orders::where('ostate', '1')->get();
+
+        return view('admins.orders.shipping.index',compact('res','req','request'));
 
     }
 
@@ -57,16 +64,12 @@ class ShippingController extends Controller
     public function show($id)
     {
         //
-         $orde = DB::table('orders')->where('id',$id)->first();
-        $ordes = DB::table('ordersinfo')->where('o_code',$orde->o_code)->first();
-        $user = DB::table('user')->where('id',$orde->uid)->first();
-        $shop = DB::table('shop')->where('id',$orde->sid)->first();
-        $good = DB::table('goods')->where('sid',$orde->sid)->first();
-        var_dump($orde);
-        var_dump($ordes);
-        var_dump($user);
-        var_dump($shop);
-        var_dump($good);
+        $orde = orders::where('id',$id)->first();
+        $ordes = ordersinfo::where('o_code',$orde->o_code)->first();
+        $user = user::where('id',$orde->uid)->first();
+        $shop = shop::where('id',$orde->sid)->first();
+        $good = goods::where('sid',$orde->sid)->first();
+        
         return view('admins.orders.shipping.show',compact('orde','ordes','user','shop','good'));
     }
 

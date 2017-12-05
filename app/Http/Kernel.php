@@ -32,5 +32,6 @@ class Kernel extends HttpKernel
         'hlogin' => \App\Http\Middleware\HloginMiddleware::class,
         'login' => \App\Http\Middleware\LoginMiddleware::class,
         'slogin' => \App\Http\Middleware\SellerMiddleware::class,
+        'die' => \App\Http\Middleware\DieMiddleware::class,
     ];
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\model\admin;
 use App\Http\model\admins;
 use Hash;
+use session;
 
 
 class LoginsController extends Controller
@@ -48,8 +49,8 @@ class LoginsController extends Controller
       
         if (Hash::check($req['key'], $res[0]->key)) {
            session(['id'=>$res[0]->id]);
-
-          echo "1"; 
+           session(['adminid'=>$res[0]->id]);
+          echo "1";    
         }
 
     }

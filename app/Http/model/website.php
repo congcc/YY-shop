@@ -8,5 +8,6 @@ class website extends Model
 {
     //
     public $table = "website";
+    public $timestamps = false;
 
 }

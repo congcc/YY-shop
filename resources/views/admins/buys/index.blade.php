@@ -103,10 +103,10 @@
                         </td>
                         
                         <td class=" ">
-                                {{$v->status ? '是' : '否'}}
+                            {{$v->status ? '用户' : '商户'}}
                         </td>
                         <td class=" ">
-                            <a href="/admin/buyss/{{$v->id}}" onclick="return confirm('您确定要删除吗?')">
+                            <a href="/admin/buyss/{{$v->id}}" onclick="return confirm('您确定要修改吗?')">
                                 <button id="auth">
                                     {{$v->status ? '关闭' : '开启'}}
                                 </button>
@@ -133,15 +133,8 @@
                 <div class="dataTables_info" id="DataTables_Table_0_info">
                     Showing 1 to 10 of 20 entries
                 </div>
-                <div class="dataTables_paginate paging_two_button" id="DataTables_Table_0_paginate">
-                    <a class="paginate_disabled_previous" tabindex="0" role="button" id="DataTables_Table_0_previous"
-                    aria-controls="DataTables_Table_0">
-                        Previous
-                    </a>
-                    <a class="paginate_enabled_next" tabindex="0" role="button" id="DataTables_Table_0_next"
-                    aria-controls="DataTables_Table_0">
-                        Next
-                    </a>
+                <div class="dataTables_paginate paging_full_numbers">
+                    {!! $res->appends($request->all())->render()!!}
                 </div>
             </div>
         </div>

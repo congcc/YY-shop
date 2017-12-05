@@ -3,12 +3,23 @@
 @section('title','添加新闻页面')
 
 @section('content')
-<div class="mws-panel grid_5">
-                	<div class="mws-panel-header">
-                    	<span><i class="icon-graph"></i> Charts</span>
-                    </div>
-                    <div class="mws-panel-body">
-                        <div id="mws-dashboard-chart" style="height: 222px; padding: 0px; position: relative;"><canvas class="base" width="378" height="222"></canvas><canvas class="overlay" width="378" height="222" style="position: absolute; left: 0px; top: 0px;"></canvas><div class="tickLabels" style="font-size:smaller"><div class="xAxis x1Axis" style="color:#545454"><div class="tickLabel" style="position:absolute;text-align:center;left:2px;top:202px;width:47px">0</div><div class="tickLabel" style="position:absolute;text-align:center;left:58px;top:202px;width:47px">5</div><div class="tickLabel" style="position:absolute;text-align:center;left:114px;top:202px;width:47px">10</div><div class="tickLabel" style="position:absolute;text-align:center;left:170px;top:202px;width:47px">15</div><div class="tickLabel" style="position:absolute;text-align:center;left:227px;top:202px;width:47px">20</div><div class="tickLabel" style="position:absolute;text-align:center;left:283px;top:202px;width:47px">25</div><div class="tickLabel" style="position:absolute;text-align:center;left:339px;top:202px;width:47px">30</div></div><div class="yAxis y1Axis" style="color:#545454"><div class="tickLabel" style="position:absolute;text-align:right;top:187px;right:358px;width:20px">0</div><div class="tickLabel" style="position:absolute;text-align:right;top:148px;right:358px;width:20px">25</div><div class="tickLabel" style="position:absolute;text-align:right;top:110px;right:358px;width:20px">50</div><div class="tickLabel" style="position:absolute;text-align:right;top:71px;right:358px;width:20px">75</div><div class="tickLabel" style="position:absolute;text-align:right;top:33px;right:358px;width:20px">100</div><div class="tickLabel" style="position:absolute;text-align:right;top:-6px;right:358px;width:20px">125</div></div></div><div class="legend"><div style="position: absolute; width: 87px; height: 50px; top: 9px; right: 9px; background-color: rgb(255, 255, 255); opacity: 0.85;"> </div><table style="position:absolute;top:9px;right:9px;;font-size:smaller;color:#545454"><tbody><tr><td class="legendColorBox"><div style="border:1px solid #ccc;padding:1px"><div style="width:4px;height:0;border:5px solid #c75d7b;overflow:hidden"></div></div></td><td class="legendLabel">Page Views</td></tr><tr><td class="legendColorBox"><div style="border:1px solid #ccc;padding:1px"><div style="width:4px;height:0;border:5px solid #c5d52b;overflow:hidden"></div></div></td><td class="legendLabel">Sales</td></tr></tbody></table></div></div>
-                    </div>
-                </div>
+		
+	 <tbody role="alert" aria-live="polite" aria-relevant="all">
+                    @foreach ($res as $k => $v) 
+                        
+
+                        <tr class="odd p1">
+                         <ul class="closed">
+                            <li>
+                                <td class="  sorting_1">
+                              <a href="/admin/web/{{$v->id}}/edit"><button id="auth">{{ $v->w_status }}</button></a>   
+                                </td>
+                            </li>
+                          </ul>  
+                         </tr>
+                        </tbody>
+					</table>  
+				@endforeach	
+	
+
 @endsection

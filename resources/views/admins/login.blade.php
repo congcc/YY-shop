@@ -84,8 +84,8 @@
             if (data) {
                 alert('登录成功！');
                 // layer.load();
-                   
-                window.location.href = "/admin/type";  
+                location.reload();
+               return redirect("/admin/admin") ;  
 
             }else {
                 alert ('账户或密码错误');

@@ -19,15 +19,13 @@ class SellerController extends Controller
     public function index(Request $request)
     {
         //
-        // $res = shop::all();
-        $res = DB::table('shop')->
-            where('sname','like','%'.$request->input('search').'%')->
-            orderBy('id','asc')->
-            paginate($request->input('num',10));
-        $req = DB::table('shop')->where('sauth', '1')->get();
-        $shops = DB::table('shop')->simplePaginate(10);
+        $res = shop::where('sname','like','%'.$request->input('search').'%')
+        ->orderBy('sauth','asc')
+        ->paginate(5);
 
-        return view('admins.seller.index',compact('res','req','request','shops'));
+        $req = shop::where('sauth', '1')->get();
+
+        return view('admins.seller.index',compact('res','req','request'));
     }
 
     /**
@@ -60,7 +58,8 @@ class SellerController extends Controller
     public function show($id)
     {
         //
-        $res = DB::table('shop')->where('id',$id)->first();
+        $res = shop::where('id',$id)->first();
+
         return view('admins.seller.show',['res'=>$res]);
     }
 
@@ -73,8 +72,8 @@ class SellerController extends Controller
     public function edit($id)
     {
         //
-        $res = DB::table('shop')->where('id',$id)->first();
-        var_dump($res);
+        $res = shop::where('id',$id)->first();
+
         return view('admins.seller.edit',['res'=>$res]);
     }
 
@@ -90,11 +89,11 @@ class SellerController extends Controller
         //
         $res = $request->except('_token','_method');
 
-        $data = DB::table('shop')->where('id',$id)->update($res);
+        $data = shop::where('id',$id)->update($res);;
 
         if($data){
 
-            return redirect('/admin/seller')->with('msg','修改成功');
+            return redirect('/admin/seller')->with('修改成功');
         } else {
 
             return back();
@@ -110,10 +109,10 @@ class SellerController extends Controller
     public function destroy($id)
     {
         //
-        $res = DB::table('shop')->where('id', $id)->delete();
+        $data = shop::where('id', $id)->delete();
         
-        if($res){
-            return redirect('/admin/seller')->with('meg','删除成功');
+        if($data){
+            return redirect('/admin/seller')->with('删除成功');
         } else {
             return back();
         }
