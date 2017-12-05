@@ -153,6 +153,9 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 
 		//定时器
 		Route::resource('interval','IntervalController');
+		
+		//商户消息
+		Route::resource('news','NewsController');
 
 
 		
