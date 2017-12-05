@@ -22,16 +22,19 @@ class BuysController extends Controller
     public function index(Request $request)
     {
         //
-        // $res = user::all();
-        $res = DB::table('user')->
-            where('username','like','%'.$request->input('search').'%')->
-            orderBy('id','asc')->
-            paginate($request->input('num',10));
-        $req = DB::table('user')->where('status', '1')->get();
-        $users = DB::table('user')->simplePaginate(10);
+        $res = user::where('username','like','%'.$request->input('search').'%')
+            ->orderBy('id','asc')
+            ->paginate(5);
+
+        // $res = DB::table('admins')->
+        //     where('name','like','%'.$request->input('search').'%')->
+        //     orderBy('id','asc')->
+        //     paginate($request->input('num',10));
 
 
-        return view('admins.buys.index',compact('res','req','request','users'));
+        $req = user::where('status', '1')->get();
+
+        return view('admins.buys.index',['res'=>$res,'req'=>$req,'request'=>$request]);
     }
 
     /**
@@ -63,7 +66,8 @@ class BuysController extends Controller
      */
     public function show($id)
     {
-        $res = DB::table('user')->where('id',$id)->first();
+        $res = user::where('id',$id)->first();
+
         $result = userinfo::find($id);
          return view('admins.buys.show',compact('res','result'));
     }
@@ -77,7 +81,7 @@ class BuysController extends Controller
     public function edit($id)
     {
 
-        $res = DB::table('user')->where('id',$id)->first();
+        $res = user::where('id',$id)->first();
 
         return view('admins.buys.edit',['res'=>$res]);
     }
@@ -95,7 +99,7 @@ class BuysController extends Controller
         // echo 1;
         $res = $request->except('_token','_method');
 
-        $data = DB::table('user')->where('id',$id)->update($res);
+        $data = user::where('id',$id)->update($res);
 
         if($data){
 
@@ -115,7 +119,7 @@ class BuysController extends Controller
     public function destroy($id)
     {
         //
-        $res = DB::table('user')->where('id', $id)->delete();
+        $res = user::where('id', $id)->delete();
         
         if($res){
             return redirect('/admin/buys')->with('meg','删除成功');

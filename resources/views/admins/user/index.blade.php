@@ -67,16 +67,6 @@
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                         rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
                         style="width: 80px;">
-                            创建时间
-                        </th>
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                        rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                        style="width: 80px;">
-                            登录时间
-                        </th>
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                        rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                        style="width: 80px;">
                             状态
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
@@ -99,18 +89,11 @@
                             {{$v->phone}}
                         </td>
                         <td class=" ">
-                            {{$v->time}}
-                        </td>
-                        <td class=" ">
-                            {{$v->last_time}}
-                        </td>
-                        <td class=" ">
-
-                       
-                       
-                            <button class='btn btn-info'id="qq">
-                                {{$v->auth ? '开启' : '关闭'}}
-                            </button>
+                            <a href="/admin/users/{{$v->id}}">
+                                <button id="auth">
+                                    {{$v->auth ?  '关闭' : '开启'}}
+                                </button>
+                            </a>
                         </td>
                         <td class=" ">
                             <span class="btn-group">
@@ -138,11 +121,5 @@
     </div>
 </div>
 <script type="text/javascript">
-
-        $('#qq').click(function(){
-                            
-                             
-             })
-            </script>
 
 @endsection

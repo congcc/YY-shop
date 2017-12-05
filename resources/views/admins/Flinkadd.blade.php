@@ -60,12 +60,6 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
               </td>
             </tr>
             <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-              <td align="right" valign="middle" class="borderright borderbottom bggray">链接内容：</td>
-              <td align="left" valign="middle" class="borderright borderbottom main-for">
-                <input type="text" name="fs_code" value="" class="text-word">
-              </td>
-            </tr>
-            <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
               <td align="right" valign="middle" class="borderright borderbottom bggray">链接LOGO：</td>
               <td align="left" valign="middle" class="borderright borderbottom main-for">
                 <input type="file" name="fs_image" value="">

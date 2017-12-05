@@ -23,16 +23,17 @@
                         <label>
                             显示
                             <select name="num" size="1" aria-controls="DataTables_Table_1">
-                                <option value="10" @if(isset($_GET[ 'num']) ? $_GET[ 'num'] : '10') selected="selected"
-                                @endif>
+                                <option value="10" @if($request->num == '10') selected = "selected"
+                                @endif
                                     10
                                 </option>
                                 25 {{--
-                                <option value="25" @if($request->
-                                    num == '25') selected="selected" @endif>
+                                <option value="25" @if($request->num == '25') selected = "selected"
+                                @endif>
                                 </option>
                                 --}} {{--
-                                <option value="50" @if($_GET[ 'num']=='50' ) selected="selected" @endif>
+                                <option value="50" @if($request->num == '50') selected = "selected"
+                                @endif>
                                     50
                                 </option>
                                 --}}
@@ -103,10 +104,10 @@
                         </td>
                         
                         <td class=" ">
-                                {{$v->status ? '是' : '否'}}
+                            {{$v->status ? '用户' : '商户'}}
                         </td>
                         <td class=" ">
-                            <a href="/admin/buyss/{{$v->id}}" onclick="return confirm('您确定要删除吗?')">
+                            <a href="/admin/buyss/{{$v->id}}" onclick="return confirm('您确定要修改吗?')">
                                 <button id="auth">
                                     {{$v->status ? '关闭' : '开启'}}
                                 </button>
@@ -133,15 +134,8 @@
                 <div class="dataTables_info" id="DataTables_Table_0_info">
                     Showing 1 to 10 of 20 entries
                 </div>
-                <div class="dataTables_paginate paging_two_button" id="DataTables_Table_0_paginate">
-                    <a class="paginate_disabled_previous" tabindex="0" role="button" id="DataTables_Table_0_previous"
-                    aria-controls="DataTables_Table_0">
-                        Previous
-                    </a>
-                    <a class="paginate_enabled_next" tabindex="0" role="button" id="DataTables_Table_0_next"
-                    aria-controls="DataTables_Table_0">
-                        Next
-                    </a>
+                <div class="dataTables_paginate paging_full_numbers">
+                    {!! $res->appends($request->all())->render()!!}
                 </div>
             </div>
         </div>

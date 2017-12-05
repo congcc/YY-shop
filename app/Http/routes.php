@@ -17,7 +17,7 @@
 });*/
 
 //前台
-Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
+Route::group(['prefix'=>'home','namespace'=>'Homes','middleware'=>'die'], function () {
 
 	//首页
 	
@@ -185,9 +185,10 @@ Route::group(['prefix'=>'home','namespace'=>'Homes'], function () {
 
 
 //后台控制组
-Route::group(['prefix'=>'admin','namespace'=>'Admins',], function () {
+Route::group(['prefix'=>'admin','namespace'=>'Admins','middleware'=>'login'], function () {
 	
-
+	Route::resource('admin','AdminController');
+	
 	//后台登录
 	Route::resource('login','LoginController');
 
@@ -197,12 +198,17 @@ Route::group(['prefix'=>'admin','namespace'=>'Admins',], function () {
 	// 'meddleware'=>'login'
 	Route::group([], function () {
 
+		
 		//后台首页
-		Route::resource('admin','AdminController');
+		
+		
 
 		//后台人员管理
 		Route::resource('user','UserController');
 		Route::get('/userauth','UsersController@index');
+		Route::resource('users','UsersController@sd');
+
+
 
 		//管理员状态
 		Route::resource('adminsauth','AdminauthController');
@@ -220,6 +226,15 @@ Route::group(['prefix'=>'admin','namespace'=>'Admins',], function () {
 		Route::resource('seller','SellerController');
 		//卖家禁用
 		Route::resource('sellerdis','SellerdisController');
+
+
+
+		//身份认证 identity
+		Route::resource('ident','IdentityController');
+		// 1 通过
+		Route::resource('isucc','IdentitysucceedController');
+		// 2 未通过
+		Route::resource('ifail','IdentityfailController');
 
 
 		//商家申请check
@@ -249,10 +264,11 @@ Route::group(['prefix'=>'admin','namespace'=>'Admins',], function () {
 		Route::resource('typethree','TypethreeController');
 		Route::post('/typethree/aa','TypethreeController@aaaa');
 
+
 		//订单状态管理
 		// 0代付款
 		Route::resource('orders','OrdersController');
-		// 1 代发货
+		// 1 待发货
 		Route::resource('shipping','ShippingController');
 		// 2 待收货
 		Route::resource('dinggoods','DingoodsController');
@@ -262,16 +278,32 @@ Route::group(['prefix'=>'admin','namespace'=>'Admins',], function () {
 		Route::resource('coorder','CoorderController');
 		// 5 已取消
 		Route::resource('cancelled','CancelledController');
+		// 6 买家申请退货
+		Route::resource('apply ','OrderssController');
+		// 7 卖家同意退货
+		Route::resource('return','OrdersreturnController');
+		// 8 卖家退款
+		Route::resource('refund','OrdersrefundController');
+		// 9 退款成功
+		Route::resource('success','OrderssuccessController');
 
 
 		//投诉管理
 		Route::resource('complaint','ComplaintController');
+
+		//支付管理
+		Route::resource('pay','PayController');
+		Route::resource('pays','PaysController');
+
+		//物流管理
+		Route::resource('logis','LogisticsController');
 
 		//广告管理
 		Route::resource('adver','AdverController');
 
 		//友情链接
 		Route::resource('flink','FlinkController');
+		Route::post('/flink/bu','FlinkController@bu');
 
 		//网站管理
 		Route::resource('web','WebController');

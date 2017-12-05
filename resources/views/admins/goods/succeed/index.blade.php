@@ -89,7 +89,7 @@
                 </thead>
                 <tbody role="alert" aria-live="polite" aria-relevant="all">
                 @
-               @foreach($res as $k => $v)
+               @foreach($req as $k => $v)
                     <tr class="">
                         <td class="">
                             {{$v->id}}
@@ -122,6 +122,7 @@
                 Showing 1 to 10 of 57 entries
             </div>
             <div class="dataTables_paginate paging_full_numbers">
+                {!! $res->appends($request->all())->render()!!}
             </div>
         </div>
     </div>

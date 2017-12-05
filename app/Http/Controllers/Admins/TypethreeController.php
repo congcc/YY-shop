@@ -48,7 +48,9 @@ class TypethreeController extends Controller
             $id = $data['id'];
             $res = catetwo::where('id',$id)->update($data);
             
-         
+            if($res){
+                return redirect('/admin/type');
+            }
     }
 
     /**
@@ -64,9 +66,6 @@ class TypethreeController extends Controller
             $second = cateone::where('id',$id)->first();
 
             $sename = $second['cate_name'];
-
-            
-
             
             return view('admins.typethreeadd',['sename'=>$sename,'pid'=>$id]);
     }
@@ -84,7 +83,7 @@ class TypethreeController extends Controller
 
             $thrname = $data['cate_name'];
             return view('admins/typethreechange',['thrname'=>$thrname,'id'=>$id]);
-            var_dump($thrname);
+            
     }
 
     /**
@@ -109,6 +108,9 @@ class TypethreeController extends Controller
     public function destroy($id)
     {
         $res = catetwo::where('id',$id)->delete();
+        if($res){
+            return redirect('/admin/type');
+        }
         
     }
 
@@ -117,6 +119,9 @@ class TypethreeController extends Controller
         $data = $request->except('_token','profile');
         $pid = $data['pid'];
         $res = catetwo::insert($data);
+        if($res){
+            return redirect('/admin/type');
+        }
 
     }
 }

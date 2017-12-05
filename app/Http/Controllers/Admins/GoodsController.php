@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\model\goods;
+use App\Http\model\shop;
+use App\Http\model\goodscate;
 use DB;
+
 class GoodsController extends Controller
 {
     /**
@@ -18,12 +21,13 @@ class GoodsController extends Controller
     public function index(Request $request)
     {
         //
-        $res = DB::table('goods')->where('gstate','2')->get();
+        $res = goods::where('gname','like','%'.$request->input('search').'%')
+        ->orderBy('gstate','asc')
+        ->paginate(5);
 
-        $good = DB::table('goods')->simplePaginate(10);
+        $req = goods::where('gstate','2')->get();
 
-
-        return view('admins.goods.index',compact('res','good','request'));
+        return view('admins.goods.index',compact('res','req','request'));
     }
 
     /**
@@ -56,11 +60,9 @@ class GoodsController extends Controller
     public function show($id)
     {
         //
-        $res = DB::table('goods')->where('id',$id)->first();
-
-        $shop = DB::table('shop')->where('id',$res->sid)->first();
-
-        $gc = DB::table('goodscate')->where('pid',$res->clid)->first();
+        $res = goods::where('id',$id)->first();
+        $shop = shop::where('id',$res->sid)->first();
+        $gc = goodscate::where('pid',$res->clid)->first();
 
          return view('admins.goods.show',compact('res','shop','gc'));
 
@@ -75,12 +77,12 @@ class GoodsController extends Controller
     public function edit($id)
     {
         //
-         $res = ['gstate'=>'0'];
+        $res = ['gstate'=>'0'];
 
-        $data = DB::table('goods')->where('id',$id)->update($res);  
+        $data = goods::where('id',$id)->update($res);
 
         if($res){
-            return redirect('/admin/goods')->with('未通过申请');
+            return redirect('/admin/gfail')->with('未通过申请');
         } else {
             return back();
         }
@@ -112,10 +114,10 @@ class GoodsController extends Controller
 
         $res = ['gstate'=>'1'];
 
-        $data = DB::table('goods')->where('id',$id)->update($res);  
+        $data = goods::where('id',$id)->update($res);
 
         if($res){
-            return redirect('/admin/goods')->with('通过申请');
+            return redirect('/admin/gsucc')->with('通过申请');
         } else {
             return back();
         }

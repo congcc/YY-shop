@@ -48,7 +48,7 @@
             <table class="mws-datatable-fn mws-table dataTable" id="DataTables_Table_1"
             aria-describedby="DataTables_Table_1_info">
                 <thead>
-                     <tr role="row">
+                    <tr role="row">
                             <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                             rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending"
                             style="width: 128px;">
@@ -57,27 +57,17 @@
                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                             rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending"
                             style="width: 173px;">
-                               昵称
+                               店铺名称
                             </th>
                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                             rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"
                             style="width: 158px;">
-                                真实名称
+                                店铺图片
                             </th>
                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                             rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"
                             style="width: 158px;">
-                                头像
-                            </th>
-                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                            rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                            style="width: 80px;">
-                                性别
-                            </th>
-                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                            rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                            style="width: 80px;">
-                                状态
+                                店铺地址
                             </th>
                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                             rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"
@@ -87,26 +77,20 @@
                         </tr>
                 </thead>
                 <tbody role="alert" aria-live="polite" aria-relevant="all">
-                     @foreach($req as $k => $v)
+                @foreach($req as $k => $v)
                     <tr class="@if($k % 2 == 0) odd @else even @endif">
                         <td class="">
                         {{$v->id}}
                         </td>
                         <td class=" ">
-                            {{$v->nickname}}
-                        </td>
-                        <td class=" ">
-                            {{$v->truename}}
+                            {{$v->sname}}
                         </td>
                         <td>
-                            <img src="{{$v->user_pic}}" alt="" style="width: 150px;height: 80px;">
+                            <img src="{{$v->simg}}" alt="" style="width: 150px;height: 80px;">
                         </td>
                         
                         <td class=" ">
-                            {{$v->sex ? '女': '男'}}
-                        </td>
-                        <td class=" ">
-                            {{$v->apply}}
+                            {{$v->saddress}}
                         </td>
                         <td class=" ">
                             <span class="btn-group">
@@ -126,12 +110,5 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-
-        $('#qq').click(function(){
-                            
-                             
-             })
-            </script>
 
 @endsection

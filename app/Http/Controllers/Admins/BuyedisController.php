@@ -18,14 +18,13 @@ class BuyedisController extends Controller
      */
     public function index(Request $request)
     {
-        $res = DB::table('user')->
-            where('username','like','%'.$request->input('search').'%')->
-            orderBy('id','asc')->
-            paginate($request->input('num',10));
-        $req = DB::table('user')->where('status', '0')->get();
-        $users = DB::table('user')->simplePaginate(10);
+         $res = user::where('username','like','%'.$request->input('search').'%')
+        ->orderBy('status','asc')
+         ->paginate(5);
 
-        return view('admins/buys.dis',compact('res','req','request','users'));
+        $req = user::where('status','0')->get();
+
+        return view('admins/buys.dis',compact('res','request','req'));
     }
 
     /**
@@ -60,7 +59,7 @@ class BuyedisController extends Controller
  
         $res = ['status'=>'1'];
 
-        $data = DB::table('user')->where('id',$id)->update($res);  
+        $data = user::where('id',$id)->update($res); 
 
         if($res){
             return redirect('/admin/buys')->with('买家启用');
