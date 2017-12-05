@@ -130,8 +130,7 @@
             
         
     </body>
-										</div>
-										
+																				
 										<div class="am-form-group">
 
 											<label for="user-intro" class="am-form-label">详细地址</label>

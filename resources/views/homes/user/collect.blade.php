@@ -27,189 +27,44 @@
 								<a class="am-badge am-badge-danger am-round">降价</a>
 								<a class="am-badge am-badge-danger am-round">下架</a>
 							</div>
+	
+							
 							<div class="s-content">
+						@foreach ($res as $k => $v)
 								<div class="s-item-wrap">
 									<div class="s-item">
 
 										<div class="s-pic">
 											<a href="/homes/#" class="s-pic-link">
-												<img src="/homes/images/0-item_pic.jpg_220x220.jpg" alt="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰" title="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰" class="s-pic-img s-guess-item-img">
+												<img src="{{$v->goods->gimg}}" alt="{{$v->goods->gname}}" title="{{$v->goods->gname}}" class="s-pic-img s-guess-item-img">
 											</a>
 										</div>
 										<div class="s-info">
-											<div class="s-title"><a href="/homes/#" title="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰">包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰</a></div>
+											<div class="s-title"><a href="/homes/#" title="{{$v->goods->gname}}">{{$v->goods->gname}}</a></div>
 											<div class="s-price-box">
-												<span class="s-price"><em class="s-price-sign">¥</em><em class="s-value">42.50</em></span>
+												<span class="s-price"><em class="s-price-sign">¥</em><em class="s-value">{{$v->goods->gprice}}</em></span>
 												<span class="s-history-price"><em class="s-price-sign">¥</em><em class="s-value">68.00</em></span>
 											</div>
 											<div class="s-extra-box">
-												<span class="s-comment">好评: 98.03%</span>
-												<span class="s-sales">月销: 219</span>
+												
+												<span class="s-sales">月销: {{$v->goods->xnumber}}</span>
 											</div>
 										</div>
-										<div class="s-tp">
-											<span class="ui-btn-loading-before">找相似</span>
+										<div class="s-tp" >
+									
+											<a onclick="del({{$v->id}})"><span class="ui-btn-loading-before">删除</span></a>
 											<i class="am-icon-shopping-cart"></i>
-											<span class="ui-btn-loading-before buy">加入购物车</span>
-											<p>
-												<a href="/homes/javascript:;" class="c-nodo J_delFav_btn">取消收藏</a>
-											</p>
+											<a href="/home/details/{{$v->gid}}/edit"><span class="ui-btn-loading-before buy")>立即购买</span></a>
+											
+		
 										</div>
 									</div>
 								</div>
 
-								<div class="s-item-wrap">
-									<div class="s-item">
-
-										<div class="s-pic">
-											<a href="/homes/#" class="s-pic-link">
-												<img src="/homes/images/1-item_pic.jpg_220x220.jpg" alt="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰" title="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰" class="s-pic-img s-guess-item-img">
-											</a>
-										</div>
-										<div class="s-info">
-											<div class="s-title"><a href="/homes/#" title="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰">s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰</a></div>
-											<div class="s-price-box">
-												<span class="s-price"><em class="s-price-sign">¥</em><em class="s-value">49.90</em></span>
-												<span class="s-history-price"><em class="s-price-sign">¥</em><em class="s-value">88.00</em></span>
-											</div>
-											<div class="s-extra-box">
-												<span class="s-comment">好评: 99.74%</span>
-												<span class="s-sales">月销: 69</span>
-											</div>
-										</div>
-										<div class="s-tp">
-											<span class="ui-btn-loading-before">找相似</span>
-											<i class="am-icon-shopping-cart"></i>
-											<span class="ui-btn-loading-before buy">加入购物车</span>
-											<p>
-												<a href="/homes/javascript:;" class="c-nodo J_delFav_btn">取消收藏</a>
-											</p>
-										</div>
-									</div>
-								</div>
-
-								<div class="s-item-wrap">
-									<div class="s-item">
-
-										<div class="s-pic">
-											<a href="/homes/#" class="s-pic-link">
-												<img src="/homes/images/-0-saturn_solar.jpg_220x220.jpg" alt="4折抢购!十二生肖925银女戒指,时尚开口女戒" title="4折抢购!十二生肖925银女戒指,时尚开口女戒" class="s-pic-img s-guess-item-img">
-											<span class="tip-title">已下架</span>
-											</a>
-										</div>
-										<div class="s-info">
-											<div class="s-title"><a href="/homes/#" title="4折抢购!十二生肖925银女戒指,时尚开口女戒">4折抢购!十二生肖925银女戒指,时尚开口女戒</a></div>
-											<div class="s-price-box">
-												<span class="s-price"><em class="s-price-sign">¥</em><em class="s-value">378.00</em></span>
-												<span class="s-history-price"><em class="s-price-sign">¥</em><em class="s-value">1888.00</em></span>
-											</div>
-											<div class="s-extra-box">
-												<span class="s-comment">好评: 99.93%</span>
-												<span class="s-sales">月销: 278</span>
-											</div>
-										</div>
-										<div class="s-tp">
-											<span class="ui-btn-loading-before">找相似</span>
-											<i class="am-icon-trash"></i>
-											<span class="ui-btn-loading-before buy">进入店铺</span>
-											<p>
-												<a href="/homes/javascript:;" class="c-nodo J_delFav_btn">取消收藏</a>
-											</p>
-										</div>
-									</div>
-								</div>
-
-								<div class="s-item-wrap">
-									<div class="s-item">
-
-										<div class="s-pic">
-											<a href="/homes/#" class="s-pic-link">
-												<img src="/homes/images/0-item_pic.jpg_220x220.jpg" alt="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰" title="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰" class="s-pic-img s-guess-item-img">
-											</a>
-										</div>
-										<div class="s-info">
-											<div class="s-title"><a href="/homes/#" title="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰">包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰</a></div>
-											<div class="s-price-box">
-												<span class="s-price"><em class="s-price-sign">¥</em><em class="s-value">42.50</em></span>
-												<span class="s-history-price"><em class="s-price-sign">¥</em><em class="s-value">68.00</em></span>
-											</div>
-											<div class="s-extra-box">
-												<span class="s-comment">好评: 98.03%</span>
-												<span class="s-sales">月销: 219</span>
-											</div>
-										</div>
-										<div class="s-tp">
-											<span class="ui-btn-loading-before">找相似</span>
-											<i class="am-icon-shopping-cart"></i>
-											<span class="ui-btn-loading-before buy">加入购物车</span>
-											<p>
-												<a href="/homes/javascript:;" class="c-nodo J_delFav_btn">取消收藏</a>
-											</p>
-										</div>										
-									</div>
-								</div>
-
-								<div class="s-item-wrap">
-									<div class="s-item">
-
-										<div class="s-pic">
-											<a href="/homes/#" class="s-pic-link">
-												<img src="/homes/images/1-item_pic.jpg_220x220.jpg" alt="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰" title="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰" class="s-pic-img s-guess-item-img">
-											</a>
-										</div>
-										<div class="s-info">
-											<div class="s-title"><a href="/homes/#" title="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰">s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰</a></div>
-											<div class="s-price-box">
-												<span class="s-price"><em class="s-price-sign">¥</em><em class="s-value">49.90</em></span>
-												<span class="s-history-price"><em class="s-price-sign">¥</em><em class="s-value">88.00</em></span>
-											</div>
-											<div class="s-extra-box">
-												<span class="s-comment">好评: 99.74%</span>
-												<span class="s-sales">月销: 69</span>
-											</div>
-										</div>
-										<div class="s-tp">
-											<span class="ui-btn-loading-before">找相似</span>
-											<i class="am-icon-shopping-cart"></i>
-											<span class="ui-btn-loading-before buy">加入购物车</span>
-											<p>
-												<a href="/homes/javascript:;" class="c-nodo J_delFav_btn">取消收藏</a>
-											</p>
-										</div>
-									</div>
-								</div>
-
-								<div class="s-item-wrap">
-									<div class="s-item">
-
-										<div class="s-pic">
-											<a href="/homes/#" class="s-pic-link">
-												<img src="/homes/images/-0-saturn_solar.jpg_220x220.jpg" alt="4折抢购!十二生肖925银女戒指,时尚开口女戒" title="4折抢购!十二生肖925银女戒指,时尚开口女戒" class="s-pic-img s-guess-item-img">
-											</a>
-										</div>
-										<div class="s-info">
-											<div class="s-title"><a href="/homes/#" title="4折抢购!十二生肖925银女戒指,时尚开口女戒">4折抢购!十二生肖925银女戒指,时尚开口女戒</a></div>
-											<div class="s-price-box">
-												<span class="s-price"><em class="s-price-sign">¥</em><em class="s-value">378.00</em></span>
-												<span class="s-history-price"><em class="s-price-sign">¥</em><em class="s-value">1888.00</em></span>
-											</div>
-											<div class="s-extra-box">
-												<span class="s-comment">好评: 99.93%</span>
-												<span class="s-sales">月销: 278</span>
-											</div>
-										</div>
-										<div class="s-tp">
-											<span class="ui-btn-loading-before">找相似</span>
-											<i class="am-icon-shopping-cart"></i>
-											<span class="ui-btn-loading-before buy">加入购物车</span>
-											<p>
-												<a href="/homes/javascript:;" class="c-nodo J_delFav_btn">取消收藏</a>
-											</p>
-										</div>
-									</div>
-								</div>
-
+						@endforeach
 							</div>
+
+					
 
 							<div class="s-more-btn i-load-more-item" data-screen="0"><i class="am-icon-refresh am-icon-fw"></i>更多</div>
 
@@ -217,4 +72,40 @@
 
 					</div>
 @endsection
+<script type="text/javascript">
+
+
+
+function del(id)
+{
+	layer.alert('您确认删除该项内容吗？',{
+            icon: 3,
+            skin: 'layui-layer-molv'
+            ,title: '删除提示'
+            ,btn: ['确认','取消']
+            ,yes:function(index){
+                layer.close(index);
+                $.get('/home/user/usercollect/'+id,function(data){
+                	//console.log(data);
+                   if(data=='1'){
+                        layer.msg('删除成功！', {icon: 2});
+                    }else if(data=='0'){
+                        $('#'+id).remove();
+                        layer.msg('删除失败！', {icon: 1});
+                    }              
+                });
+            }            
+        });
+}
+
+
+function yue (date) {
+
+	 $.get('/home/user/{{$v->gid}}/edit',function(data){
+                	           
+                });
+		
+
+}
+</script>
 
