@@ -27,14 +27,7 @@
             <td align='right'>邮箱:</td>
             <td><input type="text" name='email' value="{{$res->email}}"></td>
         </tr>
-        <tr>
-            <td align='right'>创建时间:</td>
-            <td><input type="text" name='time' value="{{$res->time}}"></td>
-        </tr>
-        <tr>
-            <td align='right'>登录时间:</td>
-            <td><input type="text" name='last_time' value="{{$res->last_time}}"></td>
-        </tr>
+        
         <tr>
             <td align='right'>登录时间:</td>
             <td><input type="text" name='last_time' value="{{$res->auth ? '开启' : '关闭'}}"></td>

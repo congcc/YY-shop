@@ -18,13 +18,13 @@ class AdminController extends Controller
     public function index()
     {
 
-         // dd(session('adminid'));   
-        // if(session('adminid')){
-        //     return view('admins.admin');
-        // }else{
-        //     return view('admins.login');
-        // }
-          return view('/admins/admin');
+           
+        if(session('adminid')){
+            return view('admins.admin');
+        }else{
+            return view('admins.login');
+        }
+
     }
 
     /**

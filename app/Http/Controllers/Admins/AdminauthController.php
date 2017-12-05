@@ -20,7 +20,7 @@ class AdminauthController extends Controller
     {
         //
         $admins=admins::get();
-        // dd($admins);
+
 
     }
 

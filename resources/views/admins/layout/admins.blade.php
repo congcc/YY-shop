@@ -40,6 +40,17 @@
 <link rel="stylesheet" type="text/css" href="/admins/css/style.css" media="screen">
 
 
+<link rel="stylesheet" type="text/css" href="/admins/css/mws-theme.css" media="screen">
+<link rel="stylesheet" type="text/css" href="/admins/css/themer.css" media="screen">
+<link rel="stylesheet" type="text/css" href="/admins/css/stype.css" media="screen">
+<link rel="stylesheet" type="text/css" href="/admins/css/pagination.css" media="screen">
+<link href="/admins/css/page.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="/admins/js/jquery.min.js"></script>
+<script type="text/javascript" src="/admins/js/page.js"></script>
+<link rel="stylesheet" type="text/css" href="/admins/css/style.css" media="screen">
+
+
+
 <title>@yield('title')</title>
 
 </head>
@@ -200,7 +211,7 @@
                     <ul>
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Change Password</a></li>
-                        <li><a href="/admins/index.html">Logout</a></li>
+                        <li><a href="/admin/">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -326,7 +337,7 @@
 
                         <ul class="closed">
                             <li><a href="/admin/web">网站状态</a></li>
-                            <li><a href="">网站Logo</a></li>
+                            
                         </ul>
                     </li>
                 </ul>
