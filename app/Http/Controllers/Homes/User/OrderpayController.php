@@ -75,7 +75,7 @@ class OrderpayController extends Controller
             $xn=$xn-1;
             $mv['knumber']=$kn;
             $mv['xnumber']=$xn;
-            goods::where('id'$value)->update($mv);
+            goods::where('id',$value)->update($mv);
 
 
         }
