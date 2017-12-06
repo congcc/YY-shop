@@ -8,12 +8,12 @@
 
 @section('content')
 	<div class="login-boxtitle">
-		<a href="/homes/home.html"><img alt="logo" style="height: 60px;width: 150px;" src="/homes/images/logobig.png" /></a>
+		<a href="/home/"><img alt="logo" style="height: 60px;width: 150px;" src="http://ozsps8743.bkt.clouddn.com/img/image_61531512438063png" /></a>
 	</div>
 
 	<div class="login-banner">
 		<div class="login-main">
-			<div class="login-banner-bg"><span></span><img src="/homes/images/big.jpg" /></div>
+			<a href="" ><div class="login-banner-bg"><span></span><img src="/homes/images/big.jpg" /></div></a>
 			<div class="login-box">
 
 						<h3 class="title">登录商城</h3>
@@ -30,6 +30,7 @@
              <div class="user-pass">
 							    <label for="password"><i class="am-icon-lock"></i></label>
 							    <input type="password" name="password" id="password" placeholder="请输入密码">
+							    <input type="hidden" name="hidden" id="hidden" value="100">
              </div>
              					
              {{ csrf_field()}}
@@ -39,7 +40,7 @@
         
         <div class="login-links">
             <label for="remember-me"><input id="remember-me" type="checkbox">记住密码</label>
-							<a href="/homes/#" class="am-fr">忘记密码</a>
+							<a href="/home/slogin/" class="am-fr">忘记密码</a>
 							<a href="/home/register" class="zcnext am-fr am-btn-default">注册</a>
 							<div class="am-cf"><input type="submit" name="" id="ulog" value="登 录" class="am-btn am-btn-primary am-btn-sm">
 							</div>
@@ -84,22 +85,47 @@
 				</div>
 
 	<script>
+	
+
 	$('#ulog').click(function(){
+		var i = $('#hidden').val();
+		// console.log(i);
+		
 		var uname = $('#iuser').val();
 	 	var password = $('#password').val();
-	 	$.post('/home/slogin',{'_token':'{{ csrf_token() }}',uname:uname,password:password},function(data){
+	 	$.post('/home/slogin',{'_token':'{{ csrf_token() }}',uname:uname,password:password,i:i},function(data){
 	 		// console.log(data);
 			
-			if (data) {
-				alert('登录成功！');
-				// layer.load();
+			if (data==1) {
+				layer.msg('登录成功', {icon: 1});
 				window.location.href = "/home/index";  
-
-			}else {
-				alert ('账户或密码错误');
+			}else if(data==2){
+				layer.msg('登录失败次数超过3次,24小时内不允许登录', {icon: 2});
+			}else if(data==3){
+				// 询问框
+				layer.confirm('您的账号已被封禁,请联系管理员进行解封', {
+					  btn: ['申请解封','取消'] //按钮
+					}, function(){
+						layer.msg('您已申请成功', {icon: 1});
+					}, function(){
+						
+					});
+			}else if(data==404){
+				layer.msg('账号或密码错误', {icon: 2});
+			}else{
+				// console.log(data);
+				if(data>103){
+					//  $('#hidden').val(data);
+					layer.msg('登录失败次数超过3次,24小时内不允许登录', {icon: 2});
+				}else{
+					$('#hidden').val(data);
+					layer.msg('账户或密码错误', {icon: 2});
+				}
+				
 			}
-	 	});
-	 	return false;
+			
+	 	},'json');
+	 	
 	 });
 	</script>
 

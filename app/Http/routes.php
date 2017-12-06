@@ -28,6 +28,7 @@ Route::group(['prefix'=>'home','namespace'=>'Homes','middleware'=>'die'], functi
 
 	Route::resource('login', 'LoginController');
 	Route::post('slogin', 'LoginsController@store');
+	Route::resource('slogin', 'LoginsController');
 
 	//注册
 	Route::resource('register', 'RegController');
@@ -44,6 +45,10 @@ Route::group(['prefix'=>'home','namespace'=>'Homes','middleware'=>'die'], functi
 
 	//商品搜索页
 	Route::resource('search', 'SearchController');
+	Route::resource('sales', 'SalesController');
+	Route::resource('price', 'PriceController');
+	Route::resource('syn', 'SynController');
+	
 
 	//商品详情页
 	
@@ -56,17 +61,21 @@ Route::group(['prefix'=>'home','namespace'=>'Homes','middleware'=>'die'], functi
 		//用户个人中心首页
 		Route::resource('user', 'UserController');
 		Route::resource('/', 'UserController');
+		
+
 		//用户个人信息
 		Route::resource('userinfo', 'UserinfoController');
+		Route::resource('userpic', 'UserpicController');
 		//用户账户安全
 		Route::resource('usersafe', 'UsersafeController');
 		Route::resource('pass', 'PassController');//修改密码
+		Route::resource('passedit', 'PasseditController');//修改密码
 		Route::resource('paypass', 'PaypassController');//支付密码
 		Route::post('ajaxpaypass', 'AjaxpaypassController@store')->where('id', '[0-9]+');
 		Route::resource('bindph', 'BindphController');//换手机号
 		Route::resource('email', 'EmailController');//邮箱认证
 		Route::resource('idcard', 'IdcardController');//身份认证
-		Route::get('card', 'IdcardController@store');//身份认证
+		Route::post('card', 'IdcardController@store');//身份认证
 		//用户地址
 		Route::resource('useraddr', 'UseraddrController');
 		Route::post('addr', 'AddrController@store');
@@ -74,11 +83,18 @@ Route::group(['prefix'=>'home','namespace'=>'Homes','middleware'=>'die'], functi
 		Route::get('addr/{id}', 'AddrController@edit');
 		Route::get('deladdr', 'AddrController@delete');
 
+
 		//用户订单
 		Route::get('userorders/{o_code}', 'UserorderController@destroy');
 		Route::resource('userorder', 'UserorderController');
-
+		Route::get('orderpay/{code}', 'OrderpayController@index');			//支付
+		Route::get('orderpays', 'OrderpayController@create');			//支付完成
+		Route::get('oraddr', 'OraddrController@index');					//改变地址
+		Route::get('ordersub/{gid}/{sid}/{toprice}/{num}/{label}/{gprices}', 'OrdersubController@index');			//下订单
+		Route::post('ordersubs', 'OrdersubController@create');			//生成订单
 		Route::get('ordersinfo/{code}', 'OrdersinfoController@index');			//订单详情
+		Route::get('orderre', 'UserorderController@create'); 		//取消订单
+		Route::get('ordersu', 'UserorderController@store'); 		//确认收货
 
 		//用户退款售后
 		Route::resource('usersale', 'UsersaleController');
@@ -89,23 +105,28 @@ Route::group(['prefix'=>'home','namespace'=>'Homes','middleware'=>'die'], functi
 		//用户账单明细
 		Route::resource('userbill', 'UserbillController');
 		//用户收藏
+		Route::get('usercollect/{id}', 'UsercollectController@del');
+
 		Route::resource('usercollect', 'UsercollectController');
 		//用户足迹
 		Route::resource('userfoot', 'UserfootController');
 		//用户评价
 		Route::resource('ureview', 'UserreviewController');
+		Route::resource('ucomments', 'UsercommentsController');
+		Route::resource('mycom', 'MycomController');
+
 		//用户消息
 		Route::resource('usernews', 'UsernewsController');
 		//用户购物车
 		Route::resource('shopcart', 'shopcartController');
 		Route::resource('car', 'CarController@store');
 		Route::get('cardelete','CarController@delete');
-		Route::get('addcar','CarController@addcar');
+		Route::post('addcar','CarController@addcar');
 		
 
 		//申请成为商家
 		Route::resource('shopapply', 'ShopapplyController');
-		Route::get('uploads','ShopapplyController@upload');
+		Route::resource('uploads','UploadsController');
 		//被封禁商家 
 		Route::get('auth','ShopapplyController@auth');
 
@@ -138,6 +159,13 @@ Route::group(['prefix'=>'home','namespace'=>'Homes','middleware'=>'die'], functi
 		//评论中心
 		Route::resource('comments','CommentsController');
 
+		//定时器
+		Route::resource('interval','IntervalController');
+		
+		//商户消息
+		Route::resource('news','NewsController');
+
+
 		
 		//商品列表
 		Route::resource('goodslist','GoodslistController');
@@ -158,10 +186,6 @@ Route::group(['prefix'=>'home','namespace'=>'Homes','middleware'=>'die'], functi
 
 		//权限不够跳注册页
 
-
-
-
-		
 	
 	});
 
@@ -170,9 +194,10 @@ Route::group(['prefix'=>'home','namespace'=>'Homes','middleware'=>'die'], functi
 
 
 //后台控制组
-Route::group(['prefix'=>'admin','namespace'=>'Admins','Middleware'=>'login'], function () {
+Route::group(['prefix'=>'admin','namespace'=>'Admins'], function () {
 	
 	Route::resource('admin','AdminController');
+	
 	//后台登录
 	Route::resource('login','LoginController');
 
@@ -191,6 +216,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admins','Middleware'=>'login'], fu
 		Route::resource('user','UserController');
 		Route::get('/userauth','UsersController@index');
 		Route::resource('users','UsersController@sd');
+
 
 
 		//管理员状态

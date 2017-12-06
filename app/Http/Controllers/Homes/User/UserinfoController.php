@@ -45,7 +45,9 @@ class UserinfoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $req = $request->except('_token','id');
+        $res = userinfo::where('id',$request->only('id'))->update($req);
+        if($res){echo 1;}
     }
 
     /**

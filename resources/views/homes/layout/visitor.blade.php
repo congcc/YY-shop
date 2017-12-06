@@ -14,7 +14,6 @@
 		<script src="/homes/js/validate.js"></script>
 		<script src="/homes/layer/layer.js"></script>
 		<script src="/homes/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
-		
 		@section('head')
 
 		@show
@@ -30,8 +29,15 @@
 						<ul class="message-l">
 							<div class="topMessage">
 								<div class="menu-hd">
-									<a href="{{url('home/login')}}" target="_top" class="h">亲,请登录</a>
+									@if($userid==0)<a href="{{url('home/login/')}}" target="_top" class="h">亲,登录</a>
 									<a href="{{url('home/register')}}" target="_top">免费注册</a>
+									@elseif($userid==1)<a href="{{url('home/user/')}}" target="_top" class="h">
+										@if($user->userinfo->truename) 亲爱的{{$user->userinfo->truename}}
+										@elseif(!$useruserinfo->truename) 亲爱的用户
+										@endif
+										</a>
+									<a href="/home/index/{{$user->id}}/edit" target="_top">退出登录</a>
+									@endif
 								</div>
 							</div>
 						</ul>
@@ -60,14 +66,15 @@
 
 						<div class="nav white">
 							<div class="logoBig">
-								<li><img src="/homes/images/logobig.png" /></li>
+								<li><img src="http://ozsps8743.bkt.clouddn.com/img/image_61531512438063png" /></li>
 							</div>
 
 							<div class="search-bar pr">
-								<a name="index_none_header_sysc" href="#"></a>
-								<form>
-									<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
+								<form  action="{{url('home/search')}}"  method="get">
+									<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="想吃点什么呢?" autocomplete="off" value="">
+									
 									<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
+									{{ csrf_field()}}
 								</form>
 							</div>
 						</div>

@@ -380,9 +380,7 @@
 
     <!-- Plugin Scripts -->
     <script src="/admins/plugins/datatables/jquery.dataTables.min.js"></script>
-    <!--[if lt IE 9]>
     <script src="/admins/js/libs/excanvas.min.js"></script>
-    <![endif]-->
     <script src="/admins/plugins/flot/jquery.flot.min.js"></script>
     <script src="/admins/plugins/flot/plugins/jquery.flot.tooltip.min.js"></script>
     <script src="/admins/plugins/flot/plugins/jquery.flot.pie.min.js"></script>

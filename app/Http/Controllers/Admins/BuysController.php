@@ -69,6 +69,7 @@ class BuysController extends Controller
         $res = user::where('id',$id)->first();
 
         $result = userinfo::find($id);
+
          return view('admins.buys.show',compact('res','result'));
     }
 

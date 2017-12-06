@@ -68,11 +68,6 @@
                             </th>
                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                             rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"
-                            style="width: 120px;">
-                                店铺类型
-                            </th>
-                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                            rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"
                             style="width: 80px;">
                                 积分
                             </th>
@@ -112,9 +107,6 @@
                         </td>
                         <td class=" ">
                             {{$v->sname}}
-                        </td>
-                        <td class=" ">
-                            {{$v->stype}}
                         </td>
                         <td class=" ">
                             {{$v->sclass}}

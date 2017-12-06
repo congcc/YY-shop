@@ -21,13 +21,13 @@
 						<div class="user-infoPic">
 
 							<div class="filePic">
-								<img class="am-circle am-img-thumbnail" src="/homes/images/getAvatar.do.jpg" alt="">
+								<img class="am-circle am-img-thumbnail" src="http://ozsps8743.bkt.clouddn.com/img/image_{{$result->user_pic}}" alt="">
 							</div>
 
 							<p class="am-form-help">头像</p>
 
 							<div class="info-m">
-								<div><b>用户名：<i>小叮当</i></b></div>
+								<div><b>用户名：<i>@if($result->nickname)  {{$result->nickname}}  @else  {{$res->phone}}  @endif</i></b></div>
 								<div class="u-level">
 									<span class="rank r2">
 							             <s class="vip1"></s><a class="classes" href="#">铜牌会员</a>
@@ -104,18 +104,7 @@
 										</a>
 									</div>
 								</li>
-								<li>
-									<i class="i-safety-security"></i>
-									<div class="m-left">
-										<div class="fore1">安全问题</div>
-										<div class="fore2"><small>保护账户安全，验证您身份的工具之一。</small></div>
-									</div>
-									<div class="fore3">
-										<a href="question.html">
-											<div class="am-btn am-btn-secondary">认证</div>
-										</a>
-									</div>
-								</li>
+								
 							</ul>
 						</div>
 

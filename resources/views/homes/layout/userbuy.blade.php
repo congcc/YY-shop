@@ -31,8 +31,7 @@
 						<ul class="message-l">
 							<div class="topMessage">
 								<div class="menu-hd">
-									<a href="{{url('home/user/')}}" target="_top" class="h">亲爱的xxx</a>
-									<a href="{{url('home/user/usernews')}}" target="_top">消息</a>
+									
 								</div>
 							</div>
 						</ul>
@@ -54,6 +53,9 @@
 							<div class="topMessage my-shangcheng">
 								<div class="menu-hd MyShangcheng"><a href="{{url('home/seller/index')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>商户中心</a></div>
 							</div>
+							<div class="topMessage my-shangcheng">
+								<div class="menu-hd MyShangcheng"><a href="{{url('home/index/5/edit')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>退出登录</a></div>
+							</div>
 						</ul>
 						</div>
 
@@ -61,14 +63,15 @@
 
 						<div class="nav white">
 							<div class="logoBig">
-								<li><img src="/homes/images/logobig.png" /></li>
+								<li><img src="http://ozsps8743.bkt.clouddn.com/img/image_61531512438063png" /></li>
 							</div>
 
 							<div class="search-bar pr">
-								<a name="index_none_header_sysc" href="#"></a>
-								<form>
-									<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
+								<form  action="{{url('home/search')}}"  method="post">
+									<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="想吃点什么呢?" autocomplete="off" value="扇贝">
+									
 									<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
+									{{ csrf_field()}}
 								</form>
 							</div>
 						</div>
@@ -165,7 +168,7 @@
 						<ul>
 							<li> <a href="{{url('home/user/usercollect')}}">收藏</a></li>
 							<li> <a href="{{url('home/user/userfoot')}}">足迹</a></li>
-							<li> <a href="{{url('home/user/ureview')}}">评价</a></li>
+							<li> <a href="{{url('home/user/mycom')}}">评价</a></li>
 							<li> <a href="{{url('home/user/usernews')}}">消息</a></li>
 						</ul>
 					</li>

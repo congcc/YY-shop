@@ -62,6 +62,7 @@ print_r($client->execute($sendSms));*/
     	$co = session('code');             //获取存到session中的验证码
     	$cos = $request->input('cos');     //获取form表单填写的验证码
     	
+       
         //判断是否一致
         if($cos==$co){ 
     		echo 1;

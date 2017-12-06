@@ -2,19 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 	<head>
+	<meta name="_token" content="{{ csrf_token() }}"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0 ,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>结算页面</title>
+		<title>提交订单</title>
 
-		<link href="AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
+		<link href="/homes/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
 
-		<link href="basic/css/demo.css" rel="stylesheet" type="text/css" />
-		<link href="css/cartstyle.css" rel="stylesheet" type="text/css" />
+		<link href="/homes/basic/css/demo.css" rel="stylesheet" type="text/css" />
+		<link href="/homes/css/cartstyle.css" rel="stylesheet" type="text/css" />
 
-		<link href="css/jsstyle.css" rel="stylesheet" type="text/css" />
+		<link href="/homes/css/jsstyle.css" rel="stylesheet" type="text/css" />
 
-		<script type="text/javascript" src="js/address.js"></script>
+		<script type="text/javascript" src="/homes/js/address.js"></script>
 
 	</head>
 
@@ -25,36 +26,36 @@
 			<ul class="message-l">
 				<div class="topMessage">
 					<div class="menu-hd">
-						<a href="#" target="_top" class="h">亲，请登录</a>
-						<a href="#" target="_top">免费注册</a>
+						<a href="/homes/#" target="_top" class="h">亲，请登录</a>
+						<a href="/homes/#" target="_top">免费注册</a>
 					</div>
 				</div>
 			</ul>
 			<ul class="message-r">
 				<div class="topMessage home">
-					<div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
+					<div class="menu-hd"><a href="/homes/#" target="_top" class="h">商城首页</a></div>
 				</div>
 				<div class="topMessage my-shangcheng">
-					<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+					<div class="menu-hd MyShangcheng"><a href="/homes/#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 				</div>
 				<div class="topMessage mini-cart">
-					<div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
+					<div class="menu-hd"><a id="mc-menu-hd" href="/homes/#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
 				</div>
 				<div class="topMessage favorite">
-					<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
+					<div class="menu-hd"><a href="/homes/#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
 			</ul>
 			</div>
 
 			<!--悬浮搜索框-->
 
 			<div class="nav white">
-				<div class="logo"><img src="images/logo.png" /></div>
+				<div class="logo"><img src="/homes/images/logo.png" /></div>
 				<div class="logoBig">
-					<li><img src="images/logobig.png" /></li>
+					<li><img src="/homes/images/logobig.png" /></li>
 				</div>
 
 				<div class="search-bar pr">
-					<a name="index_none_header_sysc" href="#"></a>
+					<a name="index_none_header_sysc" href="/homes/#"></a>
 					<form>
 						<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
 						<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
@@ -73,24 +74,27 @@
 						</div>
 						<div class="clear"></div>
 						<ul>
+						@foreach($addr as $k=>$v)
+						@if($v['defadd'])
 							<div class="per-border"></div>
+
 							<li class="user-addresslist defaultAddr">
 
+							
 								<div class="address-left">
 									<div class="user DefaultAddr">
 
 										<span class="buy-address-detail">   
-                   <span class="buy-user">艾迪 </span>
-										<span class="buy-phone">15871145629</span>
+                   						<span class="buy-user">{{$v['name']}}</span>
+										<span class="buy-phone">{{$v['phone']}}</span>
 										</span>
 									</div>
 									<div class="default-address DefaultAddr">
 										<span class="buy-line-title buy-line-title-type">收货地址：</span>
+										<?php $addrs = json_decode($v['address']) ?>
 										<span class="buy--address-detail">
-								   <span class="province">湖北</span>省
-										<span class="city">武汉</span>市
-										<span class="dist">洪山</span>区
-										<span class="street">雄楚大道666号(中南财经政法大学)</span>
+								   		<span class="province">{{$addrs[0]}}&nbsp;&nbsp;{{$addrs[1]}}&nbsp;&nbsp;{{$addrs[3]}}&nbsp;&nbsp;{{$addrs[2]}}</span>
+										
 										</span>
 
 										</span>
@@ -98,59 +102,69 @@
 									<ins class="deftip">默认地址</ins>
 								</div>
 								<div class="address-right">
-									<a href="person/address.html">
+									<a href="/homes/person/address.html">
 										<span class="am-icon-angle-right am-icon-lg"></span></a>
 								</div>
 								<div class="clear"></div>
 
 								<div class="new-addr-btn">
-									<a href="#" class="hidden">设为默认</a>
+									<a href="/homes/#" class="hidden">设为默认</a>
 									<span class="new-addr-bar hidden">|</span>
-									<a href="#">编辑</a>
+									<a href="/homes/#">编辑</a>
 									<span class="new-addr-bar">|</span>
-									<a href="javascript:void(0);" onclick="delClick(this);">删除</a>
+									<a href="/homes/javascript:void(0);" onclick="delClick(this);">删除</a>
 								</div>
 
 							</li>
+						@endif
+						@endforeach
+
+						@foreach($addr as $k1=>$v1)
+						@if($v1['defadd']!=1)
 							<div class="per-border"></div>
+
 							<li class="user-addresslist">
+
+							
 								<div class="address-left">
 									<div class="user DefaultAddr">
 
 										<span class="buy-address-detail">   
-                   <span class="buy-user">艾迪 </span>
-										<span class="buy-phone">15871145629</span>
+                   						<span class="buy-user">{{$v1['name']}}</span>
+										<span class="buy-phone">{{$v1['phone']}}</span>
 										</span>
 									</div>
 									<div class="default-address DefaultAddr">
 										<span class="buy-line-title buy-line-title-type">收货地址：</span>
+										<?php $addrs = json_decode($v1['address']) ?>
 										<span class="buy--address-detail">
-								   <span class="province">湖北</span>省
-										<span class="city">武汉</span>市
-										<span class="dist">武昌</span>区
-										<span class="street">东湖路75号众环大厦2栋9层902</span>
+								   		<span class="province">{{$addrs[0]}}&nbsp;&nbsp;<?php if($addrs[3]){echo $addrs[3]; }else{echo "";} ?>&nbsp;&nbsp;{{$addrs[1]}}&nbsp;&nbsp;{{$addrs[2]}}</span>
+										
 										</span>
 
 										</span>
 									</div>
-									<ins class="deftip hidden">默认地址</ins>
+									
 								</div>
 								<div class="address-right">
-									<span class="am-icon-angle-right am-icon-lg"></span>
+									<a href="/homes/person/address.html">
+										<span class="am-icon-angle-right am-icon-lg"></span></a>
 								</div>
 								<div class="clear"></div>
 
 								<div class="new-addr-btn">
-									<a href="#">设为默认</a>
+									<a href="/homes/#" class="hidden">设为默认</a>
+									<span class="new-addr-bar hidden">|</span>
+									<a href="/homes/#">编辑</a>
 									<span class="new-addr-bar">|</span>
-									<a href="#">编辑</a>
-									<span class="new-addr-bar">|</span>
-									<a href="javascript:void(0);"  onclick="delClick(this);">删除</a>
+									<a href="/homes/javascript:void(0);" onclick="delClick(this);">删除</a>
 								</div>
 
 							</li>
-
+						@endif
+						@endforeach
 						</ul>
+						
 
 						<div class="clear"></div>
 					</div>
@@ -171,9 +185,9 @@
 					<div class="logistics">
 						<h3>选择支付方式</h3>
 						<ul class="pay-list">
-							<li class="pay card"><img src="images/wangyin.jpg" />银联<span></span></li>
-							<li class="pay qq"><img src="images/weizhifu.jpg" />微信<span></span></li>
-							<li class="pay taobao"><img src="images/zhifubao.jpg" />支付宝<span></span></li>
+							<li class="pay card"><img src="/homes/images/wangyin.jpg" />银联<span></span></li>
+							<li class="pay qq"><img src="/homes/images/weizhifu.jpg" />微信<span></span></li>
+							<li class="pay taobao"><img src="/homes/images/zhifubao.jpg" />支付宝<span></span></li>
 						</ul>
 					</div>
 					<div class="clear"></div>
@@ -213,25 +227,24 @@
 											<div class="pay-phone">
 												<li class="td td-item">
 													<div class="item-pic">
-														<a href="#" class="J_MakePoint">
-															<img src="images/kouhong.jpg_80x80.jpg" class="itempic J_ItemImg"></a>
+														<a href="/homes/#" class="J_MakePoint">
+															<img src="{{$resgoods[0]->gimg}}" width="100%" class="itempic J_ItemImg"></a>
 													</div>
 													<div class="item-info">
 														<div class="item-basic-info">
-															<a href="#" class="item-title J_MakePoint" data-point="tbcart.8.11">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</a>
+															<a href="/homes/#" class="item-title J_MakePoint" data-point="tbcart.8.11">{{$resgoods[0]->gname}}</a>
 														</div>
 													</div>
 												</li>
 												<li class="td td-info">
 													<div class="item-props">
-														<span class="sku-line">颜色：12#川南玛瑙</span>
-														<span class="sku-line">包装：裸装</span>
+														<span class="sku-line">规格：{{$label}}</span>
 													</div>
 												</li>
 												<li class="td td-price">
 													<div class="item-price price-promo-promo">
 														<div class="price-content">
-															<em class="J_Price price-now">39.00</em>
+															<em class="J_Price price-now">{{$gprices}}</em>
 														</div>
 													</div>
 												</li>
@@ -242,22 +255,60 @@
 														<span class="phone-title">购买数量</span>
 														<div class="sl">
 															<input class="min am-btn" name="" type="button" value="-" />
-															<input class="text_box" name="" type="text" value="3" style="width:30px;" />
+															<input class="text_box" name="" type="text" value="{{$num}}" style="width:30px;" />
 															<input class="add am-btn" name="" type="button" value="+" />
 														</div>
 													</div>
 												</div>
 											</li>
+				
+											<script type="text/javascript">
+												//var toprice = 0;
+												$('.min').click(function(){
+													var num = $('.text_box').val()-1;
+													var pri = $('.J_Price').html();
+													var toprice = parseFloat(pri)*parseInt(num);
+													$('.J_ItemSum').html(toDecimal2(toprice));
+													$('.pay-sum').html(toDecimal2(toprice));
+													$('.style-large-bold-red').html(toDecimal2(toprice));
+												})
+												$('.add').click(function(){
+													var num = parseInt($('.text_box').val())+parseInt(1);
+													var pri = $('.J_Price').html();
+													var toprice = parseFloat(pri)*parseInt(num);
+													$('.J_ItemSum').html(toDecimal2(toprice));
+													$('.pay-sum').html(toDecimal2(toprice));
+													$('.style-large-bold-red').html(toDecimal2(toprice));	
+												})
+												function toDecimal2(x) {    
+												        var f = parseFloat(x);    
+												        if (isNaN(f)) {    
+												            return false;    
+												        }    
+												        var f = Math.round(x*100)/100;    
+												        var s = f.toString();    
+												        var rs = s.indexOf('.');    
+												        if (rs < 0) {    
+												            rs = s.length;    
+												            s += '.';    
+												        }    
+												        while (s.length <= rs + 2) {    
+												            s += '0';    
+												        }    
+												        return s;    
+												    }    
+											</script>
+
 											<li class="td td-sum">
 												<div class="td-inner">
-													<em tabindex="0" class="J_ItemSum number">117.00</em>
+													<em tabindex="0" class="J_ItemSum number">{{number_format($toprice,2)}}</em>
 												</div>
 											</li>
 											<li class="td td-oplist">
 												<div class="td-inner">
 													<span class="phone-title">配送方式</span>
 													<div class="pay-logis">
-														快递<b class="sys_item_freprice">10</b>元
+														快递<b class="sys_item_freprice">0</b>元
 													</div>
 												</div>
 											</li>
@@ -270,69 +321,7 @@
 							<div class="clear"></div>
 							</div>
 
-							<tr id="J_BundleList_s_1911116345_1" class="item-list">
-								<div id="J_Bundle_s_1911116345_1_0" class="bundle  bundle-last">
-									<div class="bundle-main">
-										<ul class="item-content clearfix">
-											<div class="pay-phone">
-												<li class="td td-item">
-													<div class="item-pic">
-														<a href="#" class="J_MakePoint">
-															<img src="images/kouhong.jpg_80x80.jpg" class="itempic J_ItemImg"></a>
-													</div>
-													<div class="item-info">
-														<div class="item-basic-info">
-															<a href="#" target="_blank" title="美康粉黛醉美唇膏 持久保湿滋润防水不掉色" class="item-title J_MakePoint" data-point="tbcart.8.11">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</a>
-														</div>
-													</div>
-												</li>
-												<li class="td td-info">
-													<div class="item-props">
-														<span class="sku-line">颜色：10#蜜橘色+17#樱花粉</span>
-														<span class="sku-line">包装：两支手袋装（送彩带）</span>
-													</div>
-												</li>
-												<li class="td td-price">
-													<div class="item-price price-promo-promo">
-														<div class="price-content">
-															<em class="J_Price price-now">39.00</em>
-														</div>
-													</div>
-												</li>
-											</div>
-
-											<li class="td td-amount">
-												<div class="amount-wrapper ">
-													<div class="item-amount ">
-														<span class="phone-title">购买数量</span>
-														<div class="sl">
-															<input class="min am-btn" name="" type="button" value="-" />
-															<input class="text_box" name="" type="text" value="3" style="width:30px;" />
-															<input class="add am-btn" name="" type="button" value="+" />
-														</div>
-													</div>
-												</div>
-											</li>
-											<li class="td td-sum">
-												<div class="td-inner">
-													<em tabindex="0" class="J_ItemSum number">117.00</em>
-												</div>
-											</li>
-											<li class="td td-oplist">
-												<div class="td-inner">
-													<span class="phone-title">配送方式</span>
-													<div class="pay-logis">
-														包邮
-													</div>
-												</div>
-											</li>
-
-										</ul>
-										<div class="clear"></div>
-
-									</div>
-							</tr>
-							</div>
+							
 							<div class="clear"></div>
 							<div class="pay-total">
 						<!--留言-->
@@ -403,7 +392,7 @@
 							<!--含运费小计 -->
 							<div class="buy-point-discharge ">
 								<p class="price g_price ">
-									合计（含运费） <span>¥</span><em class="pay-sum">244.00</em>
+									合计（含运费） <span>¥</span><em class="pay-sum">{{number_format($toprice,2)}}</em>
 								</p>
 							</div>
 
@@ -413,7 +402,7 @@
 									<div class="box">
 										<div tabindex="0" id="holyshit267" class="realPay"><em class="t">实付款：</em>
 											<span class="price g_price ">
-                                    <span>¥</span> <em class="style-large-bold-red " id="J_ActualFee">244.00</em>
+                                    <span>¥</span> <em class="style-large-bold-red " id="J_ActualFee">{{number_format($toprice,2)}}</em>
 											</span>
 										</div>
 
@@ -422,32 +411,77 @@
 											<p class="buy-footer-address">
 												<span class="buy-line-title buy-line-title-type">寄送至：</span>
 												<span class="buy--address-detail">
-								   <span class="province">湖北</span>省
-												<span class="city">武汉</span>市
-												<span class="dist">洪山</span>区
-												<span class="street">雄楚大道666号(中南财经政法大学)</span>
+								   				<span class="province1">湖北</span>
+												<span class="city1">武汉</span>
+												<span class="dist1">洪山</span>
+												<span class="street1">雄楚大道666号(中南财经政法大学)</span>
 												</span>
 												</span>
 											</p>
 											<p class="buy-footer-address">
 												<span class="buy-line-title">收货人：</span>
 												<span class="buy-address-detail">   
-                                         <span class="buy-user">艾迪 </span>
-												<span class="buy-phone">15871145629</span>
+                                         <span class="buy-user1">艾迪 </span>
+												<span class="buy-phone1">15871145629</span>
 												</span>
 											</p>
 										</div>
 									</div>
-
+									{{ csrf_field()}}
 									<div id="holyshit269" class="submitOrder">
 										<div class="go-btn-wrap">
-											<a id="J_Go" href="success.html" class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</a>
+											<a id="J_Go" href="javascript:void(0)" class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</a>
 										</div>
 									</div>
 									<div class="clear"></div>
 								</div>
 							</div>
 						</div>
+						
+						<script type="text/javascript">
+							var ad = document.getElementsByClassName('user-addresslist');
+							var addrs;
+							$(document).ready(function(){
+								addrs = 0;
+								$.get("/home/user/oraddr",{addrs:addrs},function(data){
+									$('.province1').html(JSON.parse(data.address)[0]);
+									$('.city1').html(JSON.parse(data.address)[3]);
+									$('.dist1').html(JSON.parse(data.address)[1]);
+									$('.street1').html(JSON.parse(data.address)[2]);
+									$('.buy-user1').html(data.name);
+									$('.buy-phone1').html(data.phone);
+								},'json')
+							})
+							$('.user-addresslist').click(function(){
+								addrs = (parseInt($(this).index())+1)/2-1;
+								$.get("/home/user/oraddr",{addrs:addrs},function(data){
+									$('.province1').html(JSON.parse(data.address)[0]);
+									$('.city1').html(JSON.parse(data.address)[3]);
+									$('.dist1').html(JSON.parse(data.address)[1]);
+									$('.street1').html(JSON.parse(data.address)[2]);
+									$('.buy-user1').html(data.name);
+									$('.buy-phone1').html(data.phone);
+								},'json')
+							})
+							$("#J_Go").click(function(){
+								var mes = $('.memo-input').val();
+								var gid = {{$gid}};
+								var num = $('.text_box').val();
+								var total_price = $('.style-large-bold-red').html();
+								var label = "{{$label}}";
+								var sid = {{$sid}};
+								$.post("/home/user/ordersubs",{'_token':'{{ csrf_token() }}',label:label,addrs:addrs,mes:mes,gid:gid,goods_num:num,total_price:total_price,sid:sid},function(data){
+							      	if(data){
+							      		location.href = "/home/user/orderpay/"+data;
+							      	}else{
+							      		alert('抱歉，提交失败了呢，请您稍后再试');
+							      	}
+							    },'json')
+							})
+							
+							
+							
+						</script>
 
 						<div class="clear"></div>
 					</div>
@@ -455,21 +489,21 @@
 				<div class="footer">
 					<div class="footer-hd">
 						<p>
-							<a href="#">恒望科技</a>
+							<a href="/homes/#">恒望科技</a>
 							<b>|</b>
-							<a href="#">商城首页</a>
+							<a href="/homes/#">商城首页</a>
 							<b>|</b>
-							<a href="#">支付宝</a>
+							<a href="/homes/#">支付宝</a>
 							<b>|</b>
-							<a href="#">物流</a>
+							<a href="/homes/#">物流</a>
 						</p>
 					</div>
 					<div class="footer-bd">
 						<p>
-							<a href="#">关于恒望</a>
-							<a href="#">合作伙伴</a>
-							<a href="#">联系我们</a>
-							<a href="#">网站地图</a>
+							<a href="/homes/#">关于恒望</a>
+							<a href="/homes/#">合作伙伴</a>
+							<a href="/homes/#">联系我们</a>
+							<a href="/homes/#">网站地图</a>
 							<em>© 2015-2025 Hengwang.com 版权所有</em>
 						</p>
 					</div>

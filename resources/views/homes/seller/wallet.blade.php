@@ -13,7 +13,7 @@
 
 @section('content')
 
-<div class="main-wrap">
+
 
 					<div class="user-bill">
 						<!--标题 -->
@@ -49,11 +49,12 @@
 										
 										<div class="catatory-details  fn-hide shopping" ng-class="shoppingChart">
 											<div class="catatory-chart fn-left fn-hide">
-												<div class="title">类型</div>
-												<ul>
-
-
-												</ul>
+												<div class="title">图片</div>
+												<div class="item-pic">
+													<a href="/homes/#" class="J_MakePoint">
+														<img src="{{$v['0']->orgoods->gimg}}">
+													</a>
+												</div>
 											</div>
 											<div class="catatory-detail fn-left">
 												<div class="title ng-binding">
@@ -111,7 +112,7 @@
 @endforeach
 					<div style="position: absolute;top:25px; right:30px; color:red;">{{$to}} 元</div>
 					</div>
-				</div>
+
 				<script>
 					$(document).ready(function (ev) {
 				

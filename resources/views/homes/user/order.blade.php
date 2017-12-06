@@ -5,14 +5,14 @@
 <meta name="_token" content="{{ csrf_token() }}"/>
 		<link href="/homes/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
 		<link href="/homes/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
-
+<script src="/homes/layer/layer.js"></script>
 		<link href="/homes/css/personal.css" rel="stylesheet" type="text/css">
 		<link href="/homes/css/orstyle.css" rel="stylesheet" type="text/css">
 		<script src="/homes/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
 		<script src="/homes/AmazeUI-2.4.2/assets/js/amazeui.js"></script>
 @endsection
 
-@section('title','个人中心')
+@section('title','订单管理')
 
 
 @section('content')
@@ -78,7 +78,7 @@
 													<div class="dd-num">订单编号：<a href="/homes/javascript:;">{{$k}}</a></div>
 													<span>订单时间：{{date("Y-m-d",$v[0]->ord_time)}}</span>
 													
-													<div style="float:right"><a target=blank href=http://wpa.qq.com/msgrd?V=3&uin=2403287971&Site=QQ客服&Menu=yes><img border="0"  style="height:30px;width:80px;" SRC=http://wpa.qq.com/pa?p=1:2403287971:3 alt="点击这里给我发消息"></a></div>
+													<div style="float:right"><a target=blank href=http://wpa.qq.com/msgrd?V=3&uin={{$v[0]->shop['qq']}}&Site=QQ客服&Menu=yes><img border="0"  style="height:30px;width:80px;" SRC=http://wpa.qq.com/pa?p=1:{{$v[0]->shop['qq']}}:3 alt="点击这里给我发消息"></a></div>
 													<!--    <em>店铺：小桔灯</em>-->
 													
 												</div>
@@ -88,7 +88,7 @@
 														<ul class="item-list">
 															<li class="td td-item">
 																<div class="item-pic">
-																	<a href="/homes/#" class="J_MakePoint">
+																	<a href="/home/details/{{$vs->orgoods->id}}/edit" class="J_MakePoint">
 																		<img src="{{$vs->orgoods->gimg}}">
 																	</a>
 																</div>
@@ -96,7 +96,7 @@
 																
 
 																	<div class="item-basic-info" style="margin-left: -70px;"> 
-																		<a href="/homes/#">
+																		<a href="/home/details/{{$vs->orgoods->id}}/edit">
 																			<p>{{$vs->orgoods->gname}}</p>
 																			<p class="info-little" style="margin-top:8px;">
 																				商品规格：{{$vs->label}}
@@ -185,7 +185,7 @@
 											</div>
 											<?php $i++; ?>
 											@endforeach
-
+											
 										</div>
 
 									</div>
@@ -221,6 +221,7 @@
 
 									<div class="order-main">
 										<div class="order-list">
+										<?php $o = 0; ?>
 										@foreach($codearr1 as $k1=>$v1)
 										<?php $to1 = 0; ?>
 											<div class="order-status1">
@@ -235,13 +236,13 @@
 														<ul class="item-list">
 															<li class="td td-item">
 																<div class="item-pic">
-																	<a href="/homes/#" class="J_MakePoint">
+																	<a href="/home/details/{{$vs1->orgoods->id}}/edit" class="J_MakePoint">
 																		<img src="{{$vs1->orgoods->gimg}}">
 																	</a>
 																</div>
 																<div class="item-info" style="width: 220px;">
 																	<div class="item-basic-info" style="margin-left: -70px;">
-																		<a href="/homes/#">
+																		<a href="/home/details/{{$vs1->orgoods->id}}/edit">
 																			<p>{{$vs1->orgoods->gname}}</p>
 																			<p class="info-little" style="margin-top:8px;">商品规格：{{$vs1->label}}</p>
 																		</a>
@@ -278,8 +279,27 @@
 															<li class="td td-status">
 																<div class="item-status">
 																	<p class="Mystatus">等待买家付款</p>
-																	<p class="order-info"><a href="/homes/#">取消订单</a></p>
+																	<p class="order-info orderre{{$o}}"><a href="javascript:void(0)">取消订单</a></p>
 																</div>
+																<script type="text/javascript">
+																///home/user/orderre/{{$v1[0]->o_code}}
+																	$('.orderre{{$o}}').click(function(){
+																		var code = {{$v1[0]->o_code}};
+																		layer.confirm('您确定要取消该订单吗?', {
+																		  btn: ['确定','取消'] //按钮
+																		}, function(){
+																			$.get("/home/user/orderre",{code:code},function(data){
+																				//console.log(data);
+																			});
+																			location.reload();
+																			
+																		}, function(){
+
+																		});
+																		
+																		
+																	})
+																</script>
 															</li>
 															<li class="td td-change">
 																<a href="/home/user/orderpay/{{$v1[0]->o_code}}">
@@ -293,6 +313,7 @@
 												</div>
 
 											</div>
+											<?php $o++; ?>
 											@endforeach
 										</div>
 
@@ -341,13 +362,13 @@
 														<ul class="item-list">
 															<li class="td td-item">
 																<div class="item-pic">
-																	<a href="/homes/#" class="J_MakePoint">
+																	<a href="/home/details/{{$vs2->orgoods->id}}/edit" class="J_MakePoint">
 																		<img src="{{$vs2->orgoods->gimg}}" class="itempic J_ItemImg">
 																	</a>
 																</div>
 																<div class="item-info" style="width: 200px;">
 																	<div class="item-basic-info" style="margin-left: -70px;">
-																		<a href="/homes/#">
+																		<a href="/home/details/{{$vs2->orgoods->id}}/edit">
 																			<p>{{$vs2->orgoods->gname}}</p>
 																			<p class="info-little" style="margin-top:8px;">商品规格：{{$vs2->label}}</p>
 																		</a>
@@ -440,17 +461,18 @@
 												</div>
 												<div class="order-content">
 													<div class="order-left">
+													<?php $p = 0; ?>
 													@foreach($v3 as $ks3=>$vs3)
 														<ul class="item-list">
 															<li class="td td-item">
 																<div class="item-pic">
-																	<a href="/homes/#" class="J_MakePoint">
+																	<a href="/home/details/{{$vs3->orgoods->id}}/edit" class="J_MakePoint">
 																		<img src="{{$vs3->orgoods->gimg}}" class="itempic J_ItemImg">
 																	</a>
 																</div>
 																<div class="item-info" style="width: 200px;">
 																	<div class="item-basic-info" style="margin-left: -70px;">
-																		<a href="/homes/#">
+																		<a href="/home/details/{{$vs3->orgoods->id}}/edit">
 																			<p>{{$vs3->orgoods->gname}}</p>
 																			<p class="info-little" style="margin-top:8px;">商品规格：{{$vs3->label}}</p>
 																		</a>
@@ -471,11 +493,12 @@
 															<li class="td td-operation">
 																<div class="item-operation">
 																	
-																	<a href="">确认收货</a>
+																	<a href="javascript:void(0)">确认收货</a>
 																</div>
+
 															</li>
 														</ul>
-
+														
 														@endforeach
 
 													</div>
@@ -496,13 +519,54 @@
 																</div>
 															</li>
 															<li class="td td-change">
-																<div class="am-btn am-btn-danger anniu">
+																<div class="am-btn am-btn-danger anniu shouhuo{{$p}}">
 																	确认收货</div>
+
+																	<script type="text/javascript">
+																				layer.config({
+																				    extend: 'extend/layer.ext.js'
+																				});
+																			$('.shouhuo{{$p}}').click(function(){
+																				var code = {{$v3[0]->o_code}};
+																				/*layer.prompt(function(val, index){
+																				  layer.msg('得到了'+val);
+																				  layer.close(index);
+																				});*/
+
+																				layer.prompt({formType: 1,ormType: 1, title: '请输入支付密码'},function(val, index, elem){
+
+																				  	$.get("/home/user/ordersu",{code:code,pass:val},function(data){
+																				  		if(data==1){
+																				  			layer.msg("支付成功");
+																				  		}else if(data==0){
+																				  			layer.msg("密码不正确");
+																				  		}
+																				  		//console.log(data);
+																					});
+																					location.reload();
+																				  layer.close(index);
+																				})
+																				/*layer.confirm('确认收货吗?', {
+																				  btn: ['确定','取消'] //按钮
+																				}, function(){
+																					$.get("/home/user/ordersu",{code:code},function(data){
+
+																					});
+																					location.reload();
+																					
+																				}, function(){
+
+																				});*/
+																				
+																				
+																			})
+																</script>
 															</li>
 														</div>
 													</div>
 												</div>
 											</div>
+											<?php $p++; ?>
 											@endforeach
 										</div>
 									</div>
@@ -552,13 +616,13 @@
 														<ul class="item-list">
 															<li class="td td-item">
 																<div class="item-pic">
-																	<a href="/homes/#" class="J_MakePoint">
+																	<a href="/home/details/{{$vs4->orgoods->id}}/edit" class="J_MakePoint">
 																		<img src="{{$vs4->orgoods->gimg}}" class="itempic J_ItemImg">
 																	</a>
 																</div>
 																<div class="item-info" style="width: 200px;">
 																	<div class="item-basic-info" style="margin-left: -70px;">
-																		<a href="/homes/#">
+																		<a href="/home/details/{{$vs4->orgoods->id}}/edit">
 																			<p>{{$vs4->orgoods->gname}}</p>
 																			<p class="info-little" style="margin-top:8px;">商品规格：{{$vs4->label}}</p>
 																		</a>
@@ -601,8 +665,9 @@
 																	<p class="order-info"><a href="/homes/logistics.html">查看物流</a></p>
 																</div>
 															</li>
+															
 															<li class="td td-change">
-																<a href="/homes/commentlist.html">
+																<a href="/home/user/ureview/{{$v4[0]->o_code}}">
 																	<div class="am-btn am-btn-danger anniu">
 																		评价商品</div>
 																</a>

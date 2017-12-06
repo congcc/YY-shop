@@ -51,20 +51,24 @@
 							<div class="topMessage my-shangcheng">
 								<div class="menu-hd MyShangcheng"><a href="{{url('home/seller/index')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>商户中心</a></div>
 							</div>
+							<div class="topMessage my-shangcheng">
+								<div class="menu-hd MyShangcheng"><a href="{{url('home/index/5/edit')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>退出登录</a></div>
+							</div>
 						</ul>
 					</div>
 						<!--悬浮搜索框-->
 
 						<div class="nav white">
 							<div class="logoBig">
-								<li><img src="/homes/images/logobig.png" /></li>
+								<li><img src="http://ozsps8743.bkt.clouddn.com/img/image_61531512438063png" /></li>
 							</div>
 
 							<div class="search-bar pr">
-								<a name="index_none_header_sysc" href="#"></a>
-								<form>
-									<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
+								<form  action="{{url('home/search')}}"  method="post">
+									<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="想吃点什么呢?" autocomplete="off" value="扇贝">
+									
 									<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
+									{{ csrf_field()}}
 								</form>
 							</div>
 						</div>

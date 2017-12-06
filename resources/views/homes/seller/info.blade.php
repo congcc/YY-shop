@@ -25,13 +25,16 @@
 
 							<div class="filePic">
 					
-								<img alt="" src="{{$user['user_pic']}}" class="am-circle am-img-thumbnail">
+								<img alt="" src="http://ozsps8743.bkt.clouddn.com/img/image_{{$user['user_pic']}}" class="am-circle am-img-thumbnail">
 
 							</div>
 
 							<p class="am-form-help">头像</p>
 
 							<div class="info-m">
+
+
+
 								<div><b>商户名：<i>{{$user['nickname']}}</i></b></div>
 								<div class="u-level">
 									<span class="rank r2">
@@ -128,6 +131,17 @@
 								</div>
 
 
+								<div class="am-form-group">
+									<label class="am-form-label" for="user-email">QQ：</label>
+									<div class="am-form-content">
+										<input type="text" placeholder="name" id="user-name2"name="qq" value="{{$user['qq']}}" readonly>
+
+									</div>					
+
+
+								</div>
+
+
 						</div>
 							
 								<div class="info-btn">
@@ -141,3 +155,15 @@
 						
 
 @endsection
+<script type="text/javascript">
+	
+	function yue (date) {
+
+	 $.get('/home/user/{{$user['id']}}/edit',function(data){
+                	           
+                });
+		
+}
+
+
+</script>

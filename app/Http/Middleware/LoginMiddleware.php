@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use session;
 
 
 class LoginMiddleware
@@ -16,7 +17,9 @@ class LoginMiddleware
      */
     public function handle($request, Closure $next)
     {
+    
         $aid = session('adminid');
+        
 
        if($aid){
             return $next($request);

@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Homes\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Model\user;
 use App\Http\Controllers\Controller;
+use Hash;
 
 class PassController extends Controller
 {
@@ -16,7 +18,9 @@ class PassController extends Controller
      */
     public function index()
     {
-        return view('homes.user.password');
+        $uid = session('userid');
+        $res = user::where('id',$uid)->first();
+        return view('homes.user.password',compact('res'));
     }
 
     /**
@@ -37,7 +41,14 @@ class PassController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $req = $request->only('password','id');
+        
+        $res = user::where('id',$req['id'])->get();
+       
+        if (Hash::check($req['password'], $res[0]->password)) {
+
+           echo "1";
+        }
     }
 
     /**
@@ -59,7 +70,9 @@ class PassController extends Controller
      */
     public function edit($id)
     {
-        //
+        // $uid = session('userid');
+        $res = user::where('id',$id)->first();
+        return view('homes.user.passedit',compact('res'));
     }
 
     /**

@@ -25,12 +25,22 @@ class DiController extends Controller
         //session 取id
         $uid=(session('userid'));
 
+        //获取我的所有订单
+        $res=orders::where(['ostate'=>1,'uid'=>$uid])->get();
+        // dd($res);
+        $o=0;
+        foreach ($res as $key => $value) {
+            $o++;
+
+        }
+        // dd($o);
+        
         //从shop表中查询uid  和user表中id相同的 用户所有信息(shop uid->user id 为关联字段)
         $shop=shop::where('uid',$uid)->first();
 
         //dd($shop);
 
-        return view('homes.seller.di',["shop"=>$shop]);
+        return view('homes.seller.di',["shop"=>$shop],["o"=>$o]);
 
     }
 

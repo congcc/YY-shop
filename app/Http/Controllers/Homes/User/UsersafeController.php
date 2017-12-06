@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Model\userinfo;
+use App\Http\Model\user;
 
 class UsersafeController extends Controller
 {
@@ -16,7 +18,10 @@ class UsersafeController extends Controller
      */
     public function index()
     {
-        return view('homes.user.usersafe');
+        $uid = session('userid');
+        $result = userinfo::where('id',$uid)->first();
+        $res =  user::where('id',$uid)->first();
+        return view('homes.user.usersafe',compact('res','result'));
     }
 
     /**

@@ -40,14 +40,28 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
+        // $req = $request->only('password','phone');
+        
+        // $res = user::where('id',$req['id'])->first();
+        // // //对密码进行哈希加密
+        // // $password = Hash::make($req['password']);
 
+        // // //修改密码
+        // // $result = user::where('id',$req['id'])->update(['password'=>$password]);
+        // // if($result){
+        // //     // unset(session('userid'));
+        // //     echo 1;
+        // // }
+        $req = $request->only('password','phone');
+        $res = user::where('phone',$req['phone'])->first();
+        //对密码进行哈希加密
+        $password = Hash::make($req['password']);
 
-        $req = $request->except('_token');
-
-        $res = user::where('phone',$req['uname'])->get();
-       
-        if (Hash::check($req['password'], $res[0]->password)) {
-           echo "1"; 
+        //修改密码
+        $result = user::where('phone',$req['phone'])->update(['password'=>$password]);
+        if($result){
+            // unset(session('userid'));
+            echo 1;
         }
          
     }

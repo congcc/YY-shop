@@ -1,65 +1,38 @@
-
 @extends('admins.layout.admins')
 
 @section('title','买家详情')
 
 @section('content')
 <h3>买家详情</h3>
-<form action="" method='post'>
-    <table border='0' width='400'>
+    <table border='1' width='1300'>
         <tr>
-            <td align='right'>ID:</td>
-            <td><input type="text" name='id' value="{{$res->id}}"></td>
+            <th>ID</th>
+            <th>登录号</th>
+            <th>手机号</th>
+            <th>昵称</th>
+            <th>姓名</th>
+            <th>生日</th>
+            <th>性别</th>
+            <th>身份证</th>
+            <th>地址</th>
+            <th>用户创建时间</th>
+            <th>最后登间</th>
+            <th>用户钱包</th>
         </tr>
         <tr>
-            <td align='right'>登录号:</td>
-            <td><input type="text" name='username' value="{{$res->username}}"></td>
-        </tr>
-        <tr>
-            <td align='right'>手机号:</td>
-            <td><input type="text" name='phone' value="{{$res->phone}}"></td>
-        </tr>
-        <tr>
-            <td align='right'>姓名:</td>
-            <td><input type="text" name='truename' value="{{$result->truename}}"></td>
-        </tr>
-        <tr>
-            <td align='right'>昵称:</td>
-            <td><input type="text" name='nickname' value="{{$result->nickname}}"></td>
-        </tr>
-        <tr>
-            <td align='right'>生日:</td>
-            <td><input type="text" name='birth' value="{{$result->birth}}"></td>
-        </tr>
-        <tr>
-            <td align='right'>性别:</td>
-            <td><input type="text" name='sex' value="{{$result->sex ? '男': '女'}}"></td>
-        </tr><tr>
-            <td align='right'>身份证:</td>
-            <td><input type="text" name='idcard' value="{{$result->idcard}}"></td>
-        </tr>
-        <tr>
-            <td align='right'>地址:</td>
-            <td><input type="text" name='area' value="{{$result->area}}"></td>
-        </tr>
-        <tr>
-            <td align='right'>用户创建时间:</td>
-            <td><input type="text" name='createtime_user' value="{{$result->createtime_user}}"></td>
-        </tr>
-        <tr>
-            <td align='right'>最后登间:</td>
-            <td><input type="text" name='last_user' value="{{$result->last_user}}"></td>
-        </tr>
-        <tr>
-            <td align='right'>用户钱包:</td>
-            <td><input type="text" name='wallet' value="{{$result->wallet}}"></td>
-        </tr>
-        <tr>
-            <td align='right'>用户\商户:</td>
-            <td><input type="text" name='utype' value="{{$res->utype ? '用户' : '商户'}}"></td>
+            <td>{{$res->id}}</td>
+            <td>{{$res->username}}</td>
+            <td>{{$res->phone}}</td>
+            <td>{{$result->nickname}}</td>
+            <td>{{$result->truename}}</td>
+            <td>{{$result->birth}}</td>
+            <td>{{$result->sex ? '男': '女'}}</td>
+            <td>{{$result->idcard}}</td>
+            <td>{{$result->area}}</td>
+            <td>{{$result->createtime_user}}</td>
+            <td>{{$result->last_user}}</td>
+            <td>{{$result->wallet}}</td>
         </tr>
     </table>
-</form>
 <a href="/admin/buys"><button>返回</button></a>
 @endsection
-

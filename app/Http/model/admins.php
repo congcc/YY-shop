@@ -9,4 +9,7 @@ class admins extends Model
     //
     public $table = "admins";
 
+    public $timestamps = false;
+    
+
 }

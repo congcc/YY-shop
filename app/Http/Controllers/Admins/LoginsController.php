@@ -50,8 +50,9 @@ class LoginsController extends Controller
         if (Hash::check($req['key'], $res[0]->key)) {
            session(['id'=>$res[0]->id]);
            session(['adminid'=>$res[0]->id]);
-          echo "1";    
+              
         }
+        return view('admin.admin');
 
     }
 

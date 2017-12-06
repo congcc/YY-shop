@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\model\review;
 use App\Http\model\shop;
 use App\Http\model\goods;
+use App\Http\model\comments;
 
 class CommentsController extends Controller
 {
@@ -61,6 +62,7 @@ class CommentsController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -72,6 +74,19 @@ class CommentsController extends Controller
     public function store(Request $request)
     {
         //
+        $req = $request->except('_token');
+
+        $req = comments::insert($req);
+
+        //判断是否上传成功
+            if(!$req){
+               echo "<script>alert('回复失败');window.location.href='{$_SERVER['HTTP_REFERER']}';</script>";
+            } else {
+                echo "<script>alert('回复成功');window.location.href='{$_SERVER['HTTP_REFERER']}';</script>";
+                
+                // echo "<script>alert('回复失败');window.location.href='{$_SERVER['HTTP_REFERER']}';</script>";
+
+            }
     }
 
     /**
@@ -94,6 +109,10 @@ class CommentsController extends Controller
     public function edit($id)
     {
         //
+        // dd($id);
+        $id = $id;
+
+        return view('/homes/seller/wcomments',compact('id'));
     }
 
     /**
@@ -106,6 +125,33 @@ class CommentsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        // dd($request->status);
+        if($request->status == '1'){
+            $mm['status']=0;
+            $upres=review::where('oid',$id)->update($mm);
+            if(!$upres){
+               echo "<script>alert('解封失败');window.location.href='{$_SERVER['HTTP_REFERER']}';</script>";
+               
+            } else {
+                echo "<script>alert('解封成功');window.location.href='{$_SERVER['HTTP_REFERER']}';</script>";
+                
+                // return redirect()->back();
+
+            }
+        }else{
+            $mm['status']=1;
+            $upres=review::where('oid',$id)->update($mm);
+            if(!$upres){
+               echo "<script>alert('禁言失败');window.location.href='{$_SERVER['HTTP_REFERER']}';</script>";
+               
+            } else {
+                echo "<script>alert('禁言成功');window.location.href='{$_SERVER['HTTP_REFERER']}';</script>";
+                
+                // return redirect()->back();
+        }
+        
+        }
+         
     }
 
     /**

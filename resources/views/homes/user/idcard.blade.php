@@ -82,22 +82,39 @@
 	function  idcard (id){
 		var name = $('#user-name').val();
          var idcard = $('#user-IDcard').val();
-		$.get("/home/user/card",{id:id,name:name,idcard:idcard},function(data){
+
+		$.post("/home/user/card",{'_token':'{{ csrf_token() }}',id:id,name:name,idcard:idcard},function(data){
          	
-         	console.log(id);
-         	console.log(name);
-         	console.log(idcard);
+         	
          	if(data==1){
-         		layer.alert('申请成功,工作人员会在2小时内审核完毕', {
-				  icon: 1,
-				  skin: 'layer-ext-moon' 
-				})
-				
+
+				layer.open({
+		          	   type: 1
+		          	  ,icon:2
+			          ,offset: 't' //具体配置参考：offset参数项
+			          ,content: '<div style="padding: 20px 80px;">申请成功,请耐心等待后台人员审核</div>'
+			          ,btn: '关闭'
+			          ,btnAlign: 'c' //按钮居中
+			          ,shade: 0 //不显示遮罩
+			          ,yes: function(){
+			            layer.closeAll();
+			            location.reload();
+			          }
+			        });
          	}else{
-         		layer.alert('失败,请重试', {
-				  icon: 2,
-				  skin: 'layer-ext-moon' 
-         		})
+         		layer.open({
+		          	   type: 1
+		          	  ,icon:2
+			          ,offset: 't' //具体配置参考：offset参数项
+			          ,content: '<div style="padding: 20px 80px;">失败,请重试</div>'
+			          ,btn: '关闭'
+			          ,btnAlign: 'c' //按钮居中
+			          ,shade: 0 //不显示遮罩
+			          ,yes: function(){
+			            layer.closeAll();
+			            location.reload();
+			          }
+			        });
          	}
         },'json');
 	}	

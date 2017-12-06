@@ -3,7 +3,7 @@
 @section('title','修改管理员')
 
 @section('content')
-<h3>发布新闻</h3>
+<h3>修改管理员</h3>
 <form action="/admin/user/{{$res->id}}" method='post'>
 	<table border='0' width='400'> 
 		<tr>

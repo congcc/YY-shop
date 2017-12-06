@@ -29,7 +29,7 @@ class ShopapplyController extends Controller
         $res = userinfo::where('id',$uid)->first();
         $shop = shop::where('uid',$uid)->first();
         $c_one = cateone::where('pid','0')->get();
-
+        
         return view('homes.user.shopapply',compact('res','c_one','shop'));
     }
 
@@ -59,23 +59,20 @@ class ShopapplyController extends Controller
      */
     public function store(Request $request)
     {
-        $uid = session('userid');
-        //存入数组信息
-        $req =  $request->except('_token');
-        $req['uid'] = $uid;
-        $req['sclass'] = 100;
-        $req['swallet'] = 1000;
-        $req['sauth'] = 3;
+        
+         
+            $file = $request->file('simg'); 
+            $disk = QiniuStorage::disk('qiniu');      
+            $name = rand(1111,9999).time();   
+            $suffix = $file->getClientOriginalExtension();      
+            $filename = $name.$suffix;          
+            $bool = $disk->put('img/image_'.$filename,file_get_contents($file->getRealPath()));         
 
-        $res = shop::insert($req);
+            if($bool){
+                return $filename;
+            }
 
-        if($res){
-            $result = user::where('id',$uid)->update(['utype'=>2]);
-            if($result){
-            echo "<script>alert('您已成功提交了店铺申请,请耐心等待');window.location.href='/home/seller/index'</script>";}
-        }else{
-            echo "<script>alert('申请失败');window.location.href='/home/seller/index'</script>";
-        }
+        
 
     }
 
@@ -125,21 +122,5 @@ class ShopapplyController extends Controller
     }
 
 
-     public function upload(Request $request)
-    {   
-
-            // $file = $request->file('file_upload'); 
-            $file = $request->only('file_upload'); 
-            return $file;
-            $disk = QiniuStorage::disk('qiniu');      
-            $name = rand(1111,9999).time();   
-            $suffix = $file->getClientOriginalExtension();      
-            $filename = $name.$suffix;          
-            $bool = $disk->put('img/image_'.$filename,file_get_contents($file->getRealPath()));         
-
-            if($bool){
-                return $filename;
-            }
-        
-    }
+     
 }

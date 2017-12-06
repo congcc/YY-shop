@@ -29,25 +29,32 @@ class CarController extends Controller
     public function addcar(Request $request)
     {
         
-        $req = $request->only('gid','label'); //取出数据
+        $req = $request->only('gid','label','gum'); //取出数据
         $res = shopcar::where('gid',$req['gid'])->first();
-        $result = $res->Where('label', $req['label'])->first(); //查询是否重复添加购物车的数据
+        if($res){
+            $result = $res->where('label', $req['label'])->first(); //查询是否重复添加购物车的数据
+        }else{
+            $result = 0;
+        }
+        
+       
         //定义修改时间
         $time = time();
         
         //有重复数据添加数量
         if($result){
-            $gum = $result['gum'] + 1;
+            $gum = $result['gum'] + $req['gum'];
             
-             $sta = shopcar::where('id',$result['id'])->update(['gum'=>$gum,'time'=>time()]);
+            $sta = shopcar::where('id',$result['id'])->update(['gum'=>$gum,'time'=>time()]);
             if ($sta) {
                 echo 1;
             }
         }else if(!$res || !$result){
             //无重复,添加数据
             $uid = session('userid');
-            $uid = 6;
-            $sid = 1;
+            $gum = $req['gum'];
+            $si = goods::where('id',$req['gid'])->first();
+            $sid = $si['sid'];
 
             $sta = shopcar::insert(['uid'=>$uid,'gid' => $req['gid'],'sid'=>$sid,'label'=>$req['label'],'time'=>time()]);
             
@@ -67,22 +74,22 @@ class CarController extends Controller
     {
         //ajax  计算购物车单品单价
         
-         $req =  $request->only('gum','id');
+        $req =  $request->only('gum','id');
         //修改时间(他和另外一个移除数组重复冲突)
         
         $time = time();
 
         //修改数量
-         $res = shopcar::where('id',$req['id'])->update(['gum'=>$req['gum'],'time'=>$time]);
+        $res = shopcar::where('id',$req['id'])->update(['gum'=>$req['gum'],'time'=>$time]);
         //获取本id信息
-         $total = shopcar::where('id',$req['id'])->first();
-         $tot = goods::where('id',$total['gid'])->first();
+        $total = shopcar::where('id',$req['id'])->first();
+        $tot = goods::where('id',$total['gid'])->first();
          
-         $tota = $tot['gprice'] * $req['gum'];
+        $tota = $tot['gprice'] * $req['gum'];
 
-         if($res){
+        if($res){
             echo $tota;
-         }
+        }
     }
 
     /**

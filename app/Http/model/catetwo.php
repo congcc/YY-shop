@@ -10,7 +10,10 @@ class catetwo extends Model
     public $table = "catetwo";
     public $timestamps = false;
 
-
+    public function cateone()
+    {
+        return $this->belongsTo('App\Http\Model\cateone','pid','id');
+    }
    
 }    
 

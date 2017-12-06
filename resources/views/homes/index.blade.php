@@ -65,7 +65,7 @@
 																		<dt><span title="蛋糕"> {{$p->cate_name}} </span></dt> @endif
 																		@foreach($p->three(substr($p->pid,0,3)) as $q=>$w)
 
-																		@if($w->pid%1000!=0) <dd><a title="蒸蛋糕" style="padding:3px;" href="#"><span style="padding: 1px;font-size: 10px">{{$w->cate_name}} </span></a></dd> @endif
+																		@if($w->pid%1000!=0) <dd><a title="蒸蛋糕" style="padding:3px;" href="/home/search/"><span style="padding: 1px;font-size: 10px">{{$w->cate_name}} </span></a></dd> @endif
 																		
 																		@endforeach
 
@@ -224,7 +224,7 @@
 							<img src="/homes/images/2016.png "></img>
 							<p>今日<br>推荐</p>
 						</div>
-						<div class="am-u-sm-4 am-u-lg-3 ">
+						<a href="/home/details/167/edit" ><div class="am-u-sm-4 am-u-lg-3 ">
 							<div class="info ">
 								<h3>真的有鱼</h3>
 								<h4>开年福利篇</h4>
@@ -232,8 +232,8 @@
 							<div class="recommendationMain one">
 								<a href="introduction.html"><img src="/homes/images/tj.png "></img></a>
 							</div>
-						</div>						
-						<div class="am-u-sm-4 am-u-lg-3 ">
+						</div></a>					
+						<a href="/home/details/167/edit" ><div class="am-u-sm-4 am-u-lg-3 ">
 							<div class="info ">
 								<h3>囤货过冬</h3>
 								<h4>让爱早回家</h4>
@@ -241,8 +241,8 @@
 							<div class="recommendationMain two">
 								<img src="/homes/images/tj1.png "></img>
 							</div>
-						</div>
-						<div class="am-u-sm-4 am-u-lg-3 ">
+						</div></a>	
+						<a href="/home/details/167/edit" ><div class="am-u-sm-4 am-u-lg-3 ">
 							<div class="info ">
 								<h3>浪漫情人节</h3>
 								<h4>甜甜蜜蜜</h4>
@@ -250,7 +250,7 @@
 							<div class="recommendationMain three">
 								<img src="/homes/images/tj2.png "></img>
 							</div>
-						</div>
+						</div></a>
 
 					</div>
 					<div class="clear "></div>
@@ -265,7 +265,7 @@
                         </span>
 						</div>
 					  <div class="am-g am-g-fixed ">
-						<div class="am-u-sm-3 ">
+						<a href="/home/details/167/edit" ><div class="am-u-sm-3 ">
 							<div class="icon-sale one "></div>	
 								<h4>秒杀</h4>							
 							<div class="activityMain ">
@@ -274,9 +274,9 @@
 							<div class="info ">
 								<h3>春节送礼优选</h3>
 							</div>														
-						</div>
+						</div></a>
 						
-						<div class="am-u-sm-3 ">
+						<a href="/home/details/167/edit" ><div class="am-u-sm-3 ">
 						  <div class="icon-sale two "></div>	
 							<h4>特惠</h4>
 							<div class="activityMain ">
@@ -285,9 +285,9 @@
 							<div class="info ">
 								<h3>春节送礼优选</h3>								
 							</div>							
-						</div>						
+						</div></a>						
 						
-						<div class="am-u-sm-3 ">
+						<a href="/home/details/167/edit" ><div class="am-u-sm-3 ">
 							<div class="icon-sale three "></div>
 							<h4>团购</h4>
 							<div class="activityMain ">
@@ -296,9 +296,9 @@
 							<div class="info ">
 								<h3>春节送礼优选</h3>
 							</div>							
-						</div>						
+						</div></a>						
 
-						<div class="am-u-sm-3 last ">
+						<a href="/home/details/167/edit" ><div class="am-u-sm-3 last ">
 							<div class="icon-sale "></div>
 							<h4>超值</h4>
 							<div class="activityMain ">
@@ -307,7 +307,7 @@
 							<div class="info ">
 								<h3>春节送礼优选</h3>
 							</div>													
-						</div>
+						</div></a>
 
 					  </div>
                    </div>
@@ -1811,4 +1811,26 @@
 			window.jQuery || document.write('<script src="/homes/basic/js/jquery.min.js "><\/script>');
 		</script>
 		<script type="text/javascript " src="/homes/basic/js/quick_links.js "></script>
+@if($userid==1)
+		<script>
+			$.post('/home/user/user',{'_token':'{{ csrf_token() }}',id:{{$user->id}}},function(data){
+				            
+				           // console.log(data);
+				            if (data==1) {
+				                layer.open({
+					          	   type: 1
+						          ,offset: 't' //具体配置参考：offset参数项
+						          ,content: '<div style="padding: 20px 80px;">您的信息还未完善,点击此处前去完善</div>'
+						          ,btn: '确定'
+						          ,btnAlign: 'c' //按钮居中
+						          ,shade: 0 //不显示遮罩
+						          ,yes: function(){
+						            layer.closeAll();
+						            location.href="/home/user/userinfo";
+						          }
+						        });
+				            }
+				        },);
+		</script>
+@endif
 @endsection

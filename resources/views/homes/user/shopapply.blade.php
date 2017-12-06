@@ -51,13 +51,13 @@
 
 						<!--个人信息 -->
 						<div class="info-main">
-							<form class="am-form am-form-horizontal" id='art_form' action="/home/user/shopapply" method="post">
+							<form class="am-form am-form-horizontal" id='art_form' >
 
 
 								<div class="am-form-group">
 									<label class="am-form-label" for="user-name2">店铺名：</label>
 									<div class="am-form-content">
-										<input type="text" placeholder="店铺名" id="user-name2" name="sname" value="" style="width:300px;" >
+										<input type="text" placeholder="店铺名" id="user-name" name="sname" value="" style="width:300px;" >
 
 
 
@@ -70,7 +70,7 @@
 								<div class="am-form-group">
 									<label class="am-form-label">申请人qq：</label>
 									<div class="am-form-content">
-										<input type="text" placeholder="店铺申请人qq" id="user-name2" name="qq" value="" style="width:300px;" >
+										<input type="text" placeholder="店铺申请人qq" id="user-qq" name="qq" value="" style="width:300px;" >
 
 
 									</div>
@@ -102,7 +102,7 @@
 
 										<div class="filePic">
 											<input type="file" accept="image/*" allowexts="gif,jpeg,jpg,png,bmp" maxsize="5120" max="5" name="simg" value="选择图片" class="inputPic" style="opacity: 0; position: absolute;width: 80px;height:80px;margin: 0 0 0 100px;cursor: pointer;" id="file_upload">
-											<img alt="" src="/homes/images/image.jpg" style="width:80px;height:80px">
+											<img alt="" src="/homes/images/image.jpg" id="img1" style="width:80px;height:80px">
 										</div>
 									</div>
 							
@@ -111,7 +111,7 @@
 									<label class="am-form-label" for="user-email">地址：</label>
 									<div class="am-form-content">
 
-										<input type="text" placeholder="地址" id="user-name2" name="saddress" value="" style="width:500px;" >
+										<input type="text" placeholder="地址" id="user-addr" name="saddress" value="" style="width:500px;" >
 
 
 									</div>			
@@ -128,25 +128,110 @@
 
     								
 
-									<button class="am-btn am-btn-danger" style="margin:10px 0 0 60px" onclick="shopapp()">注册为商家</button>
+									<div class="am-btn am-btn-danger" style="margin:10px 0 0 60px" onclick="shopapp({{session('userid')}})">注册为商家</div>
 								</div>
 						</form>
 									</div>
 	<script>
-	function shopapp (){
 
-		layer.open({
-	  	   type: 1
-	      ,offset: 't' //具体配置参考：offset参数项
-	      ,content: '<div style="padding: 20px 80px;">您已成功提交了申请,请耐心等待后台审核通过</div>'
-	      ,btn: '关闭'
-	      ,btnAlign: 'c' //按钮居中
-	      ,shade: 0 //不显示遮罩
-	      ,yes: function(){
-	        layer.closeAll();
-	      }
-	}
+	 $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+                            $(function () {
+                                $("#file_upload").change(function (){ 
+                                    uploadImage();
+                                });
+                            });
+                            function uploadImage() {
+//                            判断是否有选择上传文件
+//                            input type file
+                                var imgPath = $("#file_upload").val();
+                                if (imgPath == "") {
+                                    alert("请选择上传图片！");
+                                    return;
+                                }
+                                //判断上传文件的后缀名
+                                var strExtension = imgPath.substr(imgPath.lastIndexOf('.') + 1);
+                                if (strExtension != 'jpg' && strExtension != 'gif'
+                                    && strExtension != 'png' && strExtension != 'bmp') {
+                                    alert("请选择图片文件");
+                                    return;
+                                }
+                                var formData = new FormData($( "#art_form" )[0]);
+                                // console.log(imgPath);
+                                $.ajax({
+                                    type: "post",
+                                    url: "/home/user/shopapply",
+                                    data: formData,
+                                    async: true,
+                                    cache: false,
+                                    contentType: false,
+                                    processData: false,
+                                    beforeSend:function(){
+                                          // 菊花转转图
+                                          // $('#img1').attr('src', 'http://img.lanrentuku.com/img/allimg/1212/5-121204193R0-50.gif');
+                                          //
+                                           a = layer.load();
+                                      },
+                                    success: function(data) {
+                                        layer.close(a);
+                                        $('#img1').attr('src','http://ozsps8743.bkt.clouddn.com/img/image_'+data);
+                                       
+                                      // $('#art_thumb').val(data);
+                                    },
+                                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                        alert("上传失败，请检查网络后重试");
+                                        $('#img1').attr('src','1.jpg');
+                                    }
+                                });
+                            }
 
+
+    function shopapp (id) {
+    	var sname = $('#user-name').val();
+    	var qq = $('#user-qq').val();
+    	var stype = $('#city').val();
+    	var simg = $('#img1').attr('src');
+    	var saddress = $('#user-addr').val();
+
+    	// console.log(sname);
+    	// console.log(qq);
+    	// console.log(stype);
+    	// console.log(simg);
+    	// console.log(saddress);
+    	$.post('/home/user/uploads',{'_token':'{{ csrf_token() }}',sname:sname,qq:qq,stype:stype,simg:simg,saddress:saddress},function(data){
+	            
+	           // console.log(data);
+	            if (data) {
+	                layer.open({
+		          	   type: 1
+			          ,offset: 't' //具体配置参考：offset参数项
+			          ,content: '<div style="padding: 20px 80px;">申请成功,请耐心等待后台人员审核</div>'
+			          ,btn: '关闭'
+			          ,btnAlign: 'c' //按钮居中
+			          ,shade: 0 //不显示遮罩
+			          ,yes: function(){
+			            layer.closeAll();
+			            location.href="/home/seller/index";
+			          }
+			        });
+	            }else {
+	                layer.open({
+		          	   type: 1
+			          ,offset: 't' //具体配置参考：offset参数项
+			          ,content: '<div style="padding: 20px 80px;">申请失败,请稍后重试</div>'
+			          ,btn: '关闭'
+			          ,btnAlign: 'c' //按钮居中
+			          ,shade: 0 //不显示遮罩
+			          ,yes: function(){
+			            layer.closeAll();
+			          }
+			        });
+	            }
+	        },);
+    }
 	</script>
 
 @endif
