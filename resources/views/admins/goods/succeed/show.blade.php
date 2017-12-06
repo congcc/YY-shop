@@ -1,10 +1,10 @@
 
 @extends('admins.layout.admins')
 
-@section('title','订单详情')
+@section('title','商品审核')
 
 @section('content')
-<h3>订单详情</h3>
+<h3>详情</h3>
 <form action="" method='post'>
     <table border='1' width='1400'>
         <tr>
@@ -29,5 +29,5 @@
         </tr>
     </table>
 </form>
-<a href="/admin/goods"><button>返回</button></a>
+<a href="/admin/gsucc"><button>返回</button></a>
 @endsection

@@ -1,6 +1,6 @@
 @extends('admins.layout.admins')
 
-@section('title','管理员列表')
+@section('title','管理人员')
 
 @section('content')
 <div class="mws-panel grid_8">

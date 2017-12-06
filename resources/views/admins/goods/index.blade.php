@@ -1,6 +1,6 @@
 @extends('admins.layout.admins')
 
-@section('title','商品审核列表')
+@section('title','商品审核')
 
 @section('content')
 

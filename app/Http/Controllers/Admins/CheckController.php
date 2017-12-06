@@ -58,6 +58,10 @@ class CheckController extends Controller
     public function show($id)
     {
         //
+        $req = shop::where('id',$id)->first();
+
+        return view('admins.check.show',compact('req'));
+
     }
 
     /**

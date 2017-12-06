@@ -27,5 +27,5 @@
         </tr>
     </table>
 </form>
-<a href="/admin/check"><button>返回</button></a>
+<a href="/admin/cfail"><button>返回</button></a>
 @endsection

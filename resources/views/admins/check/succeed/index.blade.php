@@ -1,6 +1,6 @@
 @extends('admins.layout.admins')
 
-@section('title','管理员列表')
+@section('title','商家入驻')
 
 @section('content')
 <div class="mws-panel grid_8">
@@ -94,7 +94,7 @@
                         </td>
                         <td class=" ">
                             <span class="btn-group">
-                                <a href="/admin/check/{{$v->id}}" class="btn btn-small"><i>详情</i></a>
+                                <a href="/admin/csucc/{{$v->id}}" class="btn btn-small"><i>详情</i></a>
                             </span>
                         </td>
                     </tr>

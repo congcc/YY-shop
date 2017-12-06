@@ -1,9 +1,9 @@
 @extends('admins.layout.admins')
 
-@section('title','订单详情')
+@section('title','管理人员')
 
 @section('content')
-<h3>订单详情</h3>
+<h3>人员详情</h3>
     <table border='1' width='1000'>
         <tr>
             <th>ID</th>

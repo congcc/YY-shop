@@ -1,6 +1,6 @@
 @extends('admins.layout.admins')
 
-@section('title','身份认证')
+@section('title','实名认证')
 
 @section('content')
 <div class="mws-panel grid_8">

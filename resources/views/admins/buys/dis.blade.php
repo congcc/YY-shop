@@ -1,6 +1,6 @@
 @extends('admins.layout.admins')
 
-@section('title','买家禁用列表')
+@section('title','买家管理')
 
 @section('content')
 <div class="mws-panel grid_8 mws-collapsible">
@@ -8,7 +8,7 @@
         <span>
             <i class="icon-table">
             </i>
-            买家禁用列表
+            买家禁用
         </span>
         <div class="mws-collapse-button mws-inset">
             <span>

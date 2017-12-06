@@ -60,6 +60,7 @@ class IdentityfailController extends Controller
         $req = userinfo::where('id',$id)->first();
 
         // dd($req);
+        // var_dump($req);
 
         return view('admins.ident.fail.show',compact('req'));
     }

@@ -1,6 +1,6 @@
 @extends('admins.layout.admins')
 
-@section('title','添加管理员')
+@section('title','管理人员')
 
 @section('content')
 <h3>添加管理员</h3>

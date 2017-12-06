@@ -1,7 +1,7 @@
 
 @extends('admins.layout.admins')
 
-@section('title','卖家详情')
+@section('title','卖家管理')
 
 @section('content')
 <h3>卖家详情</h3>
