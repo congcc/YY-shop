@@ -16,13 +16,14 @@ class DieMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $res = website::where('w_status')->first();
-
-        if($res['w_status'] == 0){
+        $res = website::where('w_status',1)->first(); 
+        
+        
+        if(!$res){
             return view('/homes/404');
            } else {
             
             return $next($request);
            }
     }
-}
+} 

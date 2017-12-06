@@ -17,7 +17,9 @@ class AdminController extends Controller
      */
     public function index()
     {
+
         // var_dump(session('adminid'));   
+
         if(session('adminid')){
             return view('admins.admin');
         }else{

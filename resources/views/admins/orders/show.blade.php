@@ -21,7 +21,6 @@
             <th>订单状态</th>
         </tr>
         <tr>
-            
             <td>{{$orde->id}}</td>
             <td>{{$orde->o_code}}</td>
             <td>{{$user->username}}</td>
