@@ -21,7 +21,9 @@ class UserinfoController extends Controller
         
         $uid = session('userid');
         $res = user::find($uid);
-        $result = $res->userinfo;
+        
+        $result = userinfo::where('id',$uid)->first();
+        
 
         return view('homes.user.information',compact('result','res'));
         

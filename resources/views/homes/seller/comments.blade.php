@@ -156,11 +156,13 @@
 
 	<script type="text/javascript">
 
-	
+    
     
 
-	function com(oid,gid){
-		 layer.alert('<textarea rows=6 cols=80 class="review"></textarea>',{
+    function com(oid,gid){
+        
+
+    layer.alert('<textarea rows=6 cols=80 class="review"></textarea>',{
           type: 1,
           btn: ['回复','取消'],
           skin: 'layui-layer-molv', //加上边框
@@ -168,25 +170,27 @@
                     yes:function(index){
               
                var content = $('.review').val();
-               yes:function(index){
+        
                     $.post("{{url('/home/seller/comments')}}",{'_token':'{{ csrf_token() }}',content:content,oid:oid,gid:gid},function(data){
                         if(data){
                    
-                     layer.alert('添加成功！', {icon: 1});}
+                     layer.alert('回复成功！', {icon: 1});}
 
 
     
                 });
-               }
+
 
                 
 
                layer.close(index);   
             }
-               
+          
+         
           });
 
-	
-	}
-	</script>			
+
+
+    }
+    </script>   
 @endsection

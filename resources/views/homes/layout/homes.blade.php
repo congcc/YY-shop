@@ -44,7 +44,7 @@
 									<a href="{{url('home/register')}}" target="_top">免费注册</a>
 									@elseif($userid==1)<a href="{{url('home/user/')}}" target="_top" class="h">
 										@if($user->userinfo->truename) 亲爱的{{$user->userinfo->truename}}
-										@elseif(!$useruserinfo->truename) 亲爱的用户
+										@elseif(!$user->userinfo->truename) 亲爱的用户
 										@endif
 										</a>
 									<a href="/home/index/{{$user->id}}/edit" target="_top">退出登录</a>

@@ -33,6 +33,7 @@ class InfoController extends Controller
        // dd ($user);
 
        //将信息传入视图页
+       
         return view('homes.seller.info',["user"=>$user]);
 
 

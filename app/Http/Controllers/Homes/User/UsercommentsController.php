@@ -67,7 +67,7 @@ class Usercommentscontroller extends Controller
 
             $res = $request->except('_token','picture');
 
-            $res['picture'] = './Upload/'.$name.'.'.$suffix;
+            $res['picture'] = '/Upload/'.$name.'.'.$suffix;
 
             
             $res = review::insert($res);

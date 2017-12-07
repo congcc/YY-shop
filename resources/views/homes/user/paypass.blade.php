@@ -99,7 +99,7 @@
         $.post("/home/co",{'_token':'{{ csrf_token() }}',ph:ph},function(data){
          if(data=="0"){
          }
-         console.log(data);
+         // console.log(data);
         })
     })
     //无验证码变色
@@ -168,24 +168,26 @@
 	                layer.open({
 		          	   type: 1
 			          ,offset: 't' //具体配置参考：offset参数项
-			          ,content: '<div style="padding: 20px 80px;">密码修改成功</div>'
+			          ,content: '<div style="padding: 20px 80px;">密码设置成功</div>'
 			          ,btn: '关闭'
 			          ,btnAlign: 'c' //按钮居中
 			          ,shade: 0 //不显示遮罩
 			          ,yes: function(){
 			            layer.closeAll();
+                        location.reload();
 			          }
 			        });
 	            }else {
 	                layer.open({
 		          	   type: 1
 			          ,offset: 't' //具体配置参考：offset参数项
-			          ,content: '<div style="padding: 20px 80px;">密码修改失败</div>'
+			          ,content: '<div style="padding: 20px 80px;">密码设置失败</div>'
 			          ,btn: '关闭'
 			          ,btnAlign: 'c' //按钮居中
 			          ,shade: 0 //不显示遮罩
 			          ,yes: function(){
 			            layer.closeAll();
+                        location.reload();
 			          }
 			        });
 	            }

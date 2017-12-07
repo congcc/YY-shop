@@ -544,18 +544,18 @@
 
 		$.post("{{url('home/user/addr')}}",{'_token':'{{ csrf_token() }}',uid:uid,name:name,ph:ph,sheng:sheng,shi:shi,xian:xian,addr:addr},function(data){
          	// console.log(data);
-    //      	if(data==1){
-    //      		layer.alert('保存成功', {
-				//   icon: 1,
-				//   skin: 'layer-ext-moon' 
-				// })
-				// location.reload();
-    //      	}else{
-    //      		layer.alert('失败,请重试', {
-				//   icon: 2,
-				//   skin: 'layer-ext-moon' 
-    //      		})
-    //      	}
+         	if(data==1){
+         		layer.alert('保存成功', {
+				  icon: 1,
+				  skin: 'layer-ext-moon' 
+				})
+				location.reload();
+         	}else{
+         		layer.alert('失败,请重试', {
+				  icon: 2,
+				  skin: 'layer-ext-moon' 
+         		})
+         	}
         },'json');
 		
 	}
