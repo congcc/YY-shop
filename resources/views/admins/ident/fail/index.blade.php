@@ -107,9 +107,9 @@
                         <td class=" ">
                             {{$v->area}}
                         </td>
- 						<td class=" ">
+                        <td class=" ">
                             <span class="btn-group">
-                                <a href="/admin/check/{{$v->id}}" class="btn btn-small"><i>详情</i></a>
+                                <a href="/admin/ifail/{{$v->id}}" class="btn btn-small"><i>详情</i></a>
                             </span>
                         </td>
                     </tr>

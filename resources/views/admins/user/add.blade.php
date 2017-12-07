@@ -1,6 +1,6 @@
 @extends('admins.layout.admins')
 
-@section('title','添加管理员')
+@section('title','管理人员')
 
 @section('content')
 <h3>添加管理员</h3>
@@ -53,6 +53,6 @@
         <input type="hidden" name="time" value="">
     </div>
     {{ csrf_field()}}
-    <input type="submit" class="btn btn-danger" value="添加">
+    <input type="submit" class="btn btn-danger" onclick="return confirm('你确定要添加管理员吗?')" value="添加">
 </form>
 @endsection

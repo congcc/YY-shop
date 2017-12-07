@@ -1,6 +1,6 @@
 @extends('admins.layout.admins')
 
-@section('title','卖家禁用列表')
+@section('title','卖家管理')
 
 @section('content')
 
@@ -10,7 +10,7 @@
         <span>
             <i class="icon-table">
             </i>
-            卖家禁用列表
+            卖家禁用
         </span>
         <div class="mws-collapse-button mws-inset">
             <span>
@@ -109,7 +109,7 @@
                             {{$v->sauth ? '开启' : '关闭'}}
                         </td>
                         <td class=" ">
-                        <a href="/admin/sellerdis/{{$v->id}}/edit"><button type="button" class="am-btn am-btn-default am-btn-warning"><span class="am-icon-archive"></span>开启</button></a>
+                        <a href="/admin/sellerdis/{{$v->id}}/edit"><button type="button" class="am-btn am-btn-default am-btn-warning" onclick="return confirm('您确定要{{$v->sauth ? '关闭' : '开启'}}吗?')"  ><span class="am-icon-archive"></span>开启</button></a>
                         </td>
                     </tr>
                 @endforeach

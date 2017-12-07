@@ -1,6 +1,6 @@
 @extends('admins.layout.admins')
 
-@section('title','管理员列表')
+@section('title','管理人员')
 
 @section('content')
 <div class="mws-panel grid_8">
@@ -90,7 +90,7 @@
                         </td>
                         <td class=" ">
                             <a href="/admin/users/{{$v->id}}">
-                                <button id="auth">
+                                <button id="auth" onclick="return confirm('您确定要{{$v->auth ?  '开启' : '关闭'}}吗?')" >
                                     {{$v->auth ?  '关闭' : '开启'}}
                                 </button>
                             </a>

@@ -59,6 +59,9 @@ class CheckfailController extends Controller
     public function show($id)
     {
         //
+        $req = shop::where('id',$id)->first();
+
+        return view('admins.check.fail.shop',compact('req'));
     }
 
     /**

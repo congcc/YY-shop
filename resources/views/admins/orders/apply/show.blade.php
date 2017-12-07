@@ -6,7 +6,7 @@
 @section('content')
 <h3>订单详情</h3>
 <form action="" method='post'>
-    <table border='1' width='1400'>
+    <table border='1' width='1100'>
         <tr>
             <th>ID</th>
          	<th>订单号</th>

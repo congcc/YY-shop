@@ -1,6 +1,6 @@
 @extends('admins.layout.admins')
 
-@section('title','商家入驻列表')
+@section('title','商家入驻')
 
 @section('content')
 <div class="mws-panel grid_8 mws-collapsible">

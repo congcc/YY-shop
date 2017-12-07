@@ -1,6 +1,6 @@
 @extends('admins.layout.admins')
 
-@section('title','身份认证')
+@section('title','实名认证')
 
 @section('content')
 <div class="mws-panel grid_8">
@@ -62,12 +62,12 @@
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                         rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending"
                         style="width: 111px;">
-                           	真实姓名
+                            真实姓名
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                         rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending"
                         style="width: 111px;">
-                           	身份证号
+                            身份证号
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                         rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"

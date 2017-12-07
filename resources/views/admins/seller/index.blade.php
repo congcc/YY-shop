@@ -1,6 +1,6 @@
 @extends('admins.layout.admins')
 
-@section('title','卖家列表')
+@section('title','卖家管理')
 
 @section('content')
 
@@ -68,11 +68,6 @@
                             </th>
                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
                             rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"
-                            style="width: 120px;">
-                                店铺类型
-                            </th>
-                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0"
-                            rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"
                             style="width: 80px;">
                                 积分
                             </th>
@@ -114,9 +109,6 @@
                             {{$v->sname}}
                         </td>
                         <td class=" ">
-                            {{$v->stype}}
-                        </td>
-                        <td class=" ">
                             {{$v->sclass}}
                         </td>
 
@@ -130,8 +122,8 @@
 
                         <td class=" ">
                             <a href="/admin/sellerdis/{{$v->id}}">
-                                <button id="auth">
-                                    {{$v->sauth ? '关闭' : '开启'}}
+                                <button id="auth" onclick="return confirm('您确定要{{$v->sauth ? '关闭' : '开启'}}吗?')" >
+                                    {{$v->sauth ? '开启' : '关闭'}}
                                     {{method_field('PUT')}}
                                 </button>
                             </a>

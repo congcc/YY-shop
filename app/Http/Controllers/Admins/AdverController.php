@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\model\admins;
 
-class AdverController extends Controller
+
+class AdminauthController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,6 +19,11 @@ class AdverController extends Controller
     public function index()
     {
         //
+        $admins=admins::get();
+
+        // dd($admins);
+
+
     }
 
     /**

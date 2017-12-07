@@ -1,6 +1,6 @@
 @extends('admins.layout.admins')
 
-@section('title','修改买家')
+@section('title','买家管理')
 
 @section('content')
 <h3>修改买家</h3>

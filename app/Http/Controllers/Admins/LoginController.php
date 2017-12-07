@@ -46,6 +46,8 @@ class LoginController extends Controller
 
         $res = admins::where('name',$req['name'])->get();
 
+        // var_dump($res);
+        // die();
 
         if (Hash::check($req['key'], $res[0]->key)) {
            echo "1"; 

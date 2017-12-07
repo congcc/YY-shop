@@ -25,7 +25,7 @@ class OrdersrefundController extends Controller
         //
         $res = orders::where('o_code','like','%'.$request->input('search').'%')
         ->orderBy('ostate','asc')
-        ->paginate(5);
+        ->paginate(5);a
 
         $req = orders::where('ostate', '8')->get();
 

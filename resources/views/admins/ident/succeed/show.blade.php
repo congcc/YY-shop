@@ -17,17 +17,16 @@
             <td>email</td>
         </tr>
         <tr>
-            <td>{{$req->id}}</td>
-            <td>{{$req->nickname}}</td>
-            <td>{{$req->truename}}</td>
-            <td>{{$req->birth}}</td>
-            <td>{{$req->sex}}</td>
-            <td>{{$req->idcard}}</td>
-            <td>{{$req->area}}</td>
-            <td>{{date('Y-m-d H:i:s',time($req->createtime_user))}}</td>
-            <td>{{$req->email}}</td>
-
+        	<td>{{$req->id}}</td>
+        	<td>{{$req->nickname}}</td>
+        	<td>{{$req->truename}}</td>
+        	<td>{{$req->birth}}</td>
+        	<td>{{$req->sex ? '女' : '男'}}</td>
+        	<td>{{$req->idcard}}</td>
+        	<td>{{$req->area}}</td>
+        	<td>{{date('Y-m-d H:i:s',time($req->createtime_user))}}</td>
+        	<td>{{$req->email}}</td>
         </tr>
     </table>
-<a href="/admin/ident"><button>返回</button></a>
+<a href="/admin/isucc"><button>返回</button></a>
 @endsection

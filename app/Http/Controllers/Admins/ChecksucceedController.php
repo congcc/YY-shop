@@ -58,7 +58,10 @@ class ChecksucceedController extends Controller
      */
     public function show($id)
     {
-        //
+        //      
+        $req = shop::where('id',$id)->first();
+
+        return view('admins.check.succeed.shop',compact('req'));
     }
 
     /**

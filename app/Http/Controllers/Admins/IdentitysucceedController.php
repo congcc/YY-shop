@@ -57,6 +57,11 @@ class IdentitysucceedController extends Controller
     public function show($id)
     {
         //
+        $req = userinfo::where('id',$id)->first();
+
+        // dd($req);
+
+        return view('admins.ident.succeed.show',compact('req'));
     }
 
     /**

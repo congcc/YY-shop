@@ -62,11 +62,7 @@ class GoodsfailController extends Controller
         //
         $res = goods::where('id',$id)->first();
 
-        $shop = shop::where('id',$res->sid)->first();
-
-        $gc = goodscate::where('pid',$res->clid)->first();
-
-         return view('admins.goods.fail.show',compact('res','shop','gc'));
+         return view('admins.goods.fail.shop',compact('res'));
     }
 
     /**

@@ -1,6 +1,6 @@
 @extends('admins.layout.admins')
 
-@section('title','商品审核列表')
+@section('title','商品审核')
 
 @section('content')
 
@@ -127,7 +127,7 @@
                 Showing 1 to 10 of 57 entries
             </div>
             <div class="dataTables_paginate paging_full_numbers">
-                {!! $res->appends($request->all())->render()!!}
+                <!-- {!! $res->appends($request->all())->render()!!} -->
             </div>
         </div>
     </div>

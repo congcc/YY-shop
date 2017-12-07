@@ -1,6 +1,6 @@
 @extends('admins.layout.admins')
 
-@section('title','买家列表')
+@section('title','买家管理')
 
 @section('content')
 <div class="mws-panel grid_8 mws-collapsible">
@@ -107,9 +107,10 @@
                             {{$v->status ? '用户' : '商户'}}
                         </td>
                         <td class=" ">
-                            <a href="/admin/buyss/{{$v->id}}" onclick="return confirm('您确定要修改吗?')">
+                            <a href="/admin/buyss/{{$v->id}}" onclick="return confirm('您确定要{{$v->status ? '关闭' : '开启'}}吗?')">
                                 <button id="auth">
-                                    {{$v->status ? '关闭' : '开启'}}
+                                    
+                                    {{$v->status ? '开启' : '关闭'}}
                                 </button>
                             </a>
                         </td>

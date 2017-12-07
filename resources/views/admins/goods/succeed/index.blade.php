@@ -1,6 +1,6 @@
 @extends('admins.layout.admins')
 
-@section('title','商品审核列表')
+@section('title','商品审核')
 
 @section('content')
 
@@ -111,7 +111,7 @@
                         </td>
                         <td class=" ">
                             <span class="btn-group">
-                                <a href="/admin/succeed/{{$v->id}}" class="btn btn-small"><i>详情</i></a>
+                                <a href="/admin/gsucc/{{$v->id}}" class="btn btn-small"><i>详情</i></a>
                             </span>
                         </td>
                     </tr>
